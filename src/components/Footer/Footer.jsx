@@ -1,5 +1,4 @@
 import { FaAngleRight } from 'react-icons/fa6';
-import MapFrame from '../../assets/mapFrame.png';
 import FooterBg from '../../assets/footerBg.png';
 import './footer.css';
 import Link from 'next/link';
