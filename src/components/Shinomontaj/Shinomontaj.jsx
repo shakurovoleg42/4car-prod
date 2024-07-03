@@ -1,5 +1,4 @@
 import NavBar from './../NavBar/NavBar';
-import Map from '../../assets/Map.png';
 import Footer from './../Footer/Footer';
 import ScrollToTop from './../ScrollToTop/ScrollToTop';
 
@@ -40,12 +39,17 @@ const Shinomontaj = () => {
                 Для получения скидки необходимо прибрести шины или диски у нас и
                 получить купон!
               </p>
-              <img
-                className='max-w-[1140px] w-full
+              <iframe
+              src='https://yandex.uz/map-widget/v1/?ll=76.914207%2C43.304945&z=18&l=map&pt=76.914207,43.304945,pm2dgl'
+              className='max-w-[1140px] w-full
                         2xl:block xl:block lg:hidden hidden mx-auto'
-                src={Map.src}
-                alt=''
-              />
+              allowFullScreen
+              style={{
+                position: 'relative',
+                height: '805px',
+                borderRadius: '10px',
+              }}
+            />
             </section>
           </div>
         </main>
