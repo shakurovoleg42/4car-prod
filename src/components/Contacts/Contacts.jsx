@@ -61,7 +61,7 @@ const Contacts = () => {
                       Адрес
                     </h2>
                     <a
-                      href='https://2gis.kz/almaty/firm/70000001040222127/76.914359%2C43.305155?m=76.91509%2C43.305034%2F18.43%2Fr%2F3.96'
+                      href='https://yandex.uz/maps/162/almaty/house/Y08YfwZkS0YGQFppfX9xdXVqYw==/?from=mapframe&ll=76.914231%2C43.304997&z=17'
                       className='leading-7'
                     >
                       г. Алматы ул. Казыбаева, 270а
