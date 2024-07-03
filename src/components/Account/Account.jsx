@@ -6,12 +6,10 @@ import UserImg from '../../assets/UserImg.png';
 import { GiBackwardTime } from 'react-icons/gi';
 import { FaAngleRight } from 'react-icons/fa6';
 import { PiShoppingCart } from 'react-icons/pi';
-import { CiCreditCard1 } from 'react-icons/ci';
 import { IoSettingsOutline } from 'react-icons/io5';
 import History from '../templates/History';
 import Footer from './../Footer/Footer';
 import Cart from './../templates/Cart';
-import MyCredits from './../templates/MyCredits';
 import EditAccount from '../templates/EditAccount';
 import './Account.css';
 import ScrollToTop from './../ScrollToTop/ScrollToTop';
@@ -101,19 +99,6 @@ const Account = () => {
                     </button>
                   </div>
                   <div className='flex items-center gap-3'>
-                    <CiCreditCard1 className='text-primary text-3xl' />
-                    <button
-                      onClick={() => openModal('modal3')}
-                      className='flex items-center max-w-[220px] text-darkMain
-                                    border-b border-primary focus:bg-primary rounded focus:text-white 
-                                    px-2 w-full justify-between'
-                      type='submit'
-                    >
-                      Мои карты
-                      <FaAngleRight />
-                    </button>
-                  </div>
-                  <div className='flex items-center gap-3'>
                     <IoSettingsOutline className='text-primary text-3xl' />
                     <button
                       onClick={() => openModal('modal4')}
@@ -134,7 +119,6 @@ const Account = () => {
               >
                 {activeModal === 'modal1' && <History />}
                 {activeModal === 'modal2' && <Cart />}
-                {activeModal === 'modal3' && <MyCredits />}
                 {activeModal === 'modal4' && (
                   <EditAccount
                     myFunc={handleImageChange}
