@@ -1,5 +1,4 @@
 import { FaAngleRight } from 'react-icons/fa6';
-import MapFrame from '../../assets/mapFrame.png';
 import FooterBg from '../../assets/footerBg.png';
 import './footer.css';
 import Link from 'next/link';
@@ -52,7 +51,7 @@ const Footer = () => {
                   required
                   id='userEmail'
                   type='email'
-                  placeholder='Example@email.com'
+                  placeholder='Example@gmail.com'
                   className='w-full border-b py-3 px-4 focus:outline-none text-xl'
                 />
               </div>
@@ -79,13 +78,17 @@ const Footer = () => {
                 Связаться с нами <FaAngleRight />
               </button>
             </form>
-            <Link href='https://2gis.kz/almaty/firm/70000001040222127/76.914359%2C43.305155?m=76.91509%2C43.305034%2F18.43%2Fr%2F3.96'>
-              <img
-                className='2xl:max-w-[600px] xl:max-w-[500px] lg:max-w-[450px] md:max-w-[400px] sm:max-w-[350px] max-w-[300px] w-full'
-                src={MapFrame.src}
-                alt=''
-              />
-            </Link>
+
+            <iframe
+              src='https://yandex.uz/map-widget/v1/?ll=76.914207%2C43.304945&z=18&l=map&pt=76.914207,43.304945,pm2dgl'
+              className='2xl:max-w-[600px] xl:max-w-[500px] lg:max-w-[450px] md:max-w-[400px] sm:max-w-[350px] max-w-[300px] w-full'
+              allowFullScreen
+              style={{
+                position: 'relative',
+                height: '721px',
+                borderRadius: '45px',
+              }}
+            />
           </div>
         </div>
         <div className='footer_navigate py-5'>
