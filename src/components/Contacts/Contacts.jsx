@@ -31,7 +31,7 @@ const Contacts = () => {
           <div className='container'>
             <section className='mb-14 w-full'>
               <div className='bg-primary p-4 rounded-[4px]'>
-                <disv className='max-w-[1000px]  mx-auto flex justify-center -translate-y-1/2 text-center contact__info'>
+                <div className='max-w-[1000px]  mx-auto flex justify-center -translate-y-1/2 text-center contact__info'>
                   <div
                     data-aos='zoom-out-down'
                     className='contact__item flex bg-white flex-col items-center pt-8 
@@ -98,7 +98,7 @@ const Contacts = () => {
                       info@4car.kz
                     </a>
                   </div>
-                </disv>
+                </div>
               </div>
             </section>
             <section className='text-center mb-14 px-4'>
