@@ -4,7 +4,6 @@ import InputMask from 'react-input-mask';
 const OrderCall = () => {
   const [name, setName] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
-  const [numberError, setNumberError] = useState('');
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -38,11 +37,6 @@ const OrderCall = () => {
             className='border-2 outline-none 2xl:py-2 xl:py-2 lg:py-1 py-1 px-2 rounded'
           />
         </div>
-        {numberError && (
-          <p style={{ color: 'red', fontSize: '14px', maxWidth: '230px' }}>
-            {numberError}
-          </p>
-        )}
         <div className='flex flex-col gap-4'>
       <label htmlFor='orderCallNumber'>
         Номер телефона <span className='text-red'>*</span>
