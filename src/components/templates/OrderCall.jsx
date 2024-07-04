@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import InputMask from 'react-input-mask';
 
 const OrderCall = () => {
   const [name, setName] = useState('');
@@ -9,16 +10,9 @@ const OrderCall = () => {
     setName(e.target.value);
   };
 
-  const handlePhoneNumberChange = (e) => {
-    const numberValue = e.target.value.replace(/[^0-9+]/g, '');
 
-    if (numberValue.includes('+')) {
-      setNumberError('');
-    } else {
-      setNumberError('Введите действительный номер телефона');
-    }
-
-    setPhoneNumber(numberValue);
+  const handlePhoneNumberChange = (event) => {
+    setPhoneNumber(event.target.value);
   };
 
   return (
@@ -50,20 +44,27 @@ const OrderCall = () => {
           </p>
         )}
         <div className='flex flex-col gap-4'>
-          <label htmlFor='orderCallNumber'>
-            Номер телефона <span className='text-red'>*</span>
-          </label>
+      <label htmlFor='orderCallNumber'>
+        Номер телефона <span className='text-red'>*</span>
+      </label>
+      <InputMask
+        mask="+7 (999) 999-99-99"
+        value={phoneNumber}
+        onChange={handlePhoneNumberChange}
+      >
+        {(inputProps) => (
           <input
+            {...inputProps}
             type='text'
             id='orderCallNumber'
             required
-            value={phoneNumber}
-            onChange={handlePhoneNumberChange}
             autoComplete='phoneNumber'
             className='border-2 outline-none py-2 px-2 rounded'
-            placeholder='+7(***)***-**-**'
+            placeholder='+7 (***) ***-**-**'
           />
-        </div>
+        )}
+      </InputMask>
+    </div>
         <button
           type='submit'
           className='py-1 px-2 bg-primary text-white rounded'
