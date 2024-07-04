@@ -1,5 +1,4 @@
 import NavBar from './../NavBar/NavBar';
-import Map from '../../assets/Map1.png';
 import { FaTelegramPlane } from 'react-icons/fa';
 import { FaLocationPin } from 'react-icons/fa6';
 import { FaPhone } from 'react-icons/fa';
@@ -28,12 +27,11 @@ const Contacts = () => {
           </div>
         </header>
         <ScrollToTop />
-        <main className='mt-20'>
+        <main className='mt-40'>
           <div className='container'>
             <section className='mb-14 w-full'>
-              <img className='contact__map' src={Map.src} alt='' />
-              <div className='bg-primary p-4'>
-                <div className='max-w-[1000px]  mx-auto flex justify-center -translate-y-1/2 text-center contact__info'>
+              <div className='bg-primary p-4 rounded-[4px]'>
+                <disv className='max-w-[1000px]  mx-auto flex justify-center -translate-y-1/2 text-center contact__info'>
                   <div
                     data-aos='zoom-out-down'
                     className='contact__item flex bg-white flex-col items-center pt-8 
@@ -43,7 +41,7 @@ const Contacts = () => {
                   >
                     <FaTelegramPlane className='2xl:text-4xl xl:text-3xl lg:text-3xl md:text-2xl sm:text-xl text-xl mb-2 text-primary' />
                     <h2 className='text-darkMain text-xl mb-4 font-semibold font-body'>
-                      Head Quarters
+                      Телеграм
                     </h2>
                     <Link href='#!' className='leading-7'>
                       @Focarkz_bot
@@ -100,7 +98,7 @@ const Contacts = () => {
                       info@4car.kz
                     </a>
                   </div>
-                </div>
+                </disv>
               </div>
             </section>
             <section className='text-center mb-14 px-4'>
