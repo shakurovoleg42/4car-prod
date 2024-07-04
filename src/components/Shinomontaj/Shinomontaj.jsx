@@ -39,17 +39,6 @@ const Shinomontaj = () => {
                 Для получения скидки необходимо прибрести шины или диски у нас и
                 получить купон!
               </p>
-              <iframe
-              src='https://yandex.uz/map-widget/v1/?ll=76.914207%2C43.304945&z=18&l=map&pt=76.914207,43.304945,pm2dgl'
-              className='max-w-[1140px] w-full
-                        2xl:block xl:block lg:hidden hidden mx-auto'
-              allowFullScreen
-              style={{
-                position: 'relative',
-                height: '805px',
-                borderRadius: '10px',
-              }}
-            />
             </section>
           </div>
         </main>
