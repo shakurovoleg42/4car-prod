@@ -78,15 +78,12 @@ const Footer = () => {
                 Связаться с нами <FaAngleRight />
               </button>
             </form>
-
             <iframe
               src='https://yandex.uz/map-widget/v1/?ll=76.914207%2C43.304945&z=18&l=map&pt=76.914207,43.304945,pm2dgl'
-              className='2xl:max-w-[600px] xl:max-w-[500px] lg:max-w-[450px] md:max-w-[400px] sm:max-w-[350px] max-w-[300px] w-full'
+              className='2xl:max-w-[600px] 2xl:h-[721px] xl:max-w-[500px] xl:h-[621px] lg:max-w-[450px] lg:h-[571px] md:max-w-[400px] md:h-[500px] sm:max-w-[350px] sm:h-[371px] max-w-[300px] h-[321px] w-full rounded-[45px]'
               allowFullScreen
               style={{
                 position: 'relative',
-                height: '721px',
-                borderRadius: '45px',
               }}
             />
           </div>
