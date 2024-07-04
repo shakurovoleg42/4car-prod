@@ -1,9 +1,19 @@
-import { FaAngleRight } from 'react-icons/fa6';
-import FooterBg from '../../assets/footerBg.png';
+'use client';
+
 import './footer.css';
+
+import { FaAngleRight } from 'react-icons/fa6';
+import { FiFacebook } from 'react-icons/fi';
+import { FaInstagram } from 'react-icons/fa';
 import Link from 'next/link';
+import Image from 'next/image';
+
+import responsiveImage from '../../utils/responsiveImage';
+import { useMediaQuery } from 'usehooks-ts';
 
 const Footer = () => {
+  const matches = useMediaQuery('(max-width: 670px)');
+
   return (
     <>
       <footer className='relative'>
@@ -89,125 +99,113 @@ const Footer = () => {
           </div>
         </div>
         <div className='footer_navigate py-5'>
-          <div className='container'>
-            <div className='pb-10 flex flex-wrap gap-5 justify-between items-start text-white px-5 '>
+          <div className='container mt-5'>
+            <div className='flex-wrap gap-5 justify-between items-start text-white px-5 wrapalyzer'>
               <div className='flex flex-col footer__content gap-6'>
                 <p className='2xl:text-3xl xl:text-2xl lg:text-xl md:text-xl sm:text-lg text-lg font-bold'>
-                  Информация
+                  Навигация
                 </p>
                 <ul className='flex flex-col gap-4 footer__list'>
                   <li>
-                    <Link className='text-xl' href='/sitemap'>
-                      Карта сайта{' '}
-                    </Link>
+                    <Link href='/about'>О компании</Link>
                   </li>
                   <li>
-                    <Link className='text-xl' href='/blog'>
-                      Блог
-                    </Link>
+                    <Link href='/contacts'>Контакты</Link>
                   </li>
                   <li>
-                    <Link className='text-xl' href='/news'>
-                      Новости{' '}
-                    </Link>
+                    <Link href='/news'>Новости</Link>
                   </li>
                   <li>
-                    <Link className='text-xl' href='/account'>
-                      Корзина
-                    </Link>
+                    <Link href='/blog'>Блог</Link>
+                  </li>
+                  <li>
+                    <Link href='/delivery'>Оплата и доставка</Link>
+                  </li>
+                  <li>
+                    <Link href='/shinomontazh'>Шиномонтаж</Link>
                   </li>
                 </ul>
               </div>
               <div className='flex flex-col footer__content gap-6'>
                 <p className='2xl:text-3xl xl:text-2xl lg:text-xl md:text-xl sm:text-lg text-lg font-bold'>
-                  Полезное
+                  Категории
                 </p>
                 <ul className='flex flex-col gap-4 footer__list'>
                   <li>
-                    <Link className='text-xl' href='/contacts'>
-                      Контакты{' '}
-                    </Link>
+                    <Link href='/tires'>Шины</Link>
                   </li>
                   <li>
-                    <Link className='text-xl' href='/shinomontazh'>
-                      Шиномонтаж
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className='text-xl' href='/garantii'>
-                      Возврат и обмен{' '}
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className='text-xl' href='/delivery'>
-                      Оплата и доставка
-                    </Link>
+                    <Link href='/rims'>Диски</Link>
                   </li>
                 </ul>
               </div>
               <div className='flex flex-col footer__content gap-6 max-w-[250px]'>
                 <p className='2xl:text-3xl xl:text-2xl lg:text-xl md:text-xl sm:text-lg text-lg font-bold'>
-                  Сервис
+                  Контакты
                 </p>
                 <ul className='flex flex-col gap-4 footer__list'>
                   <li>
-                    <Link className='text-xl' href='/credit'>
-                      Условия кредита и рассрочки{' '}
-                    </Link>
+                    <a href='tel:+7 (701) 744-80-07'>+7 (701) 744-80-07</a>
                   </li>
                   <li>
-                    <Link className='text-xl' href='/publichnaya-oferta'>
-                      Публичная оферта
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className='text-xl' href='/about'>
-                      О компании{' '}
-                    </Link>
+                    <a href='tel:+7 (706) 413-35-56'>+7 (706) 413-35-56</a>
                   </li>
                 </ul>
+                <div className='social'>
+                  <a
+                    target='_blank'
+                    className='facebook'
+                    href='https://www.facebook.com/4car.kz/'
+                    aria-label='Facebook'
+                  >
+                    <FiFacebook size={24} />
+                  </a>
+                  <a
+                    target='_blank'
+                    className='instagram'
+                    href='https://www.instagram.com/4carkz/'
+                    aria-label='Instagram'
+                  >
+                    <FaInstagram size={24} />
+                  </a>
+                </div>
               </div>
               <div className='flex flex-col footer__content gap-6'>
                 <p className='2xl:text-3xl xl:text-2xl lg:text-xl md:text-xl sm:text-lg text-lg font-bold'>
-                  Личный кабинет
+                  Документы
                 </p>
                 <ul className='flex flex-col gap-4 footer__list'>
                   <li>
-                    <Link className='text-xl' href='/account'>
-                      Личный кабинет{' '}
+                    <Link href='/politika-konfidencialnosti'>
+                      Политика конфиденциальности
                     </Link>
                   </li>
                   <li>
-                    <Link className='text-xl' href='/account'>
-                      Заказы
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className='text-xl' href='/account'>
-                      Адреса{' '}
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className='text-xl' href='/account'>
-                      Последние
-                    </Link>
+                    <Link href='/publichnaya-oferta'>Публичная оферта</Link>
                   </li>
                 </ul>
               </div>
             </div>
-            <Link href='/'>
-              <img
-                className='mx-auto max-w-[150px] w-full'
-                src='/logo.png'
-                alt=''
-              />
-            </Link>
+            <div className='mt-5'>
+              <hr />
+              <p className='text-white text-center mt-5'>
+                Разработано{' '}
+                <a
+                  href='https://iprod.kz/'
+                  target='_blank'
+                  style={{ textDecoration: 'underline' }}
+                >
+                  Iprod.kz
+                </a>
+              </p>
+            </div>
           </div>
         </div>
-        <img
-          className='footer__bg absolute -bottom-5 -z-10 max-w-[2500px] w-full max-h-[1100px] h-full right-0'
-          src={FooterBg.src}
+        <Image
+          className='footer__bg absolute -bottom-5 -z-10 max-w-[2500px] w-full max-h-[1200px] h-full right-0'
+          src={matches ? '/footerBg-mob.png' : '/footerBg.png'}
           alt=''
+          {...responsiveImage}
         />
       </footer>
     </>
