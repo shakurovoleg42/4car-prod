@@ -3,6 +3,7 @@ import './globals.css';
 import NextTopLoader from 'nextjs-toploader';
 
 import ClientComponent from '../components/ClientComponent';
+import FixedBox from '../components/FixedBox/Fixedbox';
 
 export const metadata = {
   title: '4car.kz - интернет-магазин шин и дисков',
@@ -17,6 +18,7 @@ export default function RootLayout({ children }) {
         <div id='root'>
           <NextTopLoader color='#FFFFFF' height={2} showSpinner={false} />
           <ClientComponent>{children}</ClientComponent>
+          <FixedBox/>
         </div>
       </body>
     </html>
