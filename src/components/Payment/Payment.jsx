@@ -92,53 +92,62 @@ const Payment = () => {
             </div>
           </section>
           <section className='py-10 bg-black text-white relative mb-16 -z-20'>
-            <div className='container'>
-              <div
-                data-aos='fade-up-right'
-                data-aos-anchor-placement='center-bottom'
-                className=' max-w-[1040px] px-4'
-              >
-                <div className='flex flex-col gap-5'>
-                  <p className='2xl:text-xl xl:text-xl lg:text-lg md:text-md sm:text-md text-sm tracking-wide'>
-                    <span className='font-bold'>Бесплатная доставка:</span> по
-                    г. Алматы при заказе на сумму свыше 80 000 тенге или 4 шины
-                    доставка осуществляется бесплатно.
-                  </p>
-                  <p className='2xl:text-xl xl:text-xl lg:text-lg md:text-md sm:text-md text-sm tracking-wide'>
-                    <span className='font-bold'>Платная доставка:</span> по г.
-                    Алматы при заказе на сумму менее 80000 тенге стоимость
-                    доставки - 1000 тенге
-                  </p>
-                  <p className='2xl:text-xl xl:text-xl lg:text-lg md:text-md sm:text-md text-sm tracking-wide'>
-                    <span className='font-bold'>Стоимость доставки</span> в
-                    отдаленные районы Алматы согласовывается отдельно. Вы также
-                    можете забрать Ваш товар самостоятельно из нашего магазина.
-                    В этом случае Вам необходимо связаться с нами и обязательно
-                    зарезервировать Ваш товар и уточнить время. Время доставки
-                    по г. Алматы
-                  </p>
-                  <p className='2xl:text-xl xl:text-xl lg:text-lg md:text-md sm:text-md text-sm tracking-wide'>
-                    <span className='font-bold'>Стоимость доставки</span> в
-                    отдаленные районы Алматы согласовывается отдельно.
-                  </p>
-                  <p className='2xl:text-xl xl:text-xl lg:text-lg md:text-md sm:text-md text-sm tracking-wide'>
-                    <span className='font-bold'>Вы также можете забрать</span>{' '}
-                    Ваш товар самостоятельно из нашего магазина. В этом случае
-                    вам необходимо связаться с нами и обязательно
-                    зарезервировать Ваш товар и уточнить время
-                  </p>
-                  <span className='font-bold'>Время доставки по г. Алматы</span>
-                </div>
-              </div>
-            </div>
-            <img
-              src={payDecor2.src}
-              alt=''
-              className='absolute 
-                        2xl:max-h-[512px] xl:max-h-[512px] lg:max-h-[540px] md:max-h-[440px] sm:max-h-[482px] max-h-[442px]
-                        -z-10 bottom-0 right-0'
-            />
-          </section>
+      <div className='container'>
+        <div
+          data-aos='fade-up-right'
+          data-aos-anchor-placement='center-bottom'
+          className='max-w-[1040px] px-4'
+        >
+          <div className='flex flex-col gap-5'>
+            <p className='2xl:text-xl xl:text-xl lg:text-lg md:text-md sm:text-md text-sm tracking-wide'>
+              <span className='font-bold'>Бесплатная доставка:</span> по
+              г. Алматы при заказе на сумму свыше 80 000 тенге или 4 шины
+              доставка осуществляется бесплатно.
+            </p>
+            <p className='2xl:text-xl xl:text-xl lg:text-lg md:text-md sm:text-md text-sm tracking-wide'>
+              <span className='font-bold'>Платная доставка:</span> по г.
+              Алматы при заказе на сумму менее 80000 тенге стоимость
+              доставки - 1000 тенге
+            </p>
+            <p className='2xl:text-xl xl:text-xl lg:text-lg md:text-md sm:text-md text-sm tracking-wide'>
+              <span className='font-bold'>Стоимость доставки</span> в
+              отдаленные районы Алматы согласовывается отдельно. Вы также
+              можете забрать Ваш товар самостоятельно из нашего магазина.
+              В этом случае Вам необходимо связаться с нами и обязательно
+              зарезервировать Ваш товар и уточнить время. Время доставки
+              по г. Алматы
+            </p>
+            <p className='2xl:text-xl xl:text-xl lg:text-lg md:text-md sm:text-md text-sm tracking-wide'>
+              <span className='font-bold'>Стоимость доставки</span> в
+              отдаленные районы Алматы согласовывается отдельно.
+            </p>
+            <p className='2xl:text-xl xl:text-xl lg:text-lg md:text-md sm:text-md text-sm tracking-wide'>
+              <span className='font-bold'>Вы также можете забрать</span>{' '}
+              Ваш товар самостоятельно из нашего магазина. В этом случае
+              вам необходимо связаться с нами и обязательно
+              зарезервировать Ваш товар и уточнить время
+            </p>
+            <span className='font-bold'>Время доставки по г. Алматы</span>
+          </div>
+        </div>
+      </div>
+      <div
+        style={{
+          position: 'absolute',
+          bottom: 0,
+          right: 0,
+          width: '100%',
+          height: '100%',
+          backgroundImage: `url(${payDecor2.src})`,
+          backgroundAttachment: 'fixed',
+          backgroundSize: 'cover',
+          backgroundRepeat: 'no-repeat',
+          backgroundPosition: 'center',
+          zIndex: '-10',
+        }}
+        className='parallax'
+      />
+    </section>
           <section className='mb-10'>
             <div
               data-aos='fade-up-right'
