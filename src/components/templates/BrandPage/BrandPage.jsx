@@ -1,11 +1,15 @@
 'use client';
 
+import styles from './styles.module.css';
+
 import Link from 'next/link';
-import { PartnersInfo } from '../../data/home';
-import Footer from '../Footer/Footer';
-import NavBar from '../NavBar/NavBar';
-import ScrollToTop from '../ScrollToTop/ScrollToTop';
-import Avtocomplete from './Avtocomplete';
+import Image from 'next/image';
+
+import { PartnersInfo } from '../../../data/home';
+import Footer from '../../Footer/Footer';
+import NavBar from '../../NavBar/NavBar';
+import ScrollToTop from '../../ScrollToTop/ScrollToTop';
+import Avtocomplete from '../Avtocomplete';
 
 const BrandPage = ({ id }) => {
   const brand = PartnersInfo.find((brand) => brand.id === parseInt(id));
@@ -39,10 +43,12 @@ const BrandPage = ({ id }) => {
         </header>
         <ScrollToTop />
         <main className='my-10 container'>
-          <section className='flex gap-10'>
+          <section className={`flex gap-10 ${styles.wrapper}`}>
             <div className='flex-shrink-0'>
               <Avtocomplete />
-              <div className='flex flex-col gap-3 border max-w-[350px] w-full mt-10'>
+              <div
+                className={`flex flex-col gap-3 border max-w-[350px] w-full mt-10 ${styles.box}`}
+              >
                 <p className='w-full py-2 px-4 bg-gray-100 font-body font-semibold'>
                   Производители
                 </p>
@@ -67,11 +73,7 @@ const BrandPage = ({ id }) => {
               </div>
             </div>
             <div>
-              <img
-                src={img.src}
-                alt={title}
-                className='max-h-[175px] max-w-[365px]'
-              />
+              <Image src={img.src} alt={title} width={175} height={365} />
               {content.split('\n').map((paragraph, index) => (
                 <p
                   key={index}
