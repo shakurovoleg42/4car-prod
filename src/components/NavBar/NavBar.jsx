@@ -106,7 +106,7 @@ const NavBar = () => {
       <div className='overflow-x-hidden px-4'>
         {/* Upper navbar */}
         <div className=''>
-          <div className='flex pt-7 text-white font-body justify-between items-center'>
+          <div className='flex pt-2 text-white font-body justify-between items-center'>
             <Link href='/'>
               <img className=' logo w-52' src='/logo.png' alt='Logo' />
             </Link>
