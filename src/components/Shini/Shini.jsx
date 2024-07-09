@@ -1,17 +1,19 @@
 'use client';
 
+import './Shini.css';
+
 import { useState } from 'react';
-import NavBar from '../NavBar/NavBar';
-import SelectShini from '../templates/SelectShini';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
+
+import NavBar from '../NavBar/NavBar';
+import SelectShini from '../templates/SelectShini';
 import Avtocomplete from '../templates/Avtocomplete';
 import CardShini from '../templates/Cards';
 import Complect from '../../assets/complect.png';
 import Footer from './../Footer/Footer';
-import './Shini.css';
 import ScrollToTop from './../ScrollToTop/ScrollToTop';
 
 function valuetext(value) {
@@ -26,6 +28,7 @@ const Shini = () => {
       type: 'Шины BOTO Genesys 208',
       character: '155/70 R12 73T',
       price: '13 150 тг',
+      brand: 'BOTO',
     },
     {
       id: 2,
@@ -33,6 +36,7 @@ const Shini = () => {
       type: 'Шины BOTO Genesys 208',
       character: '155/70 R12 73T',
       price: '13 150 тг',
+      brand: 'RIAL',
     },
     {
       id: 3,
@@ -40,6 +44,7 @@ const Shini = () => {
       type: 'Шины BOTO Genesys 208',
       character: '155/70 R12 73T',
       price: '13 150 тг',
+      brand: 'ADIE',
     },
     {
       id: 4,
@@ -47,6 +52,7 @@ const Shini = () => {
       type: 'Шины BOTO Genesys 208',
       character: '155/70 R12 73T',
       price: '13 150 тг',
+      brand: 'POEDC',
     },
     {
       id: 5,
@@ -54,6 +60,7 @@ const Shini = () => {
       type: 'Шины BOTO Genesys 208',
       character: '155/70 R12 73T',
       price: '13 150 тг',
+      brand: 'OCMF',
     },
   ];
 
@@ -150,10 +157,12 @@ const Shini = () => {
                   {visibleProducts.map((e) => (
                     <CardShini
                       key={e.id}
+                      id={e.id}
                       img={e.img}
                       type={e.type}
                       price={e.price}
                       text={e.character}
+                      brand={e.brand}
                     />
                   ))}
                 </div>

@@ -186,7 +186,7 @@ const NavBar = () => {
                   </div>
                   <div className='flex flex-col  items-center w-24 text-center'>
                     <Link
-                      href='/account'
+                      href='/cart'
                       className='media__link flex flex-col items-center cursor-pointer '
                     >
                       <span className='bg-primary nav__icon relative h-9 w-9 flex items-center justify-center rounded-full'>

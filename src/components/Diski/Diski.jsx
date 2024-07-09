@@ -141,6 +141,7 @@ const Diski = () => {
                   {visibleProducts.map((e) => (
                     <CardShini
                       key={e.id}
+                      id={e.id}
                       img={e.img}
                       type={e.type}
                       price={e.price}

@@ -1,16 +1,17 @@
 'use client';
 
-import { useState } from 'react';
-import NavBar from '../NavBar/NavBar';
-import Complect from '../../assets/complect.png';
-import Tabs from '../templates/Tabs';
+import './Product.css';
 
+import { useState } from 'react';
 import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
+
+import NavBar from '../NavBar/NavBar';
+import Complect from '../../assets/complect.png';
+import Tabs from '../templates/Tabs';
 import Footer from './../Footer/Footer';
-import './Product.css';
 import ScrollToTop from './../ScrollToTop/ScrollToTop';
 
 const Product = () => {
@@ -161,7 +162,7 @@ const Product = () => {
                     </div>
                     <div className='flex flex-wrap items-center gap-5 w-full btnsBuyProduct'>
                       <button
-                        type='submit'
+                        type='button'
                         className='py-2 bg-primary max-w-[300px] w-full 2xl:text-2xl
                                         xl:text-xl lg:text-xl md:text-lg sm:text-md text-sm text-white rounded active:bg-blue-700'
                       >

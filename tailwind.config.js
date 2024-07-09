@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
@@ -23,6 +24,7 @@ export default {
         stock: "url('/StockBg.png')",
         contact: "url('/ContactBg.png')",
         map: "url('/OtherBg.png')",
+        cart: "url('/hero-cart.png')",
       },
       fontFamily: {
         body: ['Montserrat', 'sans-serif'],
