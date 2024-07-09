@@ -1,9 +1,11 @@
-import Xit1 from '../../assets/Xit1.png';
-import Xit2 from '../../assets/Xit2.png';
-import Xit3 from '../../assets/Xit3.png';
 import { useNavigate } from 'react-router-dom';
 import Slider from 'react-slick';
 import Link from 'next/link';
+
+import Xit1 from '../../assets/Xit1.png';
+import Xit2 from '../../assets/Xit2.png';
+import Xit3 from '../../assets/Xit3.png';
+import AddItemButton from '../AddItemButton/AddItemButton';
 
 const Hits = () => {
   const xits = [
@@ -103,13 +105,7 @@ const Hits = () => {
                     >
                       Купить
                     </Link>
-                    <button
-                      type='submit'
-                      className='active:bg-blue-700 
-                    rounded px-2 py-1 2xl:text-lg xl:text-lg lg:text-md md:text-sm text-xs text-white outline-none border border-white'
-                    >
-                      В корзину
-                    </button>
+                    <AddItemButton item={e} />
                   </div>
                   <div className='px-4'>
                     <Link

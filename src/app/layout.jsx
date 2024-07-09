@@ -2,6 +2,7 @@ import './globals.css';
 
 import NextTopLoader from 'nextjs-toploader';
 
+import Providers from './Providers';
 import ClientComponent from '../components/ClientComponent';
 import FixedBox from '../components/FixedBox/Fixedbox';
 
@@ -17,8 +18,10 @@ export default function RootLayout({ children }) {
       <body>
         <div id='root'>
           <NextTopLoader color='#FFFFFF' height={2} showSpinner={false} />
-          <ClientComponent>{children}</ClientComponent>
-          <FixedBox/>
+          <Providers>
+            <ClientComponent>{children}</ClientComponent>
+            <FixedBox />
+          </Providers>
         </div>
       </body>
     </html>

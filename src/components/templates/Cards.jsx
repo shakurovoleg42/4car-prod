@@ -1,7 +1,7 @@
-/* eslint-disable react/prop-types */
-
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+
+import AddItemButton from '../AddItemButton/AddItemButton';
 
 function CardShini(props) {
   const products = props;
@@ -68,13 +68,7 @@ function CardShini(props) {
                 {products.order}
               </Link>
             ) : (
-              <button
-                type='submit'
-                className='active:bg-blue-700 
-                                        rounded px-2 text-xs outline-none border border-white'
-              >
-                В корзину
-              </button>
+              <AddItemButton item={products} />
             )}
           </div>
           {products.none ? (

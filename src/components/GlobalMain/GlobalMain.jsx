@@ -1,19 +1,21 @@
 'use client';
 
-import { useEffect } from 'react';
-import SelectShini from '../templates/SelectShini';
-import SelectDiski from '../templates/SelectDiski';
-import Complect from '../../assets/complect.png';
-import { PartnersInfo, NewsInfo } from '../../data/home';
-import AboutImg from '../../assets/AboutImg.jpg';
-// import Hits from '../templates/Hits';
-import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import AOS from 'aos';
 import 'aos/dist/aos.css';
+
+import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import Slider from 'react-slick';
+import AOS from 'aos';
+
+import { PartnersInfo, NewsInfo } from '../../data/home';
+import SelectShini from '../templates/SelectShini';
+import SelectDiski from '../templates/SelectDiski';
+import AboutImg from '../../assets/AboutImg.jpg';
+import Complect from '../../assets/complect.png';
+import AddItemButton from '../AddItemButton/AddItemButton';
 
 const GlobalMain = () => {
   useEffect(() => {
@@ -134,13 +136,7 @@ const GlobalMain = () => {
                         >
                           Купить
                         </Link>
-                        <button
-                          type='submit'
-                          className='active:bg-blue-700 
-                    rounded px-2 py-1 2xl:text-lg xl:text-lg lg:text-md md:text-sm text-xs text-white outline-none border border-white'
-                        >
-                          В корзину
-                        </button>
+                        <AddItemButton item={e} />
                       </div>
                       <div className='px-4'>
                         <Link
@@ -363,13 +359,7 @@ const GlobalMain = () => {
                         >
                           Купить
                         </Link>
-                        <button
-                          type='submit'
-                          className='active:bg-blue-700 
-                    rounded px-2 py-1 2xl:text-lg xl:text-lg lg:text-md md:text-sm text-xs text-white outline-none border border-white'
-                        >
-                          В корзину
-                        </button>
+                        <AddItemButton item={e} />
                       </div>
                       <div className='px-4'>
                         <Link
