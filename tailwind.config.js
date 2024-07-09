@@ -22,6 +22,7 @@ export default {
         diski: "url('/DiskiBg.png')",
         stock: "url('/StockBg.png')",
         contact: "url('/ContactBg.png')",
+        checkout: "url('/checkout-orderBG.png')",
         map: "url('/OtherBg.png')",
       },
       fontFamily: {
