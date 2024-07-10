@@ -32,7 +32,7 @@ const FixedBox = () => {
         className='callBack__whatsApp'
         target='_blank'
       >
-        <Image className='hidden md:block' src='/whatsapp.svg' alt='whatsApp' width={52} height={52} />
+        <Image className='hidden md:block' src='/whatsapp.svg' alt='whatsApp' width={50} height={50} />
         <Image className='block md:hidden' src='/whatsapp.svg' alt='whatsApp' width={35} height={35} />
       </a>
     )}

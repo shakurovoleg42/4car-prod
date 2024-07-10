@@ -4,7 +4,9 @@ import Footer from '../Footer/Footer';
 import ScrollToTop from '../ScrollToTop/ScrollToTop';
 import './CheckoutOrder.css';
 import Image from 'next/image';
-import select from '../../assets/select.png'
+import select from '../../assets/select.svg';
+import walletImg from '../../assets/wallet-image.svg';
+import cardImg from '../../assets/card-image.svg';
 
 const CheckoutOrder = () => {
   return (
@@ -28,23 +30,23 @@ const CheckoutOrder = () => {
           <div className='container'>
             <section className='checkout__order mt-14 flex justify-center gap-6 mb-30'>
               <div
-                data-aos='fade-right'
+                // data-aos='fade-right'
                 data-aos-anchor-placement='center-bottom'
                 className='max-w-[1528px] w-full px-4'
               >
                 <div className='main_info'>
-                  <div className='flex flex-row font-body text-xs xl:text-sm lg:text-sm'>
+                  <div className='inputs font-body text-xs xl:text-sm lg:text-sm'>
                     <div className='main_inputs flex flex-col'>
                       <p>Телефон</p>
-                      <input type='text' />
+                      <input className='personal-info p-5' type='text' />
                     </div>
-                    <div className='main_inputs flex flex-col ml-10'>
+                    <div className='main_inputs flex flex-col'>
                       <p>Ф.И.О</p>
-                      <input ctype='text' />
+                      <input className='personal-info p-5' type='text' />
                     </div>
                   </div>
-                  <div className='flex flex-rowtext-xs xl:text-sm lg:text-sm mt-10'>
-                    <div className='flex flex-col'>
+                  <div className='inputs text-xs xl:text-sm lg:text-sm mt-10'>
+                    <div className='selects flex flex-col'>
                       <p>Область</p>
                       <select
                         className='select_country_select'
@@ -54,14 +56,10 @@ const CheckoutOrder = () => {
                         <option value='' disabled hidden>
                           Выберите
                         </option>
-                        <option value='UK'>Великобритания</option>
-                        <option value='USA'>США</option>
-                        <option value='Georgia'>Грузия</option>
-                        <option value='Kazakhstan'>Казахстан</option>
-                        <option value='Uzbekistan'>Узбекистан</option>
+                        <option value='Jibek Joli'>Жыбек Жолы</option>
                       </select>
                     </div>
-                    <div className='flex flex-col ml-10'>
+                    <div className='selects flex flex-col'>
                       <p>Город</p>
                       <select
                         className='select_country_select'
@@ -71,31 +69,95 @@ const CheckoutOrder = () => {
                         <option value='' disabled hidden>
                           Выберите
                         </option>
-                        <option value='UK'>Великобритания</option>
-                        <option value='USA'>США</option>
-                        <option value='Georgia'>Грузия</option>
-                        <option value='Kazakhstan'>Казахстан</option>
-                        <option value='Uzbekistan'>Узбекистан</option>
+                        <option value='Almaty'>Алматы</option>
                       </select>
                     </div>
                   </div>
                 </div>
                 {/* другая секция */}
-                <div className='pay_method mt-20'>
+                <div className='pay_method mt-20 font-body'>
                   <div>
-                    Способ получения
-                    <div className='flex flex-row'>
-                      <div>
-                      Доставка до двери 
-                      <div className='flex flex-row'>
-                            <Image src={select} width={31.62} height={20.82} alt='test' />
-                            <p>Стоимость доставки</p>
-                            <p>0 Т</p>
+                    <p
+                      style={{
+                        fontSize: '35.15px',
+                        lineHeight: '42.85px',
+                        marginBottom: '69.78px',
+                      }}
+                    >
+                      Способ получения
+                    </p>
+                    <div className='main-container-pay-method flex flex-row'>
+                      <div className='cont-pay-method'>
+                        <p style={{ marginTop: '16px' }}>Доставка до двери</p>
+                        <div className='flex flex-row items-center mt-9'>
+                          <Image
+                            src={select}
+                            width={31}
+                            height={12}
+                            alt='selects'
+                          />
+                          <p className='price' style={{ marginLeft: '6px' }}>
+                            Стоимость доставки
+                          </p>
+                          <p className='price' style={{ marginLeft: '43px' }}>
+                            0 Т
+                          </p>
+                        </div>
                       </div>
+                      <div className='cont-pay-method second flex items-center ml-10'>
+                        Доставка до двери
                       </div>
-                      <div className='ml-10'>
-
-                      </div>
+                    </div>
+                  </div>
+                </div>
+                {/* другая секция */}
+                <div className='address flex flex-col font-body'>
+                  <div className='flex flex-col mt-10'>
+                    Населённый пункт
+                    <select className='small mt-3' name='' id=''></select>
+                  </div>
+                  <div className='flex flex-col mt-10'>
+                    Адрес
+                    <input className='small mt-3 p-5' type='text' />
+                  </div>
+                  <div className='flex flex-col mt-10'>
+                    Ориентир
+                    <input className='small mt-3 p-5' type='text' />
+                  </div>
+                  <div className='flex flex-col mt-10'>
+                    Ваш рабочий адрес
+                    <input className='area mt-3 p-5' type='text' />
+                  </div>
+                  <div className='flex flex-col mt-10'>
+                    Комментарии к заказу
+                    <input className='area mt-3 p-5' type='text' />
+                  </div>
+                  <div className='flex flex-col mt-10'>
+                    Есть промокод
+                    <input className='small mt-3 p-5' type='text' />
+                  </div>
+                </div>
+                {/* другая секция */}
+                <div className='walletcard-container flex flex-col mt-20 mb-20'>
+                  <p className='pay-method'>Способ оплаты</p>
+                  <div className='container items-center mt-10'>
+                    <div className='walletcard flex flex-col max-w-[489px] w-full max-h-[298px] h-full items-center'>
+                      <Image
+                        src={cardImg}
+                        width={130.67}
+                        height={93.33}
+                        alt='wallet'
+                      />
+                      <p>Оплата картой</p>
+                    </div>
+                    <div className='walletcard flex flex-col max-w-[489px] w-full max-h-[298px] h-full items-center'>
+                      <Image
+                        src={walletImg}
+                        width={107.19}
+                        height={94.06}
+                        alt='card'
+                      />
+                      <p>Наличными при получении</p>
                     </div>
                   </div>
                 </div>
