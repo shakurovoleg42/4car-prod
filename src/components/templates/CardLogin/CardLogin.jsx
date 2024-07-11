@@ -1,14 +1,23 @@
-/* eslint-disable react/prop-types */
+'use client';
+
+import './CardLogin.css';
 
 import { useState } from 'react';
-import LoginImg from '../../assets/LoginImg.jpg';
+import { useRouter } from 'next/navigation';
 import { MdOutlineVisibility } from 'react-icons/md';
 import { MdOutlineVisibilityOff } from 'react-icons/md';
 
-const LoginForm = (props) => {
+import LoginImg from '../../../assets/LoginImg.jpg';
+
+const LoginForm = () => {
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const router = useRouter();
+
+  const showRegisterForm = () => {
+    router.replace('/register');
+  };
 
   const handleLoginChange = (e) => {
     setLogin(e.target.value);
@@ -89,7 +98,7 @@ const LoginForm = (props) => {
           </div>
           <div className='flex justify-center'>
             <button
-              onClick={props.click}
+              onClick={showRegisterForm}
               className='text-primary underline text-lg border px-3 rounded border-primary mb-4'
             >
               Зарегистрироваться
