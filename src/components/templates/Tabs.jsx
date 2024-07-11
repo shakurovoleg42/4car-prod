@@ -5,7 +5,7 @@ import ProductModal4 from './ProductModal4';
 import Link from 'next/link';
 
 const Tabs = () => {
-  const [activeModal, setActiveModal] = useState('modal2');
+  const [activeModal, setActiveModal] = useState('modal3');
 
   const openModal = (modalType) => {
     setActiveModal(modalType);
@@ -20,22 +20,23 @@ const Tabs = () => {
                     xl:text-md lg:text-sm md:border-b border py-2 mx-auto'
           >
             <button
-              onClick={() => openModal('modal2')}
-              className={`border-b-4 ${activeModal === 'modal2' ? 'border-primary' : 'border-transparent'}`}
-              type='submit'
-            >
-              Другие варианты
-            </button>
-            <button
               onClick={() => openModal('modal3')}
-              className={`border-b-4 ${activeModal === 'modal3' ? 'border-primary' : 'border-transparent'}`}
+              className={`border-b-4 ${
+                activeModal === 'modal3'
+                  ? 'border-primary'
+                  : 'border-transparent'
+              }`}
               type='submit'
             >
               Оплата и доставка
             </button>
             <button
               onClick={() => openModal('modal4')}
-              className={`border-b-4 ${activeModal === 'modal4' ? 'border-primary' : 'border-transparent'}`}
+              className={`border-b-4 ${
+                activeModal === 'modal4'
+                  ? 'border-primary'
+                  : 'border-transparent'
+              }`}
               type='submit'
             >
               Возврат и гарантия
@@ -44,9 +45,14 @@ const Tabs = () => {
           </div>
 
           <div className='mt-6 w-full flex-col flex justify-center items-center  px-4'>
-            {activeModal === 'modal2' && <ProductModal2 />}
             {activeModal === 'modal3' && <ProductModal3 />}
             {activeModal === 'modal4' && <ProductModal4 />}
+          </div>
+          <div className='flex flex-col items-center mt-20'>
+            <p className='font-body font-bold mb-5 2xl:text-2xl xl:text-2xl lg:text-xl md:text-lg sm:text-md text-md  '>
+              Другие варианты
+            </p>
+            <ProductModal2 />
           </div>
         </section>
       </div>
