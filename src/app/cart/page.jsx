@@ -120,7 +120,7 @@ export default function Cart() {
                       <span>{(cartTotal + 4000).toLocaleString()} тг</span>
                     </li>
                   </ul>
-                  <Link href='/checkout'>Оформить заказ</Link>
+                  <Link href='/checkout-order'>Оформить заказ</Link>
                 </div>
               </div>
             ) : (
