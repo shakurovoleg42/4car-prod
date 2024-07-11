@@ -1,5 +1,6 @@
 import './globals.css';
 
+import { Toaster } from 'react-hot-toast';
 import NextTopLoader from 'nextjs-toploader';
 
 import Providers from './Providers';
@@ -19,7 +20,10 @@ export default function RootLayout({ children }) {
         <div id='root'>
           <NextTopLoader color='#FFFFFF' height={2} showSpinner={false} />
           <Providers>
-            <ClientComponent>{children}</ClientComponent>
+            <ClientComponent>
+              <Toaster />
+              {children}
+            </ClientComponent>
             <FixedBox />
           </Providers>
         </div>

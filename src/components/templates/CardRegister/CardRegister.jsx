@@ -1,14 +1,21 @@
-/* eslint-disable react/prop-types */
+'use client';
+
+import './CardRegister.css';
 
 import { useState } from 'react';
 import { MdOutlineVisibility } from 'react-icons/md';
 import { MdOutlineVisibilityOff } from 'react-icons/md';
-import RegisterImg from '../../assets/register.png';
-import RegisterDecor from '../../assets/registerDecor.png';
-import RegisterDecor2 from '../../assets/registerDecor2.png';
-import RegisterDecor3 from '../../assets/registerDecor3.png';
+import { useRouter } from 'next/navigation';
+import Image from 'next/image';
+import toast from 'react-hot-toast';
+import axios from 'axios';
 
-const CardRegister = (props) => {
+import RegisterImg from '../../../assets/register.png';
+import RegisterDecor from '../../../assets/registerDecor.png';
+import RegisterDecor2 from '../../../assets/registerDecor2.png';
+import RegisterDecor3 from '../../../assets/registerDecor3.png';
+
+const CardRegister = () => {
   const [login, setLogin] = useState('');
   const [lastName, setLastName] = useState('');
   const [password, setPassword] = useState('');
@@ -17,6 +24,11 @@ const CardRegister = (props) => {
   const [inputValue, setInputValue] = useState('');
   const [emailError, setEmailError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const router = useRouter();
+
+  const showLoginForm = () => {
+    router.replace('/login');
+  };
 
   const handleLoginChange = (e) => {
     setLogin(e.target.value);
@@ -44,20 +56,42 @@ const CardRegister = (props) => {
       setEmailError('');
     } else {
       setEmailError(
-        'Введите действительный адрес электронной почты или номер телефона',
+        'Введите действительный адрес электронной почты или номер телефона'
       );
     }
 
     setInputValue(value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (password === confirmPassword) {
-      setError('');
-    } else {
+    if (password !== confirmPassword) {
       setError('Пароли не совпадают');
+      return;
+    } else if (password.length < 6) {
+      setError('Минимальное кол-во символов 6');
+      return;
+    }
+
+    const loadingToastId = toast.loading('Загрузка...');
+
+    try {
+      await axios.post('/api/auth/register', {
+        first_name: login,
+        last_name: lastName,
+        password,
+        email: inputValue,
+      });
+
+      toast.success(
+        'Успешная регистрация, для продолжения работы в системе выполните вход'
+      );
+      router.push('/login');
+    } catch (error) {
+      toast.error('Ошибка при регистрации');
+    } finally {
+      toast.dismiss(loadingToastId);
     }
   };
 
@@ -67,27 +101,31 @@ const CardRegister = (props) => {
         className='max-w-[550px] rounded w-full 
             overflow-hidden pb-26 mt-14 m-auto shadow-xl shadow-gray-500 pt-10 relative mb-20'
       >
-        <img
+        <Image
           className='absolute -top-4 left-0 -z-10'
           src={RegisterDecor.src}
           alt=''
+          width={230}
+          height={820}
         />
-        <img
+        <Image
           src={RegisterDecor2.src}
           alt=''
           className='absolute -z-10 right-0 -top-4'
+          width={230}
+          height={820}
         />
-        <img
+        <Image
           src={RegisterDecor3.src}
           alt=''
           className='absolute -z-10 right-0 -top-4'
+          width={230}
+          height={820}
         />
         <h2 className='text-primary font-semibold 2xl:text-2xl xl:text-2xl lg:text-xl md:text-xl sm:text-lg text-md text-center'>
           Регистрация
         </h2>
         <form
-          action=''
-          method='post'
           onSubmit={handleSubmit}
           className='max-w-[400px] mx-auto w-full pt-6 pb-16 px-12 flex flex-col gap-4 registrationForm'
         >
@@ -197,15 +235,21 @@ const CardRegister = (props) => {
               Зарегистрироваться
             </button>
             <button
-              type='submit'
+              type='button'
               className=' bg-primary text-white text-lg px-3 rounded'
-              onClick={props.click}
+              onClick={showLoginForm}
             >
               Вернуться ко входу
             </button>
           </div>
         </form>
-        <img className='absolute bottom-0 -z-10' src={RegisterImg.src} alt='' />
+        <Image
+          className='absolute bottom-0 -z-10'
+          src={RegisterImg.src}
+          alt=''
+          width={550}
+          height={220}
+        />
       </div>
     </>
   );

@@ -1,9 +1,9 @@
 import NavBar from '@/components/NavBar/NavBar';
 import ScrollToTop from '@/components/ScrollToTop/ScrollToTop';
-import LoginForm from '@/components/templates/CardLogin/CardLogin';
+import CardRegister from '@/components/templates/CardRegister/CardRegister';
 import Footer from '@/components/Footer/Footer';
 
-export default function LoginPage() {
+export default function RegisterPage() {
   return (
     <div className='overflow-hidden'>
       <header className=' bg-no-repeat bg-cover bg-center w-full pb-20 bg-map'>
@@ -12,7 +12,7 @@ export default function LoginPage() {
           <div className='mt-28 px-4' data-aos='fade-right'>
             <h1
               className='font-body font-bold 2xl:text-6xl xl:text-6xl lg:text-5xl md:text-4xl text-3xl 
-                  2xl:text-start xl:text-start lg:text-start text-center flex flex-col text-white'
+                    2xl:text-start xl:text-start lg:text-start text-center flex flex-col text-white'
             >
               Регистрация и Вход
             </h1>
@@ -24,7 +24,7 @@ export default function LoginPage() {
         <div className='container'>
           <section className='mb-20'>
             <div data-aos='zoom-out-up'>
-              <LoginForm />
+              <CardRegister />
             </div>
           </section>
         </div>
