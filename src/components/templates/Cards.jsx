@@ -51,7 +51,7 @@ function CardShini(props) {
               <Link
                 href='/product'
                 type='submit'
-                className='active:bg-gray-100  text-xs px-2 outline-none bg-white text-primary rounded'
+                className='active:bg-gray-100 bg-white text-primary rounded px-2 py-1 text-lg text-xs outline-none border border-white'
               >
                 Купить
               </Link>
