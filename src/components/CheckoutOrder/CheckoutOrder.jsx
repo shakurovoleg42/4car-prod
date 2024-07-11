@@ -105,7 +105,7 @@ const CheckoutOrder = () => {
                         </div>
                       </div>
                       <div className='cont-pay-method second flex items-center ml-10'>
-                        Доставка до двери
+                      Забрать из точки
                       </div>
                     </div>
                   </div>
