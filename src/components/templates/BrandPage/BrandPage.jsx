@@ -9,7 +9,8 @@ import { PartnersInfo } from '../../../data/home';
 import Footer from '../../Footer/Footer';
 import NavBar from '../../NavBar/NavBar';
 import ScrollToTop from '../../ScrollToTop/ScrollToTop';
-import Avtocomplete from '../Avtocomplete';
+// import Avtocomplete from '../Avtocomplete';
+import ProductModal2 from '../ProductModal2';
 
 const BrandPage = ({ id }) => {
   const brand = PartnersInfo.find((brand) => brand.id === parseInt(id));
@@ -45,7 +46,7 @@ const BrandPage = ({ id }) => {
         <main className='my-10 container'>
           <section className={`flex gap-10 ${styles.wrapper}`}>
             <div className='flex-shrink-0'>
-              <Avtocomplete />
+              {/* <Avtocomplete /> */}
               <div
                 className={`flex flex-col gap-3 border max-w-[350px] w-full mt-10 ${styles.box}`}
               >
@@ -63,12 +64,12 @@ const BrandPage = ({ id }) => {
                       {e.title}
                     </Link>
                   ))}
-                  <Link
+                  {/* <Link
                     href='#!'
                     className='hover:text-primary transition-all text-lg'
                   >
                     Показать все...
-                  </Link>
+                  </Link> */}
                 </div>
               </div>
             </div>
@@ -95,6 +96,7 @@ const BrandPage = ({ id }) => {
               ))}
             </div>
           </section>
+          <ProductModal2/>
         </main>
         <Footer />
       </div>
