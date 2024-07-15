@@ -64,12 +64,12 @@ const BrandPage = ({ id }) => {
                       {e.title}
                     </Link>
                   ))}
-                  {/* <Link
+                  <Link
                     href='#!'
                     className='hover:text-primary transition-all text-lg'
                   >
                     Показать все...
-                  </Link> */}
+                  </Link>
                 </div>
               </div>
             </div>

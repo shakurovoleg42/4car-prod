@@ -41,7 +41,7 @@ export default function Cart() {
         <div className='container'>
           <section
             data-aos='fade-right'
-            data-aos-anchor-placement='center-bottom'
+            data-aos-anchor-placement='top'
             className='px-4'
           >
             {items.length ? (
