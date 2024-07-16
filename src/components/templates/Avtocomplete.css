@@ -1,16 +1,24 @@
 .filter_btn {
   padding: 20px;
-  background-color: #97c300;
+  background-color: #1a6ec1;
   color: #ffffff;
   border-radius: 12px;
   width: 200px;
 }
 
+.filter_btn:hover {
+  background-color: #3281cf;
+}
+
 .filter_header {
-  background-color: #97c300;
+  background-color: #1a6ec1;
   color: #ffffff;
   padding: 15px;
   display: flex;
   flex-direction: row;
   justify-content: center;
+}
+
+.filter_header:hover {
+  background-color: #3281cf;
 }

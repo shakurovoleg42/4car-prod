@@ -45,14 +45,16 @@ const Modal = ({ isOpen, onClose }) => {
             <OrderCall />
           </div>
         </div>,
-        document.body,
+        document.body
       )
     : null;
 };
 
 const NavBar = () => {
   const [isFixed, setIsFixed] = useState(false);
-  const [prevScrollPos, setPrevScrollPos] = useState(window.scrollY || window.pageYOffset);
+  const [prevScrollPos, setPrevScrollPos] = useState(
+    window.scrollY || window.pageYOffset
+  );
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -129,7 +131,59 @@ const NavBar = () => {
               </button>
               <div className='flex items-center gap-7 xl:gap-4'>
                 <div className='flex items-center gap-2'>
-                  <div className='bg-primary h-9 w-9 flex nav__icon items-center justify-center rounded'>
+                  <div className='navbar_links flex flex-col text-left'>
+                    <ul className='lg:text-lg'>
+                      <li>
+                        <Link
+                          href='/tires'
+                          className='list__link text-white font-body'
+                        >
+                          Шины
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href='/rims'
+                          className='list__link text-white font-body'
+                        >
+                          Диски
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href='/delivery'
+                          className='list__link text-white font-body'
+                        >
+                          Оплата и доставка
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href='/news'
+                          className='list__link text-white font-body'
+                        >
+                          Новости
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href='/contacts'
+                          className='list__link text-white font-body'
+                        >
+                          Контакты
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href='/shinomontazh'
+                          className='list__link text-white font-body'
+                        >
+                          Шиномонтаж
+                        </Link>
+                      </li>
+                    </ul>
+                  </div>
+                  <div className='icon bg-primary h-9 w-9 flex nav__icon items-center justify-center rounded'>
                     <FiPhoneCall className='icon text-2xl text-white' />
                   </div>
                   <div className='flex flex-col'>
@@ -147,13 +201,13 @@ const NavBar = () => {
                     </a>
                   </div>
                 </div>
-                <div className='flex items-center gap-2'>
-                  <div className='bg-primary nav__icon h-9 w-9 flex items-center justify-center rounded'>
+                <div className='flex items-left gap-2'>
+                  <div className='icon bg-primary nav__icon h-9 w-9 flex items-center justify-center rounded'>
                     <FaLocationDot className='text-2xl icon text-white' />
                   </div>
                   <div>
                     <a
-                      className='media__link flex text-sm flex-col '
+                      className='media__link flex text-sm flex-col'
                       href='https://yandex.uz/maps/162/almaty/house/Y08YfwZkS0YGQFppfX9xdXVqYw==/?from=mapframe&ll=76.914231%2C43.304997&z=17'
                     >
                       г. Алматы ул.
@@ -172,8 +226,8 @@ const NavBar = () => {
                 </div>
               </div>
               <div>
-                <div className='flex '>
-                  <div className='flex flex-col items-center w-24 text-center'>
+                <div className='account_icons flex flex-row items-center'>
+                  <div className=' flex flex-col w-20 items-center text-center'>
                     <Link
                       href='/account'
                       className='media__link flex flex-col items-center'
@@ -184,7 +238,7 @@ const NavBar = () => {
                       Личный кабинет
                     </Link>
                   </div>
-                  <div className='flex flex-col  items-center w-24 text-center'>
+                  <div className='flex flex-col  items-center w-10 text-center'>
                     <Link
                       href='/cart'
                       className='media__link flex flex-col items-center cursor-pointer '
@@ -204,7 +258,7 @@ const NavBar = () => {
           </div>
         </div>
         {/* lower naw */}
-        <div>
+        <div className='links_navigators'>
           <form
             action=''
             method='post'
