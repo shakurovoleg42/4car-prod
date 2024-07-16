@@ -9,12 +9,22 @@ import List from '@mui/material/List';
 import Drawer from '@mui/material/Drawer';
 import './Avtocomplete.css';
 
-export default function Playground() {
-  const defaultProps = {
-    options: filterShini,
-    getOptionLabel: (option) => option.title,
-  };
+const filterShini = [
+  { title: 'The Shawshank Redemption', year: 1994 },
+  { title: 'The Godfather', year: 1972 },
+  { title: 'The Godfather: Part II', year: 1974 },
+  { title: 'The Dark Knight', year: 2008 },
+  { title: '12 Angry Men', year: 1957 },
+  { title: "Schindler's List", year: 1993 },
+  { title: 'Pulp Fiction', year: 1994 },
+];
 
+const defaultProps = {
+  options: filterShini,
+  getOptionLabel: (option) => option.title,
+};
+
+export default function Playground() {
   const [isOpen, setIsOpen] = useState(false);
   const toggleDrawer = () => {
     setIsOpen((prevState) => !prevState);
@@ -27,12 +37,11 @@ export default function Playground() {
           <TuneIcon style={{ marginRight: '10px' }} />
           ФИЛЬТРЫ
         </button>
-        <Drawer className='lg:hidden' anchor='left' open={isOpen} style={{ zIndex: 9999 }}>
+        <Drawer className='lg:hidden' anchor='left' open={isOpen} style={{ zIndex: 1 }} onClose={toggleDrawer}>
           <div className='filter_header' onClick={toggleDrawer}>
             <TuneIcon style={{ marginRight: '5px' }} />
             Скрыть фильтры
             <CloseIcon style={{ marginLeft: 100 }} />
-
           </div>
           <Box sx={{ width: 350, marginTop: 5 }}>
             <List className='flex flex-col items-center'>
@@ -265,13 +274,3 @@ export default function Playground() {
     </>
   );
 }
-
-const filterShini = [
-  { title: 'The Shawshank Redemption', year: 1994 },
-  { title: 'The Godfather', year: 1972 },
-  { title: 'The Godfather: Part II', year: 1974 },
-  { title: 'The Dark Knight', year: 2008 },
-  { title: '12 Angry Men', year: 1957 },
-  { title: "Schindler's List", year: 1993 },
-  { title: 'Pulp Fiction', year: 1994 },
-];
