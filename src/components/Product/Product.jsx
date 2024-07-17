@@ -51,7 +51,7 @@ const Product = () => {
     return roundedInstallment.toFixed(0);
   };
 
-  const addToCart = (event) => {
+  const addToCart = () => {
     // event.stopPropagation();
 
     // addItem({

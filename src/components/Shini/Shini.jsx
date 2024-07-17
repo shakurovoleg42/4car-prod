@@ -92,10 +92,10 @@ const Shini = () => {
 
   // end pagination
 
-  const handleClick = (e) => {
-    e.preventDefault();
-    window.history.back();
-  };
+  // const handleClick = (e) => {
+  //   e.preventDefault();
+  //   window.history.back();
+  // };
 
   return (
     <>
