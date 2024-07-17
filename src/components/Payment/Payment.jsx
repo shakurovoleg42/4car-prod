@@ -3,6 +3,7 @@ import PayDecor from '../../assets/payDecor.png';
 import payDecor2 from '../../assets/payDecor2.png';
 import Footer from './../Footer/Footer';
 import ScrollToTop from './../ScrollToTop/ScrollToTop';
+import Link from 'next/link';
 
 const Payment = () => {
   return (
@@ -23,12 +24,25 @@ const Payment = () => {
         </header>
         <ScrollToTop />
         <main className='mt-10'>
+          
           <section>
+            
             <div
               data-aos='fade-up-right'
               data-aos-anchor-placement='center-bottom'
               className='container px-8'
             >
+              <div className='flex flex-row font-body mb-10'>
+                <Link href='/' className='mr-1 underline cursor-pointer'>
+                  Главная
+                </Link>
+                /
+                <p
+                  className='ml-1'
+                >
+                  Оплата и доставка
+                </p>
+              </div>
               <p className='2xl:text-xl xl:text-xl lg:text-lg md:text-md sm:text-md text-sm mb-6'>
                 Покупая товары в нашем интернет-магазине, Вы соглашаетесь с
                 условиями Публичной оферты.

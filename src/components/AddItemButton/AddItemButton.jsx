@@ -1,5 +1,5 @@
 import { useCart } from 'react-use-cart';
-
+import toast from 'react-hot-toast';
 const AddItemButton = ({ item }) => {
   const { items, getItem, addItem, removeItem } = useCart();
 
@@ -11,12 +11,19 @@ const AddItemButton = ({ item }) => {
       price: item.price || 0,
       ...item,
     });
+
+    toast.success(
+      'Товар добавлен в корзину'
+    );
   };
 
   const removeFromCart = (event) => {
     event.stopPropagation();
 
     removeItem(item.id);
+    toast.success(
+      'Товар удален из корзины'
+    );
   };
 
   return getItem(item.id) ? (

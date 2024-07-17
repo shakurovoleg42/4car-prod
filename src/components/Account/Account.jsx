@@ -13,6 +13,7 @@ import Cart from './../templates/Cart';
 import EditAccount from '../templates/EditAccount';
 import './Account.css';
 import ScrollToTop from './../ScrollToTop/ScrollToTop';
+import Link from 'next/link';
 
 const Account = () => {
   const [activeModal, setActiveModal] = useState('modal1');
@@ -56,6 +57,12 @@ const Account = () => {
         <ScrollToTop />
         <main>
           <div className='container'>
+            <div className='flex flex-row font-body mb-5 mt-10'>
+              <Link href='/' className='mr-1 underline cursor-pointer'>
+                Главная
+              </Link>
+              /<p className='ml-1'>Личный кабинет</p>
+            </div>
             <section className='mt-20 mb-20 font-body flex justify-between accountContent px-4'>
               <div
                 data-aos='fade-right'

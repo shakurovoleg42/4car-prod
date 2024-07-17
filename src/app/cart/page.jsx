@@ -39,6 +39,17 @@ export default function Cart() {
       <ScrollToTop />
       <main className='mt-10 mb-16'>
         <div className='container'>
+        <div className='flex flex-row font-body mb-10'>
+                <Link href='/' className='mr-1 underline cursor-pointer'>
+                  Главная
+                </Link>
+                /
+                <p
+                  className='ml-1'
+                >
+                  Корзина
+                </p>
+              </div>
           <section
             data-aos='fade-right'
             data-aos-anchor-placement='top'

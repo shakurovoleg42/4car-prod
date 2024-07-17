@@ -1,6 +1,7 @@
 import NavBar from './../NavBar/NavBar';
 import Footer from './../Footer/Footer';
 import ScrollToTop from './../ScrollToTop/ScrollToTop';
+import Link from 'next/link';
 
 const Shinomontaj = () => {
   return (
@@ -27,6 +28,12 @@ const Shinomontaj = () => {
               data-aos-anchor-placement='center-bottom'
               className='px-4'
             >
+              <div className='flex flex-row font-body mb-10'>
+                <Link href='/' className='mr-1 underline cursor-pointer'>
+                  Главная
+                </Link>
+                /<p className='ml-1'>Шиномонтаж</p>
+              </div>
               <h2 className='2xl:text-5xl xl:text-5xl lg:text-4xl md:text-3xl text-3xl max-w-[700px] font-semibold mb-8'>
                 Cкидка на шиномонтаж в Алматы
               </h2>
