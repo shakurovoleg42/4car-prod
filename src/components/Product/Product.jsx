@@ -7,12 +7,13 @@ import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
-
+import Link from 'next/link';
 import NavBar from '../NavBar/NavBar';
 import Complect from '../../assets/complect.png';
 import Tabs from '../templates/Tabs';
 import Footer from './../Footer/Footer';
 import ScrollToTop from './../ScrollToTop/ScrollToTop';
+import toast from 'react-hot-toast';
 
 const Product = () => {
   const [countProduct, setCountProduct] = useState(1);
@@ -44,12 +45,26 @@ const Product = () => {
   const ProductPrice = 13150 * countProduct; // Цена товара
 
   const calculateInstallment = (selectedMonth) => {
-    // Предположим, что процентная ставка равна 1% в месяц
-    // const interestRate = 0.01;
     const months = parseInt(selectedMonth.split(' ')[0], 10);
-    const installment = ProductPrice / months; // interestRate => процент рассрочки
-    const roundedInstallment = Math.ceil(installment); // Округляем до двух знаков после запятой
+    const installment = ProductPrice / months;
+    const roundedInstallment = Math.ceil(installment);
     return roundedInstallment.toFixed(0);
+  };
+
+  const addToCart = (event) => {
+    // event.stopPropagation();
+
+    // addItem({
+    //   id: item.id || items.length + 1,
+    //   price: item.price || 0,
+    //   ...item,
+    // });
+    toast.success('Товар добавлен в корзину')
+  };
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    window.history.back();
   };
 
   return (
@@ -64,6 +79,11 @@ const Product = () => {
         <main>
           <div className='container'>
             <section className='mt-14 font-body px-4'>
+              <div className='flex flex-row font-body mb-5'>
+                <Link href='/' className='mr-1 underline cursor-pointer'>Главная</Link>
+                  /
+                <p className='ml-1 underline cursor-pointer' onClick={handleClick}>Шины / Диски</p>
+              </div>
               <div
                 className=' flex gap-5 flex-col ranking '
                 data-aos='fade-right'
@@ -165,6 +185,7 @@ const Product = () => {
                         type='button'
                         className='py-2 bg-primary max-w-[300px] w-full 2xl:text-2xl
                                         xl:text-xl lg:text-xl md:text-lg sm:text-md text-sm text-white rounded active:bg-blue-700'
+                                        onClick={addToCart}
                       >
                         В корзину
                       </button>

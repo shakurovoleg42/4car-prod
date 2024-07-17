@@ -32,7 +32,19 @@ const Stocks = () => {
         <ScrollToTop />
         <main>
           <div className='container'>
+          <div className='flex flex-row font-body mb-5 mt-10'>
+                <Link href='/' className='mr-1 underline cursor-pointer'>
+                  Главная
+                </Link>
+                /
+                <p
+                  className='ml-1'
+                >
+                  Новости
+                </p>
+              </div>
             <section className='mt-14 mb-16 px-4 flex flex-wrap justify-center gap-4 news__content'>
+              
               {NewsInfo.map((el) => (
                 <div
                   key={el.id}

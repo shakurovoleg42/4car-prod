@@ -27,6 +27,7 @@ const Contacts = () => {
           </div>
         </header>
         <ScrollToTop />
+
         <main className='mt-40'>
           <div className='container'>
             <section className='mb-14 w-full'>

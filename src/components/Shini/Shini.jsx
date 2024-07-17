@@ -7,7 +7,7 @@ import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
-
+import Link from 'next/link';
 import NavBar from '../NavBar/NavBar';
 import SelectShini from '../templates/SelectShini';
 import Avtocomplete from '../templates/Avtocomplete';
@@ -92,6 +92,11 @@ const Shini = () => {
 
   // end pagination
 
+  const handleClick = (e) => {
+    e.preventDefault();
+    window.history.back();
+  };
+
   return (
     <>
       <div className='overflow-hidden'>
@@ -112,6 +117,17 @@ const Shini = () => {
         <main className='mt-10'>
           <div className='container flex flex-col items-center'>
             <section className='2xl:mb-28 mb-10  px-4 flex flex-col items-start w-full'>
+              <div className='flex flex-row font-body mb-5'>
+                <Link href='/' className='mr-1 underline cursor-pointer'>
+                  Главная
+                </Link>
+                /
+                <p
+                  className='ml-1'
+                >
+                  Шины
+                </p>
+              </div>
               <h2 className='font-bold text-2xl mb-8 2xl:text-start xl:text-start text-center'>
                 Подбор шин
               </h2>

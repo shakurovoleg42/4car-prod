@@ -7,6 +7,7 @@ import Image from 'next/image';
 import select from '../../assets/select.svg';
 import walletImg from '../../assets/wallet-image.svg';
 import cardImg from '../../assets/card-image.svg';
+import Link from 'next/link';
 
 const CheckoutOrder = () => {
   return (
@@ -28,7 +29,19 @@ const CheckoutOrder = () => {
         <ScrollToTop />
         <main className='mt-30'>
           <div className='container'>
+          <div className='flex flex-row font-body mb-5 mt-10'>
+                <Link href='/' className='mr-1 underline cursor-pointer'>
+                  Главная
+                </Link>
+                /
+                <p
+                  className='ml-1'
+                >
+                  Оформление заказа
+                </p>
+              </div>
             <section className='checkout__order mt-14 flex justify-center gap-6 mb-30'>
+            
               <div
                 // data-aos='fade-right'
                 data-aos-anchor-placement='center-bottom'

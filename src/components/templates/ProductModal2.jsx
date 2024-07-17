@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import Card from './Cards';
+import Slider from 'react-slick';
+import CardShini from './Cards';
 import Complect from '../../assets/complect.png';
-import Pagination from '@mui/material/Pagination';
-import Stack from '@mui/material/Stack';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 const ProductModal2 = () => {
   const shina = [
@@ -16,110 +16,137 @@ const ProductModal2 = () => {
     {
       id: 2,
       img: Complect,
-      type: 'Шины BOTO Genesys 208',
+      type: 'Шины BOTO Genesys 209',
       character: '155/70 R12 73T',
       price: '13 150 тг',
     },
     {
       id: 3,
       img: Complect,
-      type: 'Шины BOTO Genesys 208',
+      type: 'Шины BOTO Genesys 210',
       character: '155/70 R12 73T',
       price: '13 150 тг',
     },
     {
       id: 4,
       img: Complect,
-      type: 'Шины BOTO Genesys 208',
+      type: 'Шины BOTO Genesys 211',
       character: '155/70 R12 73T',
       price: '13 150 тг',
     },
     {
       id: 5,
       img: Complect,
-      type: 'Шины BOTO Genesys 208',
+      type: 'Шины BOTO Genesys 212',
       character: '155/70 R12 73T',
       price: '13 150 тг',
     },
     {
       id: 6,
       img: Complect,
-      type: 'Шины BOTO Genesys 208',
+      type: 'Шины BOTO Genesys 20218',
       character: '155/70 R12 73T',
       price: '13 150 тг',
     },
     {
       id: 7,
       img: Complect,
-      type: 'Шины BOTO Genesys 208',
+      type: 'Шины BOTO Genesys 2018',
       character: '155/70 R12 73T',
       price: '13 150 тг',
     },
     {
       id: 8,
       img: Complect,
-      type: 'Шины BOTO Genesys 208',
+      type: 'Шины BOTO Genesys 2308',
       character: '155/70 R12 73T',
       price: '13 150 тг',
     },
     {
       id: 9,
       img: Complect,
-      type: 'Шины BOTO Genesys 208',
+      type: 'Шины BOTO Genesys 4208',
       character: '155/70 R12 73T',
       price: '13 150 тг',
     },
     {
       id: 10,
       img: Complect,
-      type: 'Шины BOTO Genesys 208',
+      type: 'Шины BOTO Genesys 5208',
       character: '155/70 R12 73T',
       price: '13 150 тг',
     },
   ];
 
-  if (!shina || !Array.isArray(shina) || shina.length === 0) {
-    // Проверка наличия массива products
-    return <div>Продукты не найдены!</div>;
-  }
 
-  const itemsPerPage = 6; // Установите начальное количество товаров на странице
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const [page, setPage] = useState(1);
 
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
-  };
-
-  const totalPages = Math.ceil(shina.length / itemsPerPage);
-  const startIndex = (page - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const visibleProducts = shina.slice(startIndex, endIndex);
   return (
-    <>
-      <div className='flex gap-4 w-full flex-col items-center mt-10'>
-        <div className='flex gap-4 w-full flex-wrap mb-10 mt-4 justify-center moreOptions'>
-          {visibleProducts.map((e) => (
-            <Card
-              key={e.id}
-              img={e.img}
-              type={e.type}
-              price={e.price}
-              status={e.status}
-              none={e.none}
+    <div className='flex gap-4 w-full flex-col items-center mt-10'>
+      {/* <div className='flex gap-4 w-full flex-wrap mb-10 mt-4 justify-center moreOptions'> */}
+      <Slider
+        className='flex gap-4 w-full flex-wrap ml-5 mb-10 mt-4 justify-center moreOptions'
+        dots={true}
+              autoplay={true}
+              infinite={true}
+              slidesToShow={5}
+              slidesToScroll={1}
+              responsive={[
+                {
+                  breakpoint: 1200,
+                  settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 1,
+                  },
+                },
+                {
+                  breakpoint: 1024,
+                  settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 1,
+                    dots: true,
+                  },
+                },
+                {
+                  breakpoint: 600,
+                  settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 1,
+                    dots: true,
+                  },
+                },
+                {
+                  breakpoint: 470,
+                  settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 1,
+                    dots: true,
+                  },
+                },
+                {
+                  breakpoint: 350,
+                  settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 1,
+                    dots: true,
+                  },
+                },
+              ]}
+      >
+        {shina.map((item) => (
+          <div key={item.id}>
+            <CardShini
+              img={item.img}
+              type={item.type}
+              character={item.character}
+              price={item.price}
+              status={item.status}
+              none={item.none}
             />
-          ))}
-        </div>
-
-        <Stack spacing={2} sx={{ mt: 2 }}>
-          <Pagination
-            count={totalPages}
-            page={page}
-            onChange={handleChangePage}
-          />
-        </Stack>
-      </div>
-    </>
+          </div>
+        ))}
+      </Slider>
+    </div>
+    // </div>
   );
 };
 
