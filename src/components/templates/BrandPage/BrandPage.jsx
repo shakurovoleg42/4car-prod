@@ -5,21 +5,18 @@ import styles from './styles.module.css';
 import Link from 'next/link';
 import Image from 'next/image';
 
-import { PartnersInfo } from '../../../data/home';
 import Footer from '../../Footer/Footer';
 import NavBar from '../../NavBar/NavBar';
 import ScrollToTop from '../../ScrollToTop/ScrollToTop';
 // import Avtocomplete from '../Avtocomplete';
 import ProductModal2 from '../ProductModal2';
 
-const BrandPage = ({ id }) => {
-  const brand = PartnersInfo.find((brand) => brand.id === parseInt(id));
-
+const BrandPage = ({ brands, brand }) => {
   if (!brand) {
     return <div>Бренд не найден</div>;
   }
 
-  const { img, title, content, contentTitle, content2 } = brand;
+  const { name, image } = brand;
   const scrollToTop = () => {
     window.scrollTo({
       top: 200,
@@ -37,7 +34,7 @@ const BrandPage = ({ id }) => {
                 className='font-body font-bold 2xl:text-6xl xl:text-6xl lg:text-5xl md:text-4xl text-3xl 
                         2xl:text-start xl:text-start lg:text-start text-center flex flex-col text-white'
               >
-                {title}
+                {name}
               </h1>
             </div>
           </div>
@@ -54,49 +51,28 @@ const BrandPage = ({ id }) => {
                   Производители
                 </p>
                 <div className='flex flex-col gap-3 px-4 pb-5'>
-                  {PartnersInfo.map((e) => (
+                  {brands.map((e) => (
                     <Link
                       key={e.id}
-                      href={`/partners/${e.id}`}
+                      href={`/partners/${e.name.toLowerCase()}`}
                       onClick={scrollToTop}
                       className='hover:text-primary transition-all'
                     >
-                      {e.title}
+                      {e.name}
                     </Link>
                   ))}
-                  <Link
-                    href='#!'
-                    className='hover:text-primary transition-all text-lg'
-                  >
-                    Показать все...
-                  </Link>
                 </div>
               </div>
             </div>
             <div>
-              <Image src={img.src} alt={title} width={175} height={365} />
-              {content.split('\n').map((paragraph, index) => (
-                <p
-                  key={index}
-                  className='text-sm text-justify mb-4 text-md md:text-lg'
-                >
-                  {paragraph}
-                </p>
-              ))}
-              <h3 className='font-semibold mb-4 text-lg md:text-xl uppercase'>
-                {contentTitle}
-              </h3>
-              {content2.split('\n').map((paragraph, index) => (
-                <p
-                  key={index}
-                  className='text-sm text-justify mb-2 text-md md:text-lg'
-                >
-                  {paragraph}
-                </p>
-              ))}
+              <Image src={image} alt={name} width={175} height={365} />
+              <div
+                className='text-sm text-justify mb-4 text-md md:text-lg mt-5'
+                dangerouslySetInnerHTML={{ __html: brand.description }}
+              ></div>
             </div>
           </section>
-          <ProductModal2/>
+          <ProductModal2 data={brand.products} />
         </main>
         <Footer />
       </div>
