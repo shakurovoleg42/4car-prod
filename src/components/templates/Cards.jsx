@@ -26,7 +26,7 @@ function CardShini(props) {
           <img
             className='2xl:max-w-[110px] xl:max-w-[100px] lg:max-w-[85px] max-w-[75px] 
                 2xl:max-h-[140px] xl:max-h-[130px] lg:max-h-[120px] md:max-h-[110px] sm:max-h-[100px] max-h-[100px] mx-auto mb-3'
-            src={products.img.src}
+            src={products.img}
             alt=''
           />
         </div>
@@ -34,7 +34,7 @@ function CardShini(props) {
           <h2 className='text-xs'>{products.type}</h2>
           <p className='text-xs'>{products.text}</p>
           <span className='font-bold 2xl:text-lg xl:text-lg lg:text-md md:text-sm sm:text-sm text-sm'>
-            {products.price}
+            {products.price.toLocaleString()} тг
           </span>
           <div className='flex items-center 2xl:justify-between xl:justify-between justify-center gap-2 2xl:flex-nowrap xl:flex-nowrap flex-wrap'>
             {products.status ? (

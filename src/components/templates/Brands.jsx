@@ -1,10 +1,9 @@
 import NavBar from '../NavBar/NavBar';
 import Footer from '../Footer/Footer';
 import Partners from './Partners';
-import { PartnersInfo } from '../../data/home';
 import Link from 'next/link';
 
-const Brands = () => {
+const Brands = ({ data }) => {
   return (
     <>
       <header className=' bg-no-repeat bg-cover bg-center w-full pb-20 bg-diski'>
@@ -27,28 +26,22 @@ const Brands = () => {
               Производители
             </p>
             <div className='flex flex-col gap-3 px-4 pb-5'>
-              {PartnersInfo.map((e) => (
+              {data.map((e) => (
                 <Link
                   key={e.id}
-                  href='#!'
+                  href={`/partners/${e.name.toLowerCase()}`}
                   className='hover:text-primary transition-all'
                 >
-                  {e.title}
+                  {e.name}
                 </Link>
               ))}
-              <Link
-                href='#!'
-                className='hover:text-primary transition-all text-lg'
-              >
-                Показать все...
-              </Link>
             </div>
           </div>
           <div>
             <p className='font-body text-center sm:text-start text-xl md:text-2xl xl:text-3xl mb-7 font-bold'>
               Список производителей
             </p>
-            <Partners />
+            <Partners data={data} />
           </div>
         </div>
       </main>
