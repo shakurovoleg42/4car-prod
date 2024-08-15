@@ -1,4 +1,4 @@
-'use client';
+// 'use client';
 
 import NavBar from './../NavBar/NavBar';
 import Footer from './../Footer/Footer';
@@ -6,13 +6,19 @@ import './Stock.css';
 import ScrollToTop from './../ScrollToTop/ScrollToTop';
 import { NewsInfo } from '../../data/home';
 import Link from 'next/link';
+import fetchService from '@/services/fetchs';
 
-const Stocks = () => {
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 200,
-    });
-  };
+const Stocks = async () => {
+  // const news = await fetchService.getAllNews();
+  const data = await fetchService.getAllNews();
+
+  console.log(data);
+
+  // const scrollToTop = () => {
+  //   window.scrollTo({
+  //     top: 200,
+  //   });
+  // };
   return (
     <>
       <div className='overflow-hidden'>
@@ -32,20 +38,14 @@ const Stocks = () => {
         <ScrollToTop />
         <main>
           <div className='container'>
-          <div className='flex flex-row font-body mb-5 mt-10'>
-                <Link href='/' className='mr-1 underline cursor-pointer'>
-                  Главная
-                </Link>
-                /
-                <p
-                  className='ml-1'
-                >
-                  Новости
-                </p>
-              </div>
+            <div className='flex flex-row font-body mb-5 mt-10'>
+              <Link href='/' className='mr-1 underline cursor-pointer'>
+                Главная
+              </Link>
+              /<p className='ml-1'>Новости</p>
+            </div>
             <section className='mt-14 mb-16 px-4 flex flex-wrap justify-center gap-4 news__content'>
-              
-              {NewsInfo.map((el) => (
+              {data.data.map((el) => (
                 <div
                   key={el.id}
                   data-aos='fade-up-right'
@@ -59,11 +59,11 @@ const Stocks = () => {
                     <h2 className='2xl:text-2xl xl:text-xl lg:text-lg md:text-md sm:text-sm text-sm mb-3'>
                       {el.title}
                     </h2>
-                    <p className='text-justify mb-4'>{el.content}</p>
+                    <p className='text-justify mb-4'>{el.description}</p>
                   </div>
                   <Link
                     href={`/news/${el.id}`}
-                    onClick={scrollToTop}
+                    // onClick={scrollToTop}
                     className='py-2  max-w-[150px] w-full flex justify-center bg-primary font-medium text-white rounded'
                   >
                     Подробнее

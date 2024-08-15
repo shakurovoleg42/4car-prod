@@ -15,7 +15,7 @@
     "@mui/icons-material": "^5.16.1",
     "@mui/material": "^5.15.3",
     "aos": "^2.3.4",
-    "axios": "^1.7.2",
+    "axios": "^1.7.4",
     "next": "^14.2.5",
     "nextjs-toploader": "^1.6.12",
     "react": "^18.2.0",

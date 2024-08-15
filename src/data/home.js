@@ -1,3 +1,5 @@
+// import fetchService from '@/services/fetchs';
+
 import Partner1 from '../assets/Partner1.jpeg';
 import Partner2 from '../assets/Partner2.jpeg';
 import Partner3 from '../assets/Partner3.jpeg';
