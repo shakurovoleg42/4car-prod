@@ -7,7 +7,7 @@ import { FaAngleLeft } from 'react-icons/fa6';
 import fetchService from '@/services/fetchs';
 import Footer from '@/components/Footer/Footer';
 
-const NewsPage = async({params}) => {
+const NewsPage = async ({ params }) => {
   const data = await fetchService.getNewsById(params.slug);
 
   return (
@@ -22,7 +22,6 @@ const NewsPage = async({params}) => {
         <main className='my-10 container'>
           <section className='flex flex-col items-center gap-4 px-4'>
             <Link href='/news' className='flex items-center gap-2 mb-4'>
-              {' '}
               <FaAngleLeft /> назад
             </Link>
             <div className='px-4' data-aos='fade-right'>
@@ -43,11 +42,9 @@ const NewsPage = async({params}) => {
             <h3 className='font-semibold mb-4 text-lg md:text-xl uppercase'>
               {data.title}
             </h3>
-              <p
-                className='text-sm text-justify mb-2 text-md md:text-lg max-w-[900px]'
-              >
-                {data.text}
-              </p>
+            <p className='text-sm text-justify mb-2 text-md md:text-lg max-w-[900px]'>
+              {data.text}
+            </p>
           </section>
         </main>
         <Footer />
