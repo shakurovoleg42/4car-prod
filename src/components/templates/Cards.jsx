@@ -8,7 +8,7 @@ function CardShini(props) {
 
   const { push: navigate } = useRouter();
   const handleDivClick = () => {
-    navigate('/product');
+    navigate(`/${products.slug}`);
     window.scrollTo({
       top: 0,
     });
@@ -26,7 +26,7 @@ function CardShini(props) {
           <img
             className='2xl:max-w-[110px] xl:max-w-[100px] lg:max-w-[85px] max-w-[75px] 
                 2xl:max-h-[140px] xl:max-h-[130px] lg:max-h-[120px] md:max-h-[110px] sm:max-h-[100px] max-h-[100px] mx-auto mb-3'
-            src={products.img.src}
+            src={products.img}
             alt=''
           />
         </div>

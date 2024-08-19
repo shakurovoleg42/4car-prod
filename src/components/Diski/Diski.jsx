@@ -1,79 +1,54 @@
 'use client';
 
+import './Diski.css';
+
 import { useState } from 'react';
-import Link from 'next/link';
-import NavBar from '../NavBar/NavBar';
-import SelectDiski from '../templates/SelectDiski';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
+import Link from 'next/link';
+
+import NavBar from '../NavBar/NavBar';
 import Avtocomplete from '../templates/Avtocomplete';
 import CardShini from '../templates/Cards';
-import CardDiski from '../../assets/cardDiski.png';
 import Footer from './../Footer/Footer';
-import './Diski.css';
 import ScrollToTop from './../ScrollToTop/ScrollToTop';
 
 function valuetext(value) {
   return `${value}`;
 }
 
-const Diski = () => {
-  const diska = [
-    {
-      id: 1,
-      img: CardDiski,
-      type: 'Шины BOTO Genesys 208',
-      character: '155/70 R12 73T',
-      price: '13 150 тг',
-    },
-    {
-      id: 2,
-      img: CardDiski,
-      type: 'Шины BOTO Genesys 208',
-      character: '155/70 R12 73T',
-      price: '13 150 тг',
-    },
-    {
-      id: 3,
-      img: CardDiski,
-      type: 'Шины BOTO Genesys 208',
-      character: '155/70 R12 73T',
-      price: '13 150 тг',
-    },
-    {
-      id: 4,
-      img: CardDiski,
-      type: 'Шины BOTO Genesys 208',
-      character: '155/70 R12 73T',
-      price: '13 150 тг',
-    },
-  ];
+const Diski = ({ data }) => {
+  const diska = data.products;
 
-  const [value, setValue] = useState([1000, 25000]);
+  const [value, setValue] = useState([0, 200000]);
+  const searchParams = useSearchParams();
+  const params = new URLSearchParams(searchParams);
+  const pathname = usePathname();
+  const router = useRouter();
+  const page = +searchParams.get('page') || 1;
 
   const handleChange = (event, newValue) => {
+    const priceMin = newValue[0];
+    const priceMax = newValue[1];
+
+    params.set('price_min', priceMin);
+    params.set('price_max', priceMax);
+
     setValue(newValue);
+    router.replace(pathname + '?' + params.toString());
   };
 
-  if (!diska || !Array.isArray(diska) || diska.length === 0) {
-    // Проверка наличия массива products
-    return <div>No products available</div>;
-  }
-
-  const itemsPerPage = 4; // Установите начальное количество товаров на странице
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const [page, setPage] = useState(1);
+  const itemsPerPage = data.pagination.per_page; // Установите начальное количество товаров на странице
 
   const handleChangePage = (event, newPage) => {
-    setPage(newPage);
+    params.set('page', newPage);
+    router.replace(pathname + '?' + params.toString());
   };
 
-  const totalPages = Math.ceil(diska.length / itemsPerPage);
-  const startIndex = (page - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const visibleProducts = diska.slice(startIndex, endIndex);
+  const totalPages = Math.ceil(data.pagination.total / itemsPerPage);
 
   return (
     <>
@@ -95,24 +70,11 @@ const Diski = () => {
         <main className='mt-10'>
           <div className='container flex flex-col items-center'>
             <section className='2xl:mb-28 mb-10 px-4 flex flex-col items-start w-full'>
-            <div className='flex flex-row font-body mb-5'>
+              <div className='flex flex-row font-body mb-5'>
                 <Link href='/' className='mr-1 underline cursor-pointer'>
                   Главная
                 </Link>
-                /
-                <p
-                  className='ml-1'
-                >
-                  Диски
-                </p>
-              </div>
-              <h2 className='font-bold text-2xl mb-8 2xl:text-start xl:text-start text-center'>
-                Подбор диск
-              </h2>
-              <div className=''>
-                <div data-aos='fade-left'>
-                  <SelectDiski />
-                </div>
+                /<p className='ml-1'>Диски</p>
               </div>
             </section>
             <section className='flex justify-between w-full gap-10 mb-10 filterProduct px-4'>
@@ -127,17 +89,17 @@ const Diski = () => {
                     <p onChange={valuetext}>до {value[1]}</p>
                   </div>
                   <Slider
-                    getAriaLabel={() => 'Prace Value'}
+                    getAriaLabel={() => 'Price Value'}
                     value={value}
-                    min={1000}
-                    max={25000}
+                    min={0}
+                    max={200000}
                     step={50}
                     onChange={handleChange}
                     valueLabelDisplay='auto'
                     // getAriaValueText={valuetext} function
                   />
                 </Box>
-                <Avtocomplete />
+                <Avtocomplete filters={data.filter} />
               </div>
               <div
                 data-aos='fade-up-left'
@@ -147,19 +109,23 @@ const Diski = () => {
                 <div
                   className='flex 2xl:justify-between
                             xl:justify-between lg:justify-center md:justify-center sm:justify-center justify-center
-                            2xl:flex-nowrap xl:flex-nowrap lg:flex-wrap flex-wrap 2xl:gap-6 
+                            2xl:flex-wrap xl:flex-wrap lg:flex-wrap flex-wrap 2xl:gap-6 
                             xl:gap-3 lg:gap-2 md:gap-2 sm:gap-5 gap-3 w-full sm:px-2'
                 >
-                  {visibleProducts.map((e) => (
-                    <CardShini
-                      key={e.id}
-                      id={e.id}
-                      img={e.img}
-                      type={e.type}
-                      price={e.price}
-                      text={e.character}
-                    />
-                  ))}
+                  {!diska || !Array.isArray(diska) || diska.length === 0 ? (
+                    <p>Пусто</p>
+                  ) : (
+                    diska.map((e) => (
+                      <CardShini
+                        key={e.id}
+                        id={e.id}
+                        slug={e.slug}
+                        img={e.image}
+                        type={e.name}
+                        price={e.price}
+                      />
+                    ))
+                  )}
                 </div>
                 <Stack spacing={2} sx={{ mt: 2 }}>
                   <Pagination
