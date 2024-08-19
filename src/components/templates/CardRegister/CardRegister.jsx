@@ -89,7 +89,7 @@ const CardRegister = () => {
       );
       router.push('/login');
     } catch (error) {
-      toast.error('Ошибка при регистрации');
+      toast.error(error.response.data.message);
     } finally {
       toast.dismiss(loadingToastId);
     }

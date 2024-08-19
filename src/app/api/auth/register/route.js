@@ -8,6 +8,8 @@ export async function POST(request) {
 
     return new Response(null, { status: 201 });
   } catch (error) {
-    return new Response(error.message, { status: 400 });
+    return new Response(JSON.stringify(error.response.data), {
+      status: error.response.status,
+    });
   }
 }
