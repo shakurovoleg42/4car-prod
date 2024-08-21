@@ -1,10 +1,8 @@
 import NavBar from '../NavBar/NavBar';
 import Footer from '../Footer/Footer';
 import Partners from './Partners';
-import { PartnersInfo } from '../../data/home';
-import Link from 'next/link';
 
-const Brands = () => {
+const Brands = ({ partners }) => {
   return (
     <>
       <header className=' bg-no-repeat bg-cover bg-center w-full pb-20 bg-diski'>
@@ -22,33 +20,11 @@ const Brands = () => {
       </header>
       <main className='container my-16'>
         <div className='flex flex-wrap sm:flex-nowrap justify-center gap-6 px-4'>
-          <div className='flex flex-col gap-3 border max-w-[350px] w-full h-full '>
-            <p className='w-full py-2 px-4 bg-gray-100 font-body font-semibold'>
-              Производители
-            </p>
-            <div className='flex flex-col gap-3 px-4 pb-5'>
-              {PartnersInfo.map((e) => (
-                <Link
-                  key={e.id}
-                  href='#!'
-                  className='hover:text-primary transition-all'
-                >
-                  {e.title}
-                </Link>
-              ))}
-              <Link
-                href='#!'
-                className='hover:text-primary transition-all text-lg'
-              >
-                Показать все...
-              </Link>
-            </div>
-          </div>
           <div>
             <p className='font-body text-center sm:text-start text-xl md:text-2xl xl:text-3xl mb-7 font-bold'>
               Список производителей
             </p>
-            <Partners />
+            <Partners partners={partners} />
           </div>
         </div>
       </main>

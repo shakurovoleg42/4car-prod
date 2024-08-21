@@ -1,12 +1,15 @@
-import Hero from '../components/Hero/Hero';
-import GlobalMain from '../components/GlobalMain/GlobalMain';
-import Footer from '../components/Footer/Footer';
+import fetchService from '@/services/fetchs';
+import Hero from '@/components/Hero/Hero';
+import GlobalMain from '@/components/GlobalMain/GlobalMain';
+import Footer from '@/components/Footer/Footer';
 
-export default function Home() {
+export default async function Home() {
+  const manufacturers = await fetchService.getManufacturers();
+
   return (
     <>
       <Hero />
-      <GlobalMain />
+      <GlobalMain partners={manufacturers} />
       <Footer />
     </>
   );
