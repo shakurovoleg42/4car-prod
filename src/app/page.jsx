@@ -5,11 +5,12 @@ import Footer from '@/components/Footer/Footer';
 
 export default async function Home() {
   const manufacturers = await fetchService.getManufacturers();
+  const data = await fetchService.getAllNews();
 
   return (
     <>
       <Hero />
-      <GlobalMain partners={manufacturers} />
+      <GlobalMain partners={manufacturers} news={data}/>
       <Footer />
     </>
   );

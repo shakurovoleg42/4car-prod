@@ -10,15 +10,18 @@ import Link from 'next/link';
 import Slider from 'react-slick';
 import AOS from 'aos';
 
-import { NewsInfo } from '@/data/home';
+// import { NewsInfo } from '@/data/home';
 import SelectShini from '@/components/templates/SelectShini';
 import SelectDiski from '@/components/templates/SelectDiski';
 import AboutImg from '@/assets/AboutImg.jpg';
 import Complect from '@/assets/complect.png';
 import AddItemButton from '@/components/AddItemButton/AddItemButton';
 
-const GlobalMain = ({ partners }) => {
+
+const GlobalMain = ({ partners, news }) => {
+
   useEffect(() => {
+
     AOS.init();
   }, []);
 
@@ -235,11 +238,11 @@ const GlobalMain = ({ partners }) => {
               Новости
             </h2>
             <div className='mt-14 mb-16 px-4 flex flex-wrap justify-center gap-4 news__content'>
-              {NewsInfo.map((el) => (
+            {news.data.map((el) => (
                 <div
                   key={el.id}
                   data-aos='fade-up-right'
-                  data-aos-anchor-placement='center-bottom'
+                  data-aos-anchor-placement='top-bottom'
                   className='news__item max-w-[550px] w-full p-4 border flex flex-col justify-between'
                 >
                   <div>
@@ -249,11 +252,11 @@ const GlobalMain = ({ partners }) => {
                     <h2 className='2xl:text-2xl xl:text-xl lg:text-lg md:text-md sm:text-sm text-sm mb-3'>
                       {el.title}
                     </h2>
-                    <p className='text-justify mb-4'>{el.content}</p>
+                    <p className='text-justify mb-4'>{el.text}</p>
                   </div>
                   <Link
                     href={`/news/${el.id}`}
-                    onClick={scrollToTop}
+                    // onClick={scrollToTop}
                     className='py-2  max-w-[150px] w-full flex justify-center bg-primary font-medium text-white rounded'
                   >
                     Подробнее
