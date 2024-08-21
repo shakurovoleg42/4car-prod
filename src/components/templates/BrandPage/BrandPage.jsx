@@ -5,21 +5,17 @@ import styles from './styles.module.css';
 import Link from 'next/link';
 import Image from 'next/image';
 
-import { PartnersInfo } from '../../../data/home';
 import Footer from '../../Footer/Footer';
 import NavBar from '../../NavBar/NavBar';
 import ScrollToTop from '../../ScrollToTop/ScrollToTop';
-// import Avtocomplete from '../Avtocomplete';
 import ProductModal2 from '../ProductModal2';
 
-const BrandPage = ({ id }) => {
-  const brand = PartnersInfo.find((brand) => brand.id === parseInt(id));
-
+const BrandPage = ({ partners, brand }) => {
   if (!brand) {
     return <div>Бренд не найден</div>;
   }
 
-  const { img, title, content, contentTitle, content2 } = brand;
+  const { image, name, description, products } = brand;
   const scrollToTop = () => {
     window.scrollTo({
       top: 200,
@@ -37,7 +33,7 @@ const BrandPage = ({ id }) => {
                 className='font-body font-bold 2xl:text-6xl xl:text-6xl lg:text-5xl md:text-4xl text-3xl 
                         2xl:text-start xl:text-start lg:text-start text-center flex flex-col text-white'
               >
-                {title}
+                {name}
               </h1>
             </div>
           </div>
@@ -46,7 +42,6 @@ const BrandPage = ({ id }) => {
         <main className='my-10 container'>
           <section className={`flex gap-10 ${styles.wrapper}`}>
             <div className='flex-shrink-0'>
-              {/* <Avtocomplete /> */}
               <div
                 className={`flex flex-col gap-3 border max-w-[350px] w-full mt-10 ${styles.box}`}
               >
@@ -54,49 +49,37 @@ const BrandPage = ({ id }) => {
                   Производители
                 </p>
                 <div className='flex flex-col gap-3 px-4 pb-5'>
-                  {PartnersInfo.map((e) => (
-                    <Link
-                      key={e.id}
-                      href={`/partners/${e.id}`}
-                      onClick={scrollToTop}
-                      className='hover:text-primary transition-all'
-                    >
-                      {e.title}
-                    </Link>
-                  ))}
+                  <ul className={styles.list}>
+                    {partners.map((e) => (
+                      <li key={e.id}>
+                        <Link
+                          href={`/${e.slug}`}
+                          onClick={scrollToTop}
+                          className='hover:text-primary transition-all'
+                        >
+                          {e.name}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
                   <Link
-                    href='#!'
-                    className='hover:text-primary transition-all text-lg'
+                    href='/manufacturer/all'
+                    className='2xl:text-2xl xl:text-2x lg:text-xl sm:text-md text-sm rounded text-white py-2 px-4 bg-primary mt-8'
                   >
-                    Показать все...
+                    Показать все
                   </Link>
                 </div>
               </div>
             </div>
             <div>
-              <Image src={img.src} alt={title} width={175} height={365} />
-              {content.split('\n').map((paragraph, index) => (
-                <p
-                  key={index}
-                  className='text-sm text-justify mb-4 text-md md:text-lg'
-                >
-                  {paragraph}
-                </p>
-              ))}
-              <h3 className='font-semibold mb-4 text-lg md:text-xl uppercase'>
-                {contentTitle}
-              </h3>
-              {content2.split('\n').map((paragraph, index) => (
-                <p
-                  key={index}
-                  className='text-sm text-justify mb-2 text-md md:text-lg'
-                >
-                  {paragraph}
-                </p>
-              ))}
+              <Image src={image} alt={name} width={175} height={365} />
+              <div
+                className='mt-3'
+                dangerouslySetInnerHTML={{ __html: description }}
+              ></div>
             </div>
           </section>
-          <ProductModal2/>
+          <ProductModal2 shina={products} />
         </main>
         <Footer />
       </div>
