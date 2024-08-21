@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { MdOutlineVisibility } from 'react-icons/md';
 import { MdOutlineVisibilityOff } from 'react-icons/md';
 import { useRouter } from 'next/navigation';
-import Image from 'next/image';
+// import Image from 'next/image';
 import toast from 'react-hot-toast';
 import axios from 'axios';
 
@@ -101,26 +101,29 @@ const CardRegister = () => {
         className='max-w-[550px] rounded w-full 
             overflow-hidden pb-26 mt-14 m-auto shadow-xl shadow-gray-500 pt-10 relative mb-20'
       >
-        <Image
+        <img
           className='absolute -top-4 left-0 -z-10'
           src={RegisterDecor.src}
           alt=''
-          width={230}
-          height={820}
+          style={{width: '230px', height: '820px'}}
+          // width={230}
+          // height={820}
         />
-        <Image
+        <img
           src={RegisterDecor2.src}
           alt=''
           className='absolute -z-10 right-0 -top-4'
-          width={230}
-          height={820}
+          style={{width: '230px', height: '820px'}}
+          // width={230}
+          // height={820}
         />
-        <Image
+        <img
           src={RegisterDecor3.src}
           alt=''
           className='absolute -z-10 right-0 -top-4'
-          width={230}
-          height={820}
+          style={{width: '230px', height: '820px'}}
+          // width={230}
+          // height={820}
         />
         <h2 className='text-primary font-semibold 2xl:text-2xl xl:text-2xl lg:text-xl md:text-xl sm:text-lg text-md text-center'>
           Регистрация
@@ -243,12 +246,13 @@ const CardRegister = () => {
             </button>
           </div>
         </form>
-        <Image
+        <img
           className='absolute bottom-0 -z-10'
           src={RegisterImg.src}
           alt=''
-          width={550}
-          height={220}
+          style={{width: '550px', height: '220px'}}
+          // width={550}
+          // height={220}
         />
       </div>
     </>

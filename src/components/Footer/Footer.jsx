@@ -6,7 +6,7 @@ import { FaAngleRight } from 'react-icons/fa6';
 import { FiFacebook } from 'react-icons/fi';
 import { FaInstagram } from 'react-icons/fa';
 import Link from 'next/link';
-import Image from 'next/image';
+// import Image from 'next/image';
 
 import responsiveImage from '../../utils/responsiveImage';
 import { useMediaQuery } from 'usehooks-ts';
@@ -201,7 +201,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <Image
+        <img
           className='footer__bg absolute -bottom-5 -z-10 max-w-[2500px] w-full max-h-[1200px] h-full right-0'
           src={matches ? '/footerBg-mob.png' : '/footerBg.png'}
           alt=''

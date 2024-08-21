@@ -8,7 +8,7 @@ import { MdOutlineVisibility } from 'react-icons/md';
 import { MdOutlineVisibilityOff } from 'react-icons/md';
 import toast from 'react-hot-toast';
 import axios from 'axios';
-import Image from 'next/image';
+// import Image from 'next/image';
 
 import { handleLogin } from '@/app/actions';
 import responsiveImage from '@/utils/responsiveImage';
@@ -109,7 +109,7 @@ const LoginForm = () => {
             </button>
           </div>
         </form>
-        <Image
+        <img
           className='max-w-[600px] w-full rounded rounded-s-sm loginImg'
           src={LoginImg.src}
           alt=''

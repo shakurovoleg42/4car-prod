@@ -4,7 +4,7 @@ import Footer from '../Footer/Footer';
 import './FourNullFour.css';
 import ScrollToTop from './../ScrollToTop/ScrollToTop';
 import Link from 'next/link';
-import Image from 'next/image';
+// import Image from 'next/image';
 
 const FourNullFour = () => {
   return (
@@ -23,12 +23,13 @@ const FourNullFour = () => {
                 Что то пошло не так
                 <span className='2xl:text-[280px] xl:text-[240px] lg:text-[130px] md:text-[120px] sm:text-[100px] text-[80px]  text-white flex items-center'>
                   4{' '}
-                  <Image
+                  <img
                     className='2xl:w-60 xl:w-52 lg:w-32 md:w-26 sm:w-24 w-20'
                     src={Null.src}
                     alt=''
-                    width={96}
-                    height={96}
+                    style={{width: '96px', height: '96px'}}
+                    // width={96}
+                    // height={96}
                   />{' '}
                   4
                 </span>

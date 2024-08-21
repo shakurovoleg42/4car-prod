@@ -53,7 +53,7 @@ const SearchDiski = () => {
     return <div>No products available</div>;
   }
 
-  const itemsPerPage = 4; // Установите начальное количество товаров на странице
+  const itemsPerPage = 4;
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [page, setPage] = useState(1);
 
@@ -81,7 +81,7 @@ const SearchDiski = () => {
                 data-aos='fade-right'
                 className='text-2xl font-body mb-10 px-4'
               >
-                Результаты по запросу xxx
+                Результаты по запросу tuya
               </h1>
               <div className=' max-w-[1200px] w-full m-auto flex flex-wrap gap-6 justify-center flex-col items-center px-4'>
                 <div

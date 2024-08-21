@@ -3,7 +3,7 @@
 import styles from './styles.module.css';
 
 import { useCart } from 'react-use-cart';
-import Image from 'next/image';
+// import Image from 'next/image';
 import Link from 'next/link';
 
 import NavBar from '../../components/NavBar/NavBar';
@@ -62,11 +62,12 @@ export default function Cart() {
                     {items.map((item) => (
                       <li key={item.id}>
                         <div className={styles.image}>
-                          <Image
+                          <img
                             src={item.img.src}
                             alt=''
-                            width={100}
-                            height={100}
+                            style={{width: '100px', height: '100px'}}
+                            // width={100}
+                            // height={100}
                           />
                         </div>
                         <div className={styles.details}>

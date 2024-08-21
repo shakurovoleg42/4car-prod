@@ -60,7 +60,7 @@ const Stocks = async () => {
                     <p className='text-justify mb-4'>{el.description}</p>
                   </div>
                   <Link
-                    href={process.env.NEXT_URL + `/news/${el.id}`}
+                    href={`/news/${el.id}`}
                     // onClick={scrollToTop}
                     className='py-2  max-w-[150px] w-full flex justify-center bg-primary font-medium text-white rounded'
                   >

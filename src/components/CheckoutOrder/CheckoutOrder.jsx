@@ -3,7 +3,7 @@ import NavBar from '../NavBar/NavBar';
 import Footer from '../Footer/Footer';
 import ScrollToTop from '../ScrollToTop/ScrollToTop';
 import './CheckoutOrder.css';
-import Image from 'next/image';
+// import Image from 'next/image';
 import select from '../../assets/select.svg';
 import walletImg from '../../assets/wallet-image.svg';
 import cardImg from '../../assets/card-image.svg';
@@ -103,10 +103,11 @@ const CheckoutOrder = () => {
                       <div className='cont-pay-method'>
                         <p style={{ marginTop: '16px' }}>Доставка до двери</p>
                         <div className='flex flex-row items-center mt-9'>
-                          <Image
+                          <img
                             src={select}
-                            width={31}
-                            height={12}
+                            style={{ width: '31px', height: '12px' }}
+                            // width={31}
+                            // height={12}
                             alt='selects'
                           />
                           <p className='price' style={{ marginLeft: '6px' }}>
@@ -155,19 +156,21 @@ const CheckoutOrder = () => {
                   <p className='pay-method'>Способ оплаты</p>
                   <div className='container items-center mt-10'>
                     <div className='walletcard flex flex-col max-w-[489px] w-full max-h-[298px] h-full items-center'>
-                      <Image
+                      <img
                         src={cardImg}
-                        width={130.67}
-                        height={93.33}
+                        style={{ width: '130.67px', height: '93.33px' }}
+                        // width={130.67}
+                        // height={93.33}
                         alt='wallet'
                       />
                       <p>Оплата картой</p>
                     </div>
                     <div className='walletcard flex flex-col max-w-[489px] w-full max-h-[298px] h-full items-center'>
-                      <Image
+                      <img
                         src={walletImg}
-                        width={107.19}
-                        height={94.06}
+                        style={{ width: '107.19px', height: '94.06px' }}
+                        // width={107.19}
+                        // height={94.06}
                         alt='card'
                       />
                       <p>Наличными при получении</p>
