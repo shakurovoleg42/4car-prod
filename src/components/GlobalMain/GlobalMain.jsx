@@ -10,14 +10,14 @@ import Link from 'next/link';
 import Slider from 'react-slick';
 import AOS from 'aos';
 
-import { PartnersInfo, NewsInfo } from '../../data/home';
-import SelectShini from '../templates/SelectShini';
-import SelectDiski from '../templates/SelectDiski';
-import AboutImg from '../../assets/AboutImg.jpg';
-import Complect from '../../assets/complect.png';
-import AddItemButton from '../AddItemButton/AddItemButton';
+import { NewsInfo } from '@/data/home';
+import SelectShini from '@/components/templates/SelectShini';
+import SelectDiski from '@/components/templates/SelectDiski';
+import AboutImg from '@/assets/AboutImg.jpg';
+import Complect from '@/assets/complect.png';
+import AddItemButton from '@/components/AddItemButton/AddItemButton';
 
-const GlobalMain = () => {
+const GlobalMain = ({ partners }) => {
   useEffect(() => {
     AOS.init();
   }, []);
@@ -205,25 +205,25 @@ const GlobalMain = () => {
                 },
               ]}
             >
-              {PartnersInfo.map((el) => (
+              {partners.map((el) => (
                 <div
                   key={el.id}
                   className='flex w-full text-center items-center justify-center px-2 gap-5'
                 >
                   <Link
-                    href={`/partners/${el.id}`}
+                    href={`/${el.slug}`}
                     data-aos='fade-up'
                     data-aos-anchor-placement='top-bottom'
                     className='max-w-44 w-full h-44 bg-white text-center flex items-center '
                   >
-                    <img src={el.img.src} alt='' />
+                    <img src={el.image} alt='' />
                   </Link>
                 </div>
               ))}
             </Slider>
             <div className='flex justify-center '>
               <Link
-                href='/partners'
+                href='/manufacturer/all'
                 className='2xl:text-2xl xl:text-2x lg:text-xl sm:text-md text-sm rounded text-white py-2 px-4 bg-primary mt-8'
               >
                 Подробнее
