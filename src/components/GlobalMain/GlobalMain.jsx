@@ -63,11 +63,11 @@ const GlobalMain = ({ partners, news }) => {
     });
   };
 
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 200,
-    });
-  };
+  // const scrollToTop = () => {
+  //   window.scrollTo({
+  //     top: 200,
+  //   });
+  // };
 
   return (
     <>
