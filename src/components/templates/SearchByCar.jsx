@@ -33,7 +33,7 @@ const SearchByCar = () => {
           </div>
           <div className='flex gap-4'>
             <button
-              className='btn bg-white text-cm px-2 active:bg-blue-300'
+              className='btn bg-white text-cm px-2 active:bg-blue-300 rounded-[15px] p-2'
               type='submit'
             >
               Подобрать

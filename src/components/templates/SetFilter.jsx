@@ -47,13 +47,13 @@ const SetFilter = (props) => {
               <div className='inline-flex shadow-sm' role='group'>
                 <button
                   type='button'
-                  className='inline-flex border border-black items-center px-4  text-sm font-medium text-gray-900 bg-white focus:z-10 focus:bg-blue-700 focus:text-white'
+                  className='inline-flex border border-black items-center px-4  text-sm font-medium text-gray-900 bg-white focus:z-10 focus:bg-blue-300 focus:text-black'
                 >
                   Зимние
                 </button>
                 <button
                   type='button'
-                  className='inline-flex border border-black items-center px-4  text-sm font-medium text-gray-900 bg-white focus:z-10 focus:bg-blue-700 focus:text-white'
+                  className='inline-flex border border-black items-center px-4  text-sm font-medium text-gray-900 bg-white focus:z-10 focus:bg-yellow-300 focus:text-black'
                 >
                   Летние
                 </button>
@@ -68,14 +68,14 @@ const SetFilter = (props) => {
           </div>
           <div className='flex gap-4'>
             <button
-              className='btn bg-white text-cm px-2 active:bg-blue-300'
+              className='btn bg-white text-cm px-2 active:bg-blue-300 rounded-[15px] p-2'
               type='submit'
             >
               Подобрать
             </button>
             <button
               type='reset'
-              className=' border-b-white border-b-2 text-white bg-primary'
+              className=' border-b-white border-b-2 text-black bg-white rounded-[15px] p-2'
             >
               Сбросить
             </button>
