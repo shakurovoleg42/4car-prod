@@ -63,7 +63,7 @@ const Stocks = async () => {
                     </div>
                     <div className='flex justify-center items-center'>
                       <Link
-                        href={`/news/${el.id}`}
+                        href={`/news/${el.slug}`}
                         // onClick={scrollToTop}
                         className='py-2  max-w-[150px] w-full flex justify-center bg-primary font-medium text-white rounded'
                       >
