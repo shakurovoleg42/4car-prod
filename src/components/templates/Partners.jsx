@@ -1,11 +1,16 @@
 import Link from 'next/link';
 
 const Partners = ({ partners }) => {
+  
+  // const showMore = () => {
+    
+  // };
+
   return (
     <>
       <section className='mb-10'>
         <div className='flex w-full justify-center flex-wrap gap-5 mb-10'>
-          {partners.map((el) => (
+          {partners.data.map((el) => (
             <Link
               key={el.id}
               href={`/${el.slug}`}
@@ -19,6 +24,7 @@ const Partners = ({ partners }) => {
             </Link>
           ))}
         </div>
+        {/* <button>Показать еще</button> */}
       </section>
     </>
   );

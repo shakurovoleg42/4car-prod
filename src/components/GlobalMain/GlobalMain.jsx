@@ -206,7 +206,7 @@ const GlobalMain = ({ partners, news }) => {
                 },
               ]}
             >
-              {partners.map((el) => (
+              {partners.data.map((el) => (
                 <div
                   key={el.id}
                   className='flex w-full text-center items-center justify-center px-2 gap-5'
