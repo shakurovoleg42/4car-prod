@@ -9,6 +9,8 @@ export default {
         primary: '#1A6EC1',
         darkMain: '#182F43',
         darkPrimary: '#1E3A8A',
+        light: '#e2f0ff',
+        borderLight: '#D3D3D3',
       },
       container: {
         center: true,

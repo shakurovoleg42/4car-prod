@@ -3,6 +3,7 @@
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import 'aos/dist/aos.css';
+import { FaAngleRight } from 'react-icons/fa6';
 
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
@@ -17,11 +18,8 @@ import AboutImg from '@/assets/AboutImg.jpg';
 import Complect from '@/assets/complect.png';
 import AddItemButton from '@/components/AddItemButton/AddItemButton';
 
-
 const GlobalMain = ({ partners, news }) => {
-
   useEffect(() => {
-
     AOS.init();
   }, []);
 
@@ -237,33 +235,45 @@ const GlobalMain = ({ partners, news }) => {
             <h2 className='font-body text-center text-4xl mb-7 font-bold'>
               Новости
             </h2>
-            <div className='mt-14 mb-16 px-4 flex flex-wrap justify-center gap-4 news__content'>
-            {news.data.map((el) => (
-                <div
+            <div className='mt-14 mb-12 px-4 flex flex-wrap justify-center gap-4 news__content'>
+              {news.data.map((el) => (
+                <a
                   key={el.id}
+                  href={`/news/${el.slug}`}
                   data-aos='fade-up-right'
                   data-aos-anchor-placement='top-bottom'
-                  className='news__item max-w-[550px] w-full p-4 border flex flex-col justify-between'
+                  className='news__item max-w-[550px] w-full p-4 border flex flex-col justify-between rounded-[25px]'
                 >
                   <div>
-                    <span className='text-sm text-blue-400 font-bold flex flex-col justify-between'>
-                      {el.date}
-                    </span>
-                    <h2 className='2xl:text-2xl xl:text-xl lg:text-lg md:text-md sm:text-sm text-sm mb-3'>
-                      {el.title}
-                    </h2>
-                    <p className='text-justify mb-4'>{el.text}</p>
+                    <div>
+                      <span className='text-sm text-blue-400 font-bold flex flex-col justify-between'>
+                        {el.date}
+                      </span>
+                      <h2 className='2xl:text-2xl xl:text-xl lg:text-lg md:text-md sm:text-sm text-sm mb-3'>
+                        {el.title}
+                      </h2>
+                      <p className='text-justify mb-4'>{el.description}</p>
+                    </div>
+                    <Link
+                      href={`/news/${el.id}`}
+                      // onClick={scrollToTop}
+                      className='py-2  max-w-[150px] w-full flex justify-center bg-primary font-medium text-white rounded'
+                    >
+                      Подробнее
+                    </Link>
                   </div>
-                  <Link
-                    href={`/news/${el.id}`}
-                    // onClick={scrollToTop}
-                    className='py-2  max-w-[150px] w-full flex justify-center bg-primary font-medium text-white rounded'
-                  >
-                    Подробнее
-                  </Link>
-                </div>
+                </a>
               ))}
             </div>
+            <div className='flex justify-center'>
+              <Link href='/news' className='flex flex-row items-center text-center border-b-2 border-b-gray-200'>
+              <b className='items-center text-center text-[22px]font-regular'>
+                посмотреть все новости
+              </b>
+              <FaAngleRight />
+            </Link>
+            </div>
+            
           </section>
           <section className='mb-10'>
             <h2 className=' font-body text-center text-4xl mb-10 font-bold'>

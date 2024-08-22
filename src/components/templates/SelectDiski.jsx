@@ -13,7 +13,7 @@ const SelectDiski = () => {
   return (
     <>
       <section className='selectProduct'>
-        <div className='bg-darkPrimary flex justify-between text-white '>
+        <div className='bg-light flex justify-between text-black rounded-2xl border-t-2 border-l-2 border-r-2 border-gray-400'>
           <button
             onClick={() => openModal('modal1')}
             className={`border-b-4 ${activeModal === 'modal1' ? 'border-white' : 'border-transparent'} py-4 w-1/2`}
@@ -29,7 +29,7 @@ const SelectDiski = () => {
             Диски по автомобилю
           </button>
         </div>
-        <div className='w-full flex-col flex justify-center items-center bg-primary px-4'>
+        <div className='w-full flex-col flex justify-center items-center bg-light  text-black px-4 rounded-2xl border-b-2 border-l-2 border-r-2 border-gray-400'>
           {activeModal === 'modal1' && <SetFilter img={Diska} id={'diska'} />}
           {activeModal === 'modal2' && <SearchByCar />}
         </div>

@@ -44,29 +44,32 @@ const Stocks = async () => {
             </div>
             <section className='mt-14 mb-16 px-4 flex flex-wrap justify-center gap-4 news__content'>
               {data.data.map((el) => (
-                <div
+                <a
                   key={el.id}
+                  href={`/news/${el.slug}`}
                   data-aos='fade-up-right'
                   data-aos-anchor-placement='top-bottom'
-                  className='news__item max-w-[550px] w-full p-4 border flex flex-col justify-between'
+                  className='news__item max-w-[550px] w-full p-4 border flex flex-col justify-between rounded-[25px]'
                 >
                   <div>
-                    <span className='text-sm text-blue-400 font-bold flex flex-col justify-between'>
-                      {el.date}
-                    </span>
-                    <h2 className='2xl:text-2xl xl:text-xl lg:text-lg md:text-md sm:text-sm text-sm mb-3'>
-                      {el.title}
-                    </h2>
-                    <p className='text-justify mb-4'>{el.description}</p>
+                    <div>
+                      <span className='text-sm text-blue-400 font-bold flex flex-col justify-between'>
+                        {el.date}
+                      </span>
+                      <h2 className='2xl:text-2xl xl:text-xl lg:text-lg md:text-md sm:text-sm text-sm mb-3'>
+                        {el.title}
+                      </h2>
+                      <p className='text-justify mb-4'>{el.description}</p>
+                    </div>
+                    <Link
+                      href={`/news/${el.id}`}
+                      // onClick={scrollToTop}
+                      className='py-2  max-w-[150px] w-full flex justify-center bg-primary font-medium text-white rounded'
+                    >
+                      Подробнее
+                    </Link>
                   </div>
-                  <Link
-                    href={`/news/${el.id}`}
-                    // onClick={scrollToTop}
-                    className='py-2  max-w-[150px] w-full flex justify-center bg-primary font-medium text-white rounded'
-                  >
-                    Подробнее
-                  </Link>
-                </div>
+                </a>
               ))}
             </section>
           </div>

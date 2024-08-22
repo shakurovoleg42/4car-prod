@@ -4,9 +4,9 @@ const SetFilter = (props) => {
   return (
     <>
       <div className=' relative -z-0 py-4 max-w-[600px] w-full'>
-        <p className='text-white text-lg font-bold font-body'>Типы размер</p>
+        <p className='text-black text-lg font-bold font-body'>Типы размер</p>
         <div className='flex flex-col gap-5'>
-          <div className='flex flex-wrap gap-2 text-white '>
+          <div className='flex flex-wrap gap-2 text-blacck '>
             <div>
               <p>Ширина</p>
               <select className='text-black px-4 outline-none border border-black'>
@@ -34,7 +34,7 @@ const SetFilter = (props) => {
           </div>
           <div className='flex items-center gap-4 sire'>
             <div>
-              <p className='text-white pb-1'>Производитель</p>
+              <p className='text-black pb-1'>Производитель</p>
               <select className='border border-black'>
                 <option value='all'>Поиск по производителю</option>
                 <option value='all'>Поиск по производителю</option>
@@ -43,7 +43,7 @@ const SetFilter = (props) => {
               </select>
             </div>
             <div>
-              <p className='text-white'>Сезонность</p>
+              <p className='text-black'>Сезонность</p>
               <div className='inline-flex shadow-sm' role='group'>
                 <button
                   type='button'
@@ -62,7 +62,7 @@ const SetFilter = (props) => {
           </div>
           <div className='flex gap-5 cursor-pointer'>
             <input type='checkbox' id={props.id} />
-            <label className='cursor-pointer text-white' htmlFor={props.id}>
+            <label className='cursor-pointer text-blackc' htmlFor={props.id}>
               Только в наличии
             </label>
           </div>

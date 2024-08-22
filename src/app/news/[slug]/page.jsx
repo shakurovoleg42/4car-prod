@@ -39,9 +39,6 @@ const NewsPage = async ({ params }) => {
               {data.description}
             </p>
             <img src={data.image} alt={data.title} />
-            <h3 className='font-semibold mb-4 text-lg md:text-xl uppercase'>
-              {data.title}
-            </h3>
             <p className='text-sm text-justify mb-2 text-md md:text-lg max-w-[900px]'>
               {data.text}
             </p>
