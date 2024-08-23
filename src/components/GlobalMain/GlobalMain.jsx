@@ -83,8 +83,8 @@ const GlobalMain = ({ partners, news }) => {
               <SelectDiski />
             </div>
           </section>
-          <section className='text-center mb-14'>
-            <Slider
+          {/* <section className='text-center mb-14'>a */}
+            {/* <Slider
               dots={false}
               autoplay={true}
               infinite={true}
@@ -153,8 +153,8 @@ const GlobalMain = ({ partners, news }) => {
                 </div>
               ))}
             </Slider>
-          </section>
-          <section className='mb-10'>
+          </section>*/}
+          <section className='mb-10'> 
             <h2 className='font-body text-center text-xl md:text-2xl xl:text-3xl mb-7 font-bold'>
               Наши партнёры
             </h2>
@@ -206,7 +206,7 @@ const GlobalMain = ({ partners, news }) => {
                 },
               ]}
             >
-              {partners.data.map((el) => (
+              {partners.map((el) => (
                 <div
                   key={el.id}
                   className='flex w-full text-center items-center justify-center px-2 gap-5'

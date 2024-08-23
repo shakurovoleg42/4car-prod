@@ -1,16 +1,39 @@
-import Link from 'next/link';
+'use client';
 
-const Partners = ({ partners }) => {
-  
-  // const showMore = () => {
-    
-  // };
+import Link from 'next/link';
+import {
+  usePathname,
+  useRouter,
+  useSearchParams,
+} from "next/navigation";
+import Pagination from "@mui/material/Pagination";
+import Stack from "@mui/material/Stack";
+
+const Partners = ({ partners, pagination }) => {
+  const totalProducts = pagination.total;
+  const itemsPerPage = pagination.per_page;
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const params = new URLSearchParams(searchParams);
+  const page = +searchParams.get("page") || 1;
+
+  const handleScroll = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const handlePageChange = (event, value) => {
+    params.set("page", value);
+    router.replace(pathname + "?" + params.toString());
+  };
+
+  const totalPages = Math.ceil(totalProducts / itemsPerPage);
 
   return (
     <>
       <section className='mb-10'>
         <div className='flex w-full justify-center flex-wrap gap-5 mb-10'>
-          {partners.data.map((el) => (
+          {partners.map((el) => (
             <Link
               key={el.id}
               href={`/${el.slug}`}
@@ -19,12 +42,23 @@ const Partners = ({ partners }) => {
               className='max-w-44 w-full h-44 bg-white flex items-center justify-center'
               style={{ flexDirection: 'column' }}
             >
-              <img src={el.image} alt='' />
+              <img src={el.image} alt={el.name} />
               <span>{el.name}</span>
             </Link>
           ))}
         </div>
-        {/* <button>Показать еще</button> */}
+        <div className='flex justify-center'>
+        <Stack spacing={2}>
+          <Pagination
+            count={totalPages}
+            variant="outlined"
+            shape="rounded"
+            page={page}
+            onChange={handlePageChange}
+            onClick={handleScroll}
+          />
+        </Stack>
+      </div>
       </section>
     </>
   );
