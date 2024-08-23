@@ -1,70 +1,28 @@
 'use client';
 
-import { useState } from 'react';
-import NavBar from '../NavBar/NavBar';
-import CardDiski from '../templates/Cards';
-import Diski from '../../assets/cardDiski.png';
-import Footer from '../Footer/Footer';
+import { useSearchParams, usePathname, useRouter } from 'next/navigation';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
-import ScrollToTop from './../ScrollToTop/ScrollToTop';
 
-const SearchDiski = () => {
-  const diska = [
-    {
-      id: 1,
-      img: Diski,
-      type: 'Шины BOTO Genesys 208',
-      character: '155/70 R12 73T',
-      price: '13 150 тг',
-    },
-    {
-      id: 2,
-      img: Diski,
-      type: 'Шины BOTO Genesys 208',
-      character: '155/70 R12 73T',
-      price: '13 150 тг',
-    },
-    {
-      id: 3,
-      img: Diski,
-      type: 'Шины BOTO Genesys 208',
-      character: '155/70 R12 73T',
-      price: '13 150 тг',
-    },
-    {
-      id: 4,
-      img: Diski,
-      type: 'Шины BOTO Genesys 208',
-      character: '155/70 R12 73T',
-      price: '13 150 тг',
-    },
-    {
-      id: 5,
-      img: Diski,
-      type: 'Шины BOTO Genesys 208',
-      character: '155/70 R12 73T',
-      price: '13 150 тг',
-    },
-  ];
+import NavBar from '../NavBar/NavBar';
+import CardDiski from '../templates/Cards';
+import Footer from '../Footer/Footer';
+import ScrollToTop from '../ScrollToTop/ScrollToTop';
 
-  if (!diska || !Array.isArray(diska) || diska.length === 0) {
-    // Проверка наличия массива products
-    return <div>No products available</div>;
-  }
-
-  const itemsPerPage = 4;
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const [page, setPage] = useState(1);
+const SearchDiski = ({ query, diska, pagination }) => {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const params = new URLSearchParams(searchParams);
+  const page = +searchParams.get('page') || 1;
 
   const handleChangePage = (event, newPage) => {
-    setPage(newPage);
+    params.set('page', newPage);
+    router.replace(pathname + '?' + params.toString());
   };
 
-  const totalPages = Math.ceil(diska.length / itemsPerPage);
-  const startIndex = (page - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const visibleProducts = diska.slice(startIndex, endIndex);
+  const totalPages = pagination.total;
+
   return (
     <>
       <div className='overflow-hidden'>
@@ -81,20 +39,19 @@ const SearchDiski = () => {
                 data-aos='fade-right'
                 className='text-2xl font-body mb-10 px-4'
               >
-                Результаты по запросу tuya
+                Результаты по запросу {query}
               </h1>
               <div className=' max-w-[1200px] w-full m-auto flex flex-wrap gap-6 justify-center flex-col items-center px-4'>
                 <div
                   data-aos='zoom-out-up'
                   className='flex gap-2 flex-wrap w-full justify-center'
                 >
-                  {visibleProducts.map((e) => (
+                  {diska.map((e) => (
                     <CardDiski
                       key={e.id}
-                      img={e.img}
-                      type={e.type}
+                      img={e.image}
+                      type={e.name}
                       price={e.price}
-                      text={e.character}
                     />
                   ))}
                 </div>
