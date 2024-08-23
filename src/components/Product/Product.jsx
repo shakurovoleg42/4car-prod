@@ -8,21 +8,20 @@ import Stack from '@mui/material/Stack';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import Link from 'next/link';
+import Image from 'next/image';
+
 import NavBar from '../NavBar/NavBar';
-import Complect from '../../assets/complect.png';
 import Tabs from '../templates/Tabs';
 import Footer from './../Footer/Footer';
-import ScrollToTop from './../ScrollToTop/ScrollToTop';
-import toast from 'react-hot-toast';
+import ScrollToTop from '../ScrollToTop/ScrollToTop';
+import responsiveImage from '@/utils/responsiveImage';
 
-const Product = () => {
+const Product = ({ product }) => {
   const [countProduct, setCountProduct] = useState(1);
   const [selectedMonth, setSelectedMonth] = useState('1 мес');
 
-  const product = 4;
-
   const Increment = () => {
-    countProduct < product ? setCountProduct(countProduct + 1) : countProduct;
+    setCountProduct(countProduct + 1);
   };
   const Decrement = () => {
     countProduct > 1 ? setCountProduct(countProduct - 1) : 0;
@@ -42,29 +41,13 @@ const Product = () => {
     '12 мес',
   ];
 
-  const ProductPrice = 13150 * countProduct; // Цена товара
+  const ProductPrice = product.price * countProduct; // Цена товара
 
   const calculateInstallment = (selectedMonth) => {
     const months = parseInt(selectedMonth.split(' ')[0], 10);
     const installment = ProductPrice / months;
     const roundedInstallment = Math.ceil(installment);
     return roundedInstallment.toFixed(0);
-  };
-
-  const addToCart = () => {
-    // event.stopPropagation();
-
-    // addItem({
-    //   id: item.id || items.length + 1,
-    //   price: item.price || 0,
-    //   ...item,
-    // });
-    toast.success('Товар добавлен в корзину')
-  };
-
-  const handleClick = (e) => {
-    e.preventDefault();
-    window.history.back();
   };
 
   return (
@@ -80,16 +63,17 @@ const Product = () => {
           <div className='container'>
             <section className='mt-14 font-body px-4'>
               <div className='flex flex-row font-body mb-5'>
-                <Link href='/' className='mr-1 underline cursor-pointer'>Главная</Link>
-                  /
-                <p className='ml-1 underline cursor-pointer' onClick={handleClick}>Шины / Диски</p>
+                <Link href='/' className='mr-1 underline cursor-pointer'>
+                  Главная
+                </Link>
+                /<p className='ml-1 underline cursor-pointer'>{product.name}</p>
               </div>
               <div
                 className=' flex gap-5 flex-col ranking '
                 data-aos='fade-right'
               >
                 <h1 className='2xl:text-3xl xl:text-2xl lg:text-xl md:text-lg sm:text-md text-md font-body font-bold '>
-                  Шины BOTO <span>Genesys 208</span> <span>155/70</span> R12 73T
+                  {product.name}
                 </h1>
                 <div className='flex gap-6'>
                   <Stack className='max-w-[120px]' spacing={1}>
@@ -110,43 +94,47 @@ const Product = () => {
                   data-aos='fade-right'
                   className='flex items-center gap-4 max-w-[700px] w-full justify-between productLeft'
                 >
-                  <img src={Complect.src} alt='' />
+                  <Image src={product.image} alt='' {...responsiveImage} />
                   <div className='flex flex-col gap-4'>
                     <p className='flex gap-3 text-xl text-gray-500'>
                       Модель шины
-                      <span className='text-primary'>Genesys 208</span>
+                      <span className='text-primary'>{product.model}</span>
                     </p>
                     <p className='flex gap-3 text-xl text-gray-500'>
                       Ширина шины
-                      <span className='text-primary'>155</span>
+                      <span className='text-primary'>{product.width}</span>
                     </p>
                     <p className='flex gap-3 text-xl text-gray-500'>
                       Высота
-                      <span className='text-primary'>70</span>
+                      <span className='text-primary'>{product.height}</span>
                     </p>
                     <p className='flex gap-3 text-xl text-gray-500'>
                       Диаметр шины
-                      <span className='text-primary'>18</span>
+                      <span className='text-primary'>{product.diameter}</span>
                     </p>
                     <p className='flex gap-3 text-xl text-gray-500'>
                       Сезонность
-                      <span className='text-primary'>Летние</span>
+                      <span className='text-primary'>{product.season}</span>
                     </p>
                     <p className='flex gap-3 text-xl text-gray-500'>
                       Шипы
-                      <span className='text-primary'>Нет</span>
+                      <span className='text-primary'>{product.spikes}</span>
                     </p>
                     <p className='flex gap-3 text-xl text-gray-500'>
                       Индекс нагрузки
-                      <span className='text-primary'>73</span>
+                      <span className='text-primary'>
+                        {product.indeks_nagruzki}
+                      </span>
                     </p>
                     <p className='flex gap-3 text-xl text-gray-500'>
                       Индекс скорости
-                      <span className='text-primary'>T</span>
+                      <span className='text-primary'>
+                        {product.indeks_skorosti}
+                      </span>
                     </p>
                     <p className='flex gap-3 text-xl text-gray-500'>
                       RunFlat
-                      <span className='text-primary'>Нет </span>
+                      <span className='text-primary'>{product.run_flat}</span>
                     </p>
                   </div>
                 </div>
@@ -156,13 +144,12 @@ const Product = () => {
                       className='text-darkMain 2xl:text-3xl
                                     xl:text-2xl lg:text-2xl md:text-2xl sm:text-2xl text-xl font-body font-bold max-w-[180px] w-full'
                     >
-                      {ProductPrice} тг
+                      {ProductPrice.toLocaleString()} тг
                     </h2>
-                    <p className='2xl:text-2xl xl:text-2xl lg:text-xl md:text-lg sm:text-md text-md flex flex-col leading-10 '>
-                      В наличии: {product} шт.
+                    {/* <p className='2xl:text-2xl xl:text-2xl lg:text-xl md:text-lg sm:text-md text-md flex flex-col leading-10 '>
+                      В наличии: 4 шт.
                       <span className='text-primary'>в 1 магазине</span>
-                    </p>
-
+                    </p> */}
                     <div className='flex items-center gap-5 2xl:text-5xl xl:text-4xl lg:text-3xl md:text-2xl sm:text-2xl text-xl'>
                       <button
                         onClick={Decrement}
@@ -185,7 +172,6 @@ const Product = () => {
                         type='button'
                         className='py-2 bg-primary max-w-[300px] w-full 2xl:text-2xl
                                         xl:text-xl lg:text-xl md:text-lg sm:text-md text-sm text-white rounded active:bg-blue-700'
-                                        onClick={addToCart}
                       >
                         В корзину
                       </button>
@@ -232,7 +218,7 @@ const Product = () => {
                           className='underline text-primary'
                           href='tel:+7(701)744-80-07'
                         >
-                          +7(701)744-80-07
+                          +7 (701) 744-80-07
                         </a>
                         <span>
                           <strong>Бесплатная</strong> горячая линия по
@@ -245,7 +231,7 @@ const Product = () => {
               </div>
             </section>
             <section className=' w-full' data-aos='fade-down'>
-              <Tabs />
+              <Tabs similar_products={product.similar_products} />
             </section>
           </div>
         </main>
