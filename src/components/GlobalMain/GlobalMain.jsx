@@ -62,12 +62,6 @@ const GlobalMain = ({ partners, news }) => {
     });
   };
 
-  // const scrollToTop = () => {
-  //   window.scrollTo({
-  //     top: 200,
-  //   });
-  // };
-
   return (
     <>
       <div className='overflow-hidden'>
@@ -84,77 +78,6 @@ const GlobalMain = ({ partners, news }) => {
               <SelectDiski />
             </div>
           </section>
-          {/* <section className='text-center mb-14'>a */}
-            {/* <Slider
-              dots={false}
-              autoplay={true}
-              infinite={true}
-              slidesToShow={3}
-              slidesToScroll={1}
-              responsive={[
-                {
-                  breakpoint: 1024,
-                  settings: {
-                    slidesToShow: 2,
-                    slidesToScroll: 1,
-                  },
-                },
-                {
-                  breakpoint: 600,
-                  settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
-                  },
-                },
-              ]}
-            >
-              {collects.map((e) => (
-                <div
-                  onClick={handleDivClick}
-                  key={e.id}
-                  data-aos='fade-up'
-                  data-aos-anchor-placement='center-bottom '
-                  className=' cursor-pointer rounded 2xl:max-w-[320px] xl:max-w-[300px] lg:max-w-[260px] md:max-w-[260px] sm:max-w-[220px] max-w-[220px] w-full border pt-2'
-                >
-                  <img
-                    className='2xl:max-w-[140px] xl:max-w-[110px] lg:max-w-[80px] md:max-w-38 sm:max-w-[80px] max-w-[80px] m-auto 2xl:pt-6 xl:pt-5 lg:pt-4 md:pt-2 sm:pt-1 pt-0 mb-3'
-                    src={e.image.src}
-                    alt='Ballon'
-                  />
-                  <div className='bg-primary py-2 rounded'>
-                    <h3
-                      className='px-6 2xl:mt-8 xl:mt-6 lg:mt-5 md:mt-5 sm:mt-4 mt-4 md:text-center sm:text-center text-center font-semibold 
-                                            2xl:text-lg xl:text-lg lg:text-md md:text-sm sm:text-sm text-sm text-white'
-                    >
-                      {e.title} {e.span} <br />
-                      {e.type}
-                    </h3>
-                    <div className='w-full flex flex-col mt-8 px-4'>
-                      <div className='flex justify-center mb-3 flex-wrap gap-2'>
-                        <Link
-                          href='/product'
-                          type='submit'
-                          className='active:bg-gray-100 2xl:py-1 py-2 px-6 2xl:text-lg xl:text-lg lg:text-md md:text-sm text-xs bg-white rounded font-bold font-body'
-                        >
-                          Купить
-                        </Link>
-                        <AddItemButton item={e} />
-                      </div>
-                      <div className='px-4'>
-                        <Link
-                          href='/product'
-                          type='submit'
-                          className='py-1 w-full 2xl:text-lg xl:text-lg lg:text-md md:text-sm  text-xs px-3 text-white bg-red-600 rounded active:bg-red-700'
-                        >
-                          Купить в рассрочку
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </Slider>
-          </section>*/}
           <section className='mb-10'> 
             <h2 className='font-body text-center text-xl md:text-2xl xl:text-3xl mb-7 font-bold'>
               Наши партнёры

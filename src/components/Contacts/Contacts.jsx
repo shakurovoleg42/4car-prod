@@ -31,14 +31,14 @@ const Contacts = () => {
         <main className='mt-40'>
           <div className='container'>
             <section className='mb-14 w-full'>
-              <div className='bg-primary p-4 rounded-[4px]'>
+              <div className='bg-primary p-4 rounded-[10px]'>
                 <div className='max-w-[1000px]  mx-auto flex justify-center -translate-y-1/2 text-center contact__info'>
                   <div
                     data-aos='zoom-out-down'
                     className='contact__item flex bg-white flex-col items-center pt-8 
                                 2xl:max-w-[250px] xl:max-w-[200px] lg:max-w-[180px] md:max-w-[160px]
                                 sm:max-w-[150px] max-w-[150px] w-full 
-                                2xl:h-52 xl:h-48 lg:h-44 md:h-40 sm:h-36 h-36 p-3'
+                                2xl:h-52 xl:h-48 lg:h-44 md:h-40 sm:h-36 h-36 p-3 rounded-l-[15px]'
                   >
                     <FaTelegramPlane className='2xl:text-4xl xl:text-3xl lg:text-3xl md:text-2xl sm:text-xl text-xl mb-2 text-primary' />
                     <h2 className='text-darkMain text-xl mb-4 font-semibold font-body'>
@@ -89,7 +89,7 @@ const Contacts = () => {
                     className='contact__item flex bg-white flex-col items-center pt-8 
                                 2xl:max-w-[250px] xl:max-w-[200px] lg:max-w-[180px] md:max-w-[160px]
                                 sm:max-w-[150px] max-w-[150px] w-full 
-                                2xl:h-52 xl:h-48 lg:h-44 md:h-40 sm:h-36 h-36'
+                                2xl:h-52 xl:h-48 lg:h-44 md:h-40 sm:h-36 h-36 rounded-r-[15px]'
                   >
                     <MdEmail className='2xl:text-4xl xl:text-3xl lg:text-3xl md:text-2xl sm:text-xl text-xl mb-2 text-primary' />
                     <h2 className='text-darkMain text-xl mb-4 font-semibold font-body'>
