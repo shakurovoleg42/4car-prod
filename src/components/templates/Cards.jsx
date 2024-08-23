@@ -34,7 +34,7 @@ function CardShini(props) {
           <h2 className='text-xs'>{products.type}</h2>
           <p className='text-xs'>{products.text}</p>
           <span className='font-bold 2xl:text-lg xl:text-lg lg:text-md md:text-sm sm:text-sm text-sm'>
-            {products.price}
+            {products.price.toLocaleString()} тг
           </span>
           <div className='flex items-center 2xl:justify-between xl:justify-between justify-center gap-2 2xl:flex-nowrap xl:flex-nowrap flex-wrap'>
             {products.status ? (

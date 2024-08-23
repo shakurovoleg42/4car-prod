@@ -37,6 +37,10 @@
   position: relative;
 }
 
+.searchbar {
+  position: relative;
+}
+
 .navbar_links {
   display: none;
 }
@@ -63,12 +67,12 @@
     background-color: #1e3a8a;
     transform: translateY(-100%);
     transition: 0.5s;
-    z-index: 1;
+    z-index: 3;
   }
 
-  .links_navigators ul{
+  .links_navigators ul {
     display: none;
-    display: row
+    display: row;
   }
 
   .nav__top div {
@@ -121,7 +125,6 @@
   .footer__content {
     margin: 0 auto;
   }
-  
 }
 
 @media (max-width: 1015px) {
