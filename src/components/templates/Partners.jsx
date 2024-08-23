@@ -32,7 +32,7 @@ const Partners = ({ partners, pagination }) => {
   return (
     <>
       <section className='mb-10'>
-        <div className='flex w-full justify-center flex-wrap gap-5 mb-10'>
+        <div className='flex w-full justify-center flex-wrap gap-10 mb-10'>
           {partners.map((el) => (
             <Link
               key={el.id}
