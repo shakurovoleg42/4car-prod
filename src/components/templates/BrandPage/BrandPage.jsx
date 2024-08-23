@@ -63,7 +63,7 @@ const BrandPage = ({ partners, brand }) => {
                     ))}
                   </ul>
                   <Link
-                    href='/manufacturer/all'
+                    href='/manufacturers'
                     className='2xl:text-2xl xl:text-2x lg:text-xl sm:text-md text-sm rounded text-white py-2 px-4 bg-primary mt-8'
                   >
                     Показать все
