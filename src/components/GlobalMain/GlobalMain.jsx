@@ -22,6 +22,7 @@ const GlobalMain = ({ partners, news }) => {
   useEffect(() => {
     AOS.init();
   }, []);
+   
 
   const collects = [
     {
@@ -215,9 +216,10 @@ const GlobalMain = ({ partners, news }) => {
                     href={`/${el.slug}`}
                     data-aos='fade-up'
                     data-aos-anchor-placement='top-bottom'
-                    className='max-w-44 w-full h-44 bg-white text-center flex items-center '
+                    className='max-w-44 w-full h-44 bg-white text-center flex flex-col items-center '
                   >
-                    <img src={el.image} alt='' />
+                    <img src={el.image} alt='product' />
+                    <span>{el.name}</span>
                   </Link>
                 </div>
               ))}
