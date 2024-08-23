@@ -216,9 +216,9 @@ const GlobalMain = ({ partners, news }) => {
                     href={`/${el.slug}`}
                     data-aos='fade-up'
                     data-aos-anchor-placement='top-bottom'
-                    className='max-w-44 w-full h-44 bg-white text-center flex flex-col items-center '
+                    className='max-w-44 w-full h-full bg-white text-center flex flex-col items-center '
                   >
-                    <img src={el.image} alt='product' />
+                    <img src={el.image} alt='product' className='h-44'/>
                     <span>{el.name}</span>
                   </Link>
                 </div>
