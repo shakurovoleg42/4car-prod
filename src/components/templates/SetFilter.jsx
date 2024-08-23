@@ -4,7 +4,7 @@ const SetFilter = (props) => {
   return (
     <>
       <div className=' relative -z-0 py-4 max-w-[600px] w-full'>
-        <p className='text-black text-lg font-bold font-body'>Типы размер</p>
+        <p className='text-white text-lg font-bold font-body'>Типы размер</p>
         <div className='flex flex-col gap-5'>
           <div className='flex flex-wrap gap-2 text-blacck '>
             <div>
@@ -34,8 +34,8 @@ const SetFilter = (props) => {
           </div>
           <div className='flex items-center gap-4 sire'>
             <div>
-              <p className='text-black pb-1'>Производитель</p>
-              <select className='border border-black'>
+              <p className='text-white pb-1'>Производитель</p>
+              <select className='border border-black text-black'>
                 <option value='all'>Поиск по производителю</option>
                 <option value='all'>Поиск по производителю</option>
                 <option value='all'>Поиск по производителю</option>
@@ -43,7 +43,7 @@ const SetFilter = (props) => {
               </select>
             </div>
             <div>
-              <p className='text-black'>Сезонность</p>
+              <p className='text-white'>Сезонность</p>
               <div className='inline-flex shadow-sm' role='group'>
                 <button
                   type='button'
@@ -53,7 +53,7 @@ const SetFilter = (props) => {
                 </button>
                 <button
                   type='button'
-                  className='inline-flex border border-black items-center px-4  text-sm font-medium text-gray-900 bg-white focus:z-10 focus:bg-yellow-300 focus:text-black'
+                  className='inline-flex border border-white items-center px-4  text-sm font-medium text-gray-900 bg-white focus:z-10 focus:bg-yellow-300 focus:text-black'
                 >
                   Летние
                 </button>
@@ -68,7 +68,7 @@ const SetFilter = (props) => {
           </div>
           <div className='flex gap-4'>
             <button
-              className='btn bg-white text-cm px-2 active:bg-blue-300 rounded-[15px] p-2'
+              className='btn bg-white text-cm px-2  text-black active:bg-blue-300 rounded-[15px] p-2'
               type='submit'
             >
               Подобрать

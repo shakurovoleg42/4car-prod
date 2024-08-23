@@ -24,7 +24,7 @@ const Brands = ({ partners }) => {
             <p className='font-body text-center sm:text-start text-xl md:text-2xl xl:text-3xl mb-7 font-bold'>
               Список производителей
             </p>
-            <Partners partners={partners} />
+            <Partners partners={partners.data} pagination={partners.pagination}/>
           </div>
         </div>
       </main>

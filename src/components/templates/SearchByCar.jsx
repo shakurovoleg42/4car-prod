@@ -16,7 +16,7 @@ const SearchByCar = () => {
       <div className='h-64 relative max-w-[600px] w-full py-4'>
         <div className='flex flex-col gap-5'>
           <div>
-            <p className='text-black text-lg mb-5'>Сезон</p>
+            <p className='text-white text-lg mb-5'>Сезон</p>
             <Autocomplete
               className='bg-white rounded outline-none autocomplete'
               disablePortal
@@ -27,20 +27,20 @@ const SearchByCar = () => {
               )}
             />
           </div>
-          <div className='flex items-center gap-2 text-black cursor-pointer'>
+          <div className='flex items-center gap-2 text-white cursor-pointer'>
             <Switch />
             <p>Только в наличии</p>
           </div>
           <div className='flex gap-4'>
             <button
-              className='btn bg-white text-cm px-2 active:bg-blue-300 rounded-[15px] p-2'
+              className='btn bg-white text-cm px-2  text-black active:bg-blue-300 rounded-[15px] p-2'
               type='submit'
             >
               Подобрать
             </button>
             <button
               type='reset'
-              className=' border-b-white border-b-2 text-black'
+              className=' border-b-white border-b-2 text-white'
             >
               Сбросить
             </button>

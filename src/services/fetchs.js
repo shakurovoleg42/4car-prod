@@ -10,10 +10,17 @@ const fetchService = {
     const res = await instance.get(`/news/${slug}`);
     return res.data;
   },
-  getManufacturers: async () => {
-    const res = await instance.get('/manufacturers');
+
+  getManufacturersHome: async () => {
+    const res = await instance.get('/manufacturers-home');
     return res.data;
   },
+
+  getManufacturers: async ({ ...params }) => {
+    const res = await instance.get('/manufacturers', { params });
+    return res.data;
+  },
+
   getManufacturer: async (slug) => {
     const res = await instance.get(`/manufacturers/${slug}`);
     return res.data;
