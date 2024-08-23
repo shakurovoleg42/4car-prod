@@ -10,7 +10,7 @@ export default async function Home() {
   return (
     <>
       <Hero />
-      <GlobalMain partners={manufacturers} news={data}/>
+      <GlobalMain partners={manufacturers} news={data} />
       <Footer />
     </>
   );
