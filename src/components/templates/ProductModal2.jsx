@@ -5,7 +5,7 @@ import Slider from 'react-slick';
 
 import CardShini from './Cards';
 
-const ProductModal2 = ({ shina }) => {
+const ProductModal2 = ({ shina = [] }) => {
   return (
     <div className='flex gap-4 w-full flex-col items-center mt-10'>
       {/* <div className='flex gap-4 w-full flex-wrap mb-10 mt-4 justify-center moreOptions'> */}
@@ -65,6 +65,7 @@ const ProductModal2 = ({ shina }) => {
               type={item.name}
               character={item.name}
               price={item.price}
+              slug={item.slug}
             />
           </div>
         ))}

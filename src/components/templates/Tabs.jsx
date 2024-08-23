@@ -4,7 +4,7 @@ import ProductModal3 from './ProductModal3';
 import ProductModal4 from './ProductModal4';
 import Link from 'next/link';
 
-const Tabs = () => {
+const Tabs = ({ similar_products = [] }) => {
   const [activeModal, setActiveModal] = useState('modal3');
 
   const openModal = (modalType) => {
@@ -52,7 +52,7 @@ const Tabs = () => {
             <p className='font-body font-bold mb-5 2xl:text-2xl xl:text-2xl lg:text-xl md:text-lg sm:text-md text-md  '>
               Другие варианты
             </p>
-            <ProductModal2 />
+            <ProductModal2 shina={similar_products} />
           </div>
         </section>
       </div>
