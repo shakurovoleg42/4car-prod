@@ -25,6 +25,10 @@ const fetchService = {
     const res = await instance.get(`/manufacturers/${slug}`);
     return res.data;
   },
+  getProduct: async (slug) => {
+    const res = await instance.get(`/products/${slug}`);
+    return res.data;
+  },
 };
 
 export default fetchService;
