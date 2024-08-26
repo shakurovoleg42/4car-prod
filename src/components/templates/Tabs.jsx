@@ -1,3 +1,4 @@
+'use client';
 import { useState } from 'react';
 import ProductModal2 from './ProductModal2';
 import ProductModal3 from './ProductModal3';
