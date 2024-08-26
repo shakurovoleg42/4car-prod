@@ -12,25 +12,20 @@ const AddItemButton = ({ item }) => {
       ...item,
     });
 
-    toast.success(
-      'Товар добавлен в корзину'
-    );
+    toast.success('Товар добавлен в корзину');
   };
 
   const removeFromCart = (event) => {
     event.stopPropagation();
 
     removeItem(item.id);
-    toast.success(
-      'Товар удален из корзины'
-    );
+    toast.success('Товар удален из корзины');
   };
 
   return getItem(item.id) ? (
     <button
       type='button'
-      className='active:bg-blue-700 
-rounded px-2 py-1 text-lg lg:text-md md:text-sm text-xs text-white outline-none border border-white'
+      className='active:bg-blue-700 rounded px-2 py-1 text-lg lg:text-md md:text-sm text-xs text-white outline-none border border-white'
       onClick={removeFromCart}
     >
       Убрать

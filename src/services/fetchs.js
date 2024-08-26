@@ -11,6 +11,16 @@ const fetchService = {
     return res.data;
   },
 
+  getCommentsNews: async (id) => {
+    const res = await instance.get(`/news/${id}/comments`);
+    return res.data;
+  },
+
+  postCommentNews: async (id, formData) => {
+    const res = await instance.post(`/news/${id}/comments`, formData);
+    return res.data;
+  },
+
   getManufacturersHome: async () => {
     const res = await instance.get('/manufacturers-home');
     return res.data;
@@ -29,6 +39,17 @@ const fetchService = {
     const res = await instance.get(`/products/${slug}`);
     return res.data;
   },
+
+  getProductReview: async (id) => {
+    const res = await instance.get(`/reviews/products/${id}`);
+    return res.data;
+  },
+
+  postProductReview: async (id) => {
+    const res = await instance.post(`/reviews/products/${id}`);
+    return res.data;
+  },
+
 };
 
 export default fetchService;
