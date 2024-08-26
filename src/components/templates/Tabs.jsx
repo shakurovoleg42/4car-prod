@@ -2,6 +2,7 @@ import { useState } from 'react';
 import ProductModal2 from './ProductModal2';
 import ProductModal3 from './ProductModal3';
 import ProductModal4 from './ProductModal4';
+import Reviews from './Reviews'
 import Link from 'next/link';
 
 const Tabs = ({ similar_products = [] }) => {
@@ -42,11 +43,24 @@ const Tabs = ({ similar_products = [] }) => {
               Возврат и гарантия
             </button>
             <Link href='/credit'>Условия кредитования</Link>
+            <button
+              onClick={() => openModal('modal5')}
+              className={`border-b-4 ${
+                activeModal === 'modal5'
+                  ? 'border-primary'
+                  : 'border-transparent'
+              }`}
+              type='submit'
+            >
+              Отзывы
+            </button>
+
           </div>
 
           <div className='mt-6 w-full flex-col flex justify-center items-center  px-4'>
             {activeModal === 'modal3' && <ProductModal3 />}
             {activeModal === 'modal4' && <ProductModal4 />}
+            {activeModal === 'modal5' && <Reviews />}
           </div>
           <div className='flex flex-col items-center mt-20'>
             <p className='font-body font-bold mb-5 2xl:text-2xl xl:text-2xl lg:text-xl md:text-lg sm:text-md text-md  '>

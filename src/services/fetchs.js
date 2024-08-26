@@ -29,6 +29,11 @@ const fetchService = {
     const res = await instance.get(`/products/${slug}`);
     return res.data;
   },
+
+  getCommentsNews: async (id) => {
+    const res = await instance.get(`/news/${id}/comments`);
+    return res.data;
+  },
 };
 
 export default fetchService;
