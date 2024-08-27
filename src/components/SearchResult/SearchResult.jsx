@@ -6,6 +6,7 @@ import Link from 'next/link';
 // import Image from 'next/image';
 
 import { getSearchData } from '@/app/actions';
+import { formattedPrice } from '@/utils/price';
 import Spinner from '../custom/Spinner';
 
 const SearchResult = ({ query }) => {
@@ -39,7 +40,7 @@ const SearchResult = ({ query }) => {
               <div className={styles.details}>
                 <h2>{product.name}</h2>
                 <span>Артикул: {product.id}</span>
-                <strong>{product.price.toLocaleString()} тг</strong>
+                <strong>{formattedPrice(product.price)} тг</strong>
               </div>
             </Link>
           ))}

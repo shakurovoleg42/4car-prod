@@ -60,13 +60,7 @@ const ProductModal2 = ({ shina = [] }) => {
       >
         {shina.map((item) => (
           <div key={item.id}>
-            <CardShini
-              img={item.image}
-              type={item.name}
-              character={item.name}
-              price={item.price}
-              slug={item.slug}
-            />
+            <CardShini {...item} />
           </div>
         ))}
       </Slider>

@@ -115,16 +115,7 @@ const Diski = ({ data }) => {
                   {!diska || !Array.isArray(diska) || diska.length === 0 ? (
                     <p>Пусто</p>
                   ) : (
-                    diska.map((e) => (
-                      <CardShini
-                        key={e.id}
-                        id={e.id}
-                        slug={e.slug}
-                        img={e.image}
-                        type={e.name}
-                        price={e.price}
-                      />
-                    ))
+                    diska.map((e) => <CardShini key={e.id} {...e} />)
                   )}
                 </div>
                 <Stack spacing={2} sx={{ mt: 2 }}>

@@ -10,11 +10,13 @@ import Link from 'next/link';
 // import Image from 'next/image';
 import fetchService from '@/services/fetchs';
 
+import { formattedPrice } from '@/utils/price';
 import NavBar from '../NavBar/NavBar';
 import Tabs from '../templates/Tabs';
 import Footer from './../Footer/Footer';
 import ScrollToTop from '../ScrollToTop/ScrollToTop';
 import responsiveImage from '@/utils/responsiveImage';
+import AddItemButton from '../AddItemButton/AddItemButton';
 
 const Product = ({ product }) => {
   const [data, setData] = useState({ avg_rating: 0, reviews: [] });
@@ -146,8 +148,11 @@ const Product = ({ product }) => {
                 </div>
                 <div data-aos='fade-left'>
                   <div className='flex items-center gap-7 flex-wrap max-w-[620px] w-full productRight'>
-                    <h2 className='text-darkMain 2xl:text-3xl xl:text-2xl lg:text-2xl md:text-2xl sm:text-2xl text-xl font-body font-bold max-w-[180px] w-full'>
-                      {ProductPrice.toLocaleString()} тг
+                    <h2
+                      className='text-darkMain 2xl:text-3xl
+                                    xl:text-2xl lg:text-2xl md:text-2xl sm:text-2xl text-xl font-body font-bold max-w-[180px] w-full'
+                    >
+                      {formattedPrice(ProductPrice)} тг
                     </h2>
                     <div className='flex items-center gap-5 2xl:text-5xl xl:text-4xl lg:text-3xl md:text-2xl sm:text-2xl text-xl'>
                       <button onClick={Decrement} className='2xl:text-6xl xl:text-5xl lg:text-4xl md:text-3xl sm:text-xl text-2xl text-gray-500'>-</button>
@@ -155,8 +160,18 @@ const Product = ({ product }) => {
                       <button className='2xl:text-6xl xl:text-5xl lg:text-4xl md:text-3xl sm:text-2xl text-2xl text-gray-500' onClick={Increment}>+</button>
                     </div>
                     <div className='flex flex-wrap items-center gap-5 w-full btnsBuyProduct'>
-                      <button type='button' className='py-2 bg-primary max-w-[300px] w-full 2xl:text-2xl xl:text-xl lg:text-xl md:text-lg sm:text-md text-sm text-white rounded active:bg-blue-700'>В корзину</button>
-                      <button type='submit' className='py-2 bg-primary max-w-[300px] w-full 2xl:text-2xl xl:text-xl lg:text-xl md:text-lg sm:text-md text-sm text-white rounded active:bg-blue-700'>Купить в один клик</button>
+                      <AddItemButton
+                        item={product}
+                        quantity={countProduct}
+                        isProduct
+                      />
+                      <button
+                        type='submit'
+                        className='py-2 bg-primary max-w-[300px] w-full 2xl:text-2xl
+                                        xl:text-xl lg:text-xl md:text-lg sm:text-md text-sm text-white rounded active:bg-blue-700'
+                      >
+                        Купить в один клик
+                      </button>
                     </div>
                     <div className='flex max-w-[620px] w-full btnKredit'>
                       <div className='bg-red-600 max-w-[200px] w-full rounded-s-lg text-white'>
