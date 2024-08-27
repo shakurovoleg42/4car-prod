@@ -11,7 +11,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import fetchService from '@/services/fetchs';
 // import Slider from 'react-slick';
 
-import fetchService from '@/services/fetchs';
+// import fetchService from '@/services/fetchs';
 
 const Reviews = () => {
   const [data, setData] = useState({});
