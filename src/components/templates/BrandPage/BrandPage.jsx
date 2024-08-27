@@ -3,7 +3,7 @@
 import styles from './styles.module.css';
 
 import Link from 'next/link';
-import Image from 'next/image';
+// import Image from 'next/image';
 
 import Footer from '../../Footer/Footer';
 import NavBar from '../../NavBar/NavBar';
@@ -72,7 +72,7 @@ const BrandPage = ({ partners, brand }) => {
               </div>
             </div>
             <div>
-              <Image src={image} alt={name} width={175} height={365} />
+              <img src={image} alt={name} width={175} height={365} />
               <div
                 className='mt-3'
                 dangerouslySetInnerHTML={{ __html: description }}

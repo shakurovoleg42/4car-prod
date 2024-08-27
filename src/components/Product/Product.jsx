@@ -7,7 +7,7 @@ import Stack from '@mui/material/Stack';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import Link from 'next/link';
-import Image from 'next/image';
+// import Image from 'next/image';
 import fetchService from '@/services/fetchs';
 
 import NavBar from '../NavBar/NavBar';
@@ -104,7 +104,7 @@ const Product = ({ product }) => {
               </div>
               <div className='mt-10 flex max-w-[1400px] w-full justify-between gap-4 mx-auto mb-24 productHero'>
                 <div data-aos='fade-right' className='flex items-center gap-4 max-w-[700px] w-full justify-between productLeft'>
-                  <Image src={product.image} alt='' {...responsiveImage} />
+                  <img src={product.image} alt='' {...responsiveImage} />
                   <div className='flex flex-col gap-4'>
                     <p className='flex gap-3 text-xl text-gray-500'>
                       Модель шины

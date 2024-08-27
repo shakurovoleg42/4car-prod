@@ -3,7 +3,7 @@ import styles from './styles.module.sass';
 import { MdOutlineSwipeUp } from 'react-icons/md';
 import useSWR from 'swr';
 import Link from 'next/link';
-import Image from 'next/image';
+// import Image from 'next/image';
 
 import { getSearchData } from '@/app/actions';
 import Spinner from '../custom/Spinner';
@@ -34,7 +34,7 @@ const SearchResult = ({ query }) => {
               className={styles.item}
             >
               <div className={styles.img}>
-                <Image src={product.image} alt='' width={60} height={60} />
+                <img src={product.image} alt='' width={60} height={60} />
               </div>
               <div className={styles.details}>
                 <h2>{product.name}</h2>
