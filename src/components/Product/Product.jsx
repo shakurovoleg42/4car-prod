@@ -1,51 +1,69 @@
-'use client';
-
+"use client";
 import './Product.css';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import Link from 'next/link';
-import Image from 'next/image';
+// import Image from 'next/image';
+import fetchService from '@/services/fetchs';
 
+import { formattedPrice } from '@/utils/price';
 import NavBar from '../NavBar/NavBar';
 import Tabs from '../templates/Tabs';
 import Footer from './../Footer/Footer';
 import ScrollToTop from '../ScrollToTop/ScrollToTop';
 import responsiveImage from '@/utils/responsiveImage';
+import AddItemButton from '../AddItemButton/AddItemButton';
 
 const Product = ({ product }) => {
+  const [data, setData] = useState({ avg_rating: 0, reviews: [] });
   const [countProduct, setCountProduct] = useState(1);
   const [selectedMonth, setSelectedMonth] = useState('1 мес');
+
+  useEffect(() => {
+    const fetchReviews = async () => {
+      try {
+        const reviewsData = await fetchService.getProductReview(product.id);
+        console.log('Fetched Reviews Data:', reviewsData);
+        console.log('Average Rating:', reviewsData.avg_rating); // Debug avg_rating
+
+        if (reviewsData && Array.isArray(reviewsData.reviews)) {
+          setData(reviewsData);
+        } else {
+          console.error(
+            'Expected data to be an object with a reviews array, but received:',
+            reviewsData
+          );
+        }
+      } catch (error) {
+        console.error('Error fetching reviews:', error);
+      }
+    };
+
+    fetchReviews();
+  }, [product.id]);
 
   const Increment = () => {
     setCountProduct(countProduct + 1);
   };
+
   const Decrement = () => {
-    countProduct > 1 ? setCountProduct(countProduct - 1) : 0;
+    countProduct > 1 ? setCountProduct(countProduct - 1) : 1;
   };
+
   const months = [
-    '1 мес',
-    '2 мес',
-    '3 мес',
-    '4 мес',
-    '5 мес',
-    '6 мес',
-    '7 мес',
-    '8 мес',
-    '9 мес',
-    '10 мес',
-    '11 мес',
-    '12 мес',
+    '1 мес', '2 мес', '3 мес', '4 мес', '5 мес', '6 мес', '7 мес',
+    '8 мес', '9 мес', '10 мес', '11 мес', '12 мес'
   ];
 
   const ProductPrice = product.price * countProduct; // Цена товара
 
   const calculateInstallment = (selectedMonth) => {
-    const months = parseInt(selectedMonth.split(' ')[0], 10);
-    const installment = ProductPrice / months;
+    const monthsCount = parseInt(selectedMonth.split(' ')[0], 10);
+    const installment = ProductPrice / monthsCount;
     const roundedInstallment = Math.ceil(installment);
     return roundedInstallment.toFixed(0);
   };
@@ -53,8 +71,8 @@ const Product = ({ product }) => {
   return (
     <>
       <div className='overflow-hidden'>
-        <header className=' bg-no-repeat bg-cover bg-center w-full pb-20 bg-map'>
-          <div className='container '>
+        <header className='bg-no-repeat bg-cover bg-center w-full pb-20 bg-map'>
+          <div className='container'>
             <NavBar />
           </div>
         </header>
@@ -68,33 +86,27 @@ const Product = ({ product }) => {
                 </Link>
                 /<p className='ml-1 underline cursor-pointer'>{product.name}</p>
               </div>
-              <div
-                className=' flex gap-5 flex-col ranking '
-                data-aos='fade-right'
-              >
-                <h1 className='2xl:text-3xl xl:text-2xl lg:text-xl md:text-lg sm:text-md text-md font-body font-bold '>
+              <div className='flex gap-5 flex-col ranking' data-aos='fade-right'>
+                <h1 className='2xl:text-3xl xl:text-2xl lg:text-xl md:text-lg sm:text-md text-md font-body font-bold'>
                   {product.name}
                 </h1>
                 <div className='flex gap-6'>
                   <Stack className='max-w-[120px]' spacing={1}>
                     <Rating
-                      className=''
                       name='half-rating'
-                      defaultValue={5}
+                      value={data.avg_rating || 0}
                       precision={0.5}
+                      readOnly
                     />
                   </Stack>
                   <p>
-                    <span>161</span> отзыв
+                    <span>{data.reviews?.length || 0}</span> отзыв
                   </p>
                 </div>
               </div>
               <div className='mt-10 flex max-w-[1400px] w-full justify-between gap-4 mx-auto mb-24 productHero'>
-                <div
-                  data-aos='fade-right'
-                  className='flex items-center gap-4 max-w-[700px] w-full justify-between productLeft'
-                >
-                  <Image src={product.image} alt='' {...responsiveImage} />
+                <div data-aos='fade-right' className='flex items-center gap-4 max-w-[700px] w-full justify-between productLeft'>
+                  <img src={product.image} alt='' {...responsiveImage} />
                   <div className='flex flex-col gap-4'>
                     <p className='flex gap-3 text-xl text-gray-500'>
                       Модель шины
@@ -122,15 +134,11 @@ const Product = ({ product }) => {
                     </p>
                     <p className='flex gap-3 text-xl text-gray-500'>
                       Индекс нагрузки
-                      <span className='text-primary'>
-                        {product.indeks_nagruzki}
-                      </span>
+                      <span className='text-primary'>{product.indeks_nagruzki}</span>
                     </p>
                     <p className='flex gap-3 text-xl text-gray-500'>
                       Индекс скорости
-                      <span className='text-primary'>
-                        {product.indeks_skorosti}
-                      </span>
+                      <span className='text-primary'>{product.indeks_skorosti}</span>
                     </p>
                     <p className='flex gap-3 text-xl text-gray-500'>
                       RunFlat
@@ -144,37 +152,19 @@ const Product = ({ product }) => {
                       className='text-darkMain 2xl:text-3xl
                                     xl:text-2xl lg:text-2xl md:text-2xl sm:text-2xl text-xl font-body font-bold max-w-[180px] w-full'
                     >
-                      {ProductPrice.toLocaleString()} тг
+                      {formattedPrice(ProductPrice)} тг
                     </h2>
-                    {/* <p className='2xl:text-2xl xl:text-2xl lg:text-xl md:text-lg sm:text-md text-md flex flex-col leading-10 '>
-                      В наличии: 4 шт.
-                      <span className='text-primary'>в 1 магазине</span>
-                    </p> */}
                     <div className='flex items-center gap-5 2xl:text-5xl xl:text-4xl lg:text-3xl md:text-2xl sm:text-2xl text-xl'>
-                      <button
-                        onClick={Decrement}
-                        className='2xl:text-6xl xl:text-5xl lg:text-4xl md:text-3xl sm:text-xl text-2xl text-gray-500'
-                      >
-                        -
-                      </button>
-                      <p className='2xl:w-14 xl:w-12 lg:w-10 md:w-8 sm:w-6 w-6 text-center'>
-                        {countProduct}
-                      </p>
-                      <button
-                        className='2xl:text-6xl xl:text-5xl lg:text-4xl md:text-3xl sm:text-2xl text-2xl text-gray-500'
-                        onClick={Increment}
-                      >
-                        +
-                      </button>
+                      <button onClick={Decrement} className='2xl:text-6xl xl:text-5xl lg:text-4xl md:text-3xl sm:text-xl text-2xl text-gray-500'>-</button>
+                      <p className='2xl:w-14 xl:w-12 lg:w-10 md:w-8 sm:w-6 w-6 text-center'>{countProduct}</p>
+                      <button className='2xl:text-6xl xl:text-5xl lg:text-4xl md:text-3xl sm:text-2xl text-2xl text-gray-500' onClick={Increment}>+</button>
                     </div>
                     <div className='flex flex-wrap items-center gap-5 w-full btnsBuyProduct'>
-                      <button
-                        type='button'
-                        className='py-2 bg-primary max-w-[300px] w-full 2xl:text-2xl
-                                        xl:text-xl lg:text-xl md:text-lg sm:text-md text-sm text-white rounded active:bg-blue-700'
-                      >
-                        В корзину
-                      </button>
+                      <AddItemButton
+                        item={product}
+                        quantity={countProduct}
+                        isProduct
+                      />
                       <button
                         type='submit'
                         className='py-2 bg-primary max-w-[300px] w-full 2xl:text-2xl
@@ -189,11 +179,8 @@ const Product = ({ product }) => {
                           <div className='px-3 pt-1'>
                             <p className='text-sm text-center'>рассрочка</p>
                             <div className='flex items-end gap-4 justify-center'>
-                              <p
-                                className='font-bold 2xl:text-xl xl:text-xl lg:text-lg md:text-lg
-                                                        sm:text-lg text-md tracking-widest'
-                              >
-                                {calculateInstallment(selectedMonth)}{' '}
+                              <p className='font-bold 2xl:text-xl xl:text-xl lg:text-lg md:text-lg sm:text-lg text-md tracking-widest'>
+                                {calculateInstallment(selectedMonth)} 
                               </p>
                               <span>тг/мес</span>
                             </div>
@@ -202,35 +189,24 @@ const Product = ({ product }) => {
                       </div>
                       <Autocomplete
                         value={selectedMonth}
-                        onChange={(event, newValue) =>
-                          setSelectedMonth(newValue)
-                        }
+                        onChange={(event, newValue) => setSelectedMonth(newValue)}
                         options={months}
                         renderInput={(params) => <TextField {...params} />}
-                        className='max-w-[170px] hover:outline-none border-red-600 border 
-                                            2xl:rounded-e-lg xl:rounded-e-lg md:rounded-e-lg lg:rounded-e-lg sm:rounded-e-lg rounded-none w-full text-center cursor-pointer'
+                        className='max-w-[170px] hover:outline-none border-red-600 border 2xl:rounded-e-lg xl:rounded-e-lg md:rounded-e-lg lg:rounded-e-lg sm:rounded-e-lg rounded-none w-full text-center cursor-pointer'
                       />
                     </div>
                     <div className='w-full hotLine'>
                       <p className='flex flex-col text-xl gap-4'>
                         Звоните и заказывайте на номер:{' '}
-                        <a
-                          className='underline text-primary'
-                          href='tel:+7(701)744-80-07'
-                        >
-                          +7 (701) 744-80-07
-                        </a>
-                        <span>
-                          <strong>Бесплатная</strong> горячая линия по
-                          Казахстану
-                        </span>
+                        <a className='underline text-primary' href='tel:+7(701)744-80-07'>+7 (701) 744-80-07</a>
+                        <span><strong>Бесплатная</strong> горячая линия по Казахстану</span>
                       </p>
                     </div>
                   </div>
                 </div>
               </div>
             </section>
-            <section className=' w-full' data-aos='fade-down'>
+            <section className='w-full' data-aos='fade-down'>
               <Tabs similar_products={product.similar_products} />
             </section>
           </div>

@@ -14,28 +14,28 @@ const Hits = () => {
       img: Xit1,
       type: 'Шины BOTO Genesys 208',
       character: '155/70 R12 73T',
-      price: '13 150 тг',
+      price: 13150,
     },
     {
       id: 1,
       img: Xit2,
       type: 'Шины BOTO Genesys 208',
       character: '155/70 R12 73T',
-      price: '13 150 тг',
+      price: 13150,
     },
     {
       id: 1,
       img: Xit1,
       type: 'Шины BOTO Genesys 208',
       character: '155/70 R12 73T',
-      price: '13 150 тг',
+      price: 13150,
     },
     {
       id: 1,
       img: Xit3,
       type: 'Шины BOTO Genesys 208',
       character: '155/70 R12 73T',
-      price: '13 150 тг',
+      price: 13150,
     },
   ];
 

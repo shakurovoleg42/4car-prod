@@ -50,6 +50,11 @@ const fetchService = {
     return res.data;
   },
 
+  postSendFeedback: async (data) => {
+    const res = await instance.post(`/feedback`, data);
+    return res.data;
+  },
+
 };
 
 export default fetchService;

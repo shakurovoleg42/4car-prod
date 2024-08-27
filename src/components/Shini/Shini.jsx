@@ -114,16 +114,7 @@ const Shini = ({ data }) => {
                   {!shina || !Array.isArray(shina) || shina.length === 0 ? (
                     <p>Пусто</p>
                   ) : (
-                    shina.map((e) => (
-                      <CardShini
-                        key={e.id}
-                        id={e.id}
-                        slug={e.slug}
-                        img={e.image}
-                        type={e.name}
-                        price={e.price}
-                      />
-                    ))
+                    shina.map((e) => <CardShini key={e.id} {...e} />)
                   )}
                 </div>
                 <Stack spacing={2} sx={{ mt: 2 }}>

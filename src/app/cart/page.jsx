@@ -3,21 +3,19 @@
 import styles from './styles.module.css';
 
 import { useCart } from 'react-use-cart';
-// import Image from 'next/image';
 import Link from 'next/link';
 
-import NavBar from '../../components/NavBar/NavBar';
-import ScrollToTop from '../../components/ScrollToTop/ScrollToTop';
-import Footer from '../../components/Footer/Footer';
+import { formattedPrice } from '@/utils/price';
+import NavBar from '@/components/NavBar/NavBar';
+import ScrollToTop from '@/components/ScrollToTop/ScrollToTop';
+import Footer from '@/components/Footer/Footer';
+import CartItem from '@/components/CartItem/CartItem';
 
 export default function Cart() {
-  const { items, updateItemQuantity } = useCart();
-
-  const toNumericPrice = (priceString) =>
-    parseFloat(priceString.replace(/\s|тг/g, ''));
+  const { items } = useCart();
 
   const cartTotal = items.reduce(
-    (acc, cur) => acc + toNumericPrice(cur.price) * cur.quantity,
+    (acc, cur) => acc + cur.price * cur.quantity,
     0
   );
 
@@ -39,17 +37,12 @@ export default function Cart() {
       <ScrollToTop />
       <main className='mt-10 mb-16'>
         <div className='container'>
-        <div className='flex flex-row font-body mb-10'>
-                <Link href='/' className='mr-1 underline cursor-pointer'>
-                  Главная
-                </Link>
-                /
-                <p
-                  className='ml-1'
-                >
-                  Корзина
-                </p>
-              </div>
+          <div className='flex flex-row font-body mb-10'>
+            <Link href='/' className='mr-1 underline cursor-pointer'>
+              Главная
+            </Link>
+            /<p className='ml-1'>Корзина</p>
+          </div>
           <section
             data-aos='fade-right'
             data-aos-anchor-placement='top'
@@ -58,70 +51,17 @@ export default function Cart() {
             {items.length ? (
               <div className={styles.wrapper}>
                 <div className={styles.left}>
-                  <ul>
+                  <div className={styles.items}>
                     {items.map((item) => (
-                      <li key={item.id}>
-                        <div className={styles.image}>
-                          <img
-                            src={item.img.src}
-                            alt=''
-                            style={{width: '100px', height: '100px'}}
-                            // width={100}
-                            // height={100}
-                          />
-                        </div>
-                        <div className={styles.details}>
-                          <div className={styles.column}>
-                            <b>Наименование</b>
-                            <p>{item.type}</p>
-                          </div>
-                          <div className={styles.column}>
-                            <b>Бренд</b>
-                            <strong>{item.brand}</strong>
-                          </div>
-                          <div className={styles.column}>
-                            <b>Цена</b>
-                            <span>{item.price}</span>
-                          </div>
-                          <div className={styles.column}>
-                            <b>Количество</b>
-                            <div className={styles.quantity}>
-                              <button
-                                onClick={() =>
-                                  updateItemQuantity(item.id, item.quantity - 1)
-                                }
-                              >
-                                -
-                              </button>
-                              <span>{item.quantity}</span>
-                              <button
-                                onClick={() =>
-                                  updateItemQuantity(item.id, item.quantity + 1)
-                                }
-                              >
-                                +
-                              </button>
-                            </div>
-                          </div>
-                          <div className={styles.column}>
-                            <b>Стоимость</b>
-                            <span>
-                              {(
-                                toNumericPrice(item.price) * item.quantity
-                              ).toLocaleString()}{' '}
-                              тг
-                            </span>
-                          </div>
-                        </div>
-                      </li>
+                      <CartItem key={item.id} item={item} />
                     ))}
-                  </ul>
+                  </div>
                 </div>
                 <div className={styles.right}>
                   <ul>
                     <li>
                       <strong>Стоимость:</strong>
-                      <span>{cartTotal.toLocaleString()} тг</span>
+                      <span>{formattedPrice(cartTotal)} тг</span>
                     </li>
                     <li>
                       <strong>Доставка:</strong>
@@ -129,7 +69,7 @@ export default function Cart() {
                     </li>
                     <li>
                       <strong>Итого:</strong>
-                      <span>{(cartTotal + 4000).toLocaleString()} тг</span>
+                      <span>{formattedPrice(cartTotal + 4000)} тг</span>
                     </li>
                   </ul>
                   <Link href='/checkout-order'>Оформить заказ</Link>
