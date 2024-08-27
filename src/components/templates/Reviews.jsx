@@ -6,7 +6,10 @@ import 'slick-carousel/slick/slick-theme.css';
 import { useState, useEffect } from 'react';
 import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
-import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import fetchService from '@/services/fetchs';
+// import Slider from 'react-slick';
 
 import fetchService from '@/services/fetchs';
 
@@ -72,8 +75,8 @@ const Reviews = () => {
             <p className='font-body font-bold mb-5 2xl:text-2xl xl:text-2xl lg:text-xl md:text-lg sm:text-md text-sm'>
               Отзывы других пользователей
             </p>
-            <div className='flex gap-4 w-full max-w-[1200px] w-[900px] flex-col items-center mt-10'>
-              <Slider
+            <div className='flex gap-4 w-full max-w-[1200px] w-[900px] flex-col items-center mt-10 flex-wrap'>
+              {/* <Slider
                 className='flex gap-4 w-full max-w-[1200px] flex-wrap ml-5 mb-10 mt-4 justify-center moreOptions'
                 dots={true}
                 autoplay={true}
@@ -121,7 +124,7 @@ const Reviews = () => {
                     },
                   },
                 ]}
-              >
+              > */}
                 {data.reviews && data.reviews.length > 0 ? (
                   data.reviews.map((review) => (
                     <div
@@ -142,7 +145,7 @@ const Reviews = () => {
                 ) : (
                   <p>Нет отзывов для отображения</p>
                 )}
-              </Slider>
+              {/* </Slider>s */}
             </div>
           </div>
         </div>
