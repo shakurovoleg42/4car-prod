@@ -10,11 +10,13 @@ import TextField from '@mui/material/TextField';
 import Link from 'next/link';
 import Image from 'next/image';
 
+import { formattedPrice } from '@/utils/price';
 import NavBar from '../NavBar/NavBar';
 import Tabs from '../templates/Tabs';
 import Footer from './../Footer/Footer';
 import ScrollToTop from '../ScrollToTop/ScrollToTop';
 import responsiveImage from '@/utils/responsiveImage';
+import AddItemButton from '../AddItemButton/AddItemButton';
 
 const Product = ({ product }) => {
   const [countProduct, setCountProduct] = useState(1);
@@ -144,7 +146,7 @@ const Product = ({ product }) => {
                       className='text-darkMain 2xl:text-3xl
                                     xl:text-2xl lg:text-2xl md:text-2xl sm:text-2xl text-xl font-body font-bold max-w-[180px] w-full'
                     >
-                      {ProductPrice.toLocaleString()} тг
+                      {formattedPrice(ProductPrice)} тг
                     </h2>
                     {/* <p className='2xl:text-2xl xl:text-2xl lg:text-xl md:text-lg sm:text-md text-md flex flex-col leading-10 '>
                       В наличии: 4 шт.
@@ -168,13 +170,11 @@ const Product = ({ product }) => {
                       </button>
                     </div>
                     <div className='flex flex-wrap items-center gap-5 w-full btnsBuyProduct'>
-                      <button
-                        type='button'
-                        className='py-2 bg-primary max-w-[300px] w-full 2xl:text-2xl
-                                        xl:text-xl lg:text-xl md:text-lg sm:text-md text-sm text-white rounded active:bg-blue-700'
-                      >
-                        В корзину
-                      </button>
+                      <AddItemButton
+                        item={product}
+                        quantity={countProduct}
+                        isProduct
+                      />
                       <button
                         type='submit'
                         className='py-2 bg-primary max-w-[300px] w-full 2xl:text-2xl

@@ -47,12 +47,7 @@ const SearchDiski = ({ query, diska, pagination }) => {
                   className='flex gap-2 flex-wrap w-full justify-center'
                 >
                   {diska.map((e) => (
-                    <CardDiski
-                      key={e.id}
-                      img={e.image}
-                      type={e.name}
-                      price={e.price}
-                    />
+                    <CardDiski key={e.id} {...e} />
                   ))}
                 </div>
                 <Stack spacing={2} sx={{ mt: 2 }}>

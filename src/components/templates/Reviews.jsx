@@ -1,12 +1,14 @@
 'use client';
 
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+
 import { useState, useEffect } from 'react';
 import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import fetchService from '@/services/fetchs';
 import Slider from 'react-slick';
+
+import fetchService from '@/services/fetchs';
 
 const Reviews = () => {
   const [data, setData] = useState({});

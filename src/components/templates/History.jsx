@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import Card from './Cards';
-import Complect from '../../assets/complect.png';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
+
+import Card from './Cards';
+import Complect from '@/assets/complect.png';
 
 const History = () => {
   const data = new Date();
@@ -18,7 +19,7 @@ const History = () => {
       img: Complect,
       type: 'Шины BOTO Genesys 208',
       character: '155/70 R12 73T',
-      price: '13 150 тг',
+      price: 13150,
       status: 'Доставлено',
       none: '.',
     },
@@ -27,7 +28,7 @@ const History = () => {
       img: Complect,
       type: 'Шины BOTO Genesys 208',
       character: '155/70 R12 73T',
-      price: '13 150 тг',
+      price: 13150,
       status: 'Доставлено',
       none: '.',
     },
@@ -36,7 +37,7 @@ const History = () => {
       img: Complect,
       type: 'Шины BOTO Genesys 208',
       character: '155/70 R12 73T',
-      price: '13 150 тг',
+      price: 13150,
       status: 'Доставлено',
       none: '.',
     },
@@ -45,7 +46,7 @@ const History = () => {
       img: Complect,
       type: 'Шины BOTO Genesys 208',
       character: '155/70 R12 73T',
-      price: '13 150 тг',
+      price: 13150,
       status: 'Доставлено',
       none: '.',
     },
@@ -54,7 +55,7 @@ const History = () => {
       img: Complect,
       type: 'Шины BOTO Genesys 208',
       character: '155/70 R12 73T',
-      price: '13 150 тг',
+      price: 13150,
       status: 'Доставлено',
       none: '.',
     },
@@ -63,7 +64,7 @@ const History = () => {
       img: Complect,
       type: 'Шины BOTO Genesys 208',
       character: '155/70 R12 73T',
-      price: '13 150 тг',
+      price: 13150,
       status: 'Доставлено',
       none: '.',
     },
@@ -72,7 +73,7 @@ const History = () => {
       img: Complect,
       type: 'Шины BOTO Genesys 208',
       character: '155/70 R12 73T',
-      price: '13 150 тг',
+      price: 13150,
       status: 'Доставлено',
       none: '.',
     },
@@ -81,7 +82,7 @@ const History = () => {
       img: Complect,
       type: 'Шины BOTO Genesys 208',
       character: '155/70 R12 73T',
-      price: '13 150 тг',
+      price: 13150,
       status: 'Доставлено',
       none: '.',
     },
@@ -90,7 +91,7 @@ const History = () => {
       img: Complect,
       type: 'Шины BOTO Genesys 208',
       character: '155/70 R12 73T',
-      price: '13 150 тг',
+      price: 13150,
       status: 'Доставлено',
       none: '.',
     },
@@ -99,7 +100,7 @@ const History = () => {
       img: Complect,
       type: 'Шины BOTO Genesys 208',
       character: '155/70 R12 73T',
-      price: '13 150 тг',
+      price: 13150,
       status: 'Доставлено',
       none: '.',
     },
@@ -128,15 +129,7 @@ const History = () => {
       <div className='flex gap-4 flex-col items-center w-full justify-center p-5'>
         <div className='flex gap-4 w-full flex-wrap mb-10 mt-4 justify-center'>
           {visibleProducts.map((e) => (
-            <Card
-              key={e.id}
-              img={e.img}
-              type={e.type}
-              price={e.price}
-              status={e.status}
-              none={e.none}
-              data={formattedDate}
-            />
+            <Card key={e.id} data={formattedDate} {...e} />
           ))}
         </div>
 

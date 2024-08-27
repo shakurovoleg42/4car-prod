@@ -11,7 +11,7 @@ const Cart = () => {
       img: Diska,
       type: 'Комплект дисков RIAL PADUA',
       character: '5x112 7.5x16 ET38 D70.1 sterling-silver',
-      price: '192 000 тг',
+      price: 192000,
       paying: 'Оплатить',
       order: 'Заказать',
       checkout: 'Оформить рассрочку',
@@ -21,7 +21,7 @@ const Cart = () => {
       img: Diska,
       type: 'Комплект дисков RIAL PADUA',
       character: '5x112 7.5x16 ET38 D70.1 sterling-silver',
-      price: '192 000 тг',
+      price: 192000,
       paying: 'Оплатить',
       order: 'Заказать',
       checkout: 'Оформить рассрочку',
@@ -31,7 +31,7 @@ const Cart = () => {
       img: Diska,
       type: 'Комплект дисков RIAL PADUA',
       character: '5x112 7.5x16 ET38 D70.1 sterling-silver',
-      price: '192 000 тг',
+      price: 192000,
       paying: 'Оплатить',
       order: 'Заказать',
       checkout: 'Оформить рассрочку',
@@ -41,7 +41,7 @@ const Cart = () => {
       img: Diska,
       type: 'Комплект дисков RIAL PADUA',
       character: '5x112 7.5x16 ET38 D70.1 sterling-silver',
-      price: '192 000 тг',
+      price: 192000,
       paying: 'Оплатить',
       order: 'Заказать',
       checkout: 'Оформить рассрочку',
@@ -51,7 +51,7 @@ const Cart = () => {
       img: Diska,
       type: 'Комплект дисков RIAL PADUA',
       character: '5x112 7.5x16 ET38 D70.1 sterling-silver',
-      price: '192 000 тг',
+      price: 192000,
       paying: 'Оплатить',
       order: 'Заказать',
       checkout: 'Оформить рассрочку',
@@ -61,7 +61,7 @@ const Cart = () => {
       img: Diska,
       type: 'Комплект дисков RIAL PADUA',
       character: '5x112 7.5x16 ET38 D70.1 sterling-silver',
-      price: '192 000 тг',
+      price: 192000,
       paying: 'Оплатить',
       order: 'Заказать',
       checkout: 'Оформить рассрочку',
@@ -71,7 +71,7 @@ const Cart = () => {
       img: Diska,
       type: 'Комплект дисков RIAL PADUA',
       character: '5x112 7.5x16 ET38 D70.1 sterling-silver',
-      price: '192 000 тг',
+      price: 192000,
       paying: 'Оплатить',
       order: 'Заказать',
       checkout: 'Оформить рассрочку',
@@ -81,7 +81,7 @@ const Cart = () => {
       img: Diska,
       type: 'Комплект дисков RIAL PADUA',
       character: '5x112 7.5x16 ET38 D70.1 sterling-silver',
-      price: '192 000 тг',
+      price: 192000,
       paying: 'Оплатить',
       order: 'Заказать',
       checkout: 'Оформить рассрочку',
@@ -111,15 +111,7 @@ const Cart = () => {
       <div className='flex gap-4 flex-col w-full justify-center items-center'>
         <div className='flex gap-2 flex-wrap mb-10 mt-4 justify-center'>
           {visibleProducts.map((e) => (
-            <Card
-              key={e.id}
-              img={e.img}
-              type={e.type}
-              price={e.price}
-              paying={e.paying}
-              order={e.order}
-              checkout={e.checkout}
-            />
+            <Card key={e.id} {...e} />
           ))}
         </div>
         <button
