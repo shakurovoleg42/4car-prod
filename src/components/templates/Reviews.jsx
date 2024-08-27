@@ -1,29 +1,57 @@
 'use client';
-import Rating from '@mui/material/Rating';
-import Stack from '@mui/material/Stack';
+
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { useState } from 'react';
 
-// import Slider from 'react-slick';
+import { useState, useEffect } from 'react';
+import Rating from '@mui/material/Rating';
+import Stack from '@mui/material/Stack';
+import Slider from 'react-slick';
+
+import fetchService from '@/services/fetchs';
+
 const Reviews = () => {
+  const [data, setData] = useState({});
   const [ratingValue, setRatingValue] = useState(5);
+
+  useEffect(() => {
+    const fetchReviews = async () => {
+      try {
+        const reviewsData = await fetchService.getProductReview(191731);
+        console.log(reviewsData);
+
+        // Ensure that data is an object with a reviews array
+        if (reviewsData && Array.isArray(reviewsData.reviews)) {
+          setData(reviewsData);
+        } else {
+          console.error(
+            'Expected data to be an object with a reviews array, but received:',
+            reviewsData
+          );
+        }
+      } catch (error) {
+        console.error('Error fetching reviews:', error);
+      }
+    };
+
+    fetchReviews();
+  }, []);
 
   const handleRatingChange = (event, newValue) => {
     setRatingValue(newValue);
     console.log('Рейтинг поставлен:', newValue);
   };
+
   return (
     <>
       <div className='flex mt-10 items-center flex-col'>
-        <h2 className='font-body font-bold mb-5 2xl:text-2xl xl:text-2xl lg:text-xl md:text-lg sm:text-md text-sm  '>
+        <h2 className='font-body font-bold mb-5 2xl:text-2xl xl:text-2xl lg:text-xl md:text-lg sm:text-md text-sm'>
           Оставьте свой отзыв
         </h2>
-        <div className=' flex gap-5 flex-col ranking ' data-aos=''>
+        <div className='flex gap-5 flex-col ranking' data-aos=''>
           <div className='flex gap-6 flex-col items-center'>
             <Stack className='max-w-[420px]' spacing={1}>
               <Rating
-                className=''
                 name='half-rating'
                 defaultValue={ratingValue}
                 precision={0.5}
@@ -41,25 +69,12 @@ const Reviews = () => {
             </button>
           </div>
           <div className='flex gap-6 flex-col items-center border-t-2 border-gray-300 pt-4'>
-            <p className='font-body font-bold mb-5 2xl:text-2xl xl:text-2xl lg:text-xl md:text-lg sm:text-md text-sm  '>
+            <p className='font-body font-bold mb-5 2xl:text-2xl xl:text-2xl lg:text-xl md:text-lg sm:text-md text-sm'>
               Отзывы других пользователей
             </p>
-            <div className='flex items-left flex-col border-b-2 p-2'>
-              <p>Имя пользователя</p>
-              <Rating
-                className=''
-                name='half-rating'
-                defaultValue={3}
-                readOnly
-              />
-              <span className='flex max-w-[400px] mt-4 text-gray-700'>
-              Недавно приобрёл шины TOYO Observe Garit Giz 155/65 R13 73Q и остался более чем доволен! Эти шины показали себя превосходно на зимних дорогах — сцепление с дорогой на высоком уровне, особенно на льду и снегу. Очень понравилась низкий уровень шума при движении и комфорт в управлении. Машина стала гораздо более устойчива, особенно на крутых поворотах. Также приятно удивила износостойкость — после нескольких тысяч километров протектор практически не изменился. Однозначно рекомендую для тех, кто ценит безопасность и комфорт в зимнее время!
-              </span>
-            </div>
-
-            {/* <div> */}
-            {/* <Slider
-                className='flex gap-4 w-full flex-wrap ml-5 mb-10 mt-4 justify-center moreOptions'
+            <div className='flex gap-4 w-full max-w-[1200px] w-[900px] flex-col items-center mt-10'>
+              <Slider
+                className='flex gap-4 w-full max-w-[1200px] flex-wrap ml-5 mb-10 mt-4 justify-center moreOptions'
                 dots={true}
                 autoplay={true}
                 infinite={true}
@@ -107,13 +122,28 @@ const Reviews = () => {
                   },
                 ]}
               >
-                {shina.map((item) => (
-          <div key={item.id}>
-            <CardShini {...item} />
-          </div>
-        ))}
-              </Slider> */}
-            {/* </div> */}
+                {data.reviews && data.reviews.length > 0 ? (
+                  data.reviews.map((review) => (
+                    <div
+                      key={review.id}
+                      className='flex items-left flex-col border-b-2 p-2'
+                    >
+                      <p>Имя пользователя</p>
+                      <Rating
+                        name='half-rating'
+                        defaultValue={review.rating}
+                        readOnly
+                      />
+                      <span className='flex max-w-[400px] mt-4 text-gray-700'>
+                        {review.text}
+                      </span>
+                    </div>
+                  ))
+                ) : (
+                  <p>Нет отзывов для отображения</p>
+                )}
+              </Slider>
+            </div>
           </div>
         </div>
       </div>

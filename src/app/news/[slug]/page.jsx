@@ -1,3 +1,6 @@
+'use client';
+
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import NavBar from '@/components/NavBar/NavBar';
 import ScrollToTop from '@/components/ScrollToTop/ScrollToTop';
@@ -5,16 +8,56 @@ import { FaAngleLeft } from 'react-icons/fa6';
 import fetchService from '@/services/fetchs';
 import Footer from '@/components/Footer/Footer';
 
-const NewsPage = async ({ params }) => {
-  const data = await fetchService.getNewsById(params.slug);
+const NewsPage = ({ params }) => {
+  const [data, setData] = useState(null);
+  const [comments, setComments] = useState([]);
+  const [formData, setFormData] = useState({ body: '' });
 
-  const comments = await fetchService.getCommentsNews(data.id);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const newsData = await fetchService.getNewsById(params.slug);
+        setData(newsData);
+
+        const commentsData = await fetchService.getCommentsNews(newsData.id);
+        setComments(commentsData);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, [params.slug]);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await fetchService.postCommentNews(data.id, formData);
+      console.log('Comment posted:', res.data);
+
+      const updatedComments = await fetchService.getCommentsNews(data.id);
+      setComments(updatedComments);
+
+      setFormData({ body: '' });
+    } catch (error) {
+      console.error('Error posting comment:', error.response?.data || error.message);
+    }
+  };
+
+  if (!data) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <>
       <div className='overflow-hidden'>
-        <header className=' bg-no-repeat bg-cover bg-center w-full pb-20 bg-diski'>
-          <div className='container '>
+        <header className='bg-no-repeat bg-cover bg-center w-full pb-20 bg-diski'>
+          <div className='container'>
             <NavBar />
           </div>
         </header>
@@ -25,10 +68,7 @@ const NewsPage = async ({ params }) => {
               <FaAngleLeft /> назад
             </Link>
             <div className='px-4' data-aos='fade-right'>
-              <h1
-                className='font-body font-bold xl:text-4xl lg:text-3xl md:text-2xl text-xl 
-                        text-center'
-              >
+              <h1 className='font-body font-bold xl:text-4xl lg:text-3xl md:text-2xl text-xl text-center'>
                 {data.title}
               </h1>
             </div>
@@ -48,19 +88,23 @@ const NewsPage = async ({ params }) => {
               Комментарии
             </p>
             <div className='flex gap-6 flex-col items-center'>
-              <textarea
-                name='comments'
-                id='comments'
-                className='w-full w-[800px] min-w-[400px] min-h-[120px] p-2 border-solid border-2'
-              ></textarea>
-              <button className='bg-primary text-white py-2 px-2 rounded-2xl'>
-                Отправить
-              </button>
+              <form onSubmit={handleSubmit}>
+                <textarea
+                placeholder='Введите комментарий'
+                  onChange={handleChange}
+                  className='w-full w-[800px] min-w-[400px] min-h-[120px] p-2 border-solid border-2'
+                  name='body'
+                  value={formData.body}
+                ></textarea>
+                <button className='bg-primary text-white py-2 px-2 rounded-2xl' type='submit'>
+                  Отправить
+                </button>
+              </form>
             </div>
             {comments.map((comment) => (
               <div
                 key={comment.id}
-                className='flex items-left flex-col border-b-2 p-2 mt-3 w-[800px] min-w-[400px]'
+                className='flex items-left flex-col border-b-2 p-2 mt-3 max-w-[800px] min-w-[400px]'
               >
                 <p>Имя пользователя</p>
                 <span className='flex max-w-[800px] mt-4 text-gray-700'>
