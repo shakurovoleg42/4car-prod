@@ -29,7 +29,7 @@ const CheckoutOrder = () => {
         <ScrollToTop />
         <main className='mt-30'>
           <div className='container'>
-          <div className='flex flex-row font-body mb-5 mt-10'>
+          <div className='flex flex-row font-body mb-5 mt-10 ml-20'>
                 <Link href='/' className='mr-1 underline cursor-pointer'>
                   Главная
                 </Link>
@@ -48,17 +48,17 @@ const CheckoutOrder = () => {
                 className='max-w-[1528px] w-full px-4'
               >
                 <div className='main_info'>
-                  <div className='inputs font-body text-xs xl:text-sm lg:text-sm'>
+                  <div className='flex flex-wrap gap-6 inputs font-body text-xs xl:text-sm lg:text-sm'>
                     <div className='main_inputs flex flex-col'>
                       <p>Телефон</p>
-                      <input className='personal-info p-5' type='text' />
+                      <input className='personal-info p-5 min-w-[300px]' type='text' />
                     </div>
                     <div className='main_inputs flex flex-col'>
                       <p>Ф.И.О</p>
-                      <input className='personal-info p-5' type='text' />
+                      <input className='personal-info p-5 min-w-[300px]' type='text' />
                     </div>
                   </div>
-                  <div className='inputs text-xs xl:text-sm lg:text-sm mt-10'>
+                  <div className='flex flex-wrap gap-6 inputs text-xs xl:text-sm lg:text-sm mt-10'>
                     <div className='selects flex flex-col'>
                       <p>Область</p>
                       <select
@@ -155,7 +155,7 @@ const CheckoutOrder = () => {
                 <div className='walletcard-container flex flex-col mt-20 mb-20'>
                   <p className='pay-method'>Способ оплаты</p>
                   <div className='container items-center mt-10'>
-                    <div className='walletcard flex flex-col max-w-[489px] w-full max-h-[298px] h-full items-center'>
+                    <div className='walletcard flex flex-col max-w-[389px] w-full max-h-[198px] h-full items-center'>
                       <img
                         src={cardImg}
                         style={{ width: '130.67px', height: '93.33px' }}
@@ -165,7 +165,7 @@ const CheckoutOrder = () => {
                       />
                       <p>Оплата картой</p>
                     </div>
-                    <div className='walletcard flex flex-col max-w-[489px] w-full max-h-[298px] h-full items-center'>
+                    <div className='walletcard flex flex-col max-w-[389px] w-full max-h-[198px] h-full items-center'>
                       <img
                         src={walletImg}
                         style={{ width: '107.19px', height: '94.06px' }}
