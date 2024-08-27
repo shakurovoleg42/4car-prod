@@ -45,7 +45,10 @@ const NewsPage = ({ params }) => {
 
       setFormData({ body: '' });
     } catch (error) {
-      console.error('Error posting comment:', error.response?.data || error.message);
+      console.error(
+        'Error posting comment:',
+        error.response?.data || error.message
+      );
     }
   };
 
@@ -90,13 +93,16 @@ const NewsPage = ({ params }) => {
             <div className='flex gap-6 flex-col items-center'>
               <form onSubmit={handleSubmit}>
                 <textarea
-                placeholder='Введите комментарий'
+                  placeholder='Введите комментарий'
                   onChange={handleChange}
                   className='w-full w-[800px] min-w-[400px] min-h-[120px] p-2 border-solid border-2'
                   name='body'
                   value={formData.body}
                 ></textarea>
-                <button className='bg-primary text-white py-2 px-2 rounded-2xl' type='submit'>
+                <button
+                  className='bg-primary text-white py-2 px-2 rounded-2xl'
+                  type='submit'
+                >
                   Отправить
                 </button>
               </form>
@@ -104,10 +110,10 @@ const NewsPage = ({ params }) => {
             {comments.map((comment) => (
               <div
                 key={comment.id}
-                className='flex items-left flex-col border-b-2 p-2 mt-3 max-w-[800px] min-w-[400px]'
+                className='flex flex-col items-left border-b-2 p-2 mt-3 w-[800px] max-w-[800px] min-w-[400px]'
               >
-                <p>Имя пользователя</p>
-                <span className='flex max-w-[800px] mt-4 text-gray-700'>
+                <p className='text-left w-full'>Имя пользователя</p>
+                <span className='text-left mt-4 text-gray-700 w-full'>
                   {comment.body}
                 </span>
               </div>
