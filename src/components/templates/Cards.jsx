@@ -1,14 +1,17 @@
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 
+import { formattedPrice } from '@/utils/price';
 import AddItemButton from '../AddItemButton/AddItemButton';
+import responsiveImage from '@/utils/responsiveImage';
 
 function CardShini(props) {
-  const products = props;
+  const product = props;
 
   const { push: navigate } = useRouter();
   const handleDivClick = () => {
-    navigate(`/${products.slug}`);
+    navigate(`/${product.slug}`);
     window.scrollTo({
       top: 0,
     });
@@ -23,29 +26,30 @@ function CardShini(props) {
              font-body w-full text-center text-white rounded'
       >
         <div className='blockImg'>
-          <img
+          <Image
             className='2xl:max-w-[110px] xl:max-w-[100px] lg:max-w-[85px] max-w-[75px] 
                 2xl:max-h-[140px] xl:max-h-[130px] lg:max-h-[120px] md:max-h-[110px] sm:max-h-[100px] max-h-[100px] mx-auto mb-3'
-            src={products.img}
+            src={product.image}
             alt=''
+            {...responsiveImage}
           />
         </div>
         <div className='bg-primary py-2 px-4 flex flex-col gap-1 cardContent'>
-          <h2 className='text-xs'>{products.type}</h2>
-          <p className='text-xs'>{products.text}</p>
+          <h2 className='text-xs'>{product.name}</h2>
+          <p className='text-xs'>{product.text}</p>
           <span className='font-bold 2xl:text-lg xl:text-lg lg:text-md md:text-sm sm:text-sm text-sm'>
-            {products.price.toLocaleString()} тг
+            {formattedPrice(product.price)} тг
           </span>
           <div className='flex items-center 2xl:justify-between xl:justify-between justify-center gap-2 2xl:flex-nowrap xl:flex-nowrap flex-wrap'>
-            {products.status ? (
-              <p className='text-xs'>{products.status}</p>
-            ) : products.paying ? (
+            {product.status ? (
+              <p className='text-xs'>{product.status}</p>
+            ) : product.paying ? (
               <Link
                 href='/product'
                 type='submit'
                 className='active:bg-gray-100  text-xs px-2 outline-none bg-white text-primary rounded'
               >
-                {products.paying}
+                {product.paying}
               </Link>
             ) : (
               <Link
@@ -56,30 +60,30 @@ function CardShini(props) {
                 Купить
               </Link>
             )}
-            {products.data ? (
-              <p className='text-sm'>{products.data}</p>
-            ) : products.order ? (
+            {product.data ? (
+              <p className='text-sm'>{product.data}</p>
+            ) : product.order ? (
               <Link
                 href='/product'
                 type='submit'
                 className='active:bg-blue-700 
                                 rounded px-2 text-xs outline-none border border-white'
               >
-                {products.order}
+                {product.order}
               </Link>
             ) : (
-              <AddItemButton item={products} />
+              <AddItemButton item={product} />
             )}
           </div>
-          {products.none ? (
-            <p className='hidden'>{products.none}</p>
-          ) : products.checkout ? (
+          {product.none ? (
+            <p className='hidden'>{product.none}</p>
+          ) : product.checkout ? (
             <Link
               href='/product'
               type='submit'
               className='py-1 text-xs px-3 bg-red-600 rounded active:bg-red-700'
             >
-              {products.checkout}
+              {product.checkout}
             </Link>
           ) : (
             <Link
