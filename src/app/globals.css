@@ -10,24 +10,6 @@ body {
   font-weight: 500;
 }
 
-.slick-slider {
-  max-width: 1200px !important;
-  display: flex;
-  align-items: center;
-}
-
-.slick-list {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.slick-track {
-  max-width: 1200px !important;
-  align-items: center;
-  justify-content: center;
-}
-
 .list__link::after {
   content: '';
   position: absolute;

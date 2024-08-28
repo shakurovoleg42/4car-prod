@@ -6,8 +6,8 @@ import 'slick-carousel/slick/slick-theme.css';
 import { useState, useEffect } from 'react';
 import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+// import 'slick-carousel/slick/slick.css';
+// import 'slick-carousel/slick/slick-theme.css';
 import fetchService from '@/services/fetchs';
 // import Slider from 'react-slick';
 
@@ -134,7 +134,7 @@ const Reviews = () => {
                       <p>Имя пользователя</p>
                       <Rating
                         name='half-rating'
-                        defaultValue={review.rating}
+                        value={review.rating}
                         readOnly
                       />
                       <span className='flex max-w-[400px] mt-4 text-gray-700'>
@@ -143,9 +143,9 @@ const Reviews = () => {
                     </div>
                   ))
                 ) : (
-                  <p>Нет отзывов для отображения</p>
+                  <p>Оставьте отзыв первым!</p>
                 )}
-              {/* </Slider>s */}
+              {/* </Slider> */}
             </div>
           </div>
         </div>
