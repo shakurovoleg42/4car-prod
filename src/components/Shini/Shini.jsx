@@ -42,7 +42,7 @@ const Shini = ({ data }) => {
     router.replace(pathname + '?' + params.toString());
   };
 
-  const itemsPerPage = data.pagination.per_page; // Установите начальное количество товаров на странице
+  const itemsPerPage = data.pagination.per_page;
 
   const handleChangePage = (event, newPage) => {
     params.set('page', newPage);

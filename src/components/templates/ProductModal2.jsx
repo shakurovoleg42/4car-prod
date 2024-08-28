@@ -8,7 +8,6 @@ import CardShini from './Cards';
 const ProductModal2 = ({ shina = [] }) => {
   return (
     <div className='flex gap-4 w-full flex-col items-center mt-10'>
-      {/* <div className='flex gap-4 w-full flex-wrap mb-10 mt-4 justify-center moreOptions'> */}
       <Slider
         className='flex gap-4 w-full flex-wrap ml-5 mb-10 mt-4 justify-center moreOptions'
         dots={true}
@@ -60,12 +59,17 @@ const ProductModal2 = ({ shina = [] }) => {
       >
         {shina.map((item) => (
           <div key={item.id}>
-            <CardShini {...item} />
+            <CardShini
+              img={item.image}
+              type={item.name}
+              character={item.name}
+              price={item.price}
+              slug={item.slug}
+            />
           </div>
         ))}
       </Slider>
     </div>
-    // </div>
   );
 };
 
