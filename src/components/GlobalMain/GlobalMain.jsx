@@ -18,7 +18,9 @@ import AboutImg from '@/assets/AboutImg.jpg';
 import Complect from '@/assets/complect.png';
 import AddItemButton from '@/components/AddItemButton/AddItemButton';
 
-const GlobalMain = ({ partners, news }) => {
+
+// bestSeller 
+const GlobalMain = ({ partners, news}) => {
   useEffect(() => {
     AOS.init();
   }, []);
