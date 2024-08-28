@@ -55,6 +55,11 @@ const fetchService = {
     return res.data;
   },
 
+  getShiniSizeFilter: async () => {
+    const res = await instance.get(`/tires`);
+    return res.data;
+  },
+
 };
 
 export default fetchService;
