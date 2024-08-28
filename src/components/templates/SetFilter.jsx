@@ -58,9 +58,9 @@ const SetFilter = (props) => {
               </select>
             </div>
           </div>
-          <div className='flex items-center gap-4'>
+          <div className='flex items-center gap-4 sire'>
             <div>
-              <p className='text-white pb-1 sire'>Производитель</p>
+              <p className='text-white pb-1'>Производитель</p>
               <select className='border border-black text-black'>
               {data.filter.manufacturers.map((el, index) => (
                 <option key={index} value={el}>{el}</option>
