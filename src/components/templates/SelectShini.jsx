@@ -1,3 +1,4 @@
+'use client';
 import { useState } from 'react';
 import SetFilter from './SetFilter';
 import SearchByCar from './SearchByCar';
