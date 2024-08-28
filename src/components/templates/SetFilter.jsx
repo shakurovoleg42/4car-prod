@@ -1,8 +1,8 @@
 "use client";
-
 import { useState, useEffect } from 'react';
 import fetchService from "@/services/fetchs";
 import Spinner from './Spinner';
+import Link from 'next/link';
 
 const SetFilter = (props) => {
   const [data, setData] = useState(null);
@@ -92,12 +92,15 @@ const SetFilter = (props) => {
             </label>
           </div>
           <div className='flex gap-4'>
+            <Link href="/tiers?width">
             <button
               className='btn bg-white text-cm px-2 text-black active:bg-blue-300 rounded-[15px] p-2'
               type='submit'
             >
               Подобрать
             </button>
+            </Link>
+            
             <button
               type='reset'
               className='border-b-white border-b-2 text-black bg-white rounded-[15px] p-2'

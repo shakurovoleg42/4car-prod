@@ -27,8 +27,6 @@ const Product = ({ product }) => {
     const fetchReviews = async () => {
       try {
         const reviewsData = await fetchService.getProductReview(product.id);
-        console.log('Fetched Reviews Data:', reviewsData);
-        console.log('Average Rating:', reviewsData.avg_rating); // Debug avg_rating
 
         if (reviewsData && Array.isArray(reviewsData.reviews)) {
           setData(reviewsData);
@@ -59,7 +57,7 @@ const Product = ({ product }) => {
     '8 мес', '9 мес', '10 мес', '11 мес', '12 мес'
   ];
 
-  const ProductPrice = product.price * countProduct; // Цена товара
+  const ProductPrice = product.price * countProduct;
 
   const calculateInstallment = (selectedMonth) => {
     const monthsCount = parseInt(selectedMonth.split(' ')[0], 10);
