@@ -58,7 +58,7 @@ const SetFilter = (props) => {
               </select>
             </div>
           </div>
-          <div className='flex items-center gap-4'>
+          <div className='flex items-center gap-4 sire'>
             <div>
               <p className='text-white pb-1'>Производитель</p>
               <select className='border border-black text-black'>
