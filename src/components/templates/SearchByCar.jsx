@@ -21,13 +21,12 @@ const SearchByCar = () => {
     fetchData();
   }, []);
 
-  // Ensure data and data.filter.season are defined before creating the Seasons array
   const Seasons = data && data.filter && data.filter.season
     ? data.filter.season.map(season => ({
         label: season,
-        value: season.toLowerCase().replace(/\s+/g, '-') // Optionally format the value
+        value: season.toLowerCase().replace(/\s+/g, '-')
       }))
-    : []; // Default to empty array if data is not available
+    : [];
 
   return (
     <>
@@ -40,7 +39,7 @@ const SearchByCar = () => {
               disablePortal
               id='combo-box-demo'
               options={Seasons}
-              getOptionLabel={(option) => option.label} // Specify how to get the label from each option
+              getOptionLabel={(option) => option.label}
               renderInput={(params) => (
                 <TextField {...params} label='Seasons' />
               )}
