@@ -28,7 +28,7 @@ const ProductModal2 = ({ shina = [] }) => {
             settings: {
               slidesToShow: 3,
               slidesToScroll: 1,
-              dots: true,
+              dots: false,
             },
           },
           {
@@ -36,7 +36,7 @@ const ProductModal2 = ({ shina = [] }) => {
             settings: {
               slidesToShow: 2,
               slidesToScroll: 1,
-              dots: true,
+              dots: false,
             },
           },
           {
@@ -44,7 +44,7 @@ const ProductModal2 = ({ shina = [] }) => {
             settings: {
               slidesToShow: 2,
               slidesToScroll: 1,
-              dots: true,
+              dots: false,
             },
           },
           {
@@ -52,7 +52,7 @@ const ProductModal2 = ({ shina = [] }) => {
             settings: {
               slidesToShow: 2,
               slidesToScroll: 1,
-              dots: true,
+              dots: false,
             },
           },
         ]}
