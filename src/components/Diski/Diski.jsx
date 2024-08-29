@@ -92,7 +92,7 @@ const Diski = ({ data }) => {
                     getAriaLabel={() => 'Price Value'}
                     value={value}
                     min={0}
-                    max={200000}
+                    max={1000000}
                     step={50}
                     onChange={handleChange}
                     valueLabelDisplay='auto'
