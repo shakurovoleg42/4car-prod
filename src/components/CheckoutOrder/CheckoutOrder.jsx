@@ -140,11 +140,11 @@ const CheckoutOrder = () => {
                   </div>
                   <div className='flex flex-col mt-10'>
                     Ваш рабочий адрес
-                    <input className='area mt-3 p-5' type='text' />
+                    <textarea className='area mt-3 p-5' type='text' ></textarea>
                   </div>
                   <div className='flex flex-col mt-10'>
                     Комментарии к заказу
-                    <input className='area mt-3 p-5' type='text' />
+                    <textarea className='area mt-3 p-5' type='text'></textarea>
                   </div>
                   <div className='flex flex-col mt-10'>
                     Есть промокод
