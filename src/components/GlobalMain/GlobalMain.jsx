@@ -6,63 +6,20 @@ import 'aos/dist/aos.css';
 import { FaAngleRight } from 'react-icons/fa6';
 
 import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Slider from 'react-slick';
 import AOS from 'aos';
 
-// import { NewsInfo } from '@/data/home';
 import SelectShini from '@/components/templates/SelectShini';
 import SelectDiski from '@/components/templates/SelectDiski';
 import AboutImg from '@/assets/AboutImg.jpg';
-import Complect from '@/assets/complect.png';
 import AddItemButton from '@/components/AddItemButton/AddItemButton';
 
-
-// bestSeller 
-const GlobalMain = ({ partners, news}) => {
+// bestSeller
+const GlobalMain = ({ partners, news, bestSeller }) => {
   useEffect(() => {
     AOS.init();
   }, []);
-   
-
-  const collects = [
-    {
-      id: 1,
-      image: Complect,
-      title: 'Шины BOTO',
-      span: 'Genesys',
-      type: '208 155/70 R12 73T',
-    },
-    {
-      id: 2,
-      image: Complect,
-      title: 'Шины BOTO',
-      span: 'Genesys',
-      type: '208 155/70 R12 73T',
-    },
-    {
-      id: 3,
-      image: Complect,
-      title: 'Шины BOTO',
-      span: 'Genesys',
-      type: '208 155/70 R12 73T',
-    },
-    {
-      id: 3,
-      image: Complect,
-      title: 'Шины BOTO',
-      span: 'Genesys',
-      type: '208 155/70 R12 73T',
-    },
-  ];
-  const { push: navigate } = useRouter();
-  const handleDivClick = () => {
-    navigate('/product');
-    window.scrollTo({
-      top: 0,
-    });
-  };
 
   return (
     <>
@@ -80,7 +37,7 @@ const GlobalMain = ({ partners, news}) => {
               <SelectDiski />
             </div>
           </section>
-          <section className='mb-10'> 
+          <section className='mb-10'>
             <h2 className='font-body text-center text-xl md:text-2xl xl:text-3xl mb-7 font-bold'>
               Наши партнёры
             </h2>
@@ -103,7 +60,7 @@ const GlobalMain = ({ partners, news}) => {
                   settings: {
                     slidesToShow: 4,
                     slidesToScroll: 1,
-                    dots: true,
+                    dots: false,
                   },
                 },
                 {
@@ -111,7 +68,7 @@ const GlobalMain = ({ partners, news}) => {
                   settings: {
                     slidesToShow: 3,
                     slidesToScroll: 1,
-                    dots: true,
+                    dots: false,
                   },
                 },
                 {
@@ -119,7 +76,7 @@ const GlobalMain = ({ partners, news}) => {
                   settings: {
                     slidesToShow: 2,
                     slidesToScroll: 1,
-                    dots: true,
+                    dots: false,
                   },
                 },
                 {
@@ -127,7 +84,7 @@ const GlobalMain = ({ partners, news}) => {
                   settings: {
                     slidesToShow: 2,
                     slidesToScroll: 1,
-                    dots: true,
+                    dots: false,
                   },
                 },
               ]}
@@ -143,7 +100,7 @@ const GlobalMain = ({ partners, news}) => {
                     data-aos-anchor-placement='top-bottom'
                     className='max-w-44 w-full h-full bg-white text-center flex flex-col items-center '
                   >
-                    <img src={el.image} alt='product' className='h-44'/>
+                    <img src={el.image} alt='product' className='h-44' />
                     <span>{el.name}</span>
                   </Link>
                 </div>
@@ -195,14 +152,16 @@ const GlobalMain = ({ partners, news}) => {
               ))}
             </div>
             <div className='flex justify-center'>
-              <Link href='/news' className='flex flex-row items-center text-center border-b-2 border-b-gray-200'>
-              <b className='items-center text-center text-[22px]font-regular'>
-                посмотреть все новости
-              </b>
-              <FaAngleRight />
-            </Link>
+              <Link
+                href='/news'
+                className='flex flex-row items-center text-center border-b-2 border-b-gray-200'
+              >
+                <b className='items-center text-center text-[22px]font-regular'>
+                  посмотреть все новости
+                </b>
+                <FaAngleRight />
+              </Link>
             </div>
-            
           </section>
           <section className='mb-10'>
             <h2 className=' font-body text-center text-4xl mb-10 font-bold'>
@@ -271,31 +230,32 @@ const GlobalMain = ({ partners, news}) => {
                 },
               ]}
             >
-              {collects.map((e) => (
+              {bestSeller.map((e) => (
                 <div
-                  onClick={handleDivClick}
                   key={e.id}
                   data-aos='fade-up'
                   data-aos-anchor-placement='center-bottom '
                   className=' cursor-pointer rounded 2xl:max-w-[320px] xl:max-w-[300px] lg:max-w-[260px] md:max-w-[260px] sm:max-w-[220px] max-w-[220px] w-full border pt-2'
                 >
-                  <img
-                    className='2xl:max-w-[140px] xl:max-w-[110px] lg:max-w-[80px] md:max-w-38 sm:max-w-[80px] max-w-[80px] m-auto 2xl:pt-6 xl:pt-5 lg:pt-4 md:pt-2 sm:pt-1 pt-0 mb-3'
-                    src={e.image.src}
-                    alt='Ballon'
-                  />
+                  <Link href={`/${e.slug}`}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      className='2xl:max-w-[140px] min-h-[200px] xl:max-w-[110px] lg:max-w-[80px] md:max-w-38 sm:max-w-[80px] max-w-[80px] w-full m-auto 2xl:pt-6 xl:pt-5 lg:pt-4 md:pt-2 sm:pt-1 pt-0 mb-3'
+                      src={e.image}
+                      alt={e.name}
+                    />
+                  </Link>
                   <div className='bg-primary py-2 rounded'>
                     <h3
                       className='px-6 2xl:mt-8 xl:mt-6 lg:mt-5 md:mt-5 sm:mt-4 mt-4 md:text-center sm:text-center text-center font-semibold 
                                             2xl:text-lg xl:text-lg lg:text-md md:text-sm sm:text-sm text-sm text-white'
                     >
-                      {e.title} {e.span} <br />
-                      {e.type}
+                      {e.name}
                     </h3>
                     <div className='w-full flex flex-col mt-8 px-4'>
                       <div className='flex justify-center mb-3 flex-wrap gap-2'>
                         <Link
-                          href='/product'
+                          href='/checkout-order'
                           type='submit'
                           className='active:bg-gray-100 2xl:py-1 py-2 px-6 2xl:text-lg xl:text-lg lg:text-md md:text-sm text-xs bg-white rounded font-bold font-body'
                         >
@@ -305,7 +265,7 @@ const GlobalMain = ({ partners, news}) => {
                       </div>
                       <div className='px-4'>
                         <Link
-                          href='/product'
+                          href={e.slug}
                           type='submit'
                           className='py-1 w-full 2xl:text-lg xl:text-lg lg:text-md md:text-sm  text-xs px-3 text-white bg-red-600 rounded active:bg-red-700'
                         >

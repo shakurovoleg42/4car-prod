@@ -61,7 +61,7 @@ const fetchService = {
   },
 
   getBestSeller: async () => {
-    const res = await instance.get(`/products/best-selling`);
+    const res = await instance.get(`/best-selling`);
     return res.data;
   },
 };
