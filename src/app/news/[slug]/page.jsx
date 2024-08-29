@@ -95,7 +95,7 @@ const NewsPage = ({ params }) => {
                 <textarea
                   placeholder='Введите комментарий'
                   onChange={handleChange}
-                  className='max-w-[800px] w-[400px] w-full min-h-[120px] p-2 border-solid border-2'
+                  className='max-w-[800px] min-w-[350px] min-h-[120px] p-2 border-solid border-2'
                   name='body'
                   value={formData.body}
                 ></textarea>
