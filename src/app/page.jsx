@@ -6,14 +6,13 @@ import Footer from '@/components/Footer/Footer';
 export default async function Home() {
   const manufacturers = await fetchService.getManufacturersHome();
   const data = await fetchService.getAllNews();
-  // const bestSeller = await fetchService.getBestSeller();
+  const bestSeller = await fetchService.getBestSeller();
   
 
   return (
     <>
       <Hero />
-      {/* bestSeller={bestSeller} */}
-      <GlobalMain partners={manufacturers} news={data} />
+      <GlobalMain partners={manufacturers} news={data} bestSeller={bestSeller}/>
       <Footer />
     </>
   );
