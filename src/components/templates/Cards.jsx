@@ -1,10 +1,8 @@
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-// import Image from 'next/image';
 
 import { formattedPrice } from '@/utils/price';
 import AddItemButton from '../AddItemButton/AddItemButton';
-// import responsiveImage from '@/utils/responsiveImage';
 
 function CardShini(props) {
   const product = props;
@@ -32,7 +30,6 @@ function CardShini(props) {
             src={product.image}
             alt={product.name}
             style={{ width: '200px', height: '200px' }}
-            // {...responsiveImage}
           />
         </div>
         <div className='bg-primary py-2 px-4 flex flex-col gap-1 cardContent'>
