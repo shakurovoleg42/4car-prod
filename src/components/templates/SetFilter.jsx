@@ -92,7 +92,7 @@ const SetFilter = (props) => {
             </label>
           </div>
           <div className='flex gap-4'>
-            <Link href="/tiers?width">
+            <Link href="/">
             <button
               className='btn bg-white text-cm px-2 text-black active:bg-blue-300 rounded-[15px] p-2'
               type='submit'

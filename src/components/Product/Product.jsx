@@ -22,7 +22,10 @@ const Product = ({ product }) => {
   const [data, setData] = useState({ avg_rating: 0, reviews: [] });
   const [countProduct, setCountProduct] = useState(1);
   const [selectedMonth, setSelectedMonth] = useState('1 мес');
+
   const model = product.model.replace(/ /g, '+');
+  const whatIs = product.category
+  console.log(whatIs)
 
 
   useEffect(() => {
@@ -122,7 +125,7 @@ const Product = ({ product }) => {
                   data-aos='fade-right'
                   className='flex items-center gap-4 max-w-[700px] w-full justify-between productLeft'
                 >
-                  <img src={product.image} alt='' {...responsiveImage} />
+                  <img src={product.image} alt='' {...responsiveImage} className='max-w-[500px] max-h-[500px] w-full'/>
                   <div className='flex flex-col gap-4'>
                     <p className='flex gap-3 text-xl text-gray-500'>
                       Модель шины
