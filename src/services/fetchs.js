@@ -50,6 +50,20 @@ const fetchService = {
     return res.data;
   },
 
+  postSendFeedback: async (data) => {
+    const res = await instance.post(`/feedback`, data);
+    return res.data;
+  },
+
+  getShiniSizeFilter: async () => {
+    const res = await instance.get(`/tires`);
+    return res.data;
+  },
+
+  getBestSeller: async () => {
+    const res = await instance.get(`/products/best-selling`);
+    return res.data;
+  },
 };
 
 export default fetchService;

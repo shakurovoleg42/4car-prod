@@ -9,10 +9,6 @@
   display: flex;
 }
 
-.main_inputs:not(:first-child) {
-  margin-left: 30px;
-}
-
 .main_info .select_country_select {
   width: 649px;
   height: 50px;
@@ -40,10 +36,6 @@
 
 .select_country_select option {
   border: none;
-}
-
-.selects:not(:first-child) {
-  margin-left: 30px;
 }
 
 .cont-pay-method {

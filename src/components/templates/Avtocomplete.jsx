@@ -85,7 +85,7 @@ export default function Playground({ filters }) {
   const handleFilter = (name, value) => {
     params.delete('page');
     params.set(name, value);
-    router.replace(pathname + '?' + params.toString());
+    router.replace(pathname + '?' + params.toString(), { scroll: false });
   };
 
   const resetFilters = () => {
