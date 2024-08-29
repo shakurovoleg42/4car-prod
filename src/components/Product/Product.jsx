@@ -1,4 +1,4 @@
-"use client";
+'use client';
 import './Product.css';
 
 import { useState, useEffect } from 'react';
@@ -22,6 +22,8 @@ const Product = ({ product }) => {
   const [data, setData] = useState({ avg_rating: 0, reviews: [] });
   const [countProduct, setCountProduct] = useState(1);
   const [selectedMonth, setSelectedMonth] = useState('1 мес');
+  const model = product.model.replace(/ /g, '+');
+
 
   useEffect(() => {
     const fetchReviews = async () => {
@@ -53,8 +55,18 @@ const Product = ({ product }) => {
   };
 
   const months = [
-    '1 мес', '2 мес', '3 мес', '4 мес', '5 мес', '6 мес', '7 мес',
-    '8 мес', '9 мес', '10 мес', '11 мес', '12 мес'
+    '1 мес',
+    '2 мес',
+    '3 мес',
+    '4 мес',
+    '5 мес',
+    '6 мес',
+    '7 мес',
+    '8 мес',
+    '9 мес',
+    '10 мес',
+    '11 мес',
+    '12 мес',
   ];
 
   const ProductPrice = product.price * countProduct;
@@ -84,7 +96,10 @@ const Product = ({ product }) => {
                 </Link>
                 /<p className='ml-1 underline cursor-pointer'>{product.name}</p>
               </div>
-              <div className='flex gap-5 flex-col ranking' data-aos='fade-right'>
+              <div
+                className='flex gap-5 flex-col ranking'
+                data-aos='fade-right'
+              >
                 <h1 className='2xl:text-3xl xl:text-2xl lg:text-xl md:text-lg sm:text-md text-md font-body font-bold'>
                   {product.name}
                 </h1>
@@ -103,44 +118,69 @@ const Product = ({ product }) => {
                 </div>
               </div>
               <div className='mt-10 flex max-w-[1400px] w-full justify-between gap-4 mx-auto mb-24 productHero'>
-                <div data-aos='fade-right' className='flex items-center gap-4 max-w-[700px] w-full justify-between productLeft'>
+                <div
+                  data-aos='fade-right'
+                  className='flex items-center gap-4 max-w-[700px] w-full justify-between productLeft'
+                >
                   <img src={product.image} alt='' {...responsiveImage} />
                   <div className='flex flex-col gap-4'>
                     <p className='flex gap-3 text-xl text-gray-500'>
                       Модель шины
-                      <span className='text-primary'>{product.model}</span>
+                      <Link href={`/tires?modeli=${model}`}>
+                        <span className='text-primary'>{product.model}</span>
+                      </Link>
                     </p>
                     <p className='flex gap-3 text-xl text-gray-500'>
                       Ширина шины
-                      <span className='text-primary'>{product.width}</span>
+                      <Link href={`/tires?width=${product.width}`}>
+                        <span className='text-primary'>{product.width}</span>
+                      </Link>
                     </p>
                     <p className='flex gap-3 text-xl text-gray-500'>
                       Высота
-                      <span className='text-primary'>{product.height}</span>
+                      <Link href={`/tires?height=${product.height}`}>
+                        <span className='text-primary'>{product.height}</span>
+                      </Link>
                     </p>
                     <p className='flex gap-3 text-xl text-gray-500'>
                       Диаметр шины
-                      <span className='text-primary'>{product.diameter}</span>
+                      <Link href={`/tires?diameter=${product.diameter}`}>
+                        <span className='text-primary'>{product.diameter}</span>
+                      </Link>
                     </p>
                     <p className='flex gap-3 text-xl text-gray-500'>
                       Сезонность
-                      <span className='text-primary'>{product.season}</span>
+                      <Link href={`/tires?season=${product.season}`}>
+                        <span className='text-primary'>{product.season}</span>
+                      </Link>
                     </p>
                     <p className='flex gap-3 text-xl text-gray-500'>
                       Шипы
-                      <span className='text-primary'>{product.spikes}</span>
+                      <Link href={`/tires?spikes=${product.spikes}`}>
+                        <span className='text-primary'>{product.spikes}</span>
+                      </Link>
                     </p>
                     <p className='flex gap-3 text-xl text-gray-500'>
                       Индекс нагрузки
-                      <span className='text-primary'>{product.indeks_nagruzki}</span>
+                      <Link href={`/tires?nagruzki=${product.indeks_nagruzki}`}>
+                        <span className='text-primary'>
+                          {product.indeks_nagruzki}
+                        </span>
+                      </Link>
                     </p>
                     <p className='flex gap-3 text-xl text-gray-500'>
                       Индекс скорости
-                      <span className='text-primary'>{product.indeks_skorosti}</span>
+                      <Link href={`/tires?skorosti=${product.indeks_skorosti}`}>
+                        <span className='text-primary'>
+                          {product.indeks_skorosti}
+                        </span>
+                      </Link>
                     </p>
                     <p className='flex gap-3 text-xl text-gray-500'>
                       RunFlat
-                      <span className='text-primary'>{product.run_flat}</span>
+                      <Link href={`/tires?runflat=${product.run_flat}`}>
+                        <span className='text-primary'>{product.run_flat}</span>
+                      </Link>
                     </p>
                   </div>
                 </div>
@@ -153,9 +193,21 @@ const Product = ({ product }) => {
                       {formattedPrice(ProductPrice)} тг
                     </h2>
                     <div className='flex items-center gap-5 2xl:text-5xl xl:text-4xl lg:text-3xl md:text-2xl sm:text-2xl text-xl'>
-                      <button onClick={Decrement} className='2xl:text-6xl xl:text-5xl lg:text-4xl md:text-3xl sm:text-xl text-2xl text-gray-500'>-</button>
-                      <p className='2xl:w-14 xl:w-12 lg:w-10 md:w-8 sm:w-6 w-6 text-center'>{countProduct}</p>
-                      <button className='2xl:text-6xl xl:text-5xl lg:text-4xl md:text-3xl sm:text-2xl text-2xl text-gray-500' onClick={Increment}>+</button>
+                      <button
+                        onClick={Decrement}
+                        className='2xl:text-6xl xl:text-5xl lg:text-4xl md:text-3xl sm:text-xl text-2xl text-gray-500'
+                      >
+                        -
+                      </button>
+                      <p className='2xl:w-14 xl:w-12 lg:w-10 md:w-8 sm:w-6 w-6 text-center'>
+                        {countProduct}
+                      </p>
+                      <button
+                        className='2xl:text-6xl xl:text-5xl lg:text-4xl md:text-3xl sm:text-2xl text-2xl text-gray-500'
+                        onClick={Increment}
+                      >
+                        +
+                      </button>
                     </div>
                     <div className='flex flex-wrap items-center gap-5 w-full btnsBuyProduct'>
                       <AddItemButton
@@ -178,7 +230,7 @@ const Product = ({ product }) => {
                             <p className='text-sm text-center'>рассрочка</p>
                             <div className='flex items-end gap-4 justify-center'>
                               <p className='font-bold 2xl:text-xl xl:text-xl lg:text-lg md:text-lg sm:text-lg text-md tracking-widest'>
-                                {calculateInstallment(selectedMonth)} 
+                                {calculateInstallment(selectedMonth)}
                               </p>
                               <span>тг/мес</span>
                             </div>
@@ -187,7 +239,9 @@ const Product = ({ product }) => {
                       </div>
                       <Autocomplete
                         value={selectedMonth}
-                        onChange={(event, newValue) => setSelectedMonth(newValue)}
+                        onChange={(event, newValue) =>
+                          setSelectedMonth(newValue)
+                        }
                         options={months}
                         renderInput={(params) => <TextField {...params} />}
                         className='max-w-[170px] hover:outline-none border-red-600 border 2xl:rounded-e-lg xl:rounded-e-lg md:rounded-e-lg lg:rounded-e-lg sm:rounded-e-lg rounded-none w-full text-center cursor-pointer'
@@ -196,8 +250,16 @@ const Product = ({ product }) => {
                     <div className='w-full hotLine'>
                       <p className='flex flex-col text-xl gap-4'>
                         Звоните и заказывайте на номер:{' '}
-                        <a className='underline text-primary' href='tel:+7(701)744-80-07'>+7 (701) 744-80-07</a>
-                        <span><strong>Бесплатная</strong> горячая линия по Казахстану</span>
+                        <a
+                          className='underline text-primary'
+                          href='tel:+7(701)744-80-07'
+                        >
+                          +7 (701) 744-80-07
+                        </a>
+                        <span>
+                          <strong>Бесплатная</strong> горячая линия по
+                          Казахстану
+                        </span>
                       </p>
                     </div>
                   </div>
