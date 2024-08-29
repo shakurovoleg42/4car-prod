@@ -22,8 +22,13 @@ const Product = ({ product }) => {
   const [data, setData] = useState({ avg_rating: 0, reviews: [] });
   const [countProduct, setCountProduct] = useState(1);
   const [selectedMonth, setSelectedMonth] = useState('1 мес');
-  const model = product.model.replace(/ /g, '+');
 
+  const model = product.model.replace(/ /g, '+');
+  const whatIs = product.category[0] === 'Шины' 
+  ? 'tires' 
+  : product.category[0] === 'Диски' 
+  ? 'rims' 
+  : null;
 
   useEffect(() => {
     const fetchReviews = async () => {
@@ -122,47 +127,47 @@ const Product = ({ product }) => {
                   data-aos='fade-right'
                   className='flex items-center gap-4 max-w-[700px] w-full justify-between productLeft'
                 >
-                  <img src={product.image} alt='' {...responsiveImage} />
+                  <img src={product.image} alt={product.name} {...responsiveImage} className='max-w-[500px] max-h-[500px] w-full'/>
                   <div className='flex flex-col gap-4'>
                     <p className='flex gap-3 text-xl text-gray-500'>
                       Модель шины
-                      <Link href={`/tires?modeli=${model}`}>
+                      <Link href={`/${whatIs}?modeli=${model}`}>
                         <span className='text-primary'>{product.model}</span>
                       </Link>
                     </p>
                     <p className='flex gap-3 text-xl text-gray-500'>
                       Ширина шины
-                      <Link href={`/tires?width=${product.width}`}>
+                      <Link href={`/${whatIs}?width=${product.width}`}>
                         <span className='text-primary'>{product.width}</span>
                       </Link>
                     </p>
                     <p className='flex gap-3 text-xl text-gray-500'>
                       Высота
-                      <Link href={`/tires?height=${product.height}`}>
+                      <Link href={`/${whatIs}?height=${product.height}`}>
                         <span className='text-primary'>{product.height}</span>
                       </Link>
                     </p>
                     <p className='flex gap-3 text-xl text-gray-500'>
                       Диаметр шины
-                      <Link href={`/tires?diameter=${product.diameter}`}>
+                      <Link href={`/${whatIs}?diameter=${product.diameter}`}>
                         <span className='text-primary'>{product.diameter}</span>
                       </Link>
                     </p>
                     <p className='flex gap-3 text-xl text-gray-500'>
                       Сезонность
-                      <Link href={`/tires?season=${product.season}`}>
+                      <Link href={`/${whatIs}?season=${product.season}`}>
                         <span className='text-primary'>{product.season}</span>
                       </Link>
                     </p>
                     <p className='flex gap-3 text-xl text-gray-500'>
                       Шипы
-                      <Link href={`/tires?spikes=${product.spikes}`}>
+                      <Link href={`/${whatIs}?spikes=${product.spikes}`}>
                         <span className='text-primary'>{product.spikes}</span>
                       </Link>
                     </p>
                     <p className='flex gap-3 text-xl text-gray-500'>
                       Индекс нагрузки
-                      <Link href={`/tires?nagruzki=${product.indeks_nagruzki}`}>
+                      <Link href={`/${whatIs}?nagruzki=${product.indeks_nagruzki}`}>
                         <span className='text-primary'>
                           {product.indeks_nagruzki}
                         </span>
@@ -170,7 +175,7 @@ const Product = ({ product }) => {
                     </p>
                     <p className='flex gap-3 text-xl text-gray-500'>
                       Индекс скорости
-                      <Link href={`/tires?skorosti=${product.indeks_skorosti}`}>
+                      <Link href={`/${whatIs}?skorosti=${product.indeks_skorosti}`}>
                         <span className='text-primary'>
                           {product.indeks_skorosti}
                         </span>
@@ -178,7 +183,7 @@ const Product = ({ product }) => {
                     </p>
                     <p className='flex gap-3 text-xl text-gray-500'>
                       RunFlat
-                      <Link href={`/tires?runflat=${product.run_flat}`}>
+                      <Link href={`/${whatIs}?runflat=${product.run_flat}`}>
                         <span className='text-primary'>{product.run_flat}</span>
                       </Link>
                     </p>

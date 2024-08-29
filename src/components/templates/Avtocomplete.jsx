@@ -140,7 +140,7 @@ export default function Playground({ filters }) {
                   renderInput={(params) => (
                     <TextField
                       {...params}
-                      label='Модель шины'
+                      label='Модель'
                       variant='standard'
                     />
                   )}
@@ -156,7 +156,7 @@ export default function Playground({ filters }) {
                   renderInput={(params) => (
                     <TextField
                       {...params}
-                      label='Ширина шины'
+                      label='Ширина '
                       variant='standard'
                     />
                   )}
@@ -184,7 +184,7 @@ export default function Playground({ filters }) {
                   renderInput={(params) => (
                     <TextField
                       {...params}
-                      label='Диаметр шины'
+                      label='Диаметр '
                       variant='standard'
                     />
                   )}
@@ -289,7 +289,7 @@ export default function Playground({ filters }) {
             id='disable-clearable2'
             disableClearable
             renderInput={(params) => (
-              <TextField {...params} label='Модель шины' variant='standard' />
+              <TextField {...params} label='Модель ' variant='standard' />
             )}
             onChange={(event, newValue) =>
               handleFilter('modeli', newValue.value)
@@ -301,7 +301,7 @@ export default function Playground({ filters }) {
             id='disable-clearable3'
             disableClearable
             renderInput={(params) => (
-              <TextField {...params} label='Ширина шины' variant='standard' />
+              <TextField {...params} label='Ширина ' variant='standard' />
             )}
             onChange={(event, newValue) =>
               handleFilter('width', newValue.value)
@@ -325,7 +325,7 @@ export default function Playground({ filters }) {
             id='disable-clearable5'
             disableClearable
             renderInput={(params) => (
-              <TextField {...params} label='Диаметр шины' variant='standard' />
+              <TextField {...params} label='Диаметр ' variant='standard' />
             )}
             onChange={(event, newValue) =>
               handleFilter('diameter', newValue.value)
