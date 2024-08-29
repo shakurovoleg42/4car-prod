@@ -5,7 +5,7 @@ import fetchService from "@/services/fetchs";
 import Spinner from './Spinner';
 import Link from 'next/link';
 
-const SetFilter = (props) => {
+const SetFilterDiski = (props) => {
   const [data, setData] = useState(null);
   const [filters, setFilters] = useState({
     width: '',
@@ -57,7 +57,7 @@ const SetFilter = (props) => {
       }, {});
 
     const query = new URLSearchParams(filteredFilters).toString();
-    return `/tires?${query}`;
+    return `/rims?${query}`;
   };
 
   return (
@@ -194,4 +194,4 @@ const SetFilter = (props) => {
   );
 };
 
-export default SetFilter;
+export default SetFilterDiski;
