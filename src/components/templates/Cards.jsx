@@ -77,7 +77,7 @@ function CardShini(props) {
             <p className='hidden'>{product.none}</p>
           ) : product.checkout ? (
             <Link
-              href='/product'
+              href='/checkout-order'
               type='submit'
               className='py-1 text-xs px-3 bg-red-600 rounded active:bg-red-700'
             >
@@ -85,7 +85,7 @@ function CardShini(props) {
             </Link>
           ) : (
             <Link
-              href='/product'
+              href={product.slug}
               type='submit'
               className='py-1 text-xs px-3 bg-red-600 rounded active:bg-red-700'
             >

@@ -15,7 +15,6 @@ import SelectDiski from '@/components/templates/SelectDiski';
 import AboutImg from '@/assets/AboutImg.jpg';
 import AddItemButton from '@/components/AddItemButton/AddItemButton';
 
-// bestSeller
 const GlobalMain = ({ partners, news, bestSeller }) => {
   useEffect(() => {
     AOS.init();

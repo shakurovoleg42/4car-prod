@@ -10,7 +10,7 @@ const ProductModal2 = ({ shina = [] }) => {
     <div className='flex gap-4 w-full flex-col items-center mt-10'>
       <Slider
         className='flex gap-4 w-full flex-wrap ml-5 mb-10 mt-4 justify-center moreOptions'
-        dots={true}
+        dots={false}
         autoplay={true}
         infinite={true}
         slidesToShow={5}
