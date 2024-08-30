@@ -11,6 +11,7 @@ import axios from 'axios';
 // import Image from 'next/image';
 
 import { handleLogin } from '@/app/actions';
+import cartService from '@/services/cart';
 import responsiveImage from '@/utils/responsiveImage';
 import LoginImg from '../../../assets/LoginImg.jpg';
 
@@ -36,7 +37,11 @@ const LoginForm = () => {
 
       const res = await axios.post('/api/auth/login', formData);
 
-      handleLogin(res.data.access_token);
+      await handleLogin(res.data.access_token);
+
+      await cartService.syncCart();
+
+      router.replace('/account');
     } catch (error) {
       toast.error(error.response.data.message);
     } finally {
