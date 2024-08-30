@@ -5,12 +5,12 @@ import { useScrollLock } from 'usehooks-ts';
 import { FiPhoneCall } from 'react-icons/fi';
 import { FaLocationDot } from 'react-icons/fa6';
 import { SlUser } from 'react-icons/sl';
-import { PiShoppingCart } from 'react-icons/pi';
 import { FaBars } from 'react-icons/fa';
 import { FaTimes } from 'react-icons/fa';
 import Link from 'next/link';
 
 import Modal from '../Modal/Modal';
+import CartStatus from '../CartStatus';
 
 const NavbarTop = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
@@ -58,9 +58,12 @@ const NavbarTop = () => {
           checked={isNavOpen}
           onChange={handleToggleNav}
         />
-        <label className='nav-animate' htmlFor='media-nav'>
-          <FaBars className='text-2xl' />
-        </label>
+        <div className='flex items-center'>
+          <label className='nav-animate' htmlFor='media-nav'>
+            <FaBars className='text-2xl' />
+          </label>
+          <CartStatus additionalClass='cart-status' />
+        </div>
         <div
           className='flex transition-all pt-7 lg:pt-4 text-white font-body gap-12 justify-evenly items-center nav__top'
           onClick={closeNav}
@@ -165,32 +168,19 @@ const NavbarTop = () => {
             </div>
           </div>
           <div>
-            <div className='account_icons flex flex-row items-center'>
-              <div className=' flex flex-col w-20 items-center w-24 text-center'>
+            <div className='account_icons flex flex-row items-start'>
+              <div className='flex flex-col w-20 items-center w-24 text-center'>
                 <Link
                   href='/account'
                   className='media__link flex flex-col items-center'
                 >
                   <span className='bg-primary nav__icon h-9 w-9 flex items-center justify-center rounded-full'>
-                    <SlUser className='' />
+                    <SlUser />
                   </span>
                   Личный кабинет
                 </Link>
               </div>
-              <div className='flex flex-col w-20 items-center w-24 text-center'>
-                <Link
-                  href='/cart'
-                  className='media__link flex flex-col items-center cursor-pointer '
-                >
-                  <span className='bg-primary nav__icon relative h-9 w-9 flex items-center justify-center rounded-full'>
-                    <PiShoppingCart />
-                    <span className=' text-xs px-1 absolute -top-1 -right-2 counter rounded-full bg-primary'>
-                      0
-                    </span>
-                  </span>
-                  Корзина <span>0 T</span>
-                </Link>
-              </div>
+              <CartStatus />
             </div>
           </div>
         </div>

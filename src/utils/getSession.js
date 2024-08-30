@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 import instance from './instance';
 
 const getSession = async (session) => {
@@ -9,6 +11,15 @@ const getSession = async (session) => {
     });
 
     return true;
+  } catch (error) {
+    return false;
+  }
+};
+
+export const checkAuthentication = async () => {
+  try {
+    const res = await axios.get('/api/auth/check');
+    return res.data.authenticated;
   } catch (error) {
     return false;
   }

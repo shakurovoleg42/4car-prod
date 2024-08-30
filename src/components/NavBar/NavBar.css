@@ -55,6 +55,12 @@
 
 /* модалка */
 
+@media (min-width: 1279px) {
+  .cart-status {
+    display: none;
+  }
+}
+
 @media (max-width: 1279px) {
   .nav__top {
     position: absolute;
@@ -132,12 +138,6 @@
     margin-bottom: 10px;
     font-size: 12px !important;
     padding: 2px 5px !important;
-  }
-
-  .nav__icon {
-    width: 24px !important;
-    height: 24px !important;
-    font-size: 12px !important;
   }
 
   .icon {
