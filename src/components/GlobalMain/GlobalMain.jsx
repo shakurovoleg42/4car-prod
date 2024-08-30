@@ -5,7 +5,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import 'aos/dist/aos.css';
 import { FaAngleRight } from 'react-icons/fa6';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Slider from 'react-slick';
 import AOS from 'aos';
@@ -14,8 +14,27 @@ import SelectShini from '@/components/templates/SelectShini';
 import SelectDiski from '@/components/templates/SelectDiski';
 import AboutImg from '@/assets/AboutImg.jpg';
 import AddItemButton from '@/components/AddItemButton/AddItemButton';
+import QuantityBox from '../QuantityBox';
 
 const GlobalMain = ({ partners, news, bestSeller }) => {
+  const [quantities, setQuantities] = useState({});
+
+  const incrementQuantity = (id) => {
+    setQuantities((prev) => ({
+      ...prev,
+      [id]: (prev[id] || 1) + 1,
+    }));
+  };
+
+  const decrementQuantity = (id) => {
+    setQuantities((prev) => ({
+      ...prev,
+      [id]: Math.max((prev[id] || 1) - 1, 1),
+    }));
+  };
+
+const GlobalMain = ({ partners, news, bestSeller }) => {
+
   useEffect(() => {
     AOS.init();
   }, []);
@@ -252,15 +271,17 @@ const GlobalMain = ({ partners, news, bestSeller }) => {
                       {e.name}
                     </h3>
                     <div className='w-full flex flex-col mt-8 px-4'>
-                      <div className='flex justify-center mb-3 flex-wrap gap-2'>
-                        <Link
-                          href='/checkout-order'
-                          type='submit'
-                          className='active:bg-gray-100 2xl:py-1 py-2 px-6 2xl:text-lg xl:text-lg lg:text-md md:text-sm text-xs bg-white rounded font-bold font-body'
-                        >
-                          Купить
-                        </Link>
-                        <AddItemButton item={e} />
+
+                      <div className='flex justify-center mb-3 flex-wrap gap-5'>
+                        <QuantityBox
+                          quantity={quantities[e.id] || 1}
+                          inc={() => incrementQuantity(e.id)}
+                          dec={() => decrementQuantity(e.id)}
+                        />
+                        <AddItemButton
+                          item={e}
+                          quantity={quantities[e.id] || 1}
+                        />
                       </div>
                       <div className='px-4'>
                         <Link
