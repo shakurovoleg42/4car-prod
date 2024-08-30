@@ -4,4 +4,9 @@ const instance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API,
 });
 
+export const cartInstance = axios.create({
+  baseURL: process.env.NEXT_PUBLIC_API,
+  withCredentials: true,
+});
+
 export default instance;

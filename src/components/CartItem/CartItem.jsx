@@ -1,12 +1,18 @@
 import styles from './styles.module.sass';
 
-import { useCart } from 'react-use-cart';
+import { mutate } from 'swr';
 import Image from 'next/image';
 
 import { formattedPrice } from '@/utils/price';
+import useCart from '@/hooks/useCart';
 
 const CartItem = ({ item }) => {
-  const { updateItemQuantity } = useCart();
+  const { updateItmQuantity } = useCart();
+
+  const handleUpdateQuantity = async (quantity) => {
+    await updateItmQuantity(item.id, quantity);
+    mutate('/api/cart');
+  };
 
   return (
     <div className={styles.item}>
@@ -29,15 +35,11 @@ const CartItem = ({ item }) => {
         <div className={styles.column}>
           <b>Количество</b>
           <div className={styles.quantity}>
-            <button
-              onClick={() => updateItemQuantity(item.id, item.quantity - 1)}
-            >
+            <button onClick={() => handleUpdateQuantity(item.quantity - 1)}>
               -
             </button>
             <span>{item.quantity}</span>
-            <button
-              onClick={() => updateItemQuantity(item.id, item.quantity + 1)}
-            >
+            <button onClick={() => handleUpdateQuantity(item.quantity + 1)}>
               +
             </button>
           </div>
