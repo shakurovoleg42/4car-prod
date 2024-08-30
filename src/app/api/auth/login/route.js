@@ -6,7 +6,10 @@ export async function POST(request) {
 
     const res = await instance.post('/login', formData);
 
-    return Response.json(res.data);
+    return new Response(JSON.stringify(res.data), {
+      status: res.status,
+      headers: { 'Set-Cookie': res.headers['set-cookie'] },
+    });
   } catch (error) {
     return new Response(JSON.stringify(error.response.data), {
       status: error.response.status,
