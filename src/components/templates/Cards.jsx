@@ -4,6 +4,7 @@ import Link from 'next/link';
 
 import { formattedPrice } from '@/utils/price';
 import AddItemButton from '../AddItemButton/AddItemButton';
+
 import QuantityBox from '../QuantityBox';
 // import responsiveImage from '@/utils/responsiveImage';
 
