@@ -1,9 +1,7 @@
-/* eslint-disable react/prop-types */
-
 import { useState } from 'react';
 import { MdOutlineVisibility } from 'react-icons/md';
 import { MdOutlineVisibilityOff } from 'react-icons/md';
-// import UserImg from '../../assets/UserImg.png';
+import Image from 'next/image';
 
 const EditAccount = (props) => {
   const [login, setLogin] = useState('');
@@ -41,7 +39,7 @@ const EditAccount = (props) => {
       setEmailError('');
     } else {
       setEmailError(
-        'Введите действительный адрес электронной почты или номер телефона',
+        'Введите действительный адрес электронной почты или номер телефона'
       );
     }
 
@@ -166,27 +164,35 @@ const EditAccount = (props) => {
           <div className='flex flex-col gap-4 justify-center'>
             <button
               type='submit'
-              className='text-white bg-primary outline-none text-lg border 
-                            active:bg-blue-100 px-3 rounded border-primary submitChange'
+              className='text-white bg-primary outline-none text-lg border active:bg-blue-100 px-3 rounded border-primary submitChange'
             >
               Применить изменения
             </button>
           </div>
         </form>
 
-        <div className=''>
+        <div className='w-full'>
           {props.imgSelect && (
             <div className='flex flex-col items-center setUserIcon'>
-              <img
-                src={props.imgSelect.src}
+              <Image
+                src={props.imgSelect}
                 alt='Selected'
-                className='object-cover max-w-[208px] w-full h-52 rounded-full border'
+                className='object-cover rounded-full border w-[150px] h-[150px]'
+                width={150}
+                height={150}
               />
+              <label
+                htmlFor='avatar'
+                className='text-white bg-primary outline-none text-lg border active:bg-blue-100 px-3 rounded border-primary submitChange mt-5'
+              >
+                Загрузить фото
+              </label>
               <input
+                id='avatar'
                 type='file'
                 accept='image/*'
                 onChange={props.myFunc}
-                className='mt-6'
+                className='mt-6 hidden'
               />
             </div>
           )}

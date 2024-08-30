@@ -171,7 +171,7 @@ const NavbarTop = () => {
             <div className='account_icons flex flex-row items-start'>
               <div className='flex flex-col w-20 items-center w-24 text-center'>
                 <Link
-                  href='/account'
+                  href='/customer'
                   className='media__link flex flex-col items-center'
                 >
                   <span className='bg-primary nav__icon h-9 w-9 flex items-center justify-center rounded-full'>
