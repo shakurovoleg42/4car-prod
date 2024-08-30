@@ -10,7 +10,7 @@ const ProductModal2 = ({ shina = [] }) => {
     <div className='flex gap-4 w-full flex-col items-center mt-10'>
       <Slider
         className='flex gap-4 w-full flex-wrap ml-5 mb-10 mt-4 justify-center moreOptions'
-        dots={true}
+        dots={false}
         autoplay={true}
         infinite={true}
         slidesToShow={5}
@@ -28,7 +28,7 @@ const ProductModal2 = ({ shina = [] }) => {
             settings: {
               slidesToShow: 3,
               slidesToScroll: 1,
-              dots: true,
+              dots: false,
             },
           },
           {
@@ -36,7 +36,7 @@ const ProductModal2 = ({ shina = [] }) => {
             settings: {
               slidesToShow: 2,
               slidesToScroll: 1,
-              dots: true,
+              dots: false,
             },
           },
           {
@@ -44,7 +44,7 @@ const ProductModal2 = ({ shina = [] }) => {
             settings: {
               slidesToShow: 2,
               slidesToScroll: 1,
-              dots: true,
+              dots: false,
             },
           },
           {
@@ -52,7 +52,7 @@ const ProductModal2 = ({ shina = [] }) => {
             settings: {
               slidesToShow: 2,
               slidesToScroll: 1,
-              dots: true,
+              dots: false,
             },
           },
         ]}

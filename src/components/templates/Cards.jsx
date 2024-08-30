@@ -1,20 +1,33 @@
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-// import Image from 'next/image';
 
 import { formattedPrice } from '@/utils/price';
 import AddItemButton from '../AddItemButton/AddItemButton';
+import QuantityBox from '../QuantityBox';
 // import responsiveImage from '@/utils/responsiveImage';
 
 function CardShini(props) {
   const product = props;
 
+  const [quantity, setQuantity] = useState(1);
+
   const { push: navigate } = useRouter();
   const handleDivClick = () => {
     navigate(`/${product.slug}`);
-    window.scrollTo({
-      top: 0,
-    });
+  };
+
+  const increment = (event) => {
+    event.stopPropagation();
+    setQuantity((prev) => prev + 1);
+  };
+
+  const decrement = (event) => {
+    event.stopPropagation();
+
+    if (quantity === 1) return;
+
+    setQuantity((prev) => prev - 1);
   };
 
   return (
@@ -32,7 +45,6 @@ function CardShini(props) {
             src={product.image}
             alt={product.name}
             style={{ width: '200px', height: '200px' }}
-            // {...responsiveImage}
           />
         </div>
         <div className='bg-primary py-2 px-4 flex flex-col gap-1 cardContent'>
@@ -53,13 +65,11 @@ function CardShini(props) {
                 {product.paying}
               </Link>
             ) : (
-              <Link
-                href='/product'
-                type='submit'
-                className='active:bg-gray-100 bg-white text-primary rounded px-2 py-1 text-lg text-xs outline-none border border-white'
-              >
-                Купить
-              </Link>
+              <QuantityBox
+                quantity={quantity}
+                inc={increment}
+                dec={decrement}
+              />
             )}
             {product.data ? (
               <p className='text-sm'>{product.data}</p>
@@ -73,14 +83,14 @@ function CardShini(props) {
                 {product.order}
               </Link>
             ) : (
-              <AddItemButton item={product} />
+              <AddItemButton item={product} quantity={quantity} />
             )}
           </div>
           {product.none ? (
             <p className='hidden'>{product.none}</p>
           ) : product.checkout ? (
             <Link
-              href='/product'
+              href='/checkout-order'
               type='submit'
               className='py-1 text-xs px-3 bg-red-600 rounded active:bg-red-700'
             >
@@ -88,7 +98,7 @@ function CardShini(props) {
             </Link>
           ) : (
             <Link
-              href='/product'
+              href={product.slug}
               type='submit'
               className='py-1 text-xs px-3 bg-red-600 rounded active:bg-red-700'
             >

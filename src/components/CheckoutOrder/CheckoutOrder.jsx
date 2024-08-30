@@ -4,9 +4,9 @@ import Footer from '../Footer/Footer';
 import ScrollToTop from '../ScrollToTop/ScrollToTop';
 import './CheckoutOrder.css';
 // import Image from 'next/image';
-import select from '../../assets/select.svg';
-import walletImg from '../../assets/wallet-image.svg';
-import cardImg from '../../assets/card-image.svg';
+// import select from '../../assets/oki.png';
+// import walletImg from '/card-holder.png';
+// import cardImg from '/card.png';
 import Link from 'next/link';
 
 const CheckoutOrder = () => {
@@ -100,12 +100,12 @@ const CheckoutOrder = () => {
                       Способ получения
                     </p>
                     <div className='main-container-pay-method flex flex-row'>
-                      <div className='cont-pay-method'>
+                      <div className='cont-pay-method cursor-pointer'>
                         <p style={{ marginTop: '16px' }}>Доставка до двери</p>
                         <div className='flex flex-row items-center mt-9'>
                           <img
-                            src={select}
-                            style={{ width: '31px', height: '12px' }}
+                            src={'/oki.png'}
+                            style={{ width: '25px', height: '12px' }}
                             // width={31}
                             // height={12}
                             alt='selects'
@@ -114,11 +114,11 @@ const CheckoutOrder = () => {
                             Стоимость доставки
                           </p>
                           <p className='price' style={{ marginLeft: '43px' }}>
-                            0 Т
+                            0 ₸
                           </p>
                         </div>
                       </div>
-                      <div className='cont-pay-method second flex items-center ml-10'>
+                      <div className='cont-pay-method second flex items-center ml-10 cursor-pointer'>
                       Забрать из точки
                       </div>
                     </div>
@@ -140,11 +140,11 @@ const CheckoutOrder = () => {
                   </div>
                   <div className='flex flex-col mt-10'>
                     Ваш рабочий адрес
-                    <input className='area mt-3 p-5' type='text' />
+                    <textarea className='area mt-3 p-5' type='text' ></textarea>
                   </div>
                   <div className='flex flex-col mt-10'>
                     Комментарии к заказу
-                    <input className='area mt-3 p-5' type='text' />
+                    <textarea className='area mt-3 p-5' type='text'></textarea>
                   </div>
                   <div className='flex flex-col mt-10'>
                     Есть промокод
@@ -155,20 +155,20 @@ const CheckoutOrder = () => {
                 <div className='walletcard-container flex flex-col mt-20 mb-20'>
                   <p className='pay-method'>Способ оплаты</p>
                   <div className='container items-center mt-10'>
-                    <div className='walletcard flex flex-col max-w-[389px] w-full max-h-[198px] h-full items-center'>
+                    <div className='walletcard flex flex-col max-w-[389px] w-full max-h-[198px] h-full items-center cursor-pointer'>
                       <img
-                        src={cardImg}
-                        style={{ width: '130.67px', height: '93.33px' }}
+                        src={'/card.png'}
+                        style={{ width: '80.19px', height: '62.06px' }}
                         // width={130.67}
                         // height={93.33}
                         alt='wallet'
                       />
                       <p>Оплата картой</p>
                     </div>
-                    <div className='walletcard flex flex-col max-w-[389px] w-full max-h-[198px] h-full items-center'>
+                    <div className='walletcard flex flex-col max-w-[389px] w-full max-h-[198px] h-full items-center cursor-pointer'>
                       <img
-                        src={walletImg}
-                        style={{ width: '107.19px', height: '94.06px' }}
+                        src={'/card-holder.png'}
+                        style={{ width: '80.19px', height: '62.06px' }}
                         // width={107.19}
                         // height={94.06}
                         alt='card'

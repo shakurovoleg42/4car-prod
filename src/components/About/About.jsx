@@ -12,7 +12,6 @@ import Slider from 'react-slick';
 
 
 const About = ({partners}) => {
-  // const manufacturers = await fetchService.getManufacturersHome();
   return (
     <>
       <div className='overflow-hidden'>
@@ -90,7 +89,7 @@ const About = ({partners}) => {
                   settings: {
                     slidesToShow: 3,
                     slidesToScroll: 1,
-                    dots: true,
+                    dots: false,
                   },
                 },
                 {
@@ -98,7 +97,7 @@ const About = ({partners}) => {
                   settings: {
                     slidesToShow: 2,
                     slidesToScroll: 1,
-                    dots: true,
+                    dots: false,
                   },
                 },
                 {
@@ -106,7 +105,7 @@ const About = ({partners}) => {
                   settings: {
                     slidesToShow: 2,
                     slidesToScroll: 1,
-                    dots: true,
+                    dots: false,
                   },
                 },
               ]}
