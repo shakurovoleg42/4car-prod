@@ -33,8 +33,6 @@ const GlobalMain = ({ partners, news, bestSeller }) => {
     }));
   };
 
-const GlobalMain = ({ partners, news, bestSeller }) => {
-
   useEffect(() => {
     AOS.init();
   }, []);
