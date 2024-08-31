@@ -3,7 +3,10 @@ import getSession from './utils/getSession';
 export async function middleware(request) {
   const session = request.cookies.get('session')?.value;
 
-  if (request.nextUrl.pathname.startsWith('/customer')) {
+  if (
+    request.nextUrl.pathname.startsWith('/customer') ||
+    request.nextUrl.pathname.startsWith('/checkout-order')
+  ) {
     if (!session || !(await getSession(session))) {
       return Response.redirect(new URL('/login', request.url));
     }
@@ -21,5 +24,5 @@ export async function middleware(request) {
 }
 
 export const config = {
-  matcher: ['/login', '/register', '/customer/:path*'],
+  matcher: ['/login', '/register', '/customer/:path*', '/checkout-order'],
 };
