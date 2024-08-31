@@ -81,7 +81,6 @@ const About = ({partners}) => {
                   settings: {
                     slidesToShow: 4,
                     slidesToScroll: 1,
-                    dots: true,
                   },
                 },
                 {

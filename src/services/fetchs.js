@@ -64,6 +64,13 @@ const fetchService = {
     const res = await instance.get(`/best-selling`);
     return res.data;
   },
+
+  postSendEFeedback: async (data) => {
+    const res = await instance.post(`/efeedback`, data);
+    return res.data;
+  },
+
+
 };
 
 export default fetchService;
