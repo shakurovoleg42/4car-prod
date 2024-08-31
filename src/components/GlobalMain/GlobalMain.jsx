@@ -116,7 +116,7 @@ const GlobalMain = ({ partners, news, bestSeller }) => {
                     data-aos-anchor-placement='top-bottom'
                     className='max-w-44 w-full h-full bg-white text-center flex flex-col items-center '
                   >
-                    <img src={el.image} alt='product' className='h-44' />
+                    <img src={el.image} alt='product' className='h-44 object-contain' />
                     <span>{el.name}</span>
                   </Link>
                 </div>
@@ -256,7 +256,7 @@ const GlobalMain = ({ partners, news, bestSeller }) => {
                   <Link href={`/${e.slug}`}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
-                      className='2xl:max-w-[140px] min-h-[200px] xl:max-w-[110px] lg:max-w-[80px] md:max-w-38 sm:max-w-[80px] max-w-[80px] w-full m-auto 2xl:pt-6 xl:pt-5 lg:pt-4 md:pt-2 sm:pt-1 pt-0 mb-3'
+                      className='2xl:max-w-[140px] min-h-[200px] xl:max-w-[110px] lg:max-w-[80px] md:max-w-38 sm:max-w-[80px] max-w-[80px] w-full m-auto 2xl:pt-6 xl:pt-5 lg:pt-4 md:pt-2 sm:pt-1 pt-0 mb-3 object-contain'
                       src={e.image}
                       alt={e.name}
                     />
@@ -264,7 +264,7 @@ const GlobalMain = ({ partners, news, bestSeller }) => {
                   <div className='bg-primary py-2 rounded'>
                     <h3
                       className='px-6 2xl:mt-8 xl:mt-6 lg:mt-5 md:mt-5 sm:mt-4 mt-4 md:text-center sm:text-center text-center font-semibold 
-                                            2xl:text-lg xl:text-lg lg:text-md md:text-sm sm:text-sm text-sm text-white'
+                                            2xl:text-lg xl:text-lg lg:text-md md:text-sm sm:text-sm text-sm text-white min-h-[60px]'
                     >
                       {e.name}
                     </h3>
