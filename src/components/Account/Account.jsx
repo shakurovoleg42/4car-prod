@@ -9,7 +9,7 @@ import History from '../templates/History';
 import Cart from '../templates/Cart';
 import EditAccount from '../templates/EditAccount';
 
-const Account = () => {
+const Account = ({ data }) => {
   const [selectedImage, setSelectedImage] = useState('/user.jpg');
 
   const pathname = usePathname();
@@ -30,13 +30,13 @@ const Account = () => {
 
   switch (pathname) {
     case '/customer/cart':
-      return <Cart />;
+      return <Cart data={data} />;
     case '/customer/settings':
       return (
         <EditAccount myFunc={handleImageChange} imgSelect={selectedImage} />
       );
     default:
-      return <History />;
+      return <History data={data} />;
   }
 };
 

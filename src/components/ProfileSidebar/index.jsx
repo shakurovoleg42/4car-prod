@@ -7,7 +7,7 @@ import { IoSettingsOutline } from 'react-icons/io5';
 import { PiShoppingCart } from 'react-icons/pi';
 import Image from 'next/image';
 
-export default function ProfileSidebar() {
+export default function ProfileSidebar({ data }) {
   const router = useRouter();
   const pathname = usePathname();
 
@@ -31,15 +31,15 @@ export default function ProfileSidebar() {
       className='max-w-[360px] w-full border rounded shadow-xl flex flex-col px-8 items-center pb-10 relative accontLeft'
     >
       <Image
-        src='/user.jpg'
+        src={data.image || '/user.jpg'}
         alt=''
         className='rounded-full border object-cover bg-white -translate-y-14 userIcon w-[150px] h-[150px]'
         width={150}
         height={150}
       />
       <div className='-translate-y-6 text-center 2xl:text-xl xl:text-xl lg:text-lg md:text-md sm:text-md text-sm'>
-        <p className=''>Имя</p>
-        <p className=''>Фамилия</p>
+        <p>{data.first_name}</p>
+        <p>{data.last_name}</p>
       </div>
       <div className=' flex flex-col gap-6 accountCategory'>
         <div className='flex items-center gap-3'>
