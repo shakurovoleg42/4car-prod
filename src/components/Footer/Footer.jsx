@@ -4,15 +4,18 @@ import { useState } from 'react';
 import fetchService from '@/services/fetchs';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { FaAngleRight } from 'react-icons/fa6';
+import { FaAngleRight, FaInstagram } from 'react-icons/fa6';
 import './footer.css';
 import responsiveImage from '../../utils/responsiveImage';
+import Link from 'next/link';
+import { FiFacebook } from 'react-icons/fi';
+
 const Footer = () => {
   const matches = useMediaQuery('(max-width: 670px)');
   const [formData, setFormData] = useState({
-    fullName: '',
-    userEmail: '',
-    message: '',
+    name: '',
+    email: '',
+    text: '',
   });
 
   const handleChange = (e) => {
@@ -24,22 +27,7 @@ const Footer = () => {
     e.preventDefault();
     
     try {
-      const res = await fetchService.postSendEFeedback(formData);
-      console.log('Feedback sent:', res); // Посмотрите, что именно содержится в res
-    
-      if (!res || Object.keys(res).length === 0) {
-        console.log('Empty response from server');
-        toast.warn('Сервер не вернул ответ, но сообщение может быть отправлено.', {
-          position: 'top-right',
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: 'light',
-        });
-      } else {
+      await fetchService.postSendEFeedback(formData);
         toast.success('Ваше сообщение успешно отправлено!', {
           position: 'top-right',
           autoClose: 3000,
@@ -50,12 +38,8 @@ const Footer = () => {
           progress: undefined,
           theme: 'light',
         });
-      }
-    
-      setFormData({ fullName: '', userEmail: '', message: '' });
+      setFormData({ name: '', email: '', text: '' });
     } catch (error) {
-      console.error('Error sending feedback:', error);
-    
       toast.error('Ошибка при отправке сообщения. Попробуйте снова.', {
         position: 'top-right',
         autoClose: 3000,
@@ -102,26 +86,26 @@ const Footer = () => {
               </p>
               <div>
                 <label
-                  htmlFor='fullName'
+                  htmlFor='name'  // Приведение в соответствие с состоянием
                   className='2xl:text-lg xl:text-lg lg:text-md md:text-md sm:text-md text-md mb-3'
                 >
                   Полное имя
                 </label>
                 <input
                   autoComplete='name'
-                  id='fullName'
+                  id='name'  // Приведение в соответствие с состоянием
                   type='text'
-                  name='fullName'
+                  name='name'  // Приведение в соответствие с состоянием
                   required
                   placeholder='Саманта Уилер'
-                  value={formData.fullName}
+                  value={formData.name}
                   onChange={handleChange}
                   className='w-full border-b py-3 px-4 focus:outline-none text-xl'
                 />
               </div>
               <div>
                 <label
-                  htmlFor='userEmail'
+                  htmlFor='email'
                   className='2xl:text-lg xl:text-lg lg:text-md md:text-md sm:text-sm text-sm mb-3'
                 >
                   Введите адрес электронной почты
@@ -129,11 +113,11 @@ const Footer = () => {
                 <input
                   autoComplete='email'
                   required
-                  id='userEmail'
+                  id='email'
                   type='email'
-                  name='userEmail'
+                  name='email'
                   placeholder='Example@gmail.com'
-                  value={formData.userEmail}
+                  value={formData.email}
                   onChange={handleChange}
                   className='w-full border-b py-3 px-4 focus:outline-none text-xl'
                 />
@@ -147,10 +131,10 @@ const Footer = () => {
                 </label>
                 <textarea
                   id='textarea'
-                  name='message'
+                  name='text'
                   cols='40'
                   rows='3'
-                  value={formData.message}
+                  value={formData.text}
                   onChange={handleChange}
                   className='w-full border-b py-3 px-4 focus:outline-none text-xl'
                 ></textarea>
@@ -178,11 +162,96 @@ const Footer = () => {
           <div className='container mt-5'>
             <div className='flex-wrap gap-5 justify-between items-start text-white px-5 wrapalyzer'>
               {/* остальной контент футера */}
+              <div className='flex flex-col footer__content gap-6'>
+                <p className='2xl:text-3xl xl:text-2xl lg:text-xl md:text-xl sm:text-lg text-lg font-bold'>
+                  Навигация
+                </p>
+                <ul className='flex flex-col gap-4 footer__list'>
+                  <li>
+                    <Link href='/about'>О компании</Link>
+                  </li>
+                  <li>
+                    <Link href='/contacts'>Контакты</Link>
+                  </li>
+                  <li>
+                    <Link href='/news'>Новости</Link>
+                  </li>
+                  <li>
+                    <Link href='/blog'>Блог</Link>
+                  </li>
+                  <li>
+                    <Link href='/delivery'>Оплата и доставка</Link>
+                  </li>
+                  <li>
+                    <Link href='/shinomontazh'>Шиномонтаж</Link>
+                  </li>
+                </ul>
+              </div>
+              <div className='flex flex-col footer__content gap-6'>
+                <p className='2xl:text-3xl xl:text-2xl lg:text-xl md:text-xl sm:text-lg text-lg font-bold'>
+                  Категории
+                </p>
+                <ul className='flex flex-col gap-4 footer__list'>
+                  <li>
+                    <Link href='/tires'>Шины</Link>
+                  </li>
+                  <li>
+                    <Link href='/rims'>Диски</Link>
+                  </li>
+                </ul>
+              </div>
+              <div className='flex flex-col footer__content gap-6 max-w-[250px]'>
+                <p className='2xl:text-3xl xl:text-2xl lg:text-xl md:text-xl sm:text-lg text-lg font-bold'>
+                  Контакты
+                </p>
+                <ul className='flex flex-col gap-4 footer__list'>
+                  <li>
+                    <a href='tel:+7 (701) 744-80-07'>+7 (701) 744-80-07</a>
+                  </li>
+                  <li>
+                    <a href='tel:+7 (706) 413-35-56'>+7 (706) 413-35-56</a>
+                  </li>
+                </ul>
+                <div className='social'>
+                  <a
+                    target='_blank'
+                    className='facebook'
+                    href='https://www.facebook.com/4car.kz/'
+                    aria-label='Facebook'
+                  >
+                    <FiFacebook size={24} />
+                  </a>
+                  <a
+                    target='_blank'
+                    className='instagram'
+                    href='https://www.instagram.com/4carkz/'
+                    aria-label='Instagram'
+                  >
+                    <FaInstagram size={24} />
+                  </a>
+                </div>
+              </div>
+              <div className='flex flex-col footer__content gap-6'>
+                <p className='2xl:text-3xl xl:text-2xl lg:text-xl md:text-xl sm:text-lg text-lg font-bold'>
+                  Документы
+                </p>
+                <ul className='flex flex-col gap-4 footer__list'>
+                  <li>
+                    <Link href='/politika-konfidencialnosti'>
+                      Политика конфиденциальности
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href='/publichnaya-oferta'>Публичная оферта</Link>
+                  </li>
+                </ul>
+              </div>
             </div>
             <div className='mt-5'>
               <hr />
               <p className='text-white text-center mt-5'>
-                Разработано{' '}
+                Разработано
+                {' '}
                 <a
                   href='https://iprod.kz/'
                   target='_blank'
