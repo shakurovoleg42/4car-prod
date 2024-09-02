@@ -4,9 +4,12 @@ import { useState } from 'react';
 import fetchService from '@/services/fetchs';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { FaAngleRight } from 'react-icons/fa6';
+import { FaAngleRight, FaInstagram } from 'react-icons/fa6';
 import './footer.css';
+FaInstagram
 import responsiveImage from '../../utils/responsiveImage';
+import Link from 'next/link';
+import { FiFacebook } from 'react-icons/fi';
 const Footer = () => {
   const matches = useMediaQuery('(max-width: 670px)');
   const [formData, setFormData] = useState({
@@ -177,7 +180,90 @@ const Footer = () => {
         <div className='footer_navigate py-5'>
           <div className='container mt-5'>
             <div className='flex-wrap gap-5 justify-between items-start text-white px-5 wrapalyzer'>
-              {/* остальной контент футера */}
+              {/* остальной контент футера */}              <div className='flex flex-col footer__content gap-6'>
+                <p className='2xl:text-3xl xl:text-2xl lg:text-xl md:text-xl sm:text-lg text-lg font-bold'>
+                  Навигация
+                </p>
+                <ul className='flex flex-col gap-4 footer__list'>
+                  <li>
+                    <Link href='/about'>О компании</Link>
+                  </li>
+                  <li>
+                    <Link href='/contacts'>Контакты</Link>
+                  </li>
+                  <li>
+                    <Link href='/news'>Новости</Link>
+                  </li>
+                  <li>
+                    <Link href='/blog'>Блог</Link>
+                  </li>
+                  <li>
+                    <Link href='/delivery'>Оплата и доставка</Link>
+                  </li>
+                  <li>
+                    <Link href='/shinomontazh'>Шиномонтаж</Link>
+                  </li>
+                </ul>
+              </div>
+              <div className='flex flex-col footer__content gap-6'>
+                <p className='2xl:text-3xl xl:text-2xl lg:text-xl md:text-xl sm:text-lg text-lg font-bold'>
+                  Категории
+                </p>
+                <ul className='flex flex-col gap-4 footer__list'>
+                  <li>
+                    <Link href='/tires'>Шины</Link>
+                  </li>
+                  <li>
+                    <Link href='/rims'>Диски</Link>
+                  </li>
+                </ul>
+              </div>
+              <div className='flex flex-col footer__content gap-6 max-w-[250px]'>
+                <p className='2xl:text-3xl xl:text-2xl lg:text-xl md:text-xl sm:text-lg text-lg font-bold'>
+                  Контакты
+                </p>
+                <ul className='flex flex-col gap-4 footer__list'>
+                  <li>
+                    <a href='tel:+7 (701) 744-80-07'>+7 (701) 744-80-07</a>
+                  </li>
+                  <li>
+                    <a href='tel:+7 (706) 413-35-56'>+7 (706) 413-35-56</a>
+                  </li>
+                </ul>
+                <div className='social'>
+                  <a
+                    target='_blank'
+                    className='facebook'
+                    href='https://www.facebook.com/4car.kz/'
+                    aria-label='Facebook'
+                  >
+                    <FiFacebook size={24} />
+                  </a>
+                  <a
+                    target='_blank'
+                    className='instagram'
+                    href='https://www.instagram.com/4carkz/'
+                    aria-label='Instagram'
+                  >
+                    <FaInstagram size={24} />
+                  </a>
+                </div>
+              </div>
+              <div className='flex flex-col footer__content gap-6'>
+                <p className='2xl:text-3xl xl:text-2xl lg:text-xl md:text-xl sm:text-lg text-lg font-bold'>
+                  Документы
+                </p>
+                <ul className='flex flex-col gap-4 footer__list'>
+                  <li>
+                    <Link href='/politika-konfidencialnosti'>
+                      Политика конфиденциальности
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href='/publichnaya-oferta'>Публичная оферта</Link>
+                  </li>
+                </ul>
+              </div>
             </div>
             <div className='mt-5'>
               <hr />
