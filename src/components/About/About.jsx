@@ -120,7 +120,7 @@ const About = ({partners}) => {
                     data-aos-anchor-placement='top-bottom'
                     className='max-w-44 w-full h-full bg-white text-center flex flex-col items-center '
                   >
-                    <img src={el.image} alt='product' className='h-44'/>
+                    <img src={el.image} alt='product' className='h-44 object-contain'/>
                     <span>{el.name}</span>
                   </Link>
                 </div>

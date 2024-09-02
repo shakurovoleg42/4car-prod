@@ -116,7 +116,7 @@ const SetFilterDiski = (props) => {
                 name='manufacturer'
                 value={filters.manufacturer}
                 onChange={handleChange}
-                className='border border-black text-black'
+                className='border border-black text-black w-full'
               >
                 <option value=''>Выбрать</option>
                 {data.filter.manufacturers.map((el, index) => (
@@ -125,8 +125,8 @@ const SetFilterDiski = (props) => {
               </select>
             </div>
             <div>
-              <p className='text-white'>Сезонность</p>
-              <div className='inline-flex shadow-sm text-black' role='group'>
+              <p className='text-white pb-1'>Сезонность</p>
+              <div className='flex shadow-sm text-black' role='group'>
                 <button
                   type='button'
                   onClick={() => handleSeasonChange('Зимние')}

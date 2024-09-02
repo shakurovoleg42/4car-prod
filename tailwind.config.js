@@ -2,13 +2,13 @@
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
-  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
   theme: {
     extend: {
       colors: {
         primary: '#1A6EC1',
         darkMain: '#182F43',
-        darkPrimary: '#1E3A8A',
+        darkPrimary: '#1A6EC1',
         light: '#e2f0ff',
         borderLight: '#D3D3D3',
       },
@@ -30,7 +30,7 @@ export default {
         cart: "url('/hero-cart.png')",
       },
       fontFamily: {
-        body: ['Montserrat', 'sans-serif'],
+        body: ['Montserrat Alternates', 'sans-serif'],
         forms: ['Poppins', 'sans-serif'],
       },
     },
