@@ -264,7 +264,7 @@ const GlobalMain = ({ partners, news, bestSeller }) => {
                   <div className='bg-primary py-2 rounded'>
                     <h3
                       className='px-6 2xl:mt-8 xl:mt-6 lg:mt-5 md:mt-5 sm:mt-4 mt-4 md:text-center sm:text-center text-center font-semibold 
-                                            2xl:text-lg xl:text-lg lg:text-md md:text-sm sm:text-sm text-sm text-white min-h-[60px]'
+                                            2xl:text-lg xl:text-lg lg:text-md md:text-sm sm:text-sm text-sm text-white min-h-[60px] xl:min-h-[84px]'
                     >
                       {e.name}
                     </h3>

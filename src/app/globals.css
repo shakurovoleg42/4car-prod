@@ -43,6 +43,18 @@ body {
   width: 300px;
 }
 
+.moreOptions .slick-slide {
+  margin: 0 20px;
+}
+
+.moreOptions .slick-list {
+  margin: 0 -20px;
+}
+
+.moreOptions .slick-track {
+  display: flex;
+}
+
 @media (max-width: 1085px) {
   .autoCompleteContent {
     width: 250px;
