@@ -25,9 +25,7 @@ export default async function Brand({ params }) {
     try {
       product = await fetchService.getProduct(params.slug);
     } catch (error) {
-      if (error.response.status !== 404) {
-        throw error;
-      }
+      redirect('/');
     }
 
     if (product) {

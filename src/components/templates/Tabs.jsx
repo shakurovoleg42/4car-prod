@@ -64,7 +64,7 @@ const Tabs = ({ similar_products = [] }) => {
             {activeModal === 'modal5' && <Reviews />}
           </div>
           <div className='flex flex-col items-center mt-20'>
-            <p className='font-body font-bold mb-5 2xl:text-2xl xl:text-2xl lg:text-xl md:text-lg sm:text-md text-md'>
+            <p className='font-body font-bold 2xl:text-2xl xl:text-2xl lg:text-xl md:text-lg sm:text-md text-md'>
               Другие варианты
             </p>
             <ProductModal2 shina={similar_products} />

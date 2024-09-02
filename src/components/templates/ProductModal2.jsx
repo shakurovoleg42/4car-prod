@@ -24,48 +24,17 @@ const ProductModal2 = ({ shina = [] }) => {
             },
           },
           {
-            breakpoint: 1024,
-            settings: {
-              slidesToShow: 3,
-              slidesToScroll: 1,
-              dots: false,
-            },
-          },
-          {
             breakpoint: 600,
             settings: {
               slidesToShow: 2,
               slidesToScroll: 1,
-              dots: false,
-            },
-          },
-          {
-            breakpoint: 470,
-            settings: {
-              slidesToShow: 2,
-              slidesToScroll: 1,
-              dots: false,
-            },
-          },
-          {
-            breakpoint: 350,
-            settings: {
-              slidesToShow: 2,
-              slidesToScroll: 1,
-              dots: false,
             },
           },
         ]}
       >
         {shina.map((item) => (
           <div key={item.id}>
-            <CardShini
-              img={item.image}
-              type={item.name}
-              character={item.name}
-              price={item.price}
-              slug={item.slug}
-            />
+            <CardShini {...item} />
           </div>
         ))}
       </Slider>

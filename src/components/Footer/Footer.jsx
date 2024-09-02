@@ -251,6 +251,7 @@ const Footer = () => {
               <hr />
               <p className='text-white text-center mt-5'>
                 Разработано
+                {' '}
                 <a
                   href='https://iprod.kz/'
                   target='_blank'
