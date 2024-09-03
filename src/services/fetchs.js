@@ -45,8 +45,8 @@ const fetchService = {
     return res.data;
   },
 
-  postProductReview: async (id) => {
-    const res = await instance.post(`/reviews/products/${id}`);
+  postProductReview: async (id, formData, config) => {
+    const res = await instance.post(`/reviews/products/${id}`, formData, config );
     return res.data;
   },
 
