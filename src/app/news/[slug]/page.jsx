@@ -34,10 +34,19 @@ const NewsPage = ({ params }) => {
     setFormData({ ...formData, [name]: value });
   };
 
+  const hardcodedToken = '116|09gEPnxMuOtjXLfHXJPyVGJJB3zDvlVmsSYaKOSzcc9b3313'
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
-      const res = await fetchService.postCommentNews(data.id, formData);
+      const config = {
+        headers: {
+          'Authorization': `Bearer ${hardcodedToken}`
+        }
+      };
+
+      const res = await fetchService.postCommentNews(data.id, formData, config);
       console.log('Comment posted:', res.data);
 
       const updatedComments = await fetchService.getCommentsNews(data.id);
@@ -45,10 +54,7 @@ const NewsPage = ({ params }) => {
 
       setFormData({ body: '' });
     } catch (error) {
-      console.error(
-        'Error posting comment:',
-        error.response?.data || error.message
-      );
+      console.error('Error posting comment:', error.response?.data || error.message);
     }
   };
 
@@ -68,7 +74,7 @@ const NewsPage = ({ params }) => {
         <main className='my-10 container'>
           <section className='flex flex-col items-center gap-4 px-4'>
             <Link href='/news' className='flex items-center gap-2 mb-4'>
-              <FaAngleLeft /> назад
+              <FaAngleLeft /> Назад
             </Link>
             <div className='px-4' data-aos='fade-right'>
               <h1 className='font-body font-bold xl:text-4xl lg:text-3xl md:text-2xl text-xl text-center'>
@@ -93,7 +99,7 @@ const NewsPage = ({ params }) => {
             <div className='flex gap-6 flex-col items-center'>
               <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
                 <textarea
-                  placeholder='Введите комментарий'
+                  placeholder='Enter a comment'
                   onChange={handleChange}
                   className='max-w-[800px] min-w-[350px] min-h-[120px] p-2 border-solid border-2'
                   name='body'
@@ -126,4 +132,8 @@ const NewsPage = ({ params }) => {
   );
 };
 
+
+
 export default NewsPage;
+
+

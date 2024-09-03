@@ -261,8 +261,8 @@ const CheckoutOrder = () => {
                   <div className='container items-center mt-10'>
                     <div
                       className='walletcard flex flex-col max-w-[389px] w-full max-h-[198px] h-full items-center cursor-pointer'
-                      style={pmSx('cash')}
-                      onClick={() => setPaymentMethod('cash')}
+                      style={pmSx('card')}
+                      onClick={() => toast.error('Неполадки с сервисом')}
                     >
                       <Image
                         src={'/card.png'}
@@ -274,8 +274,8 @@ const CheckoutOrder = () => {
                     </div>
                     <div
                       className='walletcard flex flex-col max-w-[389px] w-full max-h-[198px] h-full items-center cursor-pointer'
-                      style={pmSx('card')}
-                      onClick={() => toast.error('Неполадки с сервисом')}
+                      style={pmSx('cash')}
+                      onClick={() => setPaymentMethod('cash')}
                     >
                       <Image
                         src={'/card-holder.png'}

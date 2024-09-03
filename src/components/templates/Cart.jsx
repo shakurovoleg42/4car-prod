@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 import Card from './Cards';
 
 const Cart = ({ data }) => {
@@ -15,12 +17,12 @@ const Cart = ({ data }) => {
             <Card key={e.id} {...e} />
           ))}
         </div>
-        <button
-          type='submit'
+        <Link
+          href='/checkout-order'
           className='bg-primary mt-5 py-1 px-3 text-white rounded active:bg-blue-700'
         >
           Заказать все
-        </button>
+        </Link>
       </div>
     </>
   );

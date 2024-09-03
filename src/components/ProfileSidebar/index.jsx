@@ -5,14 +5,17 @@ import { FaAngleRight } from 'react-icons/fa6';
 import { GiBackwardTime } from 'react-icons/gi';
 import { IoSettingsOutline } from 'react-icons/io5';
 import { PiShoppingCart } from 'react-icons/pi';
+import { IoIosLogOut } from 'react-icons/io';
 import Image from 'next/image';
+
+import { logout } from '@/app/actions';
 
 export default function ProfileSidebar({ data }) {
   const router = useRouter();
   const pathname = usePathname();
 
   const buttonSC =
-    'flex items-center max-w-[220px] text-darkMain border-b border-primary focus:bg-primary rounded focus:text-white px-2 w-full justify-between';
+    'flex items-center text-darkMain border-b border-primary focus:bg-primary rounded focus:text-white px-2 w-full justify-between';
 
   const isActiveFoo = (route) => pathname === route;
 
@@ -72,6 +75,13 @@ export default function ProfileSidebar({ data }) {
             style={sx('/customer/settings')}
           >
             Настройки аккаунта
+            <FaAngleRight />
+          </button>
+        </div>
+        <div className='flex items-center gap-3'>
+          <IoIosLogOut className='text-primary text-3xl' />
+          <button onClick={() => logout({})} className={buttonSC}>
+            Выход
             <FaAngleRight />
           </button>
         </div>
