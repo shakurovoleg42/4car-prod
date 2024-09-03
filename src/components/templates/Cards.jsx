@@ -40,7 +40,7 @@ function CardShini(props) {
         <div className='blockImg'>
           <img
             className='2xl:max-w-[110px] xl:max-w-[100px] lg:max-w-[85px] max-w-[75px] 
-                2xl:max-h-[140px] xl:max-h-[130px] lg:max-h-[120px] md:max-h-[110px] sm:max-h-[100px] max-h-[100px] mx-auto mb-3'
+                2xl:max-h-[140px] xl:max-h-[130px] lg:max-h-[120px] md:max-h-[110px] sm:max-h-[100px] max-h-[100px] mx-auto mb-3 object-contain'
             src={product.image}
             alt={product.name}
             style={{ width: '200px', height: '200px' }}
