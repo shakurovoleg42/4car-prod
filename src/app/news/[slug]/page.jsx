@@ -94,7 +94,7 @@ const NewsPage = ({ params }) => {
           </section>
           <div className='flex gap-6 flex-col items-center border-t-2 border-gray-300 pt-4 mt-8'>
             <p className='font-body font-bold mb-5 2xl:text-2xl xl:text-2xl lg:text-xl md:text-lg sm:text-md text-sm'>
-              Comments
+              Комментарии
             </p>
             <div className='flex gap-6 flex-col items-center'>
               <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
@@ -109,7 +109,7 @@ const NewsPage = ({ params }) => {
                   className='bg-primary text-white py-2 px-2 rounded-2xl'
                   type='submit'
                 >
-                  Submit
+                  Jnghfdbnm
                 </button>
               </form>
             </div>
