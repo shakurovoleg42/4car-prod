@@ -59,7 +59,7 @@ const NewsPage = ({ params }) => {
   };
 
   if (!data) {
-    return <div>Loading...</div>;
+    return <div>Загрузка...</div>;
   }
 
   return (
@@ -109,7 +109,7 @@ const NewsPage = ({ params }) => {
                   className='bg-primary text-white py-2 px-2 rounded-2xl'
                   type='submit'
                 >
-                  Jnghfdbnm
+                  Отправить
                 </button>
               </form>
             </div>
