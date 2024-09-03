@@ -99,7 +99,7 @@ const NewsPage = ({ params }) => {
             <div className='flex gap-6 flex-col items-center'>
               <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
                 <textarea
-                  placeholder='Enter a comment'
+                  placeholder='Введите комментарий'
                   onChange={handleChange}
                   className='max-w-[800px] min-w-[350px] min-h-[120px] p-2 border-solid border-2'
                   name='body'
