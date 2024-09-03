@@ -1,8 +1,5 @@
 'use client';
-
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-
+import { getCookie } from 'cookies-next';
 import { useState, useEffect } from 'react';
 import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
@@ -14,7 +11,17 @@ import fetchService from '@/services/fetchs';
 const Reviews = ({ product_id }) => {
   const [data, setData] = useState({});
   const [ratingValue] = useState(5);
-  const [formData, setFormData] = useState({ text: '', rating: '' });
+  const [formData, setFormData] = useState({
+    text: '',
+    rating: '',
+    user_id: 1,
+  });
+
+  const cooookies = getCookie('session');
+  console.log('session:', cooookies)
+
+  // const [session] = useState(getCookie('session')?.value);
+  // console.log(session)
 
   useEffect(() => {
     const fetchReviews = async () => {
@@ -53,7 +60,7 @@ const Reviews = ({ product_id }) => {
 
       await fetchService.getProductReview(product_id);
 
-      setFormData({ body: '', rating: 5 });
+      setFormData({ text: '', rating: ratingValue });
     } catch (error) {
       console.error(
         'Error posting comment:',
@@ -69,13 +76,13 @@ const Reviews = ({ product_id }) => {
           Оставьте свой отзыв
         </h2>
         <div className='flex gap-5 flex-col ranking' data-aos=''>
-          <form onChange={handleSubmit}>
+          <form onSubmit={handleSubmit}>
             <div className='flex gap-6 flex-col items-center'>
               <Stack className='max-w-[420px]' spacing={1}>
                 <Rating
-                  name='half-rating'
-                  defaultValue={ratingValue}
-                  precision={0.5}
+                  name='rating'
+                  id='rating'
+                  precision={1}
                   size='large'
                   onChange={handleChange}
                 />
@@ -87,14 +94,13 @@ const Reviews = ({ product_id }) => {
                 className='w-full w-[800px] min-w-[400px] min-h-[120px] p-2 border-solid border-2'
               />
               <button
-                type='submit'
+                onSubmit={handleSubmit}
                 className='bg-primary text-white p-4 rounded-2xl'
               >
                 Отправить
               </button>
             </div>
           </form>
-
           <div className='flex gap-6 flex-col items-center border-t-2 border-gray-300 pt-4'>
             <p className='font-body font-bold mb-5 2xl:text-2xl xl:text-2xl lg:text-xl md:text-lg sm:text-md text-sm'>
               Отзывы других пользователей
@@ -109,7 +115,7 @@ const Reviews = ({ product_id }) => {
                     <p>Имя пользователя</p>
                     <Rating
                       name='half-rating'
-                      precision={0.5}
+                      precision={1}
                       value={review.rating}
                       readOnly
                     />
@@ -121,7 +127,6 @@ const Reviews = ({ product_id }) => {
               ) : (
                 <p>Оставьте отзыв первым!</p>
               )}
-              {/* </Slider> */}
             </div>
           </div>
         </div>
