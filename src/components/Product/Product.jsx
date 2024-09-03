@@ -30,7 +30,7 @@ const Product = ({ product }) => {
   ? 'rims' 
   : null;
 
-  useEffect(() => {
+  useEffect(() => {  
     const fetchReviews = async () => {
       try {
         const reviewsData = await fetchService.getProductReview(product.id);
@@ -39,8 +39,7 @@ const Product = ({ product }) => {
           setData(reviewsData);
         } else {
           console.error(
-            'Expected data to be an object with a reviews array, but received:',
-            reviewsData
+            'Expected data to be an object with a reviews array, but received:'
           );
         }
       } catch (error) {
@@ -272,7 +271,7 @@ const Product = ({ product }) => {
               </div>
             </section>
             <section className='w-full' data-aos='fade-down'>
-              <Tabs similar_products={product.similar_products} />
+              <Tabs similar_products={product.similar_products} product_id={product.id}/>
             </section>
           </div>
         </main>

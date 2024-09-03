@@ -16,8 +16,8 @@ const fetchService = {
     return res.data;
   },
 
-  postCommentNews: async (id, formData) => {
-    const res = await instance.post(`/news/${id}/comments`, formData);
+  postCommentNews: async (id, formData, config) => {
+    const res = await instance.post(`/news/${id}/comments`, formData, config);
     return res.data;
   },
 
