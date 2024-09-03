@@ -177,9 +177,6 @@ const Footer = () => {
                     <Link href='/news'>Новости</Link>
                   </li>
                   <li>
-                    <Link href='/blog'>Блог</Link>
-                  </li>
-                  <li>
                     <Link href='/delivery'>Оплата и доставка</Link>
                   </li>
                   <li>
