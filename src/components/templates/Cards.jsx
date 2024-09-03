@@ -51,39 +51,41 @@ function CardShini(props) {
           <span className='font-bold 2xl:text-lg xl:text-lg lg:text-md md:text-sm sm:text-sm text-sm'>
             {formattedPrice(product.price)} тг
           </span>
-          <div className='flex items-center 2xl:justify-between xl:justify-between justify-center gap-2 2xl:flex-nowrap xl:flex-nowrap'>
-            {product.status ? (
-              <p className='text-xs'>{product.status}</p>
-            ) : product.paying ? (
-              <Link
-                href='/product'
-                type='submit'
-                className='active:bg-gray-100  text-xs px-2 outline-none bg-white text-primary rounded'
-              >
-                {product.paying}
-              </Link>
-            ) : (
-              <QuantityBox
-                quantity={quantity}
-                inc={increment}
-                dec={decrement}
-              />
-            )}
-            {product.data ? (
-              <p className='text-sm'>{product.data}</p>
-            ) : product.order ? (
-              <Link
-                href='/product'
-                type='submit'
-                className='active:bg-blue-700 
+          {!props.isProfileCart && (
+            <div className='flex items-center 2xl:justify-between xl:justify-between justify-center gap-2 2xl:flex-nowrap xl:flex-nowrap'>
+              {product.status ? (
+                <p className='text-xs'>{product.status}</p>
+              ) : product.paying ? (
+                <Link
+                  href='/product'
+                  type='submit'
+                  className='active:bg-gray-100  text-xs px-2 outline-none bg-white text-primary rounded'
+                >
+                  {product.paying}
+                </Link>
+              ) : (
+                <QuantityBox
+                  quantity={quantity}
+                  inc={increment}
+                  dec={decrement}
+                />
+              )}
+              {product.data ? (
+                <p className='text-sm'>{product.data}</p>
+              ) : product.order ? (
+                <Link
+                  href='/product'
+                  type='submit'
+                  className='active:bg-blue-700 
                                 rounded px-2 text-xs outline-none border border-white'
-              >
-                {product.order}
-              </Link>
-            ) : (
-              <AddItemButton item={product} quantity={quantity} />
-            )}
-          </div>
+                >
+                  {product.order}
+                </Link>
+              ) : (
+                <AddItemButton item={product} quantity={quantity} />
+              )}
+            </div>
+          )}
           {product.none ? (
             <p className='hidden'>{product.none}</p>
           ) : product.checkout ? (

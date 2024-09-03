@@ -14,7 +14,7 @@ const Cart = ({ data }) => {
       <div className='flex gap-4 flex-col w-full justify-center items-center'>
         <div className='flex gap-2 flex-wrap mb-10 mt-4 justify-center'>
           {shina.map((e) => (
-            <Card key={e.id} {...e} />
+            <Card key={e.id} isProfileCart {...e} />
           ))}
         </div>
         <Link
