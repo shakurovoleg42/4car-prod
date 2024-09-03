@@ -22,7 +22,7 @@ const History = ({ data }) => {
             const products = JSON.parse(e.products);
 
             return products.map((p) => (
-              <Card key={p.id} status={e.status} data={formattedDate} {...p} />
+              <Card key={p.id} status={e.status_id} data={formattedDate} {...p} />
             ));
           })}
         </div>
