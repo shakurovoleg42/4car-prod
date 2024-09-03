@@ -30,7 +30,7 @@ const Product = ({ product }) => {
   ? 'rims' 
   : null;
 
-  useEffect(() => {
+  useEffect(() => {  
     const fetchReviews = async () => {
       try {
         const reviewsData = await fetchService.getProductReview(product.id);
@@ -39,8 +39,7 @@ const Product = ({ product }) => {
           setData(reviewsData);
         } else {
           console.error(
-            'Expected data to be an object with a reviews array, but received:',
-            reviewsData
+            'Expected data to be an object with a reviews array, but received:'
           );
         }
       } catch (error) {
@@ -127,7 +126,7 @@ const Product = ({ product }) => {
                   data-aos='fade-right'
                   className='flex items-center gap-4 max-w-[700px] w-full justify-between productLeft'
                 >
-                  <img src={product.image} alt={product.name} {...responsiveImage} className='max-w-[500px] max-h-[500px] w-full'/>
+                  <img src={product.image} alt={product.name} {...responsiveImage} className='max-w-[500px] max-h-[500px] w-full object-contain'/>
                   <div className='flex flex-col gap-4'>
                     <p className='flex gap-3 text-xl text-gray-500'>
                       Модель шины
@@ -272,7 +271,7 @@ const Product = ({ product }) => {
               </div>
             </section>
             <section className='w-full' data-aos='fade-down'>
-              <Tabs similar_products={product.similar_products} />
+              <Tabs similar_products={product.similar_products} product_id={product.id}/>
             </section>
           </div>
         </main>
