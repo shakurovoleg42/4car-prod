@@ -21,8 +21,7 @@ const OrderCall = () => {
     const cleanedFormData = { ...formData, number: cleanedNumber };
 
     try {
-      const res = await fetchService.postSendFeedback(cleanedFormData); // Передаем очищенные данные
-      console.log(res);
+      await fetchService.postSendFeedback(cleanedFormData);
       toast.success("Мы свяжемся с вами в ближайшее время!", {
         position: "top-right",
         autoClose: 3000,

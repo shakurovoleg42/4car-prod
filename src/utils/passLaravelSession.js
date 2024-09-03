@@ -4,4 +4,10 @@ const passLaravelSession = (session) => ({
   },
 });
 
+export const passSession = (session) => ({
+  headers: {
+    Authorization: `Bearer ${session}`,
+  },
+});
+
 export default passLaravelSession;

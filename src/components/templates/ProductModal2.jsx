@@ -10,6 +10,7 @@ const ProductModal2 = ({ shina = [] }) => {
     <div className='flex gap-4 w-full flex-col items-center mt-10'>
       <Slider
         className='flex gap-4 w-full flex-wrap ml-5 mb-10 mt-4 justify-center moreOptions'
+        arrows={false}
         dots={false}
         autoplay={true}
         infinite={true}
@@ -24,48 +25,17 @@ const ProductModal2 = ({ shina = [] }) => {
             },
           },
           {
-            breakpoint: 1024,
-            settings: {
-              slidesToShow: 3,
-              slidesToScroll: 1,
-              dots: false,
-            },
-          },
-          {
             breakpoint: 600,
             settings: {
               slidesToShow: 2,
               slidesToScroll: 1,
-              dots: false,
-            },
-          },
-          {
-            breakpoint: 470,
-            settings: {
-              slidesToShow: 2,
-              slidesToScroll: 1,
-              dots: false,
-            },
-          },
-          {
-            breakpoint: 350,
-            settings: {
-              slidesToShow: 2,
-              slidesToScroll: 1,
-              dots: false,
             },
           },
         ]}
       >
         {shina.map((item) => (
           <div key={item.id}>
-            <CardShini
-              img={item.image}
-              type={item.name}
-              character={item.name}
-              price={item.price}
-              slug={item.slug}
-            />
+            <CardShini {...item} />
           </div>
         ))}
       </Slider>

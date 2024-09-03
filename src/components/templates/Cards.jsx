@@ -35,9 +35,7 @@ function CardShini(props) {
     <>
       <div
         onClick={handleDivClick}
-        className='card__item cursor-pointer 2xl:max-w-[210px] xl:max-w-[205px] lg:max-w-[200px] md:max-w-[185px] sm:max-w-[200px] max-w-[170px]
-            2xl:max-h-[305px] xl:max-h-[305px] lg:max-h-[275px] md:max-h-[305px] sm:max-h-[255px] max-h-[285px]
-             font-body w-full text-center text-white rounded'
+        className='card__item cursor-pointer 2xl:max-w-[210px] xl:max-w-[205px] lg:max-w-[200px] md:max-w-[185px] sm:max-w-[200px] max-w-[170px] font-body w-full text-center text-white rounded'
       >
         <div className='blockImg'>
           <img
@@ -54,7 +52,7 @@ function CardShini(props) {
           <span className='font-bold 2xl:text-lg xl:text-lg lg:text-md md:text-sm sm:text-sm text-sm'>
             {formattedPrice(product.price)} тг
           </span>
-          <div className='flex items-center 2xl:justify-between xl:justify-between justify-center gap-2 2xl:flex-nowrap xl:flex-nowrap flex-wrap'>
+          <div className='flex items-center 2xl:justify-between xl:justify-between justify-center gap-2 2xl:flex-nowrap xl:flex-nowrap'>
             {product.status ? (
               <p className='text-xs'>{product.status}</p>
             ) : product.paying ? (

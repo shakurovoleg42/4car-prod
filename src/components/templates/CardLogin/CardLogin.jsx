@@ -41,7 +41,7 @@ const LoginForm = () => {
 
       await cartService.syncCart();
 
-      router.replace('/account');
+      router.replace('/customer');
     } catch (error) {
       toast.error(error.response.data.message);
     } finally {
