@@ -11,23 +11,18 @@ import Stack from '@mui/material/Stack';
 import fetchService from '@/services/fetchs';
 // import Slider from 'react-slick';
 
-const Reviews = () => {
+const Reviews = ({ product_id }) => {
   const [data, setData] = useState({});
-  const [ratingValue, setRatingValue] = useState(5);
+  const [ratingValue] = useState(5);
+  const [formData, setFormData] = useState({ text: '', rating: '' });
 
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        const reviewsData = await fetchService.getProductReview(191731);
-        console.log(reviewsData);
+        const reviewsData = await fetchService.getProductReview(product_id);
 
         if (reviewsData && Array.isArray(reviewsData.reviews)) {
           setData(reviewsData);
-        } else {
-          console.error(
-            'Expected data to be an object with a reviews array, but received:',
-            reviewsData
-          );
         }
       } catch (error) {
         console.error('Error fetching reviews:', error);
@@ -37,9 +32,34 @@ const Reviews = () => {
     fetchReviews();
   }, []);
 
-  const handleRatingChange = (event, newValue) => {
-    setRatingValue(newValue);
-    console.log('Рейтинг поставлен:', newValue);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const hardcodedToken = '116|09gEPnxMuOtjXLfHXJPyVGJJB3zDvlVmsSYaKOSzcc9b3313';
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const config = {
+        headers: {
+          Authorization: `Bearer ${hardcodedToken}`,
+        },
+      };
+
+      await fetchService.postProductReview(product_id, formData, config);
+
+      await fetchService.getProductReview(product_id);
+
+      setFormData({ body: '', rating: 5 });
+    } catch (error) {
+      console.error(
+        'Error posting comment:',
+        error.response?.data || error.message
+      );
+    }
   };
 
   return (
@@ -49,102 +69,58 @@ const Reviews = () => {
           Оставьте свой отзыв
         </h2>
         <div className='flex gap-5 flex-col ranking' data-aos=''>
-          <form>
+          <form onChange={handleSubmit}>
             <div className='flex gap-6 flex-col items-center'>
-            <Stack className='max-w-[420px]' spacing={1}>
-              <Rating
-                name='half-rating'
-                defaultValue={ratingValue}
-                precision={0.5}
-                size='large'
-                onChange={handleRatingChange}
+              <Stack className='max-w-[420px]' spacing={1}>
+                <Rating
+                  name='half-rating'
+                  defaultValue={ratingValue}
+                  precision={0.5}
+                  size='large'
+                  onChange={handleChange}
+                />
+              </Stack>
+              <textarea
+                name='text'
+                id='text'
+                onChange={handleChange}
+                className='w-full w-[800px] min-w-[400px] min-h-[120px] p-2 border-solid border-2'
               />
-            </Stack>
-            <textarea
-              name='text'
-              id='text'
-              className='w-full w-[800px] min-w-[400px] min-h-[120px] p-2 border-solid border-2'
-            />
-            <button className='bg-primary text-white p-4 rounded-2xl'>
-              Отправить
-            </button>
-          </div>
+              <button
+                type='submit'
+                className='bg-primary text-white p-4 rounded-2xl'
+              >
+                Отправить
+              </button>
+            </div>
           </form>
-          
+
           <div className='flex gap-6 flex-col items-center border-t-2 border-gray-300 pt-4'>
             <p className='font-body font-bold mb-5 2xl:text-2xl xl:text-2xl lg:text-xl md:text-lg sm:text-md text-sm'>
               Отзывы других пользователей
             </p>
             <div className='flex gap-4 w-full max-w-[1200px] w-[900px] flex-col items-center mt-10 flex-wrap'>
-              {/* <Slider
-                className='flex gap-4 w-full max-w-[1200px] flex-wrap ml-5 mb-10 mt-4 justify-center moreOptions'
-                dots={true}
-                autoplay={true}
-                infinite={true}
-                slidesToShow={5}
-                slidesToScroll={1}
-                responsive={[
-                  {
-                    breakpoint: 1200,
-                    settings: {
-                      slidesToShow: 3,
-                      slidesToScroll: 1,
-                    },
-                  },
-                  {
-                    breakpoint: 1024,
-                    settings: {
-                      slidesToShow: 3,
-                      slidesToScroll: 1,
-                      dots: true,
-                    },
-                  },
-                  {
-                    breakpoint: 600,
-                    settings: {
-                      slidesToShow: 2,
-                      slidesToScroll: 1,
-                      dots: true,
-                    },
-                  },
-                  {
-                    breakpoint: 470,
-                    settings: {
-                      slidesToShow: 2,
-                      slidesToScroll: 1,
-                      dots: true,
-                    },
-                  },
-                  {
-                    breakpoint: 350,
-                    settings: {
-                      slidesToShow: 2,
-                      slidesToScroll: 1,
-                      dots: true,
-                    },
-                  },
-                ]}
-              > */}
-                {data.reviews && data.reviews.length > 0 ? (
-                  data.reviews.map((review) => (
-                    <div
-                      key={review.id}
-                      className='flex items-left flex-col border-b-2 p-2'
-                    >
-                      <p>Имя пользователя</p>
-                      <Rating
-                        name='half-rating'
-                        value={review.rating}
-                        readOnly
-                      />
-                      <span className='flex max-w-[400px] mt-4 text-gray-700'>
-                        {review.text}
-                      </span>
-                    </div>
-                  ))
-                ) : (
-                  <p>Оставьте отзыв первым!</p>
-                )}
+              {data.reviews && data.reviews.length > 0 ? (
+                data.reviews.map((review) => (
+                  <div
+                    key={review.id}
+                    className='flex items-left flex-col border-b-2 p-2'
+                  >
+                    <p>Имя пользователя</p>
+                    <Rating
+                      name='half-rating'
+                      precision={0.5}
+                      value={review.rating}
+                      readOnly
+                    />
+                    <span className='flex max-w-[400px] mt-4 text-gray-700'>
+                      {review.text}
+                    </span>
+                  </div>
+                ))
+              ) : (
+                <p>Оставьте отзыв первым!</p>
+              )}
               {/* </Slider> */}
             </div>
           </div>

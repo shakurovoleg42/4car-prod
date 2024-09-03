@@ -1,61 +1,23 @@
-/* eslint-disable react/prop-types */
-
 import { useState } from 'react';
 import { MdOutlineVisibility } from 'react-icons/md';
 import { MdOutlineVisibilityOff } from 'react-icons/md';
-// import UserImg from '../../assets/UserImg.png';
+import useSWR from 'swr';
+import Image from 'next/image';
+import axios from 'axios';
 
 const EditAccount = (props) => {
-  const [login, setLogin] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [error, setError] = useState('');
-  const [inputValue, setInputValue] = useState('');
-  const [emailError, setEmailError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleLoginChange = (e) => {
-    setLogin(e.target.value);
-  };
-
-  const handleLastNameChange = (e) => {
-    setLastName(e.target.value);
-  };
-
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
-  const handleConfirmPasswordChange = (e) => {
-    setConfirmPassword(e.target.value);
-  };
+  const { data } = useSWR('/api/user', () =>
+    axios.get('/api/user').then((res) => res.data)
+  );
 
   const handleTogglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
-  const handleInputChange = (e) => {
-    const value = e.target.value;
-
-    // Проверка наличия символов '@' и '+' в значении
-    if (value.includes('@') || value.includes('+')) {
-      setEmailError('');
-    } else {
-      setEmailError(
-        'Введите действительный адрес электронной почты или номер телефона',
-      );
-    }
-
-    setInputValue(value);
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    if (password === confirmPassword) {
-      setError('');
-    } else {
-      setError('Пароли не совпадают');
-    }
   };
 
   return (
@@ -76,9 +38,8 @@ const EditAccount = (props) => {
               name='FirstName'
               type='text'
               id='login'
-              value={login}
-              onChange={handleLoginChange}
               className='border rounded py-1 px-2 outline-none'
+              defaultValue={data?.first_name}
             />
           </div>
           <div className='flex flex-col'>
@@ -90,9 +51,8 @@ const EditAccount = (props) => {
               name='LastName'
               type='text'
               id='lastName'
-              value={lastName}
-              onChange={handleLastNameChange}
               className='border rounded py-1 px-2 outline-none'
+              defaultValue={data?.last_name}
             />
           </div>
           <div className='flex flex-col text-primary'>
@@ -105,8 +65,6 @@ const EditAccount = (props) => {
                 name='password'
                 type={showPassword ? 'text' : 'password'}
                 id='password'
-                value={password}
-                onChange={handlePasswordChange}
                 className='border rounded py-1 px-2 outline-none w-full'
               />
               <button
@@ -122,7 +80,6 @@ const EditAccount = (props) => {
               </button>
             </div>
           </div>
-          {error && <p style={{ color: 'red' }}>{error}</p>}
           <div className='flex flex-col text-primary'>
             <label className='mb-2' htmlFor='password'>
               Повторите Пароль:
@@ -132,8 +89,6 @@ const EditAccount = (props) => {
                 required
                 type={showPassword ? 'text' : 'password'}
                 id='password'
-                value={confirmPassword}
-                onChange={handleConfirmPasswordChange}
                 className='border rounded py-1 px-2 outline-none w-full'
               />
               <button
@@ -149,7 +104,6 @@ const EditAccount = (props) => {
               </button>
             </div>
           </div>
-          {emailError && <p style={{ color: 'red' }}>{emailError}</p>}
           <div className='flex flex-col'>
             <label className='mb-2 text-primary' htmlFor='email'>
               Введите адрес электронной почты или номер телефона:
@@ -158,35 +112,42 @@ const EditAccount = (props) => {
               required
               type='text'
               id='emailPhoneInput'
-              value={inputValue}
-              onChange={handleInputChange}
               className='border rounded py-1 px-2 outline-none'
+              defaultValue={data?.email}
             />
           </div>
           <div className='flex flex-col gap-4 justify-center'>
             <button
               type='submit'
-              className='text-white bg-primary outline-none text-lg border 
-                            active:bg-blue-100 px-3 rounded border-primary submitChange'
+              className='text-white bg-primary outline-none text-lg border active:bg-blue-100 px-3 rounded border-primary submitChange'
             >
               Применить изменения
             </button>
           </div>
         </form>
 
-        <div className=''>
+        <div className='w-full'>
           {props.imgSelect && (
             <div className='flex flex-col items-center setUserIcon'>
-              <img
-                src={props.imgSelect.src}
+              <Image
+                src={data?.image || props.imgSelect}
                 alt='Selected'
-                className='object-cover max-w-[208px] w-full h-52 rounded-full border'
+                className='object-cover rounded-full border w-[150px] h-[150px]'
+                width={150}
+                height={150}
               />
+              <label
+                htmlFor='avatar'
+                className='text-white bg-primary outline-none text-lg border active:bg-blue-100 px-3 rounded border-primary submitChange mt-5'
+              >
+                Загрузить фото
+              </label>
               <input
+                id='avatar'
                 type='file'
                 accept='image/*'
                 onChange={props.myFunc}
-                className='mt-6'
+                className='mt-6 hidden'
               />
             </div>
           )}

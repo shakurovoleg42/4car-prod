@@ -7,16 +7,15 @@ import ScrollToTop from '@/components/ScrollToTop/ScrollToTop';
 import Link from 'next/link';
 import fetchService from '@/services/fetchs';
 
+import { cookies } from 'next/headers';
+
+
 const Stocks = async () => {
   const data = await fetchService.getAllNews();
 
-  // console.log(data);
+  const session = cookies().get('session')?.value;
+  console.log(session)
 
-  // const scrollToTop = () => {
-  //   window.scrollTo({
-  //     top: 200,
-  //   });
-  // };
   return (
     <>
       <div className='overflow-hidden'>
@@ -66,6 +65,7 @@ const Stocks = async () => {
                         href={`/news/${el.slug}`}
                         // onClick={scrollToTop}
                         className='py-2  max-w-[150px] w-full flex justify-center bg-primary font-medium text-white rounded'
+                        
                       >
                         Подробнее
                       </Link>
