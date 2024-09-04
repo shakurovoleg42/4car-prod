@@ -7,14 +7,8 @@ import ScrollToTop from '@/components/ScrollToTop/ScrollToTop';
 import Link from 'next/link';
 import fetchService from '@/services/fetchs';
 
-import { cookies } from 'next/headers';
-
-
 const Stocks = async () => {
   const data = await fetchService.getAllNews();
-
-  const session = cookies().get('session')?.value;
-  console.log(session)
 
   return (
     <>

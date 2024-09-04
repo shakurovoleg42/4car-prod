@@ -118,7 +118,7 @@ const NewsPage = ({ params }) => {
                 key={comment.id}
                 className='flex flex-col items-left border-b-2 p-2 mt-3 max-w-[800px] min-w-[300px] w-full'
               >
-                <p className='text-left w-full'>{comment.user.last_name} {comment.user.first_name}</p>
+                <p className='text-left w-full'>Пользователь</p>
                 <span className='text-left mt-4 text-gray-700 w-full'>
                   {comment.body}
                 </span>
