@@ -1,6 +1,7 @@
 import styles from './styles.module.sass';
 
 import { mutate } from 'swr';
+import { FaRegTrashAlt } from 'react-icons/fa';
 import Image from 'next/image';
 
 import { formattedPrice } from '@/utils/price';
@@ -47,6 +48,11 @@ const CartItem = ({ item }) => {
         <div className={styles.column}>
           <b>Стоимость</b>
           <span>{formattedPrice(item.price * item.quantity)} тг</span>
+        </div>
+        <div className={styles.column}>
+          <button onClick={() => handleUpdateQuantity(0)}>
+            <FaRegTrashAlt size={20} />
+          </button>
         </div>
       </div>
     </div>
