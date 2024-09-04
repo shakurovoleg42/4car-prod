@@ -106,7 +106,10 @@ const Shini = ({ data }) => {
                 <div
                   data-aos='fade-up-left'
                   data-aos-anchor-placement='top-bottom'
-                  className='flex 2xl:justify-between xl:justify-between lg:justify-between md:justify-between sm:justify-center justify-center 2xl:flex-wrap xl:flex-wrap lg:flex-wrap flex-wrap gap-10 w-full sm:px-2'
+                  className='flex 2xl:justify-between
+                            xl:justify-between lg:justify-center md:justify-center sm:justify-center justify-center
+                            2xl:flex-wrap xl:flex-wrap lg:flex-wrap flex-wrap 2xl:gap-6 
+                            xl:gap-3 lg:gap-2 md:gap-2 sm:gap-5 gap-3 w-full sm:px-2'
                 >
                   {!shina || !Array.isArray(shina) || shina.length === 0 ? (
                     <p>Пусто</p>

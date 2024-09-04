@@ -1,71 +1,82 @@
 'use client';
-import { getCookie } from 'cookies-next';
 import { useState, useEffect } from 'react';
 import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
-// import 'slick-carousel/slick/slick.css';
-// import 'slick-carousel/slick/slick-theme.css';
 import fetchService from '@/services/fetchs';
-// import Slider from 'react-slick';
+import instance from '@/utils/instance';
+import { useRouter } from 'next/navigation';
 
-const Reviews = ({ product_id }) => {
+const Reviews = ({ product_id, user_cookie }) => {
   const [data, setData] = useState({});
-  const [ratingValue] = useState(5);
+  const [ratingValue, setRatingValue] = useState(5);
   const [formData, setFormData] = useState({
     text: '',
-    rating: '',
-    user_id: 1,
+    rating: 5,
+    user_id: null,
   });
+  const router = useRouter();
 
-  const cooookies = getCookie('session');
-  console.log('session:', cooookies)
-
-  // const [session] = useState(getCookie('session')?.value);
-  // console.log(session)
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const config = {
+          headers: {
+            Authorization: `Bearer ${user_cookie}`,
+          },
+        };
+        const response = await instance.get('/user', config);
+        if (response.data && response.data.id) {
+          setFormData((prevFormData) => ({
+            ...prevFormData,
+            user_id: response.data.id,
+          }));
+        }
+      } catch (error) {
+        // console.error('Error fetching user data:', error);
+      }
+    };
+  
+    fetchUserData();
+  }, [user_cookie]);
 
   useEffect(() => {
     const fetchReviews = async () => {
       try {
         const reviewsData = await fetchService.getProductReview(product_id);
-
         if (reviewsData && Array.isArray(reviewsData.reviews)) {
           setData(reviewsData);
         }
       } catch (error) {
-        console.error('Error fetching reviews:', error);
+        // console.error('Error fetching reviews:', error);
       }
     };
 
     fetchReviews();
-  }, []);
+  }, [product_id]);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
+  const handleChange = (event) => {
+    const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const hardcodedToken = '116|09gEPnxMuOtjXLfHXJPyVGJJB3zDvlVmsSYaKOSzcc9b3313';
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
+  const handleSubmit = async (event) => {
+    event.preventDefault();
     try {
       const config = {
         headers: {
-          Authorization: `Bearer ${hardcodedToken}`,
+          Authorization: `Bearer ${user_cookie}`,
         },
       };
 
       await fetchService.postProductReview(product_id, formData, config);
 
-      await fetchService.getProductReview(product_id);
-
-      setFormData({ text: '', rating: ratingValue });
+      const updatedReviews = await fetchService.getProductReview(product_id);
+      setData(updatedReviews);
+      
+      setFormData({ text: '', rating: ratingValue});
     } catch (error) {
-      console.error(
-        'Error posting comment:',
-        error.response?.data || error.message
-      );
+      router.push('/login');
+      // console.error('Error posting review:', error.response?.data || error.message);
     }
   };
 
@@ -84,18 +95,29 @@ const Reviews = ({ product_id }) => {
                   id='rating'
                   precision={1}
                   size='large'
-                  onChange={handleChange}
+                  value={ratingValue}
+                  onChange={(event, newValue) => {
+                    setRatingValue(newValue);
+                    handleChange({
+                      target: {
+                        name: 'rating',
+                        value: newValue,
+                      },
+                    });
+                  }}
                 />
               </Stack>
               <textarea
                 name='text'
                 id='text'
                 onChange={handleChange}
-                className='w-full w-[800px] min-w-[400px] min-h-[120px] p-2 border-solid border-2'
+                value={formData.text}
+                className='max-w-[800px] min-w-[350px] min-h-[120px] p-2 border-solid border-2'
+                placeholder='Введите ваш отзыв'
               />
               <button
-                onSubmit={handleSubmit}
                 className='bg-primary text-white p-4 rounded-2xl'
+                type='submit'
               >
                 Отправить
               </button>
@@ -112,7 +134,7 @@ const Reviews = ({ product_id }) => {
                     key={review.id}
                     className='flex items-left flex-col border-b-2 p-2'
                   >
-                    <p>Имя пользователя</p>
+                    <p>{data.user_name}</p>
                     <Rating
                       name='half-rating'
                       precision={1}
