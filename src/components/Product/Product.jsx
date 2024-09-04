@@ -18,7 +18,7 @@ import ScrollToTop from '../ScrollToTop/ScrollToTop';
 import responsiveImage from '@/utils/responsiveImage';
 import AddItemButton from '../AddItemButton/AddItemButton';
 
-const Product = ({ product }) => {
+const Product = ({ product, user_cookie }) => {
   const [data, setData] = useState({ avg_rating: 0, reviews: [] });
   const [countProduct, setCountProduct] = useState(1);
   const [selectedMonth, setSelectedMonth] = useState('1 мес');
@@ -271,7 +271,7 @@ const Product = ({ product }) => {
               </div>
             </section>
             <section className='w-full' data-aos='fade-down'>
-              <Tabs similar_products={product.similar_products} product_id={product.id}/>
+              <Tabs similar_products={product.similar_products} product_id={product.id} user_cookie={user_cookie}/>
             </section>
           </div>
         </main>
