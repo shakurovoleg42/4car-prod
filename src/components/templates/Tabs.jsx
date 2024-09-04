@@ -6,7 +6,7 @@ import ProductModal4 from './ProductModal4';
 import Reviews from './Reviews'
 import Link from 'next/link';
 
-const Tabs = ({ similar_products = [], product_id }) => {
+const Tabs = ({ similar_products = [], product_id, user_cookie }) => {
   const [activeModal, setActiveModal] = useState('modal3');
 
   const productId = product_id
@@ -63,7 +63,7 @@ const Tabs = ({ similar_products = [], product_id }) => {
           <div className='mt-6 w-full flex-col flex justify-center items-center  px-4'>
             {activeModal === 'modal3' && <ProductModal3 />}
             {activeModal === 'modal4' && <ProductModal4 />}
-            {activeModal === 'modal5' && <Reviews product_id={productId}/>}
+            {activeModal === 'modal5' && <Reviews product_id={productId} user_cookie={user_cookie}/>}
           </div>
           <div className='flex flex-col items-center mt-20'>
             <p className='font-body font-bold 2xl:text-2xl xl:text-2xl lg:text-xl md:text-lg sm:text-md text-md'>

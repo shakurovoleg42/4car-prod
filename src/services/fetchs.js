@@ -70,6 +70,10 @@ const fetchService = {
     return res.data;
   },
 
+  // getUserData: async () => {
+  //   const res = await instance.get(`/user`);
+  //   return res.data;
+  // },
 
 };
 

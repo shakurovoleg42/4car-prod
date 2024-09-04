@@ -1,11 +1,15 @@
 import { redirect } from 'next/navigation';
-
+import { cookies } from 'next/headers';
 import fetchService from '@/services/fetchs';
 import BrandPage from '@/components/templates/BrandPage/BrandPage';
 import Product from '@/components/Product/Product';
+// import axios from 'axios';
 
 export default async function Brand({ params }) {
   const manufacturers = await fetchService.getManufacturersHome();
+  const session =  cookies().get('session')?.value;
+  // eslint-disable-next-line no-undef
+  // const user = await axios.get(`${process.env.NEXT_PUBLIC_API}/user`);
 
   let brand;
 
@@ -29,7 +33,7 @@ export default async function Brand({ params }) {
     }
 
     if (product) {
-      return <Product product={product} />;
+      return <Product product={product} user_cookie={session}/>;
     } else {
       redirect('/');
     }
