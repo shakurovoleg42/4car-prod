@@ -4,13 +4,12 @@ import './Product.css';
 import { useState, useEffect } from 'react';
 import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
-import Autocomplete from '@mui/material/Autocomplete';
-import TextField from '@mui/material/TextField';
 import Link from 'next/link';
 // import Image from 'next/image';
 import fetchService from '@/services/fetchs';
 
 import { formattedPrice } from '@/utils/price';
+import { KaspiButton, ForteButton } from '../Installments';
 import NavBar from '../NavBar/NavBar';
 import Tabs from '../templates/Tabs';
 import Footer from './../Footer/Footer';
@@ -21,7 +20,6 @@ import AddItemButton from '../AddItemButton/AddItemButton';
 const Product = ({ product, user_cookie }) => {
   const [data, setData] = useState({ avg_rating: 0, reviews: [] });
   const [countProduct, setCountProduct] = useState(1);
-  const [selectedMonth, setSelectedMonth] = useState('1 мес');
 
   const model = product.model.replace(/ /g, '+');
   const whatIs = product.category[0] === 'Шины' 
@@ -58,29 +56,7 @@ const Product = ({ product, user_cookie }) => {
     countProduct > 1 ? setCountProduct(countProduct - 1) : 1;
   };
 
-  const months = [
-    '1 мес',
-    '2 мес',
-    '3 мес',
-    '4 мес',
-    '5 мес',
-    '6 мес',
-    '7 мес',
-    '8 мес',
-    '9 мес',
-    '10 мес',
-    '11 мес',
-    '12 мес',
-  ];
-
   const ProductPrice = product.price * countProduct;
-
-  const calculateInstallment = (selectedMonth) => {
-    const monthsCount = parseInt(selectedMonth.split(' ')[0], 10);
-    const installment = ProductPrice / monthsCount;
-    const roundedInstallment = Math.ceil(installment);
-    return roundedInstallment.toFixed(0);
-  };
 
   return (
     <>
@@ -227,29 +203,9 @@ const Product = ({ product, user_cookie }) => {
                         Купить в один клик
                       </button>
                     </div>
-                    <div className='flex max-w-[620px] w-full btnKredit'>
-                      <div className='bg-red-600 max-w-[200px] w-full rounded-s-lg text-white'>
-                        {selectedMonth && (
-                          <div className='px-3 pt-1'>
-                            <p className='text-sm text-center'>рассрочка</p>
-                            <div className='flex items-end gap-4 justify-center'>
-                              <p className='font-bold 2xl:text-xl xl:text-xl lg:text-lg md:text-lg sm:text-lg text-md tracking-widest'>
-                                {calculateInstallment(selectedMonth)}
-                              </p>
-                              <span>тг/мес</span>
-                            </div>
-                          </div>
-                        )}
-                      </div>
-                      <Autocomplete
-                        value={selectedMonth}
-                        onChange={(event, newValue) =>
-                          setSelectedMonth(newValue)
-                        }
-                        options={months}
-                        renderInput={(params) => <TextField {...params} />}
-                        className='max-w-[170px] hover:outline-none border-red-600 border 2xl:rounded-e-lg xl:rounded-e-lg md:rounded-e-lg lg:rounded-e-lg sm:rounded-e-lg rounded-none w-full text-center cursor-pointer'
-                      />
+                    <div className='flex max-w-[620px] w-full btnKredit gap-4'>
+                      <KaspiButton sku={product.sku} />
+                      <ForteButton sku={product.sku} />
                     </div>
                     <div className='w-full hotLine'>
                       <p className='flex flex-col text-xl gap-4'>
