@@ -31,12 +31,6 @@ export default function RootLayout({ children }) {
         <Script
           id='KS-Widget'
           src='https://kaspi.kz/kaspibutton/widget/ks-wi_ext.js'
-          strategy='lazyOnload'
-        />
-        <Script
-          type='text/javascript'
-          src='https://cdn-1.forte.kz/assets/forte-market-scripts/buy-credit.js'
-          strategy='lazyOnload'
         />
       </body>
     </html>
