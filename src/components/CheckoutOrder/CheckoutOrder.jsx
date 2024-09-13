@@ -4,12 +4,14 @@ import './CheckoutOrder.css';
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { mutate } from 'swr';
+import useSWR, { mutate } from 'swr';
 import Link from 'next/link';
 import Image from 'next/image';
 import toast from 'react-hot-toast';
 import axios from 'axios';
 
+import { handlePayment } from '@/utils/payment';
+import cartService from '@/services/cart';
 import NavBar from '../NavBar/NavBar';
 import Footer from '../Footer/Footer';
 import ScrollToTop from '../ScrollToTop/ScrollToTop';
@@ -19,13 +21,25 @@ const CheckoutOrder = () => {
   const [paymentMethod, setPaymentMethod] = useState('cash');
   const router = useRouter();
 
+  const { data } = useSWR('/api/cart', cartService.getCart);
+  const cartTotal = data?.total_price;
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const loadingToastId = toast.loading('Загрузка...');
-
     const formData = new FormData(event.currentTarget);
     const fields = Object.fromEntries(formData);
+
+    if (paymentMethod === 'card') {
+      const isPaymentSuccess = await handlePayment(fields, cartTotal);
+
+      if (!isPaymentSuccess) {
+        toast.error('Платеж не удался');
+        return;
+      }
+    }
+
+    const loadingToastId = toast.loading('Загрузка...');
 
     try {
       await axios.post('/api/orders/checkout', {
@@ -38,7 +52,7 @@ const CheckoutOrder = () => {
 
       mutate('/api/cart');
       toast.success('Заказ успешно оформлен');
-      router.push('/customer');
+      router.replace('/customer');
     } catch (error) {
       toast.error(error.response.data.message);
     } finally {
@@ -262,7 +276,7 @@ const CheckoutOrder = () => {
                     <div
                       className='walletcard flex flex-col max-w-[389px] w-full max-h-[198px] h-full items-center cursor-pointer'
                       style={pmSx('card')}
-                      onClick={() => toast.error('Неполадки с сервисом')}
+                      onClick={() => setPaymentMethod('card')}
                     >
                       <Image
                         src={'/card.png'}
