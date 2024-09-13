@@ -1,20 +1,8 @@
-import { cookies } from 'next/headers';
-
+import fetchCart from '@/utils/fetchCart';
 import Account from '@/components/Account/Account';
-import { cartInstance } from '@/utils/instance';
-
-async function getData() {
-  const res = await cartInstance.get('/cart', {
-    headers: {
-      Authorization: `Bearer ${cookies().get('session')?.value}`,
-      Cookie: `laravel_session=${cookies().get('laravel_session')?.value}`,
-    },
-  });
-  return res.data;
-}
 
 export default async function CustomerCart() {
-  const data = await getData();
+  const data = await fetchCart();
 
   return <Account data={data} />;
 }
