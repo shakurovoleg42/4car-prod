@@ -94,6 +94,83 @@ export default function Playground({ filters }) {
     window.location.href = pathname + '?' + newParams.toString();
   };
 
+  const dasDiski = () => {
+    if (pathname !== '/rims') {
+      return (
+        <>
+          <Autocomplete
+            {...defaultProps}
+            options={filterOptions.spikes}
+            id='disable-clearable7'
+            disableClearable
+            renderInput={(params) => (
+              <TextField {...params} label='Шипы' variant='standard' />
+            )}
+            onChange={(event, newValue) =>
+              handleFilter('spikes', newValue.value)
+            }
+          />
+          <Autocomplete
+            {...defaultProps}
+            options={filterOptions.season}
+            id='disable-clearable6'
+            disableClearable
+            renderInput={(params) => (
+              <TextField {...params} label='Сезонность' variant='standard' />
+            )}
+            onChange={(event, newValue) =>
+              handleFilter('season', newValue.value)
+            }
+          />
+          <Autocomplete
+            {...defaultProps}
+            options={filterOptions.nagruzki}
+            id='disable-clearable8'
+            disableClearable
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                label='Индекс нагрузки'
+                variant='standard'
+              />
+            )}
+            onChange={(event, newValue) =>
+              handleFilter('nagruzki', newValue.value)
+            }
+          />
+          <Autocomplete
+            {...defaultProps}
+            options={filterOptions.skorosti}
+            id='disable-clearable9'
+            disableClearable
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                label='Индекс скорости'
+                variant='standard'
+              />
+            )}
+            onChange={(event, newValue) =>
+              handleFilter('skorosti', newValue.value)
+            }
+          />
+          <Autocomplete
+            {...defaultProps}
+            options={filterOptions.rf}
+            id='disable-clearable10'
+            disableClearable
+            renderInput={(params) => (
+              <TextField {...params} label='RunFlat' variant='standard' />
+            )}
+            onChange={(event, newValue) => handleFilter('rf', newValue.value)}
+          />
+        </>
+      );
+    } else {
+      return;
+    }
+  };
+
   return (
     <>
       <div className='flex flex-col lg:hidden sm:block items-center'>
@@ -138,11 +215,7 @@ export default function Playground({ filters }) {
                   id='disable-clearable2'
                   disableClearable
                   renderInput={(params) => (
-                    <TextField
-                      {...params}
-                      label='Модель'
-                      variant='standard'
-                    />
+                    <TextField {...params} label='Модель' variant='standard' />
                   )}
                   onChange={(event, newValue) =>
                     handleFilter('modeli', newValue.value)
@@ -154,11 +227,7 @@ export default function Playground({ filters }) {
                   id='disable-clearable3'
                   disableClearable
                   renderInput={(params) => (
-                    <TextField
-                      {...params}
-                      label='Ширина '
-                      variant='standard'
-                    />
+                    <TextField {...params} label='Ширина ' variant='standard' />
                   )}
                   onChange={(event, newValue) =>
                     handleFilter('width', newValue.value)
@@ -192,78 +261,8 @@ export default function Playground({ filters }) {
                     handleFilter('diameter', newValue.value)
                   }
                 />
-                <Autocomplete
-                  {...defaultProps}
-                  options={filterOptions.season}
-                  id='disable-clearable6'
-                  disableClearable
-                  renderInput={(params) => (
-                    <TextField
-                      {...params}
-                      label='Сезонность'
-                      variant='standard'
-                    />
-                  )}
-                  onChange={(event, newValue) =>
-                    handleFilter('season', newValue.value)
-                  }
-                />
-                <Autocomplete
-                  {...defaultProps}
-                  options={filterOptions.spikes}
-                  id='disable-clearable7'
-                  disableClearable
-                  renderInput={(params) => (
-                    <TextField {...params} label='Шипы' variant='standard' />
-                  )}
-                  onChange={(event, newValue) =>
-                    handleFilter('spikes', newValue.value)
-                  }
-                />
-                <Autocomplete
-                  {...defaultProps}
-                  options={filterOptions.nagruzki}
-                  id='disable-clearable8'
-                  disableClearable
-                  renderInput={(params) => (
-                    <TextField
-                      {...params}
-                      label='Индекс нагрузки'
-                      variant='standard'
-                    />
-                  )}
-                  onChange={(event, newValue) =>
-                    handleFilter('nagruzki', newValue.value)
-                  }
-                />
-                <Autocomplete
-                  {...defaultProps}
-                  options={filterOptions.skorosti}
-                  id='disable-clearable9'
-                  disableClearable
-                  renderInput={(params) => (
-                    <TextField
-                      {...params}
-                      label='Индекс скорости'
-                      variant='standard'
-                    />
-                  )}
-                  onChange={(event, newValue) =>
-                    handleFilter('skorosti', newValue.value)
-                  }
-                />
-                <Autocomplete
-                  {...defaultProps}
-                  options={filterOptions.rf}
-                  id='disable-clearable10'
-                  disableClearable
-                  renderInput={(params) => (
-                    <TextField {...params} label='RunFlat' variant='standard' />
-                  )}
-                  onChange={(event, newValue) =>
-                    handleFilter('rf', newValue.value)
-                  }
-                />
+
+                {dasDiski()}
               </Stack>
             </List>
           </Box>
@@ -331,72 +330,7 @@ export default function Playground({ filters }) {
               handleFilter('diameter', newValue.value)
             }
           />
-          <Autocomplete
-            {...defaultProps}
-            options={filterOptions.season}
-            id='disable-clearable6'
-            disableClearable
-            renderInput={(params) => (
-              <TextField {...params} label='Сезонность' variant='standard' />
-            )}
-            onChange={(event, newValue) =>
-              handleFilter('season', newValue.value)
-            }
-          />
-          <Autocomplete
-            {...defaultProps}
-            options={filterOptions.spikes}
-            id='disable-clearable7'
-            disableClearable
-            renderInput={(params) => (
-              <TextField {...params} label='Шипы' variant='standard' />
-            )}
-            onChange={(event, newValue) =>
-              handleFilter('spikes', newValue.value)
-            }
-          />
-          <Autocomplete
-            {...defaultProps}
-            options={filterOptions.nagruzki}
-            id='disable-clearable8'
-            disableClearable
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                label='Индекс нагрузки'
-                variant='standard'
-              />
-            )}
-            onChange={(event, newValue) =>
-              handleFilter('nagruzki', newValue.value)
-            }
-          />
-          <Autocomplete
-            {...defaultProps}
-            options={filterOptions.skorosti}
-            id='disable-clearable9'
-            disableClearable
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                label='Индекс скорости'
-                variant='standard'
-              />
-            )}
-            onChange={(event, newValue) =>
-              handleFilter('skorosti', newValue.value)
-            }
-          />
-          <Autocomplete
-            {...defaultProps}
-            options={filterOptions.rf}
-            id='disable-clearable10'
-            disableClearable
-            renderInput={(params) => (
-              <TextField {...params} label='RunFlat' variant='standard' />
-            )}
-            onChange={(event, newValue) => handleFilter('rf', newValue.value)}
-          />
+          {dasDiski()}
         </Stack>
         <button
           className='media__linkButton py-2 px-8 bg-primary hover:bg-blue-600 transition-all text-sm rounded font-normal text-white mt-5'
