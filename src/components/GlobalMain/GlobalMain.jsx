@@ -15,6 +15,7 @@ import SelectDiski from '@/components/templates/SelectDiski';
 import AboutImg from '@/assets/AboutImg.jpg';
 import AddItemButton from '@/components/AddItemButton/AddItemButton';
 import QuantityBox from '../QuantityBox';
+import InstallmentDropdown from '../InstallmentDropdown';
 
 const GlobalMain = ({ partners, news, bestSeller }) => {
   const [quantities, setQuantities] = useState({});
@@ -264,11 +265,11 @@ const GlobalMain = ({ partners, news, bestSeller }) => {
                   <div className='bg-primary py-2 rounded'>
                     <h3
                       className='px-6 2xl:mt-8 xl:mt-6 lg:mt-5 md:mt-5 sm:mt-4 mt-4 md:text-center sm:text-center text-center font-semibold 
-                                            2xl:text-lg xl:text-lg lg:text-md md:text-sm sm:text-sm text-sm text-white min-h-[60px] xl:min-h-[84px]'
+                                            2xl:text-lg xl:text-lg lg:text-md md:text-sm sm:text-sm text-sm text-white line-clamp-2'
                     >
                       {e.name}
                     </h3>
-                    <div className='w-full flex flex-col mt-8 px-4'>
+                    <div className='w-full flex flex-col mt-4 px-4'>
                       <div className='flex justify-center mb-3 flex-wrap gap-5'>
                         <QuantityBox
                           quantity={quantities[e.id] || 1}
@@ -281,13 +282,7 @@ const GlobalMain = ({ partners, news, bestSeller }) => {
                         />
                       </div>
                       <div className='px-4'>
-                        <Link
-                          href={e.slug}
-                          type='submit'
-                          className='py-1 w-full 2xl:text-lg xl:text-lg lg:text-md md:text-sm  text-xs px-3 text-white bg-red-600 rounded active:bg-red-700'
-                        >
-                          Купить в рассрочку
-                        </Link>
+                        <InstallmentDropdown sku={e.sku} />
                       </div>
                     </div>
                   </div>
