@@ -55,6 +55,10 @@ body {
   display: flex;
 }
 
+.forte-btn a {
+  width: 100%;
+}
+
 @media (max-width: 1085px) {
   .autoCompleteContent {
     width: 250px;

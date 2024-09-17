@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { formattedPrice } from '@/utils/price';
 import AddItemButton from '../AddItemButton/AddItemButton';
 import QuantityBox from '../QuantityBox';
+import InstallmentDropdown from '../InstallmentDropdown';
 // import responsiveImage from '@/utils/responsiveImage';
 
 function CardShini(props) {
@@ -46,7 +47,7 @@ function CardShini(props) {
           />
         </div>
         <div className='bg-primary py-2 px-4 flex flex-col gap-1 cardContent'>
-          <h2 className='text-xs'>{product.name}</h2>
+          <h2 className='text-xs line-clamp-2'>{product.name}</h2>
           <p className='text-xs'>{product.text}</p>
           <span className='font-bold 2xl:text-lg xl:text-lg lg:text-md md:text-sm sm:text-sm text-sm'>
             {formattedPrice(product.price)} тг
@@ -86,25 +87,7 @@ function CardShini(props) {
               )}
             </div>
           )}
-          {product.none ? (
-            <p className='hidden'>{product.none}</p>
-          ) : product.checkout ? (
-            <Link
-              href='/checkout-order'
-              type='submit'
-              className='py-1 text-xs px-3 bg-red-600 rounded active:bg-red-700'
-            >
-              {product.checkout}
-            </Link>
-          ) : (
-            <Link
-              href={product.slug}
-              type='submit'
-              className='py-1 text-xs px-3 bg-red-600 rounded active:bg-red-700'
-            >
-              Купить в рассрочку
-            </Link>
-          )}
+          <InstallmentDropdown sku={product.sku} />
         </div>
       </div>
     </>
