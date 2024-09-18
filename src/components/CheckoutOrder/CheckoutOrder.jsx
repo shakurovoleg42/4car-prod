@@ -3,7 +3,7 @@
 import './CheckoutOrder.css';
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import useSWR, { mutate } from 'swr';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -20,6 +20,9 @@ const CheckoutOrder = () => {
   const [deliveryMethod, setDeliveryMethod] = useState('delivery');
   const [paymentMethod, setPaymentMethod] = useState('cash');
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const product = searchParams.get('product');
+  const [productId, productQuantity] = product?.split(',') || '0,0';
 
   const { data } = useSWR('/api/cart', cartService.getCart);
   const cartTotal = data?.total_price;
@@ -29,6 +32,11 @@ const CheckoutOrder = () => {
 
     const formData = new FormData(event.currentTarget);
     const fields = Object.fromEntries(formData);
+
+    if (product) {
+      fields.product_id = productId;
+      fields.quantity = productQuantity;
+    }
 
     if (paymentMethod === 'card') {
       const isPaymentSuccess = await handlePayment(fields, cartTotal);
@@ -42,13 +50,17 @@ const CheckoutOrder = () => {
     const loadingToastId = toast.loading('Загрузка...');
 
     try {
-      await axios.post('/api/orders/checkout', {
-        ...fields,
-        number: fields.pn,
-        phone: fields.pn,
-        delivery_method: deliveryMethod,
-        payment_method: paymentMethod,
-      });
+      await axios.post(
+        '/api/orders/checkout',
+        {
+          ...fields,
+          number: fields.pn,
+          phone: fields.pn,
+          delivery_method: deliveryMethod,
+          payment_method: paymentMethod,
+        },
+        { params: { one_click: product ? true : false } }
+      );
 
       mutate('/api/cart');
       toast.success('Заказ успешно оформлен');
@@ -229,7 +241,7 @@ const CheckoutOrder = () => {
                     <input
                       className='small mt-3 p-5'
                       type='text'
-                      name='adres'
+                      name='address'
                       required
                     />
                   </div>
@@ -247,7 +259,7 @@ const CheckoutOrder = () => {
                     <textarea
                       className='area mt-3 p-5'
                       type='text'
-                      name='work_adres'
+                      name='work_address'
                       required
                     ></textarea>
                   </div>
