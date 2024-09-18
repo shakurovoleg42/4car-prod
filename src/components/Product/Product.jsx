@@ -2,6 +2,7 @@
 import './Product.css';
 
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
 import Link from 'next/link';
@@ -20,6 +21,7 @@ import AddItemButton from '../AddItemButton/AddItemButton';
 const Product = ({ product, user_cookie }) => {
   const [data, setData] = useState({ avg_rating: 0, reviews: [] });
   const [countProduct, setCountProduct] = useState(1);
+  const router = useRouter();
 
   const model = product.model.replace(/ /g, '+');
   const whatIs = product.category[0] === 'Шины' 
@@ -57,6 +59,15 @@ const Product = ({ product, user_cookie }) => {
   };
 
   const ProductPrice = product.price * countProduct;
+
+  const buyOneClick = () => {
+    const params = new URLSearchParams(window.location.search);
+    params.set('product', product.id + ',' + countProduct);
+
+    const newUrl = `/checkout-order?${params.toString()}`;
+
+    router.push(newUrl);
+  };
 
   return (
     <>
@@ -196,9 +207,10 @@ const Product = ({ product, user_cookie }) => {
                         isProduct
                       />
                       <button
-                        type='submit'
+                        type='button'
                         className='py-2 bg-primary max-w-[300px] w-full 2xl:text-2xl
                                         xl:text-xl lg:text-xl md:text-lg sm:text-md text-sm text-white rounded active:bg-blue-700'
+                        onClick={buyOneClick}
                       >
                         Купить в один клик
                       </button>

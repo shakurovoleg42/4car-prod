@@ -6,12 +6,19 @@ export async function POST(request) {
     const session = request.cookies.get('session')?.value;
     const laravelSession = request.cookies.get('laravel_session')?.value;
 
-    const res = await cartInstance.post('/orders/checkout', body, {
-      headers: {
-        Authorization: `Bearer ${session}`,
-        Cookie: `laravel_session=${laravelSession}`,
-      },
-    });
+    const { searchParams } = new URL(request.url);
+    const isOneClick = searchParams.get('one_click') === 'true';
+
+    const res = await cartInstance.post(
+      isOneClick ? '/orders/without-cart' : '/orders/checkout',
+      body,
+      {
+        headers: {
+          Authorization: `Bearer ${session}`,
+          Cookie: `laravel_session=${laravelSession}`,
+        },
+      }
+    );
 
     return Response.json(res.data);
   } catch (error) {
