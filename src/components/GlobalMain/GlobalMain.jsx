@@ -269,7 +269,7 @@ const GlobalMain = ({ partners, news, bestSeller }) => {
                     >
                       {e.name}
                     </h3>
-                    <div className='w-full flex flex-col mt-4 px-4'>
+                    <div className='w-full flex flex-col mt-8 px-4'>
                       <div className='flex justify-center mb-3 flex-wrap gap-5'>
                         <QuantityBox
                           quantity={quantities[e.id] || 1}

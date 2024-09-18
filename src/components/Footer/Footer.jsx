@@ -6,6 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FaAngleRight, FaInstagram } from 'react-icons/fa6';
 import './footer.css';
+FaInstagram
 import responsiveImage from '../../utils/responsiveImage';
 import Link from 'next/link';
 import { FiFacebook } from 'react-icons/fi';
@@ -161,7 +162,6 @@ const Footer = () => {
         <div className='footer_navigate py-5'>
           <div className='container mt-5'>
             <div className='flex-wrap gap-5 justify-between items-start text-white px-5 wrapalyzer'>
-              {/* остальной контент футера */}
               <div className='flex flex-col footer__content gap-6'>
                 <p className='2xl:text-3xl xl:text-2xl lg:text-xl md:text-xl sm:text-lg text-lg font-bold'>
                   Навигация
