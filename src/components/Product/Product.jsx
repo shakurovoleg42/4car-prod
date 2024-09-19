@@ -2,15 +2,15 @@
 import './Product.css';
 
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
 import Link from 'next/link';
-// import Image from 'next/image';
-import fetchService from '@/services/fetchs';
+import toast from 'react-hot-toast';
 
 import { formattedPrice } from '@/utils/price';
 import { KaspiButton, ForteButton } from '../Installments';
+import fetchService from '@/services/fetchs';
 import NavBar from '../NavBar/NavBar';
 import Tabs from '../templates/Tabs';
 import Footer from './../Footer/Footer';
@@ -22,6 +22,7 @@ const Product = ({ product, user_cookie }) => {
   const [data, setData] = useState({ avg_rating: 0, reviews: [] });
   const [countProduct, setCountProduct] = useState(1);
   const router = useRouter();
+  const pathname = usePathname();
 
   const model = product.model.replace(/ /g, '+');
   const whatIs = product.category[0] === 'Шины' 
@@ -67,6 +68,11 @@ const Product = ({ product, user_cookie }) => {
     const newUrl = `/checkout-order?${params.toString()}`;
 
     router.push(newUrl);
+  };
+
+  const copyLink = () => {
+    navigator.clipboard.writeText(process.env.NEXT_PUBLIC_URL + pathname);
+    toast('Ссылка скопирована');
   };
 
   return (
@@ -218,6 +224,10 @@ const Product = ({ product, user_cookie }) => {
                     <div className='flex max-w-[620px] w-full btnKredit gap-4'>
                       <KaspiButton sku={product.sku} />
                       <ForteButton sku={product.sku} />
+                    </div>
+                    <div className='w-full flex items-center gap-3 max-sm:flex-col'>
+                      <b>Поделиться:</b>
+                      <button className='py-2 bg-primary max-w-[300px] w-full 2xl:text-2xl xl:text-xl lg:text-xl md:text-lg sm:text-md text-sm text-white rounded active:bg-blue-700' onClick={copyLink}>Скопировать ссылку</button>
                     </div>
                     <div className='w-full hotLine'>
                       <p className='flex flex-col text-xl gap-4'>
