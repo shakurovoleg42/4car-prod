@@ -3,8 +3,8 @@ import styles from './styles.module.sass';
 import { Skeleton } from '@mui/material';
 import useSWR from 'swr';
 import axios from 'axios';
-import Image from 'next/image';
 import Link from 'next/link';
+import InnerImageZoom from 'react-inner-image-zoom';
 
 import ModalTemplate from '../templates/Modal';
 import ProductMore from './More';
@@ -25,15 +25,17 @@ const ProductPreviewModal = ({ isOpen, handleClose, productSlug }) => {
           <h1 className={styles.head}>{product.name}</h1>
           <div className={styles.body}>
             <div className={styles.left}>
-              <Image src={product.image} alt='' width={322} height={322} />
+              <InnerImageZoom
+                src={product.image}
+                zoomSrc={product.image}
+                zoomType='hover'
+                hideHint
+              />
             </div>
             <div className={styles.right}>
               <ProductMore product={product} />
               <ProductDetails product={product} />
-              <Link
-                href={`/${product.slug}`}
-                className={styles.toproduct}
-              >
+              <Link href={`/${product.slug}`} className={styles.toproduct}>
                 ПЕРЕЙТИ К ТОВАРУ
               </Link>
             </div>
