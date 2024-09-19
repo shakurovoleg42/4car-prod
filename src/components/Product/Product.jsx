@@ -7,6 +7,7 @@ import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
 import Link from 'next/link';
 import toast from 'react-hot-toast';
+import InnerImageZoom from 'react-inner-image-zoom';
 
 import { formattedPrice } from '@/utils/price';
 import { KaspiButton, ForteButton } from '../Installments';
@@ -15,7 +16,6 @@ import NavBar from '../NavBar/NavBar';
 import Tabs from '../templates/Tabs';
 import Footer from './../Footer/Footer';
 import ScrollToTop from '../ScrollToTop/ScrollToTop';
-import responsiveImage from '@/utils/responsiveImage';
 import AddItemButton from '../AddItemButton/AddItemButton';
 
 const Product = ({ product, user_cookie }) => {
@@ -119,7 +119,7 @@ const Product = ({ product, user_cookie }) => {
                   data-aos='fade-right'
                   className='flex items-center gap-4 max-w-[700px] w-full justify-between productLeft'
                 >
-                  <img src={product.image} alt={product.name} {...responsiveImage} className='max-w-[500px] max-h-[500px] w-full object-contain'/>
+                  <InnerImageZoom src={product.image} zoomSrc={product.image} zoomType='hover' hideHint />
                   <div className='flex flex-col gap-4'>
                     <p className='flex gap-3 text-xl text-gray-500'>
                       Модель шины

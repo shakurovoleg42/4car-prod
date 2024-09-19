@@ -1,4 +1,5 @@
 import './globals.css';
+import 'react-inner-image-zoom/lib/InnerImageZoom/styles.min.css';
 
 import { Toaster } from 'react-hot-toast';
 import NextTopLoader from 'nextjs-toploader';
