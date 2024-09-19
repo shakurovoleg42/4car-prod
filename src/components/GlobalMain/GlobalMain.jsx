@@ -17,7 +17,7 @@ import AddItemButton from '@/components/AddItemButton/AddItemButton';
 import QuantityBox from '../QuantityBox';
 import InstallmentDropdown from '../InstallmentDropdown';
 
-const GlobalMain = ({ partners, news, bestSeller }) => {
+const GlobalMain = ({ partners, news, bestSeller, Cars, Years, Models }) => {
   const [quantities, setQuantities] = useState({});
 
   const incrementQuantity = (id) => {
@@ -51,7 +51,7 @@ const GlobalMain = ({ partners, news, bestSeller }) => {
               <h2 className='text-2xl font-bold font-body mb-4'>
                 Подбор дисков
               </h2>
-              <SelectDiski />
+              <SelectDiski cars={Cars} years={Years} model={Models}/>
             </div>
           </section>
           <section className='mb-10'>
