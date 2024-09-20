@@ -3,7 +3,7 @@
 import './CardLogin.css';
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { MdOutlineVisibility } from 'react-icons/md';
 import { MdOutlineVisibilityOff } from 'react-icons/md';
 import toast from 'react-hot-toast';
@@ -18,9 +18,10 @@ import LoginImg from '../../../assets/LoginImg.jpg';
 const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
+  const searchParams = useSearchParams();
 
   const showRegisterForm = () => {
-    router.replace('/register');
+    router.replace(`/register?${searchParams.toString()}`);
   };
 
   const handleTogglePasswordVisibility = () => {
@@ -41,7 +42,13 @@ const LoginForm = () => {
 
       await cartService.syncCart();
 
-      router.replace('/customer');
+      if (searchParams.get('redirect') === 'true') {
+        router.replace(
+          `/checkout-order?product=${searchParams.get('product')}`
+        );
+      } else {
+        router.replace('/customer');
+      }
     } catch (error) {
       toast.error(error.response.data.message);
     } finally {
