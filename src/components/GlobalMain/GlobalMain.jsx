@@ -3,6 +3,7 @@
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import 'aos/dist/aos.css';
+import instance from '@/utils/instance';
 import { FaAngleRight } from 'react-icons/fa6';
 
 import { useEffect, useState } from 'react';
@@ -17,7 +18,37 @@ import AddItemButton from '@/components/AddItemButton/AddItemButton';
 import QuantityBox from '../QuantityBox';
 import InstallmentDropdown from '../InstallmentDropdown';
 
-const GlobalMain = ({ partners, news, bestSeller }) => {
+// eslint-disable-next-line react-refresh/only-export-components
+export const getModels = async (selectedAuto) => {
+  const res = await instance.get(
+    `/brands?brand=` + selectedAuto
+  );
+  return res.data;
+};
+
+// eslint-disable-next-line react-refresh/only-export-components
+export const getYears = async (selectedModel) => {
+  const res = await instance.get(
+    `/years?model=` + selectedModel
+  );
+  return res.data;
+};
+
+export const getMod = async (model, years) => {
+  const res = await instance.get(
+    `/mod?model=${model}&year=${years}`
+  );
+  return res.data;
+};
+
+export const getOptions = async (modification) => {
+  const res = await instance.get(
+    `/options?modification=` + modification
+  );
+  return res.data;
+};
+
+const GlobalMain = ({ partners, news, bestSeller, Cars }) => {
   const [quantities, setQuantities] = useState({});
 
   const incrementQuantity = (id) => {
@@ -45,13 +76,13 @@ const GlobalMain = ({ partners, news, bestSeller }) => {
           <section className='flex items-center justify-center mb-12 gap-5 flex-wrap px-4'>
             <div className='' data-aos='fade-right'>
               <h2 className='text-2xl font-bold font-body mb-4'>Подбор шин</h2>
-              <SelectShini />
+              <SelectShini cars={Cars}/>
             </div>
             <div data-aos='fade-left'>
               <h2 className='text-2xl font-bold font-body mb-4'>
                 Подбор дисков
               </h2>
-              <SelectDiski />
+              <SelectDiski cars={Cars}/>
             </div>
           </section>
           <section className='mb-10'>

@@ -5,10 +5,8 @@ import TextField from '@mui/material/TextField';
 import Switch from '@mui/material/Switch';
 import Link from 'next/link';
 import { getModels, getYears, getMod, getOptions } from '../GlobalMain/GlobalMain';
-import fetchService from '@/services/fetchs';
 
 const SearchByCarDiski = ({ avtomobile }) => {
-  const [data, setData] = useState(null)
   const [selectedAuto, setSelectedAuto] = useState(null);
   const [modelsList, setModelsList] = useState([]);
   const [selectedModel, setSelectedModel] = useState(null);
@@ -18,22 +16,8 @@ const SearchByCarDiski = ({ avtomobile }) => {
   const [modList, setModList] = useState([]);
   const [selectedOption, setSelectedOption] = useState(null);
   const [optionList, setOptionList] = useState(null);
-  const [selectedSeason, setSelectedSeason] = useState(null);
 
   const [isAvailable, setIsAvailable] = useState(false);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetchService.getShiniSizeFilter();
-        setData(response);
-      } catch (error) {
-        console.error("Ошибка при загрузке данных:", error);
-      }
-    };
-
-    fetchData();
-  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -95,17 +79,6 @@ const SearchByCarDiski = ({ avtomobile }) => {
 
     fetchOptions();
   }, [selectedModel, selectedYear, selectMod]);
-
-  const Seasons = data && data.filter && data.filter.season
-    ? data.filter.season.map(season => ({
-        label: season,
-        value: season.toLowerCase().replace(/\s+/g, '-')
-      }))
-    : [];
-
-  const handleSeasonChange = (event, value) => {
-    setSelectedSeason(value ? value.value : null);
-  };
 
   const ModelCars = avtomobile.map((avto) => ({
     label: avto,
@@ -174,7 +147,7 @@ const SearchByCarDiski = ({ avtomobile }) => {
   };
 
   const handleFilterSubmit = () => {
-    return `/tires?season=${selectedSeason}&available=${isAvailable}`;
+    return `/tires?available=${isAvailable}`;
   };
 
   const handleReset = () => {
@@ -189,21 +162,6 @@ const SearchByCarDiski = ({ avtomobile }) => {
   return (
     <div className='h-auto relative max-w-[600px] w-full py-4'>
       <div className='flex flex-col gap-5'>
-      <div>
-            <p className='text-white text-lg mb-5'>Сезон</p>
-            <Autocomplete
-              className='bg-white rounded outline-none autocomplete'
-              disablePortal
-              id='combo-box-demo'
-              options={Seasons}
-              getOptionLabel={(option) => option.label}
-              onChange={handleSeasonChange}
-              renderInput={(params) => (
-                <TextField {...params} label='Seasons' />
-              )}
-              value={Seasons.find(season => season.value === selectedSeason) || null}
-            />
-          </div>
         <div>
           <p className='text-white text-lg mb-5'>Автомобили</p>
           <Autocomplete

@@ -4,7 +4,7 @@ import SetFilter from './SetFilter';
 import SearchByCar from './SearchByCar';
 import Shina from '../../assets/Shina.png';
 
-const SelectShini = () => {
+const SelectShini = ({cars}) => {
   const [activeModal, setActiveModal] = useState('modal1');
 
   const openModal = (modalType) => {
@@ -30,7 +30,7 @@ const SelectShini = () => {
         </div>
         <div className='w-full flex-col flex justify-center items-center bg-primary text-white px-4 rounded-b-[14px]'>
           {activeModal === 'modal1' && <SetFilter img={Shina} id={'shina'} />}
-          {activeModal === 'modal2' && <SearchByCar />}
+          {activeModal === 'modal2' && <SearchByCar avtomobile={cars}/>}
         </div>
       </section>
     </>

@@ -1,11 +1,10 @@
 import { useState } from 'react';
 import SetFilterDiski from './SetFilterDiski';
-import SearchByCar from './SearchByCar';
+import SearchByCarDiski from './searchByCarDiski';
 import Diska from '../../assets/Diska.png';
 
-const SelectDiski = () => {
+const SelectDiski = ({ cars }) => {
   const [activeModal, setActiveModal] = useState('modal1');
-
   const openModal = (modalType) => {
     setActiveModal(modalType);
   };
@@ -29,7 +28,7 @@ const SelectDiski = () => {
         </div>
         <div className='w-full flex-col flex justify-center items-center bg-primary  text-white px-4 rounded-b-[14px]'>
           {activeModal === 'modal1' && <SetFilterDiski img={Diska} id={'diska'} />}
-          {activeModal === 'modal2' && <SearchByCar />}
+          {activeModal === 'modal2' && <SearchByCarDiski avtomobile={cars}/>}
         </div>
       </section>
     </>
