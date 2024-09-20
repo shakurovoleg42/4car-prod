@@ -3,6 +3,7 @@
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import 'aos/dist/aos.css';
+import instance from '@/utils/instance';
 import { FaAngleRight } from 'react-icons/fa6';
 
 import { useEffect, useState } from 'react';
@@ -16,11 +17,19 @@ import AboutImg from '@/assets/AboutImg.jpg';
 import AddItemButton from '@/components/AddItemButton/AddItemButton';
 import QuantityBox from '../QuantityBox';
 import InstallmentDropdown from '../InstallmentDropdown';
-import axios from 'axios';
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const getModels = async (selectedAuto) => {
-  const res = await axios.get(
-    `https://test.4car.kz/api/brands?brand=` + selectedAuto
+  const res = await instance.get(
+    `/brands?brand=` + selectedAuto
+  );
+  return res.data;
+};
+
+// eslint-disable-next-line react-refresh/only-export-components
+export const getYears = async (selectedModel) => {
+  const res = await instance.get(
+    `/years?model=` + selectedModel
   );
   return res.data;
 };
