@@ -2,7 +2,7 @@
 
 import './CheckoutOrder.css';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import useSWR, { mutate } from 'swr';
 import Link from 'next/link';
@@ -32,6 +32,9 @@ const CheckoutOrder = () => {
 
     const formData = new FormData(event.currentTarget);
     const fields = Object.fromEntries(formData);
+
+    // Сохраняем данные формы в localStorage
+    localStorage.setItem('checkoutForm', JSON.stringify(fields));
 
     if (product) {
       fields.product_id = productId;
@@ -86,6 +89,21 @@ const CheckoutOrder = () => {
       borderColor: isActive ? '#1a6ec1' : 'black',
     };
   };
+
+  // Загружаем данные из sessionStorage при монтировании компонента
+  useEffect(() => {
+    const savedData = localStorage.getItem('checkoutForm');
+    if (savedData) {
+      const parsedData = JSON.parse(savedData);
+      // Заполняем поля формы сохраненными данными
+      Object.keys(parsedData).forEach((key) => {
+        const input = document.querySelector(`[name="${key}"]`);
+        if (input) {
+          input.value = parsedData[key];
+        }
+      });
+    }
+  }, []);
 
   return (
     <>
