@@ -147,7 +147,7 @@ const SearchByCarDiski = ({ avtomobile }) => {
   };
 
   const handleFilterSubmit = () => {
-    return `/tires?available=${isAvailable}`;
+    return `/rims?available=${isAvailable}`;
   };
 
   const handleReset = () => {
