@@ -1,9 +1,9 @@
-// import instance from '@/utils/instance';
-import axios from 'axios';
+import instance from '@/utils/instance';
+// import axios from 'axios';
 
 const  tiresAvtoFilter = {
     getAllBrands: async () => {
-        const res = await axios.get(`https://cd52-93-188-86-71.ngrok-free.app/api/brands`);
+        const res = await instance.get(`/brands`);
         return res.data
     },
 }

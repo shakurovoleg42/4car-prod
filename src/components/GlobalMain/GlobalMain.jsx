@@ -34,6 +34,20 @@ export const getYears = async (selectedModel) => {
   return res.data;
 };
 
+export const getMod = async (model, years) => {
+  const res = await instance.get(
+    `/mod?model=${model}&year=${years}`
+  );
+  return res.data;
+};
+
+export const getOptions = async (modification) => {
+  const res = await instance.get(
+    `/options?modification=` + modification
+  );
+  return res.data;
+};
+
 const GlobalMain = ({ partners, news, bestSeller, Cars }) => {
   const [quantities, setQuantities] = useState({});
 
@@ -62,13 +76,13 @@ const GlobalMain = ({ partners, news, bestSeller, Cars }) => {
           <section className='flex items-center justify-center mb-12 gap-5 flex-wrap px-4'>
             <div className='' data-aos='fade-right'>
               <h2 className='text-2xl font-bold font-body mb-4'>Подбор шин</h2>
-              <SelectShini />
+              <SelectShini cars={Cars}/>
             </div>
             <div data-aos='fade-left'>
               <h2 className='text-2xl font-bold font-body mb-4'>
                 Подбор дисков
               </h2>
-              <SelectDiski cars={Cars} Models={getModels}/>
+              <SelectDiski cars={Cars}/>
             </div>
           </section>
           <section className='mb-10'>

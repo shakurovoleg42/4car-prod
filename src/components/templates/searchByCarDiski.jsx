@@ -4,14 +4,19 @@ import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import Switch from '@mui/material/Switch';
 import Link from 'next/link';
-import { getModels, getYears } from '../GlobalMain/GlobalMain';
+import { getModels, getYears, getMod, getOptions } from '../GlobalMain/GlobalMain';
 
 const SearchByCarDiski = ({ avtomobile }) => {
   const [selectedAuto, setSelectedAuto] = useState(null);
-  const [modelsList, setModelsList] = useState([]); // Список всех моделей для выбранного автомобиля
-  const [selectedModel, setSelectedModel] = useState(null); // Хранение выбранной модели
-  const [yearsList, setYearsList] = useState([]); // Список лет выпуска для выбранной модели
-  const [selectedYear, setSelectedYear] = useState(null); // Хранение выбранного года
+  const [modelsList, setModelsList] = useState([]);
+  const [selectedModel, setSelectedModel] = useState(null);
+  const [yearsList, setYearsList] = useState([]);
+  const [selectedYear, setSelectedYear] = useState(null);
+  const [selectMod, setSelectedMod] = useState(null);
+  const [modList, setModList] = useState([]);
+  const [selectedOption, setSelectedOption] = useState(null);
+  const [optionList, setOptionList] = useState(null);
+
   const [isAvailable, setIsAvailable] = useState(false);
 
   useEffect(() => {
@@ -33,7 +38,7 @@ const SearchByCarDiski = ({ avtomobile }) => {
     const fetchYears = async () => {
       if (selectedModel) {
         try {
-          const res = await getYears(selectedModel.CarModel); // Используем CarModel для получения лет
+          const res = await getYears(selectedModel.CarModel);
           setYearsList(res);
         } catch (error) {
           console.error('Ошибка при загрузке данных года:', error);
@@ -44,34 +49,97 @@ const SearchByCarDiski = ({ avtomobile }) => {
     fetchYears();
   }, [selectedModel]);
 
+  useEffect(() => {
+    const fetchModifications = async () => {
+      if (selectedModel && selectedYear) {
+        try {
+          const res = await getMod(selectedModel.CarModel, selectedYear.CarYear);
+          setModList(res);
+        } catch (error) {
+          console.error('Ошибка при загрузке данных модификаций:', error);
+        }
+      }
+    };
+
+    fetchModifications();
+  }, [selectedModel, selectedYear]);
+
+  useEffect(() => {
+    const fetchOptions = async () => {
+      if (selectedModel && selectedYear && selectMod) {
+        try {
+          const res = await getOptions(selectMod.Kuzov);
+          console.log(res)
+          setOptionList(res);
+        } catch (error) {
+          console.error('Ошибка при загрузке данных модификаций:', error);
+        }
+      }
+    };
+
+    fetchOptions();
+  }, [selectedModel, selectedYear, selectMod]);
+
   const ModelCars = avtomobile.map((avto) => ({
     label: avto,
     value: avto,
   }));
 
+  
+
   const carsModel = modelsList.map((model) => ({
     label: model.CarModel,
-    value: model, // Здесь мы сохраняем полный объект модели
+    value: model,
   }));
 
   const modelYear = yearsList.map((year) => ({
     label: year.CarYear,
-    value: year, // Здесь мы сохраняем полный объект года
+    value: year,
   }));
+
+  const modifications = modList
+    ? modList.map((mod) => ({
+        label: `${mod.Kuzov}.${mod.Dvigatel}`,
+        value: mod,
+      }))
+    : [];
+
+  // Исправление: проверка, что optionList является объектом и извлечение данных
+  const options = optionList?.options
+    ? [{
+        label: `${optionList.options.shirina}/${optionList.options.dia} ${optionList.options.description}`,
+        value: optionList.options,
+      }]
+    : [];
 
   const handleAvtoChange = (event, value) => {
     setSelectedAuto(value ? value.value : null);
-    setSelectedModel(null); // Сбрасываем модель при смене авто
-    setSelectedYear(null); // Сбрасываем год при смене авто
+    setSelectedModel(null);
+    setSelectedYear(null);
+    setSelectedMod(null);
+    setSelectedOption(null);
   };
 
   const handleModelChange = (event, value) => {
-    setSelectedModel(value ? value.value : null); // Сохраняем полный объект модели
-    setSelectedYear(null); // Сбрасываем год при смене модели
+    setSelectedModel(value ? value.value : null);
+    setSelectedYear(null);
+    setSelectedMod(null);
+    setSelectedOption(null);
   };
 
   const handleYearChange = (event, value) => {
-    setSelectedYear(value ? value.value : null); // Сохраняем полный объект года
+    setSelectedYear(value ? value.value : null);
+    setSelectedMod(null);
+    setSelectedOption(null);
+  };
+
+  const handleModChange = (event, value) => {
+    setSelectedMod(value ? value.value : null);
+    setSelectedOption(null);
+  };
+
+  const handleOptionChange = (event, value) => {
+    setSelectedOption(value ? value.value : null);
   };
 
   const handleAvailabilityChange = (event) => {
@@ -86,6 +154,8 @@ const SearchByCarDiski = ({ avtomobile }) => {
     setSelectedAuto(null);
     setSelectedModel(null);
     setSelectedYear(null);
+    setSelectedMod(null);
+    setSelectedOption(null);
     setIsAvailable(false);
   };
 
@@ -115,13 +185,20 @@ const SearchByCarDiski = ({ avtomobile }) => {
             id='combo-box-model'
             options={carsModel}
             getOptionLabel={(option) => option.label}
-            isOptionEqualToValue={(option, value) => option.value.CarModelCode === value?.CarModelCode} // Сравниваем по CarModelCode
+            isOptionEqualToValue={(option, value) =>
+              option.value.CarModelCode === value?.CarModelCode
+            }
             onChange={handleModelChange}
             renderInput={(params) => (
               <TextField {...params} placeholder='Модель' />
             )}
-            value={carsModel.find((model) => model.value.CarModelCode === selectedModel?.CarModelCode) || null} // Сравниваем по CarModelCode
-            disabled={!selectedAuto} // Отключаем, если автомобиль не выбран
+            value={
+              carsModel.find(
+                (model) =>
+                  model.value.CarModelCode === selectedModel?.CarModelCode
+              ) || null
+            }
+            disabled={!selectedAuto}
           />
         </div>
         <div>
@@ -132,13 +209,73 @@ const SearchByCarDiski = ({ avtomobile }) => {
             id='combo-box-year'
             options={modelYear}
             getOptionLabel={(option) => option.label}
-            isOptionEqualToValue={(option, value) => option.value.CarYear === value?.CarYear} // Сравниваем по CarYear
+            isOptionEqualToValue={(option, value) =>
+              option.value.CarYear === value?.CarYear
+            }
             onChange={handleYearChange}
             renderInput={(params) => (
               <TextField {...params} placeholder='Год выпуска' />
             )}
-            value={modelYear.find((year) => year.value.CarYear === selectedYear?.CarYear) || null} // Сравниваем по CarYear
-            disabled={!selectedModel} // Отключаем, если модель не выбрана
+            value={
+              modelYear.find(
+                (year) => year.value.CarYear === selectedYear?.CarYear
+              ) || null
+            }
+            disabled={!selectedModel}
+          />
+        </div>
+        <div>
+          <p className='text-white text-lg mb-5'>Модификации</p>
+          <Autocomplete
+            className='bg-white rounded outline-none autocomplete'
+            disablePortal
+            id='combo-box-mod'
+            options={modifications}
+            getOptionLabel={(option) => option.label}
+            isOptionEqualToValue={(option, value) =>
+              option.value.Kuzov === value?.Kuzov &&
+              option.value.Dvigatel === value?.Dvigatel
+            }
+            onChange={handleModChange}
+            renderInput={(params) => (
+              <TextField {...params} placeholder='Модификации' />
+            )}
+            value={
+              modifications.find(
+                (mod) =>
+                  mod.value.Kuzov === selectMod?.Kuzov &&
+                  mod.value.Dvigatel === selectMod?.Dvigatel
+              ) || null
+            }
+            disabled={!selectedYear}
+          />
+        </div>
+        <div>
+          <p className='text-white text-lg mb-5'>Типоразмер</p>
+          <Autocomplete
+            className='bg-white rounded outline-none autocomplete'
+            disablePortal
+            id='combo-box-mod'
+            options={options}
+            getOptionLabel={(option) => option.label}
+            isOptionEqualToValue={(option, value) =>
+              option.value.shirina === value?.shirina &&
+              option.value.diametr === value?.diametr &&
+              option.value.description === value?.description
+            }
+            onChange={handleOptionChange}
+            renderInput={(params) => (
+              <TextField {...params} placeholder='Типоразмер' />
+            )}
+            value={
+              options.find(
+                (option) =>
+                  option.value.shirina === selectedOption?.shirina &&
+                  option.value.diametr === selectedOption?.diametr &&
+                  option.value.description === selectedOption?.description
+              ) || null
+            }
+            disabled={!selectMod}
           />
         </div>
         <div className='flex items-center gap-2 text-white cursor-pointer'>
