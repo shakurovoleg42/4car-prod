@@ -9,15 +9,16 @@ export default async function Home() {
   const data = await fetchService.getAllNews();
   const bestSeller = await fetchService.getBestSeller();
   const cars = await tiresAvtoFilter.getAllBrands();
-  const models = await tiresAvtoFilter.getModels();
-
-  // const years = await tiresAvtoFilter.getYears();
-  // console.log(years.)
 
   return (
     <>
       <Hero />
-      <GlobalMain partners={manufacturers} news={data} bestSeller={bestSeller} Cars={cars} Models={models}/>
+      <GlobalMain
+        partners={manufacturers}
+        news={data}
+        bestSeller={bestSeller}
+        Cars={cars}
+      />
       <Footer />
     </>
   );

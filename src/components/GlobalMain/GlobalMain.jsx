@@ -16,8 +16,16 @@ import AboutImg from '@/assets/AboutImg.jpg';
 import AddItemButton from '@/components/AddItemButton/AddItemButton';
 import QuantityBox from '../QuantityBox';
 import InstallmentDropdown from '../InstallmentDropdown';
+import axios from 'axios';
 
-const GlobalMain = ({ partners, news, bestSeller, Cars, Years, Models }) => {
+export const getModels = async (selectedAuto) => {
+  const res = await axios.get(
+    `https://test.4car.kz/api/brands?brand=` + selectedAuto
+  );
+  return res.data;
+};
+
+const GlobalMain = ({ partners, news, bestSeller, Cars }) => {
   const [quantities, setQuantities] = useState({});
 
   const incrementQuantity = (id) => {
@@ -51,7 +59,7 @@ const GlobalMain = ({ partners, news, bestSeller, Cars, Years, Models }) => {
               <h2 className='text-2xl font-bold font-body mb-4'>
                 Подбор дисков
               </h2>
-              <SelectDiski cars={Cars} years={Years} model={Models}/>
+              <SelectDiski cars={Cars} Models={getModels}/>
             </div>
           </section>
           <section className='mb-10'>
