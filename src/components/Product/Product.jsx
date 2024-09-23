@@ -22,7 +22,9 @@ import MultiImage from '../MultiImage';
 const Product = ({ product, user_cookie }) => {
   const [data, setData] = useState({ avg_rating: 0, reviews: [] });
   const [countProduct, setCountProduct] = useState(1);
-  const [productImage, setProductImage] = useState(product.images[0]);
+  const [productImage, setProductImage] = useState(
+    product.images[0] || product.image
+  );
   const router = useRouter();
   const pathname = usePathname();
 
