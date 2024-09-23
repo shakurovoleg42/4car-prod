@@ -17,21 +17,24 @@ import Tabs from '../templates/Tabs';
 import Footer from './../Footer/Footer';
 import ScrollToTop from '../ScrollToTop/ScrollToTop';
 import AddItemButton from '../AddItemButton/AddItemButton';
+import MultiImage from '../MultiImage';
 
 const Product = ({ product, user_cookie }) => {
   const [data, setData] = useState({ avg_rating: 0, reviews: [] });
   const [countProduct, setCountProduct] = useState(1);
+  const [productImage, setProductImage] = useState(product.images[0]);
   const router = useRouter();
   const pathname = usePathname();
 
   const model = product.model.replace(/ /g, '+');
-  const whatIs = product.category[0] === 'Шины' 
-  ? 'tires' 
-  : product.category[0] === 'Диски' 
-  ? 'rims' 
-  : null;
+  const whatIs =
+    product.category[0] === 'Шины'
+      ? 'tires'
+      : product.category[0] === 'Диски'
+      ? 'rims'
+      : null;
 
-  useEffect(() => {  
+  useEffect(() => {
     const fetchReviews = async () => {
       try {
         const reviewsData = await fetchService.getProductReview(product.id);
@@ -119,7 +122,19 @@ const Product = ({ product, user_cookie }) => {
                   data-aos='fade-right'
                   className='flex items-center gap-4 max-w-[700px] w-full justify-between productLeft'
                 >
-                  <InnerImageZoom src={product.image} zoomSrc={product.image} zoomType='hover' hideHint />
+                  <div>
+                    <InnerImageZoom
+                      src={productImage}
+                      zoomSrc={productImage}
+                      zoomType='hover'
+                      hideHint
+                      className='!flex items-center justify-center productLeft__img'
+                    />
+                    <MultiImage
+                      images={product.images}
+                      setImage={setProductImage}
+                    />
+                  </div>
                   <div className='flex flex-col gap-4'>
                     <p className='flex gap-3 text-xl text-gray-500'>
                       Модель шины
@@ -159,7 +174,9 @@ const Product = ({ product, user_cookie }) => {
                     </p>
                     <p className='flex gap-3 text-xl text-gray-500'>
                       Индекс нагрузки
-                      <Link href={`/${whatIs}?nagruzki=${product.indeks_nagruzki}`}>
+                      <Link
+                        href={`/${whatIs}?nagruzki=${product.indeks_nagruzki}`}
+                      >
                         <span className='text-primary'>
                           {product.indeks_nagruzki}
                         </span>
@@ -167,7 +184,9 @@ const Product = ({ product, user_cookie }) => {
                     </p>
                     <p className='flex gap-3 text-xl text-gray-500'>
                       Индекс скорости
-                      <Link href={`/${whatIs}?skorosti=${product.indeks_skorosti}`}>
+                      <Link
+                        href={`/${whatIs}?skorosti=${product.indeks_skorosti}`}
+                      >
                         <span className='text-primary'>
                           {product.indeks_skorosti}
                         </span>
@@ -227,7 +246,12 @@ const Product = ({ product, user_cookie }) => {
                     </div>
                     <div className='w-full flex items-center gap-3 max-sm:flex-col'>
                       <b>Поделиться:</b>
-                      <button className='py-2 bg-primary max-w-[300px] w-full 2xl:text-2xl xl:text-xl lg:text-xl md:text-lg sm:text-md text-sm text-white rounded active:bg-blue-700' onClick={copyLink}>Скопировать ссылку</button>
+                      <button
+                        className='py-2 bg-primary max-w-[300px] w-full 2xl:text-2xl xl:text-xl lg:text-xl md:text-lg sm:text-md text-sm text-white rounded active:bg-blue-700'
+                        onClick={copyLink}
+                      >
+                        Скопировать ссылку
+                      </button>
                     </div>
                     <div className='w-full hotLine'>
                       <p className='flex flex-col text-xl gap-4'>
@@ -249,7 +273,11 @@ const Product = ({ product, user_cookie }) => {
               </div>
             </section>
             <section className='w-full' data-aos='fade-down'>
-              <Tabs similar_products={product.similar_products} product_id={product.id} user_cookie={user_cookie}/>
+              <Tabs
+                similar_products={product.similar_products}
+                product_id={product.id}
+                user_cookie={user_cookie}
+              />
             </section>
           </div>
         </main>
