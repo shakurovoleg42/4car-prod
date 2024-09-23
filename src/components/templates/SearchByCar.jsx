@@ -8,7 +8,7 @@ import {
   getModels,
   getYears,
   getMod,
-  getOptions,
+  getTOptions,
 } from '../GlobalMain/GlobalMain';
 import { useDebounceValue } from 'usehooks-ts';
 
@@ -77,7 +77,7 @@ const SearchByCarDiski = ({ avtomobile }) => {
     const fetchOptions = async () => {
       if (selectedModel && selectedYear && selectMod) {
         try {
-          const res = await getOptions(selectMod.Kuzov);
+          const res = await getTOptions(selectMod.Kuzov);
           // console.log(res.options.description);
           setOptionList(res);
         } catch (error) {
@@ -149,7 +149,7 @@ const SearchByCarDiski = ({ avtomobile }) => {
 
   const handleOptionChange = (event, value) => {
     setSelectedOption(value ? value.value : null);
-    setValue (`/search?dia=${optionList.options.dia}&shirina=${optionList.options.shirina}`)
+    setValue (`/search?diametr=${optionList.options.dia}&shirina=${optionList.options.shirina}`)
   };
 
   const handleAvailabilityChange = (event) => {

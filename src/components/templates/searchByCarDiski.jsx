@@ -9,7 +9,7 @@ import {
   getModels,
   getYears,
   getMod,
-  getTOptions,
+  getOptions,
 } from '../GlobalMain/GlobalMain';
 
 const SearchByCarDiski = ({ avtomobile }) => {
@@ -78,7 +78,7 @@ const SearchByCarDiski = ({ avtomobile }) => {
     const fetchOptions = async () => {
       if (selectedModel && selectedYear && selectMod) {
         try {
-          const res = await getTOptions(selectMod.Kuzov);
+          const res = await getOptions(selectMod.Kuzov);
           console.log(res);
           setOptionList(res);
         } catch (error) {
