@@ -10,13 +10,19 @@
 
     .left
         width: 50%
-        height: 100%
-        display: flex
-        justify-content: center
 
-        img
-            width: 80%
-            margin: 0 auto
+        .zoom
+            height: 300px
+            display: flex
+            align-items: center
+            justify-content: center
+
+            div
+                height: 100%
+
+                img
+                    height: 100%
+                    object-fit: contain
 
     .right
         width: 100%
@@ -105,5 +111,12 @@
         flex-direction: column
         align-items: center
 
-        .left img
-            max-width: 60%
+        .left .zoom
+            height: 200px
+
+@media (max-width: 576px)
+    .body .left
+        width: 100%
+
+        .zoom
+            height: 150px
