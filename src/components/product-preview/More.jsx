@@ -42,7 +42,11 @@ const ProductMore = ({ product }) => {
         </strong>
         <div className={styles.cart}>
           <div className={styles.quantity}>
-            <input type='number' value={quantity} />
+            <input
+              type='number'
+              value={quantity}
+              onChange={(event) => setQuantity(event.target.value)}
+            />
             <button onClick={increment}>+</button>
             <button onClick={decrement}>-</button>
           </div>
