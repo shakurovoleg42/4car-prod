@@ -48,6 +48,13 @@ export const getOptions = async (modification) => {
   return res.data;
 };
 
+export const getTOptions = async (modification) => {
+  const res = await instance.get(
+    `/toptions?modification=` + modification
+  );
+  return res.data;
+};
+
 const GlobalMain = ({ partners, news, bestSeller, Cars }) => {
   const [quantities, setQuantities] = useState({});
 
