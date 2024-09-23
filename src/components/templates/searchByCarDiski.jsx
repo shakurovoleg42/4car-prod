@@ -161,9 +161,9 @@ const SearchByCarDiski = ({ avtomobile }) => {
 
   return (
     <div className='h-auto relative max-w-[600px] w-full py-4'>
-      <div className='flex flex-col gap-5'>
+      <div className='flex flex-col gap-2 '>
         <div>
-          <p className='text-white text-lg mb-5'>Автомобили</p>
+          <p className='text-white text-lg '>Автомобили</p>
           <Autocomplete
             className='bg-white rounded outline-none autocomplete'
             disablePortal
@@ -172,13 +172,13 @@ const SearchByCarDiski = ({ avtomobile }) => {
             getOptionLabel={(option) => option.label}
             onChange={handleAvtoChange}
             renderInput={(params) => (
-              <TextField {...params} placeholder='Автомобили' />
+              <TextField {...params} placeholder='Автомобили' className='p-[1px]'/>
             )}
             value={ModelCars.find((car) => car.value === selectedAuto) || null}
           />
         </div>
         <div>
-          <p className='text-white text-lg mb-5'>Модель</p>
+          <p className='text-white text-lg '>Модель</p>
           <Autocomplete
             className='bg-white rounded outline-none autocomplete'
             disablePortal
@@ -202,7 +202,7 @@ const SearchByCarDiski = ({ avtomobile }) => {
           />
         </div>
         <div>
-          <p className='text-white text-lg mb-5'>Год выпуска</p>
+          <p className='text-white text-lg '>Год выпуска</p>
           <Autocomplete
             className='bg-white rounded outline-none autocomplete'
             disablePortal
@@ -225,7 +225,7 @@ const SearchByCarDiski = ({ avtomobile }) => {
           />
         </div>
         <div>
-          <p className='text-white text-lg mb-5'>Модификации</p>
+          <p className='text-white text-lg '>Модификации</p>
           <Autocomplete
             className='bg-white rounded outline-none autocomplete'
             disablePortal
@@ -251,7 +251,7 @@ const SearchByCarDiski = ({ avtomobile }) => {
           />
         </div>
         <div>
-          <p className='text-white text-lg mb-5'>Типоразмер</p>
+          <p className='text-white text-lg '>Типоразмер</p>
           <Autocomplete
             className='bg-white rounded outline-none autocomplete'
             disablePortal

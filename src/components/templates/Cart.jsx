@@ -6,7 +6,7 @@ const Cart = ({ data }) => {
   const shina = data.items;
 
   if (!shina || !Array.isArray(shina) || shina.length === 0) {
-    return <p className='mt-5'>No products available</p>;
+    return <p className='mt-5'>Нет товаров в корзине</p>;
   }
 
   return (
