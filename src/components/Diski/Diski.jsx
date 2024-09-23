@@ -69,6 +69,13 @@ const Diski = ({ data }) => {
         <ScrollToTop />
         <main className='mt-10'>
           <div className='container flex flex-col items-center'>
+            <p className='align-center mb-8 lg:text-xl p-2' style={{color: '#f00'}}>
+              На нашем сайте большинство дисков универсальные, то-есть они
+              подходят на различные марки автомобилей. Универсальные диски
+              комплектуются монтажным комплектом для определенной марки и модели
+              автомобиля.
+            </p>
+
             <section className='2xl:mb-28 mb-10 px-4 flex flex-col items-start w-full'>
               <div className='flex flex-row font-body mb-5'>
                 <Link href='/' className='mr-1 underline cursor-pointer'>
