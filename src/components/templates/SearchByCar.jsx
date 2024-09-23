@@ -4,7 +4,13 @@ import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import Switch from '@mui/material/Switch';
 import Link from 'next/link';
-import { getModels, getYears, getMod, getOptions } from '../GlobalMain/GlobalMain';
+import {
+  getModels,
+  getYears,
+  getMod,
+  getOptions,
+} from '../GlobalMain/GlobalMain';
+import { useDebounceValue } from 'usehooks-ts';
 
 const SearchByCarDiski = ({ avtomobile }) => {
   const [selectedAuto, setSelectedAuto] = useState(null);
@@ -16,10 +22,8 @@ const SearchByCarDiski = ({ avtomobile }) => {
   const [modList, setModList] = useState([]);
   const [selectedOption, setSelectedOption] = useState(null);
   const [optionList, setOptionList] = useState(null);
-
   const [isAvailable, setIsAvailable] = useState(false);
-
-
+  const [debouncedValue, setValue] = useDebounceValue('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -55,7 +59,10 @@ const SearchByCarDiski = ({ avtomobile }) => {
     const fetchModifications = async () => {
       if (selectedModel && selectedYear) {
         try {
-          const res = await getMod(selectedModel.CarModel, selectedYear.CarYear);
+          const res = await getMod(
+            selectedModel.CarModel,
+            selectedYear.CarYear
+          );
           setModList(res);
         } catch (error) {
           console.error('Ошибка при загрузке данных модификаций:', error);
@@ -71,7 +78,7 @@ const SearchByCarDiski = ({ avtomobile }) => {
       if (selectedModel && selectedYear && selectMod) {
         try {
           const res = await getOptions(selectMod.Kuzov);
-          console.log(res)
+          // console.log(res.options.description);
           setOptionList(res);
         } catch (error) {
           console.error('Ошибка при загрузке данных модификаций:', error);
@@ -86,8 +93,6 @@ const SearchByCarDiski = ({ avtomobile }) => {
     label: avto,
     value: avto,
   }));
-
-  
 
   const carsModel = modelsList.map((model) => ({
     label: model.CarModel,
@@ -108,10 +113,12 @@ const SearchByCarDiski = ({ avtomobile }) => {
 
   // Исправление: проверка, что optionList является объектом и извлечение данных
   const options = optionList?.options
-    ? [{
-        label: `${optionList.options.shirina}/${optionList.options.dia} ${optionList.options.description}`,
-        value: optionList.options,
-      }]
+    ? [
+        {
+          label: `${optionList.options.shirina}/${optionList.options.dia} ${optionList.options.description}`,
+          value: optionList.options,
+        },
+      ]
     : [];
 
   const handleAvtoChange = (event, value) => {
@@ -142,15 +149,19 @@ const SearchByCarDiski = ({ avtomobile }) => {
 
   const handleOptionChange = (event, value) => {
     setSelectedOption(value ? value.value : null);
+    setValue (`/search?dia=${optionList.options.dia}&shirina=${optionList.options.shirina}`)
   };
 
   const handleAvailabilityChange = (event) => {
     setIsAvailable(event.target.checked);
   };
 
-  const handleFilterSubmit = () => {
-    return `/tires?&available=${isAvailable}`;
-    // return `/tires?car=${selectedAuto}&model=${selectedModel}&year=${selectedYear}&mod=${selectMod}&option=${selectedOption}&available=${isAvailable}`;
+  const handleSubmit = () => {
+    // event.preventDefault();
+
+    if (!debouncedValue) return '/';
+
+    return debouncedValue
   };
 
   const handleReset = () => {
@@ -286,7 +297,7 @@ const SearchByCarDiski = ({ avtomobile }) => {
           <p>Только в наличии</p>
         </div>
         <div className='flex gap-4'>
-          <Link href={handleFilterSubmit()}>
+          <Link href={handleSubmit()}>
             <button
               className='btn bg-white text-cm px-2 text-black active:bg-blue-300 rounded-[15px] p-2'
               type='submit'
