@@ -149,7 +149,7 @@ const SearchByCarDiski = ({ avtomobile }) => {
 
   const handleOptionChange = (event, value) => {
     setSelectedOption(value ? value.value : null);
-    setValue (`/search?diametr=${optionList.options.dia}&shirina=${optionList.options.shirina}`)
+    setValue (`/search?diametr=${optionList.options.diametr}&shirina=${optionList.options.shirina}`)
   };
 
   const handleAvailabilityChange = (event) => {
