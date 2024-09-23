@@ -5,7 +5,7 @@ import './CardRegister.css';
 import { useState } from 'react';
 import { MdOutlineVisibility } from 'react-icons/md';
 import { MdOutlineVisibilityOff } from 'react-icons/md';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 // import Image from 'next/image';
 import toast from 'react-hot-toast';
 import axios from 'axios';
@@ -25,9 +25,10 @@ const CardRegister = () => {
   const [emailError, setEmailError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
+  const searchParams = useSearchParams();
 
   const showLoginForm = () => {
-    router.replace('/login');
+    router.replace(`/login?${searchParams.toString()}`);
   };
 
   const handleLoginChange = (e) => {
@@ -87,7 +88,7 @@ const CardRegister = () => {
       toast.success(
         'Успешная регистрация, для продолжения работы в системе выполните вход'
       );
-      router.push('/login');
+      router.push(`/login?${searchParams.toString()}`);
     } catch (error) {
       toast.error(error.response.data.message);
     } finally {
@@ -105,7 +106,7 @@ const CardRegister = () => {
           className='absolute -top-4 left-0 -z-10'
           src={RegisterDecor.src}
           alt=''
-          style={{width: '230px', height: '820px'}}
+          style={{ width: '230px', height: '820px' }}
           // width={230}
           // height={820}
         />
@@ -113,7 +114,7 @@ const CardRegister = () => {
           src={RegisterDecor2.src}
           alt=''
           className='absolute -z-10 right-0 -top-4'
-          style={{width: '230px', height: '820px'}}
+          style={{ width: '230px', height: '820px' }}
           // width={230}
           // height={820}
         />
@@ -121,7 +122,7 @@ const CardRegister = () => {
           src={RegisterDecor3.src}
           alt=''
           className='absolute -z-10 right-0 -top-4'
-          style={{width: '230px', height: '820px'}}
+          style={{ width: '230px', height: '820px' }}
           // width={230}
           // height={820}
         />
@@ -250,7 +251,7 @@ const CardRegister = () => {
           className='absolute bottom-0 -z-10'
           src={RegisterImg.src}
           alt=''
-          style={{width: '550px', height: '220px'}}
+          style={{ width: '550px', height: '220px' }}
           // width={550}
           // height={220}
         />
