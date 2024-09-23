@@ -23,6 +23,8 @@ const ProductPreviewModal = ({ isOpen, handleClose, productSlug }) => {
   useEffect(() => {
     if (product && product.images.length > 0) {
       setProductImage(product.images[0]);
+    } else {
+      setProductImage(product?.image);
     }
   }, [product]);
 
