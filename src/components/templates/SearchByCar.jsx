@@ -273,8 +273,6 @@ const SearchByCarDiski = ({ avtomobile }) => {
             options={options}
             getOptionLabel={(option) => option.label}
             isOptionEqualToValue={(option, value) =>
-              option.value.shirina === value?.shirina &&
-              option.value.diametr === value?.diametr &&
               option.value.description === value?.description
             }
             onChange={handleOptionChange}
