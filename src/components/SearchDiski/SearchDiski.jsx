@@ -21,7 +21,7 @@ const SearchDiski = ({ query, diska, pagination }) => {
     router.replace(pathname + '?' + params.toString());
   };
 
-  const totalPages = pagination.total;
+  const last_page = pagination.last_page;
 
   return (
     <>
@@ -52,7 +52,7 @@ const SearchDiski = ({ query, diska, pagination }) => {
                 </div>
                 <Stack spacing={2} sx={{ mt: 2 }}>
                   <Pagination
-                    count={totalPages}
+                    count={last_page}
                     page={page}
                     onChange={handleChangePage}
                   />
