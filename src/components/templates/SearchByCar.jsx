@@ -115,7 +115,7 @@ const SearchByCarDiski = ({ avtomobile }) => {
   const options = optionList?.options
     ? [
         {
-          label: `${optionList.options.shirina}/${optionList.options.dia} ${optionList.options.description}`,
+          label: `${optionList.options.description}`,
           value: optionList.options,
         },
       ]
@@ -273,8 +273,6 @@ const SearchByCarDiski = ({ avtomobile }) => {
             options={options}
             getOptionLabel={(option) => option.label}
             isOptionEqualToValue={(option, value) =>
-              option.value.shirina === value?.shirina &&
-              option.value.diametr === value?.diametr &&
               option.value.description === value?.description
             }
             onChange={handleOptionChange}
@@ -284,8 +282,6 @@ const SearchByCarDiski = ({ avtomobile }) => {
             value={
               options.find(
                 (option) =>
-                  option.value.shirina === selectedOption?.shirina &&
-                  option.value.diametr === selectedOption?.diametr &&
                   option.value.description === selectedOption?.description
               ) || null
             }
