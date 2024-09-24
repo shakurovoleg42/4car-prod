@@ -3,6 +3,7 @@ import './Product.css';
 
 import { useState, useEffect } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
+import IosShareIcon from '@mui/icons-material/IosShare';
 import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
 import Link from 'next/link';
@@ -76,8 +77,15 @@ const Product = ({ product, user_cookie }) => {
   };
 
   const copyLink = () => {
-    navigator.clipboard.writeText(process.env.NEXT_PUBLIC_URL + pathname);
-    toast('Ссылка скопирована');
+    const shareLink = process.env.NEXT_PUBLIC_URL + pathname;
+
+    if (navigator.share) {
+      navigator.share({ title: '4car', url: shareLink });
+    } else {
+      navigator.clipboard.writeText(shareLink).then(() => {
+        toast('Ссылка скопирована');
+      });
+    }
   };
 
   return (
@@ -247,12 +255,12 @@ const Product = ({ product, user_cookie }) => {
                       <ForteButton sku={product.sku} />
                     </div>
                     <div className='w-full flex items-center gap-3 max-sm:flex-col'>
-                      <b>Поделиться:</b>
                       <button
-                        className='py-2 bg-primary max-w-[300px] w-full 2xl:text-2xl xl:text-xl lg:text-xl md:text-lg sm:text-md text-sm text-white rounded active:bg-blue-700'
+                        className='py-2 bg-primary max-w-[300px] w-full text-sm text-white rounded active:bg-blue-700 flex items-center justify-center gap-2'
                         onClick={copyLink}
                       >
-                        Скопировать ссылку
+                        <IosShareIcon />
+                        Поделиться
                       </button>
                     </div>
                     <div className='w-full hotLine'>
