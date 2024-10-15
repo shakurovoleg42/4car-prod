@@ -17,14 +17,14 @@ import NavBar from '../NavBar/NavBar';
 import Footer from '../Footer/Footer';
 import ScrollToTop from '../ScrollToTop/ScrollToTop';
 
-const CheckoutOrder = ({name, last_name}) => {
+const CheckoutOrder = ({ name, last_name }) => {
   const [deliveryMethod, setDeliveryMethod] = useState('delivery');
   const [paymentMethod, setPaymentMethod] = useState('cash');
   const router = useRouter();
   const searchParams = useSearchParams();
   const product = searchParams.get('product');
   const [productId, productQuantity] = product?.split(',') || '0,0';
- 
+  console.log(name);
   const { data } = useSWR('/api/cart', cartService.getCart);
   const cartTotal = data?.total_price;
 
@@ -95,8 +95,10 @@ const CheckoutOrder = ({name, last_name}) => {
     if (savedData) {
       const parsedData = JSON.parse(savedData);
       Object.keys(parsedData).forEach((key) => {
-        
-        const input = document.querySelector(`[name="${key}"]`, `[name="name"]`);
+        const input = document.querySelector(
+          `[name="${key}"]`,
+          `[name="name"]`
+        );
         if (input) {
           input.value = parsedData[key];
         }
@@ -105,19 +107,9 @@ const CheckoutOrder = ({name, last_name}) => {
   }, []);
 
   useEffect(() => {
-    const savedData = localStorage.getItem('checkoutForm');
-    if (savedData) {
-      const parsedData = JSON.parse(savedData);
-      Object.keys(parsedData).forEach((key) => {
-        // Здесь мы проверяем, чтобы соответствующий input имел name="name"
-        if (key === 'name') {
-          const input = document.querySelector('[name="name"]');
-          if (input) {
-            // Подставляем данные из пропсов в input
-            input.value = `${name} ${last_name}`;
-          }
-        }
-      });
+    const input = document.querySelector('[name="name"]');
+    if (input) {
+      input.value = `${name} ${last_name}`;
     }
   }, [name, last_name]);
 
@@ -175,7 +167,6 @@ const CheckoutOrder = ({name, last_name}) => {
                         type='text'
                         name='name'
                         // value={`${name} ${last_name}`}
-                        required
                       />
                     </div>
                   </div>
@@ -221,6 +212,7 @@ const CheckoutOrder = ({name, last_name}) => {
                 </div>
                 {/* другая секция */}
                 <div className='pay_method mt-20 font-body'>
+                
                   <div>
                     <p
                       style={{
@@ -264,7 +256,23 @@ const CheckoutOrder = ({name, last_name}) => {
                   </div>
                 </div>
                 {/* другая секция */}
-                <div className='address flex flex-col font-body'>           
+                <div className='address flex flex-col font-body'>
+                <div className='flex flex-col mt-10'>
+                    Населённый пункт
+                    <select
+                      className='small mt-3'
+                      name='town'
+                      id=''
+                      defaultValue=''
+                    >
+                      <option value='' disabled hidden>
+                        Выберите
+                      </option>
+                      <option value='city'>Город</option>
+                      <option value='village'>Деревня</option>
+                      <option value='township'>Посёлок</option>
+                    </select>
+                  </div>
                   <div className='flex flex-col mt-10'>
                     Адрес
                     <input

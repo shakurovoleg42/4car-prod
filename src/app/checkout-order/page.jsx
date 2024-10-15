@@ -28,12 +28,6 @@ export default async function CheckoutOrderPage({ searchParams }) {
   // Получаем данные пользователя
   const userData = await getSession(session);
 
-  if (!userData) {
-    console.log('Не удалось получить данные пользователя.');
-  } else {
-    console.log('Данные пользователя:', userData);
-  }
-
   // Логика редиректа
   if (data.items.length === 0 && !isOneClick) {
     redirect('/cart');
