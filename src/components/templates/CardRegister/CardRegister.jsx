@@ -219,11 +219,11 @@ const CardRegister = () => {
           {emailError && <p style={{ color: 'red' }}>{emailError}</p>}
           <div className='flex flex-col'>
             <label className='mb-2 text-primary' htmlFor='emailPhoneInput'>
-              Введите адрес электронной почты или номер телефона:
+              Введите адрес электронной почты:
             </label>
             <input
               required
-              type='text'
+              type='email'
               id='emailPhoneInput'
               value={inputValue}
               onChange={handleInputChange}

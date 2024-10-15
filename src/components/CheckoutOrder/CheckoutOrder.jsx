@@ -17,14 +17,14 @@ import NavBar from '../NavBar/NavBar';
 import Footer from '../Footer/Footer';
 import ScrollToTop from '../ScrollToTop/ScrollToTop';
 
-const CheckoutOrder = () => {
+const CheckoutOrder = ({name, last_name}) => {
   const [deliveryMethod, setDeliveryMethod] = useState('delivery');
   const [paymentMethod, setPaymentMethod] = useState('cash');
   const router = useRouter();
   const searchParams = useSearchParams();
   const product = searchParams.get('product');
   const [productId, productQuantity] = product?.split(',') || '0,0';
-
+ 
   const { data } = useSWR('/api/cart', cartService.getCart);
   const cartTotal = data?.total_price;
 
@@ -34,7 +34,6 @@ const CheckoutOrder = () => {
     const formData = new FormData(event.currentTarget);
     const fields = Object.fromEntries(formData);
 
-    // Сохраняем данные формы в localStorage
     localStorage.setItem('checkoutForm', JSON.stringify(fields));
 
     if (product) {
@@ -91,20 +90,36 @@ const CheckoutOrder = () => {
     };
   };
 
-  // Загружаем данные из sessionStorage при монтировании компонента
   useEffect(() => {
     const savedData = localStorage.getItem('checkoutForm');
     if (savedData) {
       const parsedData = JSON.parse(savedData);
-      // Заполняем поля формы сохраненными данными
       Object.keys(parsedData).forEach((key) => {
-        const input = document.querySelector(`[name="${key}"]`);
+        
+        const input = document.querySelector(`[name="${key}"]`, `[name="name"]`);
         if (input) {
           input.value = parsedData[key];
         }
       });
     }
   }, []);
+
+  useEffect(() => {
+    const savedData = localStorage.getItem('checkoutForm');
+    if (savedData) {
+      const parsedData = JSON.parse(savedData);
+      Object.keys(parsedData).forEach((key) => {
+        // Здесь мы проверяем, чтобы соответствующий input имел name="name"
+        if (key === 'name') {
+          const input = document.querySelector('[name="name"]');
+          if (input) {
+            // Подставляем данные из пропсов в input
+            input.value = `${name} ${last_name}`;
+          }
+        }
+      });
+    }
+  }, [name, last_name]);
 
   return (
     <>
@@ -133,7 +148,6 @@ const CheckoutOrder = () => {
             </div>
             <section className='checkout__order mt-14 flex justify-center gap-6 mb-30'>
               <form
-                // data-aos='fade-right'
                 data-aos-anchor-placement='center-bottom'
                 className='max-w-[1528px] w-full px-4'
                 onSubmit={handleSubmit}
@@ -160,6 +174,8 @@ const CheckoutOrder = () => {
                         className='personal-info p-5 min-w-[300px]'
                         type='text'
                         name='name'
+                        // value={`${name} ${last_name}`}
+                        required
                       />
                     </div>
                   </div>
@@ -248,23 +264,7 @@ const CheckoutOrder = () => {
                   </div>
                 </div>
                 {/* другая секция */}
-                <div className='address flex flex-col font-body'>
-                  <div className='flex flex-col mt-10'>
-                    Населённый пункт
-                    <select
-                      className='small mt-3'
-                      name='town'
-                      id=''
-                      defaultValue=''
-                    >
-                      <option value='' disabled hidden>
-                        Выберите
-                      </option>
-                      <option value='city'>Город</option>
-                      <option value='village'>Деревня</option>
-                      <option value='township'>Посёлок</option>
-                    </select>
-                  </div>
+                <div className='address flex flex-col font-body'>           
                   <div className='flex flex-col mt-10'>
                     Адрес
                     <input
@@ -287,7 +287,6 @@ const CheckoutOrder = () => {
                       className='area mt-3 p-5'
                       type='text'
                       name='work_address'
-                      required
                     ></textarea>
                   </div>
                   <div className='flex flex-col mt-10'>
