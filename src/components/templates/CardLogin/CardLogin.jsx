@@ -56,6 +56,10 @@ const LoginForm = () => {
     }
   };
 
+  // const handleForgotPassword = () => {
+  //   router.replace('/forgot-password');
+  // };
+
   return (
     <>
       <div className='flex max-w-[1000px] rounded w-full mt-14 m-auto shadow-xl shadow-gray-500 loginForm'>

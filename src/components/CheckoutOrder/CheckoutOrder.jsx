@@ -9,6 +9,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import toast from 'react-hot-toast';
 import axios from 'axios';
+import InputMask from 'react-input-mask';
 
 import { handlePayment } from '@/utils/payment';
 import cartService from '@/services/cart';
@@ -141,12 +142,17 @@ const CheckoutOrder = () => {
                   <div className='flex flex-wrap gap-6 inputs font-body text-xs xl:text-sm lg:text-sm'>
                     <div className='main_inputs flex flex-col'>
                       <p>Телефон</p>
-                      <input
-                        className='personal-info p-5 min-w-[300px]'
-                        type='tel'
-                        name='pn'
-                        required
-                      />
+                      <InputMask mask='+7 (999) 999-99-99'>
+                        {(inputProps) => (
+                          <input
+                            {...inputProps}
+                            type='tel'
+                            name='pn'
+                            className='personal-info p-5 min-w-[300px]'
+                            placeholder='+7 (***) ***-**-**'
+                          />
+                        )}
+                      </InputMask>
                     </div>
                     <div className='main_inputs flex flex-col'>
                       <p>Ф.И.О</p>
@@ -154,7 +160,6 @@ const CheckoutOrder = () => {
                         className='personal-info p-5 min-w-[300px]'
                         type='text'
                         name='name'
-                        required
                       />
                     </div>
                   </div>
@@ -166,12 +171,20 @@ const CheckoutOrder = () => {
                         id='country_select'
                         defaultValue=''
                         name='district'
-                        required
                       >
                         <option value='' disabled hidden>
                           Выберите
                         </option>
-                        <option value='Jibek Joli'>Жыбек Жолы</option>
+                        <option value='Abayskaya'>Абайская</option>
+                        <option value='Akmolinskaya'>Акмолинская</option>
+                        <option value='Aktubinskaya'>Актюбинская</option>
+                        <option value='Almatinskaya'>Алматинская</option>
+                        <option value='Atirauskaya'>Атырауская</option>
+                        <option value='Vostochnaya-Kazahstanskaya'>
+                          Восточно-Казахстанская
+                        </option>
+                        <option value='Jambilskaya'>Жамбылская</option>
+                        <option value='Jeteuskaya'>Жетысуская</option>
                       </select>
                     </div>
                     <div className='selects flex flex-col'>
@@ -181,7 +194,6 @@ const CheckoutOrder = () => {
                         id='country_select'
                         defaultValue=''
                         name='city'
-                        required
                       >
                         <option value='' disabled hidden>
                           Выберите
@@ -244,7 +256,6 @@ const CheckoutOrder = () => {
                       name='town'
                       id=''
                       defaultValue=''
-                      required
                     >
                       <option value='' disabled hidden>
                         Выберите
@@ -260,7 +271,6 @@ const CheckoutOrder = () => {
                       className='small mt-3 p-5'
                       type='text'
                       name='address'
-                      required
                     />
                   </div>
                   <div className='flex flex-col mt-10'>
@@ -269,7 +279,6 @@ const CheckoutOrder = () => {
                       className='small mt-3 p-5'
                       type='text'
                       name='orient'
-                      required
                     />
                   </div>
                   <div className='flex flex-col mt-10'>
@@ -287,7 +296,6 @@ const CheckoutOrder = () => {
                       className='area mt-3 p-5'
                       type='text'
                       name='comment'
-                      required
                     ></textarea>
                   </div>
                   <div className='flex flex-col mt-10'>
