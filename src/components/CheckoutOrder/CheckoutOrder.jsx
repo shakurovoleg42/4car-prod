@@ -69,7 +69,7 @@ const CheckoutOrder = ({ name, last_name }) => {
       toast.success('Заказ успешно оформлен');
       router.replace('/customer');
     } catch (error) {
-      toast.error(error.response.data.message);
+      toast.error("Произошла ошибка при оформлении заказа");
     } finally {
       toast.dismiss(loadingToastId);
     }
@@ -156,6 +156,7 @@ const CheckoutOrder = ({ name, last_name }) => {
                             name='pn'
                             className='personal-info p-5 min-w-[300px]'
                             placeholder='+7 (***) ***-**-**'
+                            required
                           />
                         )}
                       </InputMask>
@@ -205,14 +206,26 @@ const CheckoutOrder = ({ name, last_name }) => {
                         <option value='' disabled hidden>
                           Выберите
                         </option>
+                        <option value='Aktau'>Актау</option>
+                        <option value='Aktobe'>Актобе</option>
                         <option value='Almaty'>Алматы</option>
+                        <option value='Astana'>Астана</option>
+                        <option value='Atyrau'>Атырау</option>
+                        <option value='Karaganda'>Караганда</option>
+                        <option value='Kostonay'>Костанай</option>
+                        <option value='Pavlodar'>Павлодар</option>
+                        <option value='Petropavlovsk'>Петропавловск</option>
+                        <option value='Shymkent'>Шымкент</option>
+                        <option value='Uralsk'>Уральск</option>
+                        <option value='Ust-Kamenogorsk'>
+                          Усть-Каменогорск
+                        </option>
                       </select>
                     </div>
                   </div>
                 </div>
                 {/* другая секция */}
                 <div className='pay_method mt-20 font-body'>
-                
                   <div>
                     <p
                       style={{
@@ -257,7 +270,7 @@ const CheckoutOrder = ({ name, last_name }) => {
                 </div>
                 {/* другая секция */}
                 <div className='address flex flex-col font-body'>
-                <div className='flex flex-col mt-10'>
+                  <div className='flex flex-col mt-10'>
                     Населённый пункт
                     <select
                       className='small mt-3'
@@ -279,6 +292,7 @@ const CheckoutOrder = ({ name, last_name }) => {
                       className='small mt-3 p-5'
                       type='text'
                       name='address'
+                      defaultValue=""
                     />
                   </div>
                   <div className='flex flex-col mt-10'>
@@ -287,6 +301,8 @@ const CheckoutOrder = ({ name, last_name }) => {
                       className='small mt-3 p-5'
                       type='text'
                       name='orient'
+                      defaultValue=""
+
                     />
                   </div>
                   <div className='flex flex-col mt-10'>
@@ -295,6 +311,8 @@ const CheckoutOrder = ({ name, last_name }) => {
                       className='area mt-3 p-5'
                       type='text'
                       name='work_address'
+                      defaultValue=""
+
                     ></textarea>
                   </div>
                   <div className='flex flex-col mt-10'>
@@ -303,6 +321,8 @@ const CheckoutOrder = ({ name, last_name }) => {
                       className='area mt-3 p-5'
                       type='text'
                       name='comment'
+                      defaultValue=""
+
                     ></textarea>
                   </div>
                   <div className='flex flex-col mt-10'>
@@ -311,6 +331,7 @@ const CheckoutOrder = ({ name, last_name }) => {
                       className='small mt-3 p-5'
                       type='text'
                       name='coupon'
+                      defaultValue=""
                     />
                   </div>
                 </div>
