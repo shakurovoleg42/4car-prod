@@ -24,7 +24,6 @@ const CheckoutOrder = ({ name, last_name }) => {
   const searchParams = useSearchParams();
   const product = searchParams.get('product');
   const [productId, productQuantity] = product?.split(',') || '0,0';
-  console.log(name);
   const { data } = useSWR('/api/cart', cartService.getCart);
   const cartTotal = data?.total_price;
 
