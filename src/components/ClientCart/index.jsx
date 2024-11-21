@@ -72,7 +72,7 @@ const ClientCart = ({ isAuthenticated }) => {
                     </li>
                     <li>
                       <strong>Доставка:</strong>
-                      <span>4 000 тг</span>
+                      <span>10 000 тг</span>
                     </li>
                     <li>
                       <strong>Итого:</strong>

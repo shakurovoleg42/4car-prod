@@ -4,7 +4,7 @@ import getSession from './utils/getSession';
 
 export async function middleware(request) {
   const session = request.cookies.get('session')?.value;
-  const isOneClick = request.nextUrl.searchParams.get('product'); // получаем параметр product для one click
+  const isOneClick = request.nextUrl.searchParams.get('product');
 
   if (
     request.nextUrl.pathname.startsWith('/customer') ||

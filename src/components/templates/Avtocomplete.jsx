@@ -13,18 +13,9 @@ import Box from '@mui/material/Box';
 import List from '@mui/material/List';
 import Drawer from '@mui/material/Drawer';
 
-const filterShini = [
-  { title: 'The Shawshank Redemption', year: 1994 },
-  { title: 'The Godfather', year: 1972 },
-  { title: 'The Godfather: Part II', year: 1974 },
-  { title: 'The Dark Knight', year: 2008 },
-  { title: '12 Angry Men', year: 1957 },
-  { title: "Schindler's List", year: 1993 },
-  { title: 'Pulp Fiction', year: 1994 },
-];
+
 
 const defaultProps = {
-  options: filterShini,
   getOptionLabel: (option) => option.label,
 };
 
@@ -103,6 +94,7 @@ export default function Playground({ filters }) {
             options={filterOptions.spikes}
             id='disable-clearable7'
             disableClearable
+            noOptionsText="Нет доступных вариантов"
             renderInput={(params) => (
               <TextField {...params} label='Шипы' variant='standard' />
             )}
@@ -115,6 +107,7 @@ export default function Playground({ filters }) {
             options={filterOptions.season}
             id='disable-clearable6'
             disableClearable
+            noOptionsText="Нет доступных вариантов"
             renderInput={(params) => (
               <TextField {...params} label='Сезонность' variant='standard' />
             )}
@@ -127,6 +120,7 @@ export default function Playground({ filters }) {
             options={filterOptions.nagruzki}
             id='disable-clearable8'
             disableClearable
+            noOptionsText="Нет доступных вариантов"
             renderInput={(params) => (
               <TextField
                 {...params}
@@ -143,6 +137,7 @@ export default function Playground({ filters }) {
             options={filterOptions.skorosti}
             id='disable-clearable9'
             disableClearable
+            noOptionsText="Нет доступных вариантов"
             renderInput={(params) => (
               <TextField
                 {...params}
@@ -159,6 +154,7 @@ export default function Playground({ filters }) {
             options={filterOptions.rf}
             id='disable-clearable10'
             disableClearable
+            noOptionsText="Нет доступных вариантов"
             renderInput={(params) => (
               <TextField {...params} label='RunFlat' variant='standard' />
             )}
@@ -195,6 +191,7 @@ export default function Playground({ filters }) {
               <Stack spacing={1} className='autoCompleteContent'>
                 <Autocomplete
                   {...defaultProps}
+                  noOptionsText="Нет доступных вариантов"
                   options={filterOptions.manufacturers}
                   id='disable-clearable1'
                   disableClearable
@@ -211,6 +208,7 @@ export default function Playground({ filters }) {
                 />
                 <Autocomplete
                   {...defaultProps}
+                  noOptionsText="Нет доступных вариантов"
                   options={filterOptions.models}
                   id='disable-clearable2'
                   disableClearable
@@ -223,6 +221,7 @@ export default function Playground({ filters }) {
                 />
                 <Autocomplete
                   {...defaultProps}
+                  noOptionsText="Нет доступных вариантов"
                   options={filterOptions.width}
                   id='disable-clearable3'
                   disableClearable
@@ -235,6 +234,7 @@ export default function Playground({ filters }) {
                 />
                 <Autocomplete
                   {...defaultProps}
+                  noOptionsText="Нет доступных вариантов"
                   options={filterOptions.height}
                   id='disable-clearable4'
                   disableClearable
@@ -247,7 +247,8 @@ export default function Playground({ filters }) {
                 />
                 <Autocomplete
                   {...defaultProps}
-                  options={filterOptions.diameter}
+                  noOptionsText="Нет доступных вариантов"
+                  options={`R${filterOptions.diameter}`}
                   id='disable-clearable5'
                   disableClearable
                   renderInput={(params) => (
@@ -275,6 +276,7 @@ export default function Playground({ filters }) {
             options={filterOptions.manufacturers}
             id='disable-clearable1'
             disableClearable
+            noOptionsText="Нет доступных вариантов"
             renderInput={(params) => (
               <TextField {...params} label='Производители' variant='standard' />
             )}
@@ -287,6 +289,7 @@ export default function Playground({ filters }) {
             options={filterOptions.models}
             id='disable-clearable2'
             disableClearable
+            noOptionsText="Нет доступных вариантов"
             renderInput={(params) => (
               <TextField {...params} label='Модель ' variant='standard' />
             )}
@@ -299,6 +302,7 @@ export default function Playground({ filters }) {
             options={filterOptions.width}
             id='disable-clearable3'
             disableClearable
+            noOptionsText="Нет доступных вариантов"
             renderInput={(params) => (
               <TextField {...params} label='Ширина ' variant='standard' />
             )}
@@ -311,6 +315,7 @@ export default function Playground({ filters }) {
             options={filterOptions.height}
             id='disable-clearable4'
             disableClearable
+            noOptionsText="Нет доступных вариантов"
             renderInput={(params) => (
               <TextField {...params} label='Высота' variant='standard' />
             )}
@@ -323,6 +328,7 @@ export default function Playground({ filters }) {
             options={filterOptions.diameter}
             id='disable-clearable5'
             disableClearable
+            noOptionsText="Нет доступных вариантов"
             renderInput={(params) => (
               <TextField {...params} label='Диаметр ' variant='standard' />
             )}

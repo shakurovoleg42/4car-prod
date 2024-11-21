@@ -10,7 +10,7 @@ const SetFilter = (props) => {
   const [filters, setFilters] = useState({
     width: '',
     height: '',
-    diameter: '',
+    diameter: 'R',
     manufacturer: '',
     season: '',
     available: false

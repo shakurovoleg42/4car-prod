@@ -9,6 +9,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import toast from 'react-hot-toast';
 import axios from 'axios';
+import InputMask from 'react-input-mask';
 
 import { handlePayment } from '@/utils/payment';
 import cartService from '@/services/cart';
@@ -16,14 +17,13 @@ import NavBar from '../NavBar/NavBar';
 import Footer from '../Footer/Footer';
 import ScrollToTop from '../ScrollToTop/ScrollToTop';
 
-const CheckoutOrder = () => {
+const CheckoutOrder = ({ name, last_name }) => {
   const [deliveryMethod, setDeliveryMethod] = useState('delivery');
   const [paymentMethod, setPaymentMethod] = useState('cash');
   const router = useRouter();
   const searchParams = useSearchParams();
   const product = searchParams.get('product');
   const [productId, productQuantity] = product?.split(',') || '0,0';
-
   const { data } = useSWR('/api/cart', cartService.getCart);
   const cartTotal = data?.total_price;
 
@@ -33,7 +33,6 @@ const CheckoutOrder = () => {
     const formData = new FormData(event.currentTarget);
     const fields = Object.fromEntries(formData);
 
-    // Сохраняем данные формы в localStorage
     localStorage.setItem('checkoutForm', JSON.stringify(fields));
 
     if (product) {
@@ -69,7 +68,7 @@ const CheckoutOrder = () => {
       toast.success('Заказ успешно оформлен');
       router.replace('/customer');
     } catch (error) {
-      toast.error(error.response.data.message);
+      toast.error("Произошла ошибка при оформлении заказа");
     } finally {
       toast.dismiss(loadingToastId);
     }
@@ -90,20 +89,28 @@ const CheckoutOrder = () => {
     };
   };
 
-  // Загружаем данные из sessionStorage при монтировании компонента
   useEffect(() => {
     const savedData = localStorage.getItem('checkoutForm');
     if (savedData) {
       const parsedData = JSON.parse(savedData);
-      // Заполняем поля формы сохраненными данными
       Object.keys(parsedData).forEach((key) => {
-        const input = document.querySelector(`[name="${key}"]`);
+        const input = document.querySelector(
+          `[name="${key}"]`,
+          `[name="name"]`
+        );
         if (input) {
           input.value = parsedData[key];
         }
       });
     }
   }, []);
+
+  useEffect(() => {
+    const input = document.querySelector('[name="name"]');
+    if (input) {
+      input.value = `${name} ${last_name}`;
+    }
+  }, [name, last_name]);
 
   return (
     <>
@@ -132,7 +139,6 @@ const CheckoutOrder = () => {
             </div>
             <section className='checkout__order mt-14 flex justify-center gap-6 mb-30'>
               <form
-                // data-aos='fade-right'
                 data-aos-anchor-placement='center-bottom'
                 className='max-w-[1528px] w-full px-4'
                 onSubmit={handleSubmit}
@@ -141,12 +147,18 @@ const CheckoutOrder = () => {
                   <div className='flex flex-wrap gap-6 inputs font-body text-xs xl:text-sm lg:text-sm'>
                     <div className='main_inputs flex flex-col'>
                       <p>Телефон</p>
-                      <input
-                        className='personal-info p-5 min-w-[300px]'
-                        type='tel'
-                        name='pn'
-                        required
-                      />
+                      <InputMask mask='+7 (999) 999-99-99'>
+                        {(inputProps) => (
+                          <input
+                            {...inputProps}
+                            type='tel'
+                            name='pn'
+                            className='personal-info p-5 min-w-[300px]'
+                            placeholder='+7 (***) ***-**-**'
+                            required
+                          />
+                        )}
+                      </InputMask>
                     </div>
                     <div className='main_inputs flex flex-col'>
                       <p>Ф.И.О</p>
@@ -154,7 +166,7 @@ const CheckoutOrder = () => {
                         className='personal-info p-5 min-w-[300px]'
                         type='text'
                         name='name'
-                        required
+                        // value={`${name} ${last_name}`}
                       />
                     </div>
                   </div>
@@ -166,12 +178,20 @@ const CheckoutOrder = () => {
                         id='country_select'
                         defaultValue=''
                         name='district'
-                        required
                       >
                         <option value='' disabled hidden>
                           Выберите
                         </option>
-                        <option value='Jibek Joli'>Жыбек Жолы</option>
+                        <option value='Abayskaya'>Абайская</option>
+                        <option value='Akmolinskaya'>Акмолинская</option>
+                        <option value='Aktubinskaya'>Актюбинская</option>
+                        <option value='Almatinskaya'>Алматинская</option>
+                        <option value='Atirauskaya'>Атырауская</option>
+                        <option value='Vostochnaya-Kazahstanskaya'>
+                          Восточно-Казахстанская
+                        </option>
+                        <option value='Jambilskaya'>Жамбылская</option>
+                        <option value='Jeteuskaya'>Жетысуская</option>
                       </select>
                     </div>
                     <div className='selects flex flex-col'>
@@ -181,12 +201,24 @@ const CheckoutOrder = () => {
                         id='country_select'
                         defaultValue=''
                         name='city'
-                        required
                       >
                         <option value='' disabled hidden>
                           Выберите
                         </option>
+                        <option value='Aktau'>Актау</option>
+                        <option value='Aktobe'>Актобе</option>
                         <option value='Almaty'>Алматы</option>
+                        <option value='Astana'>Астана</option>
+                        <option value='Atyrau'>Атырау</option>
+                        <option value='Karaganda'>Караганда</option>
+                        <option value='Kostonay'>Костанай</option>
+                        <option value='Pavlodar'>Павлодар</option>
+                        <option value='Petropavlovsk'>Петропавловск</option>
+                        <option value='Shymkent'>Шымкент</option>
+                        <option value='Uralsk'>Уральск</option>
+                        <option value='Ust-Kamenogorsk'>
+                          Усть-Каменогорск
+                        </option>
                       </select>
                     </div>
                   </div>
@@ -244,7 +276,6 @@ const CheckoutOrder = () => {
                       name='town'
                       id=''
                       defaultValue=''
-                      required
                     >
                       <option value='' disabled hidden>
                         Выберите
@@ -260,7 +291,7 @@ const CheckoutOrder = () => {
                       className='small mt-3 p-5'
                       type='text'
                       name='address'
-                      required
+                      defaultValue=""
                     />
                   </div>
                   <div className='flex flex-col mt-10'>
@@ -269,7 +300,8 @@ const CheckoutOrder = () => {
                       className='small mt-3 p-5'
                       type='text'
                       name='orient'
-                      required
+                      defaultValue=""
+
                     />
                   </div>
                   <div className='flex flex-col mt-10'>
@@ -278,7 +310,8 @@ const CheckoutOrder = () => {
                       className='area mt-3 p-5'
                       type='text'
                       name='work_address'
-                      required
+                      defaultValue=""
+
                     ></textarea>
                   </div>
                   <div className='flex flex-col mt-10'>
@@ -287,7 +320,8 @@ const CheckoutOrder = () => {
                       className='area mt-3 p-5'
                       type='text'
                       name='comment'
-                      required
+                      defaultValue=""
+
                     ></textarea>
                   </div>
                   <div className='flex flex-col mt-10'>
@@ -296,6 +330,7 @@ const CheckoutOrder = () => {
                       className='small mt-3 p-5'
                       type='text'
                       name='coupon'
+                      defaultValue=""
                     />
                   </div>
                 </div>

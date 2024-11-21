@@ -88,6 +88,7 @@ function CardShini(props) {
           <span className='font-bold 2xl:text-lg xl:text-lg lg:text-md md:text-sm sm:text-sm text-sm'>
             {formattedPrice(product.price)} тг
           </span>
+          <span>Кол-во: {product.quantity}</span>
           {!props.isProfileCart && (
             <div className='flex items-center 2xl:justify-between xl:justify-between justify-center gap-2 2xl:flex-nowrap xl:flex-nowrap'>
               {product.status ? (
