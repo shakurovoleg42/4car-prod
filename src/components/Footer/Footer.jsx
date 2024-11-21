@@ -69,7 +69,7 @@ const Footer = () => {
       />
       <footer className='relative'>
         <div className='container font-bold'>
-          <div className='flex items-center justify-center max-w-[1260px] w-full m-auto gap-5 mb-36 px-5 footer__form'>
+          <div className='flex items-center justify-center max-w-[1260px] w-full m-auto gap-5 mb-56 px-5 footer__form'>
             <form
               onSubmit={handleSubmit}
               method='post'
@@ -150,7 +150,7 @@ const Footer = () => {
             </form>
             <iframe
               src='https://yandex.uz/map-widget/v1/?ll=76.914207%2C43.304945&z=18&l=map&pt=76.914207,43.304945,pm2dgl'
-              className='2xl:max-w-[600px] 2xl:h-[721px] xl:max-w-[500px] xl:h-[621px] lg:max-w-[450px] lg:h-[571px] md:max-w-[400px] md:h-[500px] sm:max-w-[350px] sm:h-[371px] max-w-[300px] h-[321px] w-full rounded-[45px]'
+              className='2xl:max-w-[600px] h-auto min-h-[321px] xl:max-w-[500px] lg:max-w-[450px] md:max-w-[400px] md:h-[500px] sm:max-w-[350px] sm:h-[371px] max-w-[300px] w-full rounded-[45px]'
               allowFullScreen
               style={{
                 position: 'relative',

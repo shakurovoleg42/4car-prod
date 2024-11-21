@@ -7,7 +7,7 @@ import NavbarBottom from './NavbarBottom';
 const NavBar = () => {
   return (
     <>
-      <div className='px-4'>
+      <div className='px-4 font-forms'>
         <NavbarTop />
         <div className='links_navigators'>
           <Searchbar />

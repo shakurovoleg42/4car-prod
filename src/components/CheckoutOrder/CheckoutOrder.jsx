@@ -120,7 +120,7 @@ const CheckoutOrder = ({ name, last_name }) => {
             <NavBar />
             <div className='mt-28 px-4' data-aos='fade-right'>
               <h1
-                className='font-body font-bold 2xl:text-6xl xl:text-6xl lg:text-5xl md:text-4xl text-3xl 
+                className='font-forms font-bold 2xl:text-6xl xl:text-6xl lg:text-5xl md:text-4xl text-3xl 
                         2xl:text-start xl:text-start lg:text-start text-center flex flex-col text-white'
               >
                 Оформление заказа
@@ -131,7 +131,7 @@ const CheckoutOrder = ({ name, last_name }) => {
         <ScrollToTop />
         <main className='mt-30'>
           <div className='container'>
-            <div className='flex flex-row font-body mb-5 mt-10 ml-20'>
+            <div className='flex flex-row font-forms mb-5 mt-10 ml-20'>
               <Link href='/' className='mr-1 underline cursor-pointer'>
                 Главная
               </Link>
@@ -144,7 +144,7 @@ const CheckoutOrder = ({ name, last_name }) => {
                 onSubmit={handleSubmit}
               >
                 <div className='main_info'>
-                  <div className='flex flex-wrap gap-6 inputs font-body text-xs xl:text-sm lg:text-sm'>
+                  <div className='flex flex-wrap gap-6 inputs font-forms text-xs xl:text-sm lg:text-sm'>
                     <div className='main_inputs flex flex-col'>
                       <p>Телефон</p>
                       <InputMask mask='+7 (999) 999-99-99'>
@@ -224,7 +224,7 @@ const CheckoutOrder = ({ name, last_name }) => {
                   </div>
                 </div>
                 {/* другая секция */}
-                <div className='pay_method mt-20 font-body'>
+                <div className='pay_method mt-20 font-forms'>
                   <div>
                     <p
                       style={{
@@ -268,7 +268,7 @@ const CheckoutOrder = ({ name, last_name }) => {
                   </div>
                 </div>
                 {/* другая секция */}
-                <div className='address flex flex-col font-body'>
+                <div className='address flex flex-col font-forms'>
                   <div className='flex flex-col mt-10'>
                     Населённый пункт
                     <select

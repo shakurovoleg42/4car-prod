@@ -16,7 +16,7 @@ const FourNullFour = () => {
             <div className='2xl:mt-16 xl:mt-16 lg:mt-12 md:mt-12 sm:mt-8 mt-8 relative '>
               <h1
                 data-aos='fade-right'
-                className='font-body font-bold 2xl:text-6xl xl:text-6xl lg:text-5xl md:text-4xl text-2xl
+                className='font-forms font-bold 2xl:text-6xl xl:text-6xl lg:text-5xl md:text-4xl text-2xl
                          flex items-center gap-6 text-center text-white fourToFour'
               >
                 УПС! <br />

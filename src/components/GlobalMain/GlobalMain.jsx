@@ -82,18 +82,18 @@ const GlobalMain = ({ partners, news, bestSeller, Cars }) => {
         <div className='container mt-16 relative'>
           <section className='flex items-center justify-center mb-12 gap-5 flex-wrap px-4'>
             <div className='' data-aos='fade-right'>
-              <h2 className='text-2xl font-bold font-body mb-4'>Подбор шин</h2>
+              <h2 className='text-2xl font-bold font-forms mb-4'>Подбор шин</h2>
               <SelectShini cars={Cars}/>
             </div>
             <div data-aos='fade-left'>
-              <h2 className='text-2xl font-bold font-body mb-4'>
+              <h2 className='text-2xl font-bold font-forms mb-4'>
                 Подбор дисков
               </h2>
               <SelectDiski cars={Cars}/>
             </div>
           </section>
           <section className='mb-10'>
-            <h2 className='font-body text-center text-xl md:text-2xl xl:text-3xl mb-7 font-bold'>
+            <h2 className='font-forms text-center text-xl md:text-2xl xl:text-3xl mb-7 font-bold'>
               Наши партнёры
             </h2>
             <Slider
@@ -171,7 +171,7 @@ const GlobalMain = ({ partners, news, bestSeller, Cars }) => {
             </div>
           </section>
           <section className='mb-20'>
-            <h2 className='font-body text-center text-4xl mb-7 font-bold'>
+            <h2 className='font-forms text-center text-4xl mb-7 font-bold'>
               Новости
             </h2>
             <div className='mt-14 mb-12 px-4 flex flex-wrap justify-center gap-4 news__content'>
@@ -219,10 +219,10 @@ const GlobalMain = ({ partners, news, bestSeller, Cars }) => {
             </div>
           </section>
           <section className='mb-10'>
-            <h2 className=' font-body text-center text-4xl mb-10 font-bold'>
+            <h2 className=' font-forms text-center text-4xl mb-10 font-bold'>
               О нас
             </h2>
-            <div className='flex 2xl:flex-nowrap flex-wrap w-full  font-body justify-center px-5 gap-4'>
+            <div className='flex 2xl:flex-nowrap flex-wrap w-full  font-forms justify-center px-5 gap-4'>
               <img
                 data-aos='fade-down-right'
                 data-aos-anchor-placement='center-bottom'
@@ -259,7 +259,7 @@ const GlobalMain = ({ partners, news, bestSeller, Cars }) => {
             </div>
           </section>
           <section className='text-center mb-14'>
-            <h3 className='font-body text-center text-3xl mb-7 font-bold'>
+            <h3 className='font-forms text-center text-3xl mb-7 font-bold'>
               Хиты продаж
             </h3>
             <Slider

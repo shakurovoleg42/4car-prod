@@ -15,7 +15,7 @@ const Credit = () => {
             <NavBar />
             <div className='mt-28 px-4' data-aos='fade-right'>
               <h1
-                className='font-body font-bold 2xl:text-6xl xl:text-6xl lg:text-5xl md:text-4xl text-3xl 
+                className='font-forms font-bold 2xl:text-6xl xl:text-6xl lg:text-5xl md:text-4xl text-3xl 
                         2xl:text-start xl:text-start lg:text-start text-center flex flex-col text-white'
               >
                 Условия кредита и рассрочки
@@ -29,7 +29,7 @@ const Credit = () => {
             <div
               data-aos='fade-right'
               data-aos-anchor-placement='top-bottom'
-              className='max-w-[1050px] w-full mx-auto flex flex-col gap-8 font-body px-4'
+              className='max-w-[1050px] w-full mx-auto flex flex-col gap-8 font-forms px-4'
             >
               <div>
                 <h2 className='2xl:text-2xl xl:text-2xl lg:text-xl md:text-lg sm:text-md text-md mb-2'>

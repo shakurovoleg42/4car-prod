@@ -47,7 +47,7 @@ const NavbarTop = () => {
 
   return (
     <div>
-      <div className='flex pt-2 text-white font-body justify-between items-center'>
+      <div className='flex pt-2 text-white font-forms justify-between items-center'>
         <Link href='/'>
           <img className=' logo w-52' src='/logo.png' alt='Logo' />
         </Link>
@@ -65,7 +65,7 @@ const NavbarTop = () => {
           <CartStatus additionalClass='cart-status' />
         </div>
         <div
-          className='flex transition-all pt-7 lg:pt-4 text-white font-body gap-12 justify-evenly items-center nav__top'
+          className='flex transition-all pt-7 lg:pt-4 text-white font-forms gap-12 justify-evenly items-center nav__top'
           onClick={closeNav}
         >
           <button className='nav-animate' onClick={closeNav}>
@@ -78,7 +78,7 @@ const NavbarTop = () => {
                   <li>
                     <Link
                       href='/tires'
-                      className='list__link text-white font-body'
+                      className='list__link text-white font-forms'
                     >
                       Шины
                     </Link>
@@ -86,7 +86,7 @@ const NavbarTop = () => {
                   <li>
                     <Link
                       href='/rims'
-                      className='list__link text-white font-body'
+                      className='list__link text-white font-forms'
                     >
                       Диски
                     </Link>
@@ -94,7 +94,7 @@ const NavbarTop = () => {
                   <li>
                     <Link
                       href='/delivery'
-                      className='list__link text-white font-body'
+                      className='list__link text-white font-forms'
                     >
                       Оплата и доставка
                     </Link>
@@ -102,7 +102,7 @@ const NavbarTop = () => {
                   <li>
                     <Link
                       href='/news'
-                      className='list__link text-white font-body'
+                      className='list__link text-white font-forms'
                     >
                       Новости
                     </Link>
@@ -110,7 +110,7 @@ const NavbarTop = () => {
                   <li>
                     <Link
                       href='/contacts'
-                      className='list__link text-white font-body'
+                      className='list__link text-white font-forms'
                     >
                       Контакты
                     </Link>
@@ -118,7 +118,7 @@ const NavbarTop = () => {
                   <li>
                     <Link
                       href='/shinomontazh'
-                      className='list__link text-white font-body'
+                      className='list__link text-white font-forms'
                     >
                       Шиномонтаж
                     </Link>
@@ -130,7 +130,7 @@ const NavbarTop = () => {
               </div>
               <div className='flex flex-col'>
                 <a
-                  className='media__link font-body text-xs xl:text-sm lg:text-sm '
+                  className='media__link font-forms text-xs xl:text-sm lg:text-sm '
                   href='tel:+77017448007'
                 >
                   +7 (701) 744-80-07

@@ -39,7 +39,7 @@ const NavbarBottom = () => {
       <li>
         <Link
           href='/tires'
-          className='list__link text-primary lg:text-lg md:text-xs sm:text-xs text-xs font-body'
+          className='list__link text-primary lg:text-lg md:text-xs sm:text-xs text-xs font-forms'
         >
           Шины
         </Link>
@@ -47,7 +47,7 @@ const NavbarBottom = () => {
       <li>
         <Link
           href='/rims'
-          className='list__link text-primary lg:text-lg md:text-xs sm:text-xs text-xs font-body'
+          className='list__link text-primary lg:text-lg md:text-xs sm:text-xs text-xs font-forms'
         >
           Диски
         </Link>
@@ -55,7 +55,7 @@ const NavbarBottom = () => {
       <li>
         <Link
           href='/delivery'
-          className='list__link text-primary lg:text-lg md:text-xs sm:text-xs text-xs font-body'
+          className='list__link text-primary lg:text-lg md:text-xs sm:text-xs text-xs font-forms'
         >
           Оплата и доставка
         </Link>
@@ -63,7 +63,7 @@ const NavbarBottom = () => {
       <li>
         <Link
           href='/news'
-          className='list__link text-primary lg:text-lg md:text-xs sm:text-xs text-xs font-body'
+          className='list__link text-primary lg:text-lg md:text-xs sm:text-xs text-xs font-forms'
         >
           Новости
         </Link>
@@ -71,7 +71,7 @@ const NavbarBottom = () => {
       <li>
         <Link
           href='/contacts'
-          className='list__link text-primary lg:text-lg md:text-xs sm:text-xs text-xs font-body'
+          className='list__link text-primary lg:text-lg md:text-xs sm:text-xs text-xs font-forms'
         >
           Контакты
         </Link>
@@ -79,7 +79,7 @@ const NavbarBottom = () => {
       <li>
         <Link
           href='/shinomontazh'
-          className='list__link text-primary lg:text-lg md:text-xs sm:text-xs text-xs font-body'
+          className='list__link text-primary lg:text-lg md:text-xs sm:text-xs text-xs font-forms'
         >
           Шиномонтаж
         </Link>

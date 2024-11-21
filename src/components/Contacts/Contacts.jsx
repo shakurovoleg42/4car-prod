@@ -18,7 +18,7 @@ const Contacts = () => {
             <NavBar />
             <div className='mt-28 px-4' data-aos='fade-right'>
               <h1
-                className='font-body font-bold 2xl:text-6xl xl:text-6xl lg:text-5xl md:text-4xl text-3xl 
+                className='font-forms font-bold 2xl:text-6xl xl:text-6xl lg:text-5xl md:text-4xl text-3xl 
                         2xl:text-start xl:text-start lg:text-start text-center flex flex-col text-white'
               >
                 Контакты
@@ -28,11 +28,11 @@ const Contacts = () => {
         </header>
         <ScrollToTop />
 
-        <main className='mt-40'>
+        <main className='mt-20'>
           <div className='container'>
             <section className='mb-14 w-full'>
               <div className='bg-primary p-4 rounded-[10px]'>
-                <div className='max-w-[1000px]  mx-auto flex justify-center -translate-y-1/2 text-center contact__info'>
+                <div className='max-w-[1000px]  mx-auto flex justify-center  text-center contact__info'>
                   <div
                     data-aos='zoom-out-down'
                     className='contact__item flex bg-white flex-col items-center pt-8 
@@ -41,7 +41,7 @@ const Contacts = () => {
                                 2xl:h-52 xl:h-48 lg:h-44 md:h-40 sm:h-36 h-36 p-3 rounded-l-[15px]'
                   >
                     <FaTelegramPlane className='2xl:text-4xl xl:text-3xl lg:text-3xl md:text-2xl sm:text-xl text-xl mb-2 text-primary' />
-                    <h2 className='text-darkMain text-xl mb-4 font-semibold font-body'>
+                    <h2 className='text-darkMain text-xl mb-4 font-semibold font-forms'>
                       Телеграм
                     </h2>
                     <Link href='#!' className='leading-7'>
@@ -56,7 +56,7 @@ const Contacts = () => {
                                 2xl:h-52 xl:h-48 lg:h-44 md:h-40 sm:h-36 h-36'
                   >
                     <FaLocationPin className='2xl:text-4xl xl:text-3xl lg:text-3xl md:text-2xl sm:text-xl text-xl mb-2 text-primary' />
-                    <h2 className='text-darkMain text-xl mb-4 font-semibold font-body'>
+                    <h2 className='text-darkMain text-xl mb-4 font-semibold font-forms'>
                       Адрес
                     </h2>
                     <a
@@ -74,7 +74,7 @@ const Contacts = () => {
                                 2xl:h-52 xl:h-48 lg:h-44 md:h-40 sm:h-36 h-36'
                   >
                     <FaPhone className='2xl:text-4xl xl:text-3xl lg:text-3xl md:text-2xl sm:text-xl text-xl mb-2 text-primary' />
-                    <h2 className='text-darkMain text-xl mb-4 font-semibold font-body'>
+                    <h2 className='text-darkMain text-xl mb-4 font-semibold font-forms'>
                       Телефоны
                     </h2>
                     <a href='tel:+7 (701) 744-80-07' className=' leading-7'>
@@ -92,7 +92,7 @@ const Contacts = () => {
                                 2xl:h-52 xl:h-48 lg:h-44 md:h-40 sm:h-36 h-36 rounded-r-[15px]'
                   >
                     <MdEmail className='2xl:text-4xl xl:text-3xl lg:text-3xl md:text-2xl sm:text-xl text-xl mb-2 text-primary' />
-                    <h2 className='text-darkMain text-xl mb-4 font-semibold font-body'>
+                    <h2 className='text-darkMain text-xl mb-4 font-semibold font-forms'>
                       E-Mail
                     </h2>
                     <a href='mailto:info@4car.kz' className='leading-7'>

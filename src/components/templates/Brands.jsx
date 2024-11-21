@@ -10,7 +10,7 @@ const Brands = ({ partners }) => {
           <NavBar />
           <div className='mt-28 px-4' data-aos='fade-right'>
             <h1
-              className='font-body font-bold 2xl:text-6xl xl:text-6xl lg:text-5xl md:text-4xl text-3xl 
+              className='font-forms font-bold 2xl:text-6xl xl:text-6xl lg:text-5xl md:text-4xl text-3xl 
                         2xl:text-start xl:text-start lg:text-start text-center flex flex-col text-white'
             >
               Наши партнёры
@@ -21,7 +21,7 @@ const Brands = ({ partners }) => {
       <main className='container my-16'>
         <div className='flex flex-wrap sm:flex-nowrap justify-center gap-6 px-4'>
           <div>
-            <p className='font-body text-center sm:text-start text-xl md:text-2xl xl:text-3xl mb-7 font-bold'>
+            <p className='font-forms text-center sm:text-start text-xl md:text-2xl xl:text-3xl mb-7 font-bold'>
               Список производителей
             </p>
             <Partners partners={partners.data} pagination={partners.pagination}/>

@@ -2,7 +2,7 @@ const ProductModal4 = () => {
   return (
     <>
       <div className='mt-10'>
-        <h2 className='font-body font-bold mb-5 2xl:text-2xl xl:text-2xl lg:text-xl md:text-lg sm:text-md text-sm  '>
+        <h2 className='font-forms font-bold mb-5 2xl:text-2xl xl:text-2xl lg:text-xl md:text-lg sm:text-md text-sm  '>
           Внимание!
         </h2>
         <p className='fony-body tracking-wider 2xl:text-lg xl:text-lg lg:text-lg md:text-md sm:text-sm text-xs mb-8'>
@@ -10,7 +10,7 @@ const ProductModal4 = () => {
           визуальных дефектов. После подписания товарной накладной претензии к
           внешнему виду колес не принимаются.
         </p>
-        <h2 className='font-body font-bold mb-5 2xl:text-2xl xl:text-2xl lg:text-xl md:text-lg sm:text-md text-sm  '>
+        <h2 className='font-forms font-bold mb-5 2xl:text-2xl xl:text-2xl lg:text-xl md:text-lg sm:text-md text-sm  '>
           Обмен и возврат товара
         </h2>
         <p className='fony-body tracking-wider 2xl:text-lg xl:text-lg lg:text-lg md:text-md sm:text-sm text-xs flex flex-col gap-4'>

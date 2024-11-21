@@ -5,6 +5,15 @@ export default {
   content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
   theme: {
     extend: {
+      keyframes: {
+        slideDown: {
+          '0%': { height: '0' },
+          '100%': { height: 'auto' },
+        },
+      },
+      animation: {
+        slideDown: 'slideDown 2s ease-out forwards',
+      },
       colors: {
         primary: '#1A6EC1',
         darkMain: '#182F43',
@@ -21,12 +30,12 @@ export default {
       },
       backgroundImage: {
         hero: "url('/hero-pattern.jpg')",
-        shini: "url('/ShiniBg.png')",
+        shini: "url('/ShinaBg.png')",
         diski: "url('/DiskiBg.png')",
         stock: "url('/StockBg.png')",
         contact: "url('/ContactBg.png')",
         checkout: "url('/checkout-orderBG.png')",
-        map: "url('/OtherBg.png')",
+        map: "url('/map.jpg')",
         cart: "url('/hero-cart.png')",
       },
       fontFamily: {

@@ -2,8 +2,8 @@ const ProductModal3 = () => {
   return (
     <>
       <div className='mt-10 mb-10'>
-        <div className='font-body mb-8'>
-          <h2 className='font-body font-bold mb-5 2xl:text-2xl xl:text-2xl lg:text-xl md:text-lg sm:text-md text-md '>
+        <div className='font-forms mb-8'>
+          <h2 className='font-forms font-bold mb-5 2xl:text-2xl xl:text-2xl lg:text-xl md:text-lg sm:text-md text-md '>
             Оплата товара
           </h2>
           <p className='fony-body tracking-wider 2xl:text-lg xl:text-lg lg:text-lg md:text-md sm:text-sm text-xs flex flex-col gap-4'>
@@ -32,8 +32,8 @@ const ProductModal3 = () => {
             </span>
           </p>
         </div>
-        <div className='font-body'>
-          <h2 className='font-body font-bold mb-5 2xl:text-2xl xl:text-2xl lg:text-xl md:text-lg sm:text-md text-md  '>
+        <div className='font-forms'>
+          <h2 className='font-forms font-bold mb-5 2xl:text-2xl xl:text-2xl lg:text-xl md:text-lg sm:text-md text-md  '>
             Доставка товара
           </h2>
           <p className='fony-body tracking-wider 2xl:text-lg xl:text-lg lg:text-lg md:text-md sm:text-sm text-xs flex flex-col gap-4'>
@@ -78,11 +78,11 @@ const ProductModal3 = () => {
         </div>
       </div>
       <div className='max-w-[950px] m-auto text-center'>
-        <p className='font-body font-bold 2xl:text-lg xl:text-lg lg:text-lg md:text-md sm:text-sm text-xs mb-5'>
+        <p className='font-forms font-bold 2xl:text-lg xl:text-lg lg:text-lg md:text-md sm:text-sm text-xs mb-5'>
           Внимание! Неправильно указанный номер телефона, неточный или неполный
           адрес могут привести к задержке выполнения Вашего заказа.
         </p>
-        <p className='font-body font-bold 2xl:text-lg xl:text-lg lg:text-lg md:text-md sm:text-sm text-xs'>
+        <p className='font-forms font-bold 2xl:text-lg xl:text-lg lg:text-lg md:text-md sm:text-sm text-xs'>
           Пожалуйста, внимательно проверяйте Ваши персональные данные при
           оформлении заказа. Конфиденциальность ваших данных гарантируется
         </p>

@@ -64,8 +64,7 @@ const OrderCall = () => {
       <form
         onSubmit={handleSubmit}
         method='post'
-        className='max-w-[300px] p-2 w-full flex flex-col 
-            2xl:text-xl xl:text-xl lg:text-lg md:text-md sm:text-md text-sm font-body gap-4'
+        className='max-w-[300px] p-2 w-full flex flex-col text-sm font-forms gap-4'
       >
         <div className='flex flex-col gap-4'>
           <label htmlFor='orderCallName'>
