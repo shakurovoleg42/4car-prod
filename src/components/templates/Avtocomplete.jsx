@@ -248,7 +248,7 @@ export default function Playground({ filters }) {
                 <Autocomplete
                   {...defaultProps}
                   noOptionsText="Нет доступных вариантов"
-                  options={`R${filterOptions.diameter}`}
+                  options={filterOptions.diameter}
                   id='disable-clearable5'
                   disableClearable
                   renderInput={(params) => (
