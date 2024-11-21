@@ -26,7 +26,7 @@ const About = ({partners}) => {
             <section
               data-aos='zoom-out-down'
               data-aos-anchor-placement='top-bottom'
-              className='font-body text-center mt-10 mb-10 px-5'
+              className='font-forms text-center mt-10 mb-10 px-5'
             >
               <h1 className='font-bold text-darkMain mb-10 2xl:text-4xl xl:text-4xl lg:text-3xl md:text-2xl sm:text-2xl text-xl'>
                 О компании

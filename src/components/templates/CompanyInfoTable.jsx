@@ -2,7 +2,7 @@ const CompanyInfoTable = () => {
   return (
     <>
       <div
-        className='flex justify-center w-full xl mx-auto mt-8 font-body 
+        className='flex justify-center w-full xl mx-auto mt-8 font-forms 
             2xl:text-xl xl:text-xl lg:text-lg md:text-md sm:text-sm text-xs'
       >
         <table className='table-auto border border-collapse border-gray-500'>

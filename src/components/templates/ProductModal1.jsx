@@ -2,7 +2,7 @@ const ProductModal1 = () => {
   return (
     <>
       <div className='mt-8 w-full flex flex-col text-xl'>
-        <h2 className='2xl:text-2xl xl:text-2xl lg:text-xl md:text-lg sm:text-md text-sm font-bold font-body mb-4'>
+        <h2 className='2xl:text-2xl xl:text-2xl lg:text-xl md:text-lg sm:text-md text-sm font-bold font-forms mb-4'>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         </h2>
         <div className='flex flex-col gap-2 2xl:text-lg xl:text-lg lg:text-lg md:text-md sm:text-sm text-xs'>

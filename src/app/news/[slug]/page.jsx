@@ -64,9 +64,9 @@ const NewsPage = ({ params }) => {
 
   return (
     <>
-      <div className='overflow-hidden'>
-        <header className='bg-no-repeat bg-cover bg-center w-full pb-20 bg-diski'>
-          <div className='container'>
+      <div className='overflow-hidden relative'>
+        <header className="absolute inset-0 bg-diski bg-no-repeat bg-cover bg-center transform scale-x-[-1]">
+          <div className='container relative z-10'>
             <NavBar />
           </div>
         </header>
@@ -77,7 +77,7 @@ const NewsPage = ({ params }) => {
               <FaAngleLeft /> Назад
             </Link>
             <div className='px-4' data-aos='fade-right'>
-              <h1 className='font-body font-bold xl:text-4xl lg:text-3xl md:text-2xl text-xl text-center'>
+              <h1 className='font-forms font-bold xl:text-4xl lg:text-3xl md:text-2xl text-xl text-center'>
                 {data.title}
               </h1>
             </div>
@@ -93,7 +93,7 @@ const NewsPage = ({ params }) => {
             </p>
           </section>
           <div className='flex gap-6 flex-col items-center border-t-2 border-gray-300 pt-4 mt-8'>
-            <p className='font-body font-bold mb-5 2xl:text-2xl xl:text-2xl lg:text-xl md:text-lg sm:text-md text-sm'>
+            <p className='font-forms font-bold mb-5 2xl:text-2xl xl:text-2xl lg:text-xl md:text-lg sm:text-md text-sm'>
               Комментарии
             </p>
             <div className='flex gap-6 flex-col items-center'>

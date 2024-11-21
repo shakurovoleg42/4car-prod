@@ -10,7 +10,7 @@ const SetFilter = (props) => {
   const [filters, setFilters] = useState({
     width: '',
     height: '',
-    diameter: 'R',
+    diameter: '',
     manufacturer: '',
     season: '',
     available: false
@@ -63,7 +63,7 @@ const SetFilter = (props) => {
   return (
     <>
       <div className='relative -z-0 py-4 max-w-[600px] w-full'>
-        <p className='text-white text-lg font-bold font-body'>Типы размер</p>
+        <p className='text-white text-lg font-bold font-forms'>Типы размер</p>
         <div className='flex flex-col gap-5'>
           <div className='flex flex-wrap gap-2 text-white'>
             <div>
@@ -104,7 +104,7 @@ const SetFilter = (props) => {
               >
                 <option value=''>Выбрать</option>
                 {data.filter.diameter.map((el, index) => (
-                  <option key={index} value={el}>{el}</option>
+                  <option key={index} value={`R${el}`}>{el}</option>
                 ))}
               </select>
             </div>

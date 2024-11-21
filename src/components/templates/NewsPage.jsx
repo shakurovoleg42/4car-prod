@@ -37,7 +37,7 @@
 //             </Link>
 //             <div className='px-4' data-aos='fade-right'>
 //               <h1
-//                 className='font-body font-bold xl:text-4xl lg:text-3xl md:text-2xl text-xl 
+//                 className='font-forms font-bold xl:text-4xl lg:text-3xl md:text-2xl text-xl 
 //                         text-center'
 //               >
 //                 {data.title}

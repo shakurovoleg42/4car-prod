@@ -14,7 +14,7 @@ const Change = () => {
         <ScrollToTop />
         <main>
           <div className='container'>
-            <section className='mt-10 font-body px-4'>
+            <section className='mt-10 font-forms px-4'>
               <h1
                 data-aos='fade-right'
                 className='text-center  font-bold text-darkMain 2xl:text-4xl xl:text-4xl lg:text-3xl md:text-2xl sm:text-2xl text-xl mb-8'

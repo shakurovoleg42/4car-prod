@@ -37,7 +37,7 @@ const SearchDiski = ({ query, diska, pagination }) => {
             <section className='mt-10 mb-20'>
               <h1
                 data-aos='fade-right'
-                className='text-2xl font-body mb-10 px-4'
+                className='text-2xl font-forms mb-10 px-4'
               >
                 Результаты по запросу {query}
               </h1>

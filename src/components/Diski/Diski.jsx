@@ -58,7 +58,7 @@ const Diski = ({ data }) => {
             <NavBar />
             <div className='mt-28 px-4' data-aos='fade-right'>
               <h1
-                className='font-body font-bold 2xl:text-6xl xl:text-6xl lg:text-5xl md:text-4xl text-3xl 
+                className='font-forms font-bold 2xl:text-6xl xl:text-6xl lg:text-5xl md:text-4xl text-3xl 
                         2xl:text-start xl:text-start lg:text-start text-center flex flex-col text-white'
               >
                 Диски
@@ -77,7 +77,7 @@ const Diski = ({ data }) => {
             </p>
 
             <section className='2xl:mb-28 mb-10 px-4 flex flex-col items-start w-full'>
-              <div className='flex flex-row font-body mb-5'>
+              <div className='flex flex-row font-forms mb-5'>
                 <Link href='/' className='mr-1 underline cursor-pointer'>
                   Главная
                 </Link>

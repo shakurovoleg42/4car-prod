@@ -10,7 +10,7 @@ const SetFilterDiski = (props) => {
   const [filters, setFilters] = useState({
     width: '',
     height: '',
-    diameter: 'R',
+    diameter: '',
     manufacturer: '',
     season: '',
     available: false
@@ -59,7 +59,7 @@ const SetFilterDiski = (props) => {
   return (
     <>
       <div className='relative -z-0 py-4 max-w-[600px] w-full'>
-        <p className='text-white text-lg font-bold font-body'>Типы размер</p>
+        <p className='text-white text-lg font-bold font-forms'>Типы размер</p>
         <div className='flex flex-col gap-5'>
           <div className='flex flex-wrap gap-2 text-white'>
             <div>

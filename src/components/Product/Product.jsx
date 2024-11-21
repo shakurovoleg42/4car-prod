@@ -99,8 +99,8 @@ const Product = ({ product, user_cookie }) => {
         <ScrollToTop />
         <main>
           <div className='container'>
-            <section className='mt-14 font-body px-4'>
-              <div className='flex flex-row font-body mb-5'>
+            <section className='mt-14 font-forms px-4'>
+              <div className='flex flex-row font-forms mb-5'>
                 <Link href='/' className='mr-1 underline cursor-pointer'>
                   Главная
                 </Link>
@@ -110,7 +110,7 @@ const Product = ({ product, user_cookie }) => {
                 className='flex gap-5 flex-col ranking'
                 data-aos='fade-right'
               >
-                <h1 className='2xl:text-3xl xl:text-2xl lg:text-xl md:text-lg sm:text-md text-md font-body font-bold'>
+                <h1 className='2xl:text-3xl xl:text-2xl lg:text-xl md:text-lg sm:text-md text-md font-forms font-bold'>
                   {product.name}
                 </h1>
                 <div className='flex gap-6'>
@@ -214,7 +214,7 @@ const Product = ({ product, user_cookie }) => {
                   <div className='flex items-center gap-7 flex-wrap max-w-[620px] w-full productRight'>
                     <h2
                       className='text-darkMain 2xl:text-3xl
-                                    xl:text-2xl lg:text-2xl md:text-2xl sm:text-2xl text-xl font-body font-bold max-w-[180px] w-full'
+                                    xl:text-2xl lg:text-2xl md:text-2xl sm:text-2xl text-xl font-forms font-bold max-w-[180px] w-full'
                     >
                       {formattedPrice(ProductPrice)} тг
                     </h2>

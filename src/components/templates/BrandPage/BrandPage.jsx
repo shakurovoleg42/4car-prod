@@ -30,7 +30,7 @@ const BrandPage = ({ partners, brand }) => {
             <NavBar />
             <div className='mt-28 px-4' data-aos='fade-right'>
               <h1
-                className='font-body font-bold 2xl:text-6xl xl:text-6xl lg:text-5xl md:text-4xl text-3xl 
+                className='font-forms font-bold 2xl:text-6xl xl:text-6xl lg:text-5xl md:text-4xl text-3xl 
                         2xl:text-start xl:text-start lg:text-start text-center flex flex-col text-white'
               >
                 {name}
@@ -45,7 +45,7 @@ const BrandPage = ({ partners, brand }) => {
               <div
                 className={`flex flex-col gap-3 border max-w-[350px] w-full mt-10 ${styles.box}`}
               >
-                <p className='w-full py-2 px-4 bg-gray-100 font-body font-semibold'>
+                <p className='w-full py-2 px-4 bg-gray-100 font-forms font-semibold'>
                   Производители
                 </p>
                 <div className='flex flex-col gap-3 px-4 pb-5'>

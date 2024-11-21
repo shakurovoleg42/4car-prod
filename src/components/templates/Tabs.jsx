@@ -18,7 +18,7 @@ const Tabs = ({ similar_products = [], product_id, user_cookie }) => {
   return (
     <>
       <div className=''>
-        <section className='mt-20 mb-20 font-body justify-between accountContent'>
+        <section className='mt-20 mb-20 font-forms justify-between accountContent'>
           <div
             className='max-w-[900px] w-full flex gap-4 px-8 justify-between items-center flex-wrap 2xl:text-md
                     xl:text-md lg:text-sm md:border-b border py-2 mx-auto'
@@ -66,7 +66,7 @@ const Tabs = ({ similar_products = [], product_id, user_cookie }) => {
             {activeModal === 'modal5' && <Reviews product_id={productId} user_cookie={user_cookie}/>}
           </div>
           <div className='flex flex-col items-center mt-20'>
-            <p className='font-body font-bold 2xl:text-2xl xl:text-2xl lg:text-xl md:text-lg sm:text-md text-md'>
+            <p className='font-forms font-bold 2xl:text-2xl xl:text-2xl lg:text-xl md:text-lg sm:text-md text-md'>
               Другие варианты
             </p>
             <ProductModal2 shina={similar_products}/>
