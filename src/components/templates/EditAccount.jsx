@@ -106,7 +106,7 @@ const EditAccount = (props) => {
           </div>
           <div className='flex flex-col'>
             <label className='mb-2 text-primary' htmlFor='email'>
-              Введите адрес электронной почта:
+              Введите адрес электронной почты:
             </label>
             <input
               required
