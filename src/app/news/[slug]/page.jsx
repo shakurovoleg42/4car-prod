@@ -34,7 +34,7 @@ const NewsPage = ({ params }) => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const hardcodedToken = '116|09gEPnxMuOtjXLfHXJPyVGJJB3zDvlVmsSYaKOSzcc9b3313'
+  const hardcodedToken = '116|09gEPnxMuOtjXLfHXJPyVGJJB3zDvlVmsSYaKOSzcc9b3313';
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -42,8 +42,8 @@ const NewsPage = ({ params }) => {
     try {
       const config = {
         headers: {
-          'Authorization': `Bearer ${hardcodedToken}`
-        }
+          Authorization: `Bearer ${hardcodedToken}`,
+        },
       };
 
       const res = await fetchService.postCommentNews(data.id, formData, config);
@@ -54,7 +54,10 @@ const NewsPage = ({ params }) => {
 
       setFormData({ body: '' });
     } catch (error) {
-      console.error('Error posting comment:', error.response?.data || error.message);
+      console.error(
+        'Error posting comment:',
+        error.response?.data || error.message
+      );
     }
   };
 
@@ -65,8 +68,8 @@ const NewsPage = ({ params }) => {
   return (
     <>
       <div className='overflow-hidden relative'>
-        <header className="absolute inset-0 bg-diski bg-no-repeat bg-cover bg-center transform scale-x-[-1]">
-          <div className='container relative z-10'>
+        <header className='bg-no-repeat bg-cover bg-center w-full pb-20 bg-diski'>
+          <div className='container'>
             <NavBar />
           </div>
         </header>
@@ -132,8 +135,4 @@ const NewsPage = ({ params }) => {
   );
 };
 
-
-
 export default NewsPage;
-
-
