@@ -104,7 +104,7 @@ const SetFilter = (props) => {
               >
                 <option value=''>Выбрать</option>
                 {data.filter.diameter.map((el, index) => (
-                  <option key={index} value={`R${el}`}>{el}</option>
+                  <option key={index} value={el}>{el}</option>
                 ))}
               </select>
             </div>
