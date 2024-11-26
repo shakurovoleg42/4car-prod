@@ -243,8 +243,8 @@ const Product = ({ product, user_cookie }) => {
                       />
                       <button
                         type='button'
-                        className='py-2 bg-primary max-w-[300px] w-full 2xl:text-2xl
-                                        xl:text-xl lg:text-xl md:text-lg sm:text-md text-sm text-white rounded active:bg-blue-700'
+                        className='py-2 bg-transparent border border-primary max-w-[300px] w-full 2xl:text-2xl
+                                        xl:text-xl lg:text-xl md:text-lg sm:text-md text-sm text-blue-700 rounded active:bg-blue-700 hover:bg-primary hover:text-white'
                         onClick={buyOneClick}
                       >
                         Купить в один клик
@@ -287,6 +287,9 @@ const Product = ({ product, user_cookie }) => {
                 similar_products={product.similar_products}
                 product_id={product.id}
                 user_cookie={user_cookie}
+                product_fullDescription={product.full_description}
+                product_shortDescription={product.short_description}
+
               />
             </section>
           </div>

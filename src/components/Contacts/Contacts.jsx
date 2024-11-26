@@ -77,10 +77,10 @@ const Contacts = () => {
                     <h2 className='text-darkMain text-xl mb-4 font-semibold font-forms'>
                       Телефоны
                     </h2>
-                    <a href='tel:+7 (701) 744-80-07' className=' leading-7'>
+                    <a href='tel:+77017448007' className=' leading-7'>
                       +7 (701) 744-80-07
                     </a>
-                    <a href='tel:+7 (706) 413-35-56' className='leading-7'>
+                    <a href='tel:+77064133556' className='leading-7'>
                       +7 (706) 413-35-56
                     </a>
                   </div>

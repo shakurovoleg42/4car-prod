@@ -22,9 +22,9 @@ const Searchbar = () => {
         <input
           type='search'
           id='searchProduct'
-          className='bg-transparent border
+          className='bg-[#303030a9] border
             rounded-s-md w-full placeholder:text-white text-white focus:placeholder:opacity-100
-            py-1 px-2 placeholder:opacity-50 focus:outline-none'
+            py-1 px-2 focus:outline-none'
           placeholder='Найти'
           autoComplete='search'
           onChange={(event) => setValue(event.target.value)}

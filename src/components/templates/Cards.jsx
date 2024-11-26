@@ -80,18 +80,20 @@ function CardShini(props) {
           />
         </div>
         <div
-          className='bg-primary py-2 px-4 flex flex-col gap-1 cardContent cursor-pointer'
+          className='bg-primary py-2 px-4 flex flex-col gap-1 cardContent cursor-pointer rounded-b-[12px]'
           // onClick={handleDivClick}
         >
           <a href={`/${product.slug}`}>
             <h2 className='text-xs line-clamp-2'>{product.name}</h2>
+          </a>
+
             <p className='text-xs'>{product.text}</p>
             <span className='font-bold 2xl:text-lg xl:text-lg lg:text-md md:text-sm sm:text-sm text-sm'>
               {formattedPrice(product.price)} тг
             </span>
-            <span><br></br>{product.quantity} в наличии</span>
+            <span>{product.quantity} в наличии</span>
             {!props.isProfileCart && (
-              <div className='flex items-center 2xl:justify-between xl:justify-between justify-center gap-2 2xl:flex-nowrap xl:flex-nowrap'>
+              <div className='flex flex-col items-center 2xl:justify-between xl:justify-between justify-center gap-2 2xl:flex-nowrap xl:flex-nowrap'>
                 {product.status ? (
                   <p className='text-xs'>{product.status}</p>
                 ) : product.paying ? (
@@ -126,7 +128,6 @@ function CardShini(props) {
               </div>
             )}
             <InstallmentDropdown sku={product.sku} />
-          </a>
         </div>
       </div>
     </>

@@ -30,9 +30,7 @@ const SearchByCarDiski = ({ avtomobile }) => {
       if (selectedAuto) {
         try {
           const res = await getModels(selectedAuto);
-  console.log(res);
-
-          setModelsList(res); // Сохраняем список моделей
+          setModelsList(res);
         } catch (error) {
           console.error('Ошибка при загрузке данных модели:', error);
         }

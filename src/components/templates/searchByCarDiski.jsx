@@ -79,7 +79,6 @@ const SearchByCarDiski = ({ avtomobile }) => {
       if (selectedModel && selectedYear && selectMod) {
         try {
           const res = await getOptions(selectMod.Kuzov);
-          console.log(res);
           setOptionList(res);
         } catch (error) {
           console.error('Ошибка при загрузке данных модификаций:', error);

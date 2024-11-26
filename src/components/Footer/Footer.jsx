@@ -69,7 +69,7 @@ const Footer = () => {
       />
       <footer className='relative'>
         <div className='container font-bold'>
-          <div className='flex items-center justify-center max-w-[1260px] w-full m-auto gap-5 mb-56 px-5 footer__form'>
+          <div className='flex items-center justify-center max-w-[1260px] w-full m-auto gap-5 mb-56 mt-20 px-5 footer__form'>
             <form
               onSubmit={handleSubmit}
               method='post'
@@ -86,16 +86,16 @@ const Footer = () => {
               </p>
               <div>
                 <label
-                  htmlFor='name'  // Приведение в соответствие с состоянием
+                  htmlFor='name'
                   className='2xl:text-lg xl:text-lg lg:text-md md:text-md sm:text-md text-md mb-3'
                 >
                   Полное имя
                 </label>
                 <input
                   autoComplete='name'
-                  id='name'  // Приведение в соответствие с состоянием
+                  id='name'
                   type='text'
-                  name='name'  // Приведение в соответствие с состоянием
+                  name='name'
                   required
                   placeholder='Саманта Уилер'
                   value={formData.name}

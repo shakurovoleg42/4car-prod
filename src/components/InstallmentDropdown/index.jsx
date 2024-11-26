@@ -21,7 +21,7 @@ const InstallmentDropdown = ({ sku }) => {
     <div className='relative'>
       <button
         onClick={toggleDropdown}
-        className='py-1 w-full text-xs px-3 text-white bg-red-600 rounded active:bg-red-700'
+        className='active:bg-blue-700  rounded px-2 py-1 text-lg text-xs text-white outline-none border border-white'
       >
         В рассрочку
       </button>

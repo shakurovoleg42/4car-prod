@@ -46,8 +46,7 @@ const NewsPage = ({ params }) => {
         },
       };
 
-      const res = await fetchService.postCommentNews(data.id, formData, config);
-      console.log('Comment posted:', res.data);
+      await fetchService.postCommentNews(data.id, formData, config);
 
       const updatedComments = await fetchService.getCommentsNews(data.id);
       setComments(updatedComments);
