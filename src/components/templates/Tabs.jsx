@@ -15,9 +15,9 @@ const Tabs = ({ similar_products = [], product_id, user_cookie, product_fullDesc
   
   useEffect(() => {
     if (product_shortDescription !== undefined) {
-      setActiveModal('modal3');
-    } else {
       setActiveModal('modal6');
+    } else {
+      setActiveModal('modal3');
     }
   }, [product_shortDescription]);
 
