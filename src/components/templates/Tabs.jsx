@@ -1,5 +1,6 @@
 'use client';
 import { useState } from 'react';
+import { useEffect } from 'react';
 import ProductModal2 from './ProductModal2';
 import ProductModal3 from './ProductModal3';
 import ProductModal4 from './ProductModal4';
@@ -8,13 +9,21 @@ import Reviews from './Reviews'
 import Link from 'next/link';
 
 const Tabs = ({ similar_products = [], product_id, user_cookie, product_fullDescription, product_shortDescription }) => {
-  const [activeModal, setActiveModal] = useState('modal3');
+  const [activeModal, setActiveModal] = useState('');
 
   const productId = product_id
-
+  
+  useEffect(() => {
+    if (product_shortDescription !== undefined) {
+      setActiveModal('modal3');
+    } else {
+      setActiveModal('modal6');
+    }
+  }, [product_shortDescription]);
 
   const openModal = (modalType) => {
     setActiveModal(modalType);
+    
   };
 
   return (
