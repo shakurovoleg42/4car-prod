@@ -287,6 +287,9 @@ const Product = ({ product, user_cookie }) => {
                 similar_products={product.similar_products}
                 product_id={product.id}
                 user_cookie={user_cookie}
+                product_fullDescription={product.full_description}
+                product_shortDescription={product.short_description}
+
               />
             </section>
           </div>
