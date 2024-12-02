@@ -37,6 +37,13 @@ const Product = ({ product, user_cookie }) => {
       ? 'rims'
       : null;
 
+      const whatType =
+    product.category[0] === 'Шины'
+      ? 'шины'
+      : product.category[0] === 'Диски'
+      ? 'диска'
+      : null;
+
   useEffect(() => {
     const fetchReviews = async () => {
       try {
@@ -147,67 +154,72 @@ const Product = ({ product, user_cookie }) => {
                   </div>
                   <div className='flex flex-col gap-4'>
                     <p className='flex gap-3 text-xl text-gray-500'>
-                      Модель шины
+                      Модель {whatType}
                       <Link href={`/${whatIs}?modeli=${model}`}>
                         <span className='text-primary'>{product.model}</span>
                       </Link>
                     </p>
                     <p className='flex gap-3 text-xl text-gray-500'>
-                      Ширина шины
+                      Ширина {whatType}
                       <Link href={`/${whatIs}?width=${product.width}`}>
                         <span className='text-primary'>{product.width}</span>
                       </Link>
                     </p>
                     <p className='flex gap-3 text-xl text-gray-500'>
-                      Высота
+                      Высота {whatType}
                       <Link href={`/${whatIs}?height=${product.height}`}>
                         <span className='text-primary'>{product.height}</span>
                       </Link>
                     </p>
                     <p className='flex gap-3 text-xl text-gray-500'>
-                      Диаметр шины
+                      Диаметр {whatType}
                       <Link href={`/${whatIs}?diameter=${product.diameter}`}>
                         <span className='text-primary'>{product.diameter}</span>
                       </Link>
                     </p>
-                    <p className='flex gap-3 text-xl text-gray-500'>
-                      Сезонность
-                      <Link href={`/${whatIs}?season=${product.season}`}>
-                        <span className='text-primary'>{product.season}</span>
-                      </Link>
-                    </p>
-                    <p className='flex gap-3 text-xl text-gray-500'>
-                      Шипы
-                      <Link href={`/${whatIs}?spikes=${product.spikes}`}>
-                        <span className='text-primary'>{product.spikes}</span>
-                      </Link>
-                    </p>
-                    <p className='flex gap-3 text-xl text-gray-500'>
-                      Индекс нагрузки
-                      <Link
-                        href={`/${whatIs}?nagruzki=${product.indeks_nagruzki}`}
-                      >
-                        <span className='text-primary'>
-                          {product.indeks_nagruzki}
-                        </span>
-                      </Link>
-                    </p>
-                    <p className='flex gap-3 text-xl text-gray-500'>
-                      Индекс скорости
-                      <Link
-                        href={`/${whatIs}?skorosti=${product.indeks_skorosti}`}
-                      >
-                        <span className='text-primary'>
-                          {product.indeks_skorosti}
-                        </span>
-                      </Link>
-                    </p>
-                    <p className='flex gap-3 text-xl text-gray-500'>
-                      RunFlat
-                      <Link href={`/${whatIs}?runflat=${product.run_flat}`}>
-                        <span className='text-primary'>{product.run_flat}</span>
-                      </Link>
-                    </p>
+                    {whatType === 'шины' && (
+                      <>
+                        <p className='flex gap-3 text-xl text-gray-500'>
+                          Сезонность
+                          <Link href={`/${whatIs}?season=${product.season}`}>
+                            <span className='text-primary'>{product.season}</span>
+                          </Link>
+                        </p>
+                        <p className='flex gap-3 text-xl text-gray-500'>
+                          Шипы
+                          <Link href={`/${whatIs}?spikes=${product.spikes}`}>
+                            <span className='text-primary'>{product.spikes}</span>
+                          </Link>
+                        </p>
+                        <p className='flex gap-3 text-xl text-gray-500'>
+                          Индекс нагрузки
+                          <Link
+                            href={`/${whatIs}?nagruzki=${product.indeks_nagruzki}`}
+                          >
+                            <span className='text-primary'>
+                              {product.indeks_nagruzki}
+                            </span>
+                          </Link>
+                        </p>
+                        <p className='flex gap-3 text-xl text-gray-500'>
+                          Индекс скорости
+                          <Link
+                            href={`/${whatIs}?skorosti=${product.indeks_skorosti}`}
+                          >
+                            <span className='text-primary'>
+                              {product.indeks_skorosti}
+                            </span>
+                          </Link>
+                        </p>
+                        <p className='flex gap-3 text-xl text-gray-500'>
+                          RunFlat
+                          <Link href={`/${whatIs}?runflat=${product.run_flat}`}>
+                            <span className='text-primary'>{product.run_flat}</span>
+                          </Link>
+                        </p>
+                      </>
+                    )}
+                    
                   </div>
                 </div>
                 <div data-aos='fade-left'>
