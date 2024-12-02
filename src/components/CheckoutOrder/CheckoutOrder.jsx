@@ -68,7 +68,7 @@ const CheckoutOrder = ({ name, last_name }) => {
       toast.success('Заказ успешно оформлен');
       router.replace('/customer');
     } catch (error) {
-      toast.error("Произошла ошибка при оформлении заказа");
+      toast.error('Произошла ошибка при оформлении заказа');
     } finally {
       toast.dismiss(loadingToastId);
     }
@@ -267,6 +267,19 @@ const CheckoutOrder = ({ name, last_name }) => {
                     </div>
                   </div>
                 </div>
+                {/* секция с адресом доставки */}
+                {deliveryMethod === 'pickup' && (
+                  <div
+                    data-aos='fade-up'
+                    className='mt-6 border-[2px] rounded-md w-auto max-w-[400px]'
+                  >
+                    <div className='flex flex-col py-6 px-8 gap-4'>
+                      <p className='font-bold text-2xl text-left'>Пункт выдачи по адресу:</p>
+                      <p className='font-bold text-left'>📍 г. Алматы ул. Казыбаева, 270а</p>
+                      <a href="https://yandex.uz/maps/162/almaty/?from=mapframe&ll=76.914207%2C43.304945&pt=76.914207%2C43.304945&source=mapframe&utm_source=mapframe&z=18" target='_blank' className='border-indigo-200 border-b-[1px] text-[#0e2c80] text-center'>Посмотреть на карте</a>
+                    </div>
+                  </div>
+                )}
                 {/* другая секция */}
                 <div className='address flex flex-col font-forms'>
                   <div className='flex flex-col mt-10'>
@@ -291,7 +304,7 @@ const CheckoutOrder = ({ name, last_name }) => {
                       className='small mt-3 p-5'
                       type='text'
                       name='address'
-                      defaultValue=""
+                      defaultValue=''
                     />
                   </div>
                   <div className='flex flex-col mt-10'>
@@ -300,8 +313,7 @@ const CheckoutOrder = ({ name, last_name }) => {
                       className='small mt-3 p-5'
                       type='text'
                       name='orient'
-                      defaultValue=""
-
+                      defaultValue=''
                     />
                   </div>
                   <div className='flex flex-col mt-10'>
@@ -310,8 +322,7 @@ const CheckoutOrder = ({ name, last_name }) => {
                       className='area mt-3 p-5'
                       type='text'
                       name='work_address'
-                      defaultValue=""
-
+                      defaultValue=''
                     ></textarea>
                   </div>
                   <div className='flex flex-col mt-10'>
@@ -320,8 +331,7 @@ const CheckoutOrder = ({ name, last_name }) => {
                       className='area mt-3 p-5'
                       type='text'
                       name='comment'
-                      defaultValue=""
-
+                      defaultValue=''
                     ></textarea>
                   </div>
                   <div className='flex flex-col mt-10'>
@@ -330,7 +340,7 @@ const CheckoutOrder = ({ name, last_name }) => {
                       className='small mt-3 p-5'
                       type='text'
                       name='coupon'
-                      defaultValue=""
+                      defaultValue=''
                     />
                   </div>
                 </div>
