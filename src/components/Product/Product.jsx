@@ -219,6 +219,28 @@ const Product = ({ product, user_cookie }) => {
                         </p>
                       </>
                     )}
+                    {whatType === 'диска' && (
+                      <>
+                        <p className='flex gap-3 text-xl text-gray-500'>
+                          Отверстий
+                          <Link href={`/${whatIs}?otverstiya=${product.otverstiya}`}>
+                            <span className='text-primary'>{product.otverstiya}</span>
+                          </Link>
+                        </p>
+                        <p className='flex gap-3 text-xl text-gray-500'>
+                          Расстояние
+                          <Link href={`/${whatIs}?rasstoyaniya=${product.rasstoyaniya}`}>
+                            <span className='text-primary'>{product.rasstoyaniya}</span>
+                          </Link>
+                        </p>
+                        <p className='flex gap-3 text-xl text-gray-500'>
+                          Количество болтов
+                          <Link href={`/${whatIs}?kolichestvo_boltov=${product.kolichestvo_boltov}`}>
+                            <span className='text-primary'>{product.kolichestvo_boltov}</span>
+                          </Link>
+                        </p>
+                      </>
+                    )}
                     
                   </div>
                 </div>
