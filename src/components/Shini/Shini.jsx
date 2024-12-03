@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
+import TextField from '@mui/material/TextField';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import Link from 'next/link';
@@ -15,10 +16,6 @@ import Avtocomplete from '../templates/Avtocomplete';
 import CardShini from '../templates/Cards';
 import Footer from './../Footer/Footer';
 import ScrollToTop from './../ScrollToTop/ScrollToTop';
-
-function valuetext(value) {
-  return `${value}`;
-}
 
 const Shini = ({ data }) => {
   const shina = data.products;
@@ -31,23 +28,47 @@ const Shini = ({ data }) => {
 
   const page = +searchParams.get('page') || 1;
 
-  const handleChange = (event, newValue) => {
-    const priceMin = newValue[0];
-    const priceMax = newValue[1];
+  const handleSliderChange = (event, newValue) => {
+    setValue(newValue);
+    updateFilters(newValue[0], newValue[1]);
+  };
 
+  const handleInputChange = (event) => {
+    const { name, value: inputValue } = event.target;
+    const newValue = [...value];
+    newValue[name === 'min' ? 0 : 1] = Math.max(
+      0,
+      Math.min(1000000, Number(inputValue))
+    );
+    setValue(newValue);
+    updateFilters(newValue[0], newValue[1]);
+  };
+
+  const handleBlur = () => {
+    const [min, max] = value;
+    setValue([Math.max(0, min), Math.min(1000000, max)]);
+    updateFilters(min, max);
+  };
+
+  const updateFilters = (priceMin, priceMax) => {
     params.set('price_min', priceMin);
     params.set('price_max', priceMax);
-
-    setValue(newValue);
     router.replace(pathname + '?' + params.toString());
   };
 
   const itemsPerPage = data.pagination.per_page;
 
   const handleChangePage = (event, newPage) => {
+    event.preventDefault(); // Предотвращаем стандартное поведение
     params.set('page', newPage);
-    router.replace(pathname + '?' + params.toString());
+  
+    // Используем scroll: false, чтобы страница не прокручивалась вверх
+    router.push({
+      pathname: pathname,
+      query: Object.fromEntries(params),
+    }, undefined, { scroll: false });
   };
+  
 
   const totalPages = Math.ceil(data.pagination.total / itemsPerPage);
 
@@ -86,8 +107,24 @@ const Shini = ({ data }) => {
               >
                 <Box className='autoCompleteContent'>
                   <div className='flex justify-between mb-6 text-sm'>
-                    <p onChange={valuetext}>от {value[0]} тг</p>
-                    <p onChange={valuetext}>до {value[1]} тг</p>
+                    <TextField
+                      label='Минимальная цена'
+                      variant='outlined'
+                      size='small'
+                      name='min'
+                      value={value[0]}
+                      onChange={handleInputChange}
+                      onBlur={handleBlur}
+                    />
+                    <TextField
+                      label='Максимальная цена'
+                      variant='outlined'
+                      size='small'
+                      name='max'
+                      value={value[1]}
+                      onChange={handleInputChange}
+                      onBlur={handleBlur}
+                    />
                   </div>
                   <Slider
                     getAriaLabel={() => 'Price Value'}
@@ -95,9 +132,8 @@ const Shini = ({ data }) => {
                     min={0}
                     max={1000000}
                     step={50}
-                    onChange={handleChange}
+                    onChange={handleSliderChange}
                     valueLabelDisplay='auto'
-                    // getAriaValueText={valuetext} function
                   />
                 </Box>
                 <Avtocomplete filters={data.filter} />
