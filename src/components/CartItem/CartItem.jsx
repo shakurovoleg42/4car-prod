@@ -36,7 +36,7 @@ const CartItem = ({ item }) => {
         <div className={styles.column}>
           <b>Количество</b>
           <div className={styles.quantity}>
-            <button onClick={() => handleUpdateQuantity(item.quantity - 1)}>
+            <button onClick={() => {if (item.quantity > 1) handleUpdateQuantity(item.quantity - 1)}}>
               -
             </button>
             <span>{item.quantity}</span>

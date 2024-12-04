@@ -66,17 +66,17 @@ const ClientCart = ({ isAuthenticated }) => {
                 </div>
                 <div className={styles.right}>
                   <ul>
-                    <li>
+                    {/* <li>
                       <strong>Стоимость:</strong>
                       <span>{formattedPrice(cartTotal)} тг</span>
-                    </li>
-                    <li>
+                    </li> */}
+                    {/* <li>
                       <strong>Доставка:</strong>
                       <span>10 000 тг</span>
-                    </li>
+                    </li> */}
                     <li>
                       <strong>Итого:</strong>
-                      <span>{formattedPrice(cartTotal + 4000)} тг</span>
+                      <span>{formattedPrice(cartTotal)} тг</span>
                     </li>
                   </ul>
                   <Link href='/checkout-order'>Оформить заказ</Link>

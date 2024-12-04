@@ -243,18 +243,18 @@ const CheckoutOrder = ({ name, last_name }) => {
                       >
                         <p style={{ marginTop: '16px' }}>Доставка до двери</p>
                         <div className='flex flex-row items-center mt-9'>
-                          <Image
-                            src={'/oki.png'}
-                            width={30}
-                            height={15}
-                            alt='selects'
-                          />
-                          <p className='price' style={{ marginLeft: '6px' }}>
-                            Стоимость доставки
-                          </p>
-                          <p className='price' style={{ marginLeft: '43px' }}>
-                            10 000 ₸
-                          </p>
+                          <div className='flex flex-row items-center mx-3'>
+                            <Image
+                              src={'/oki.png'}
+                              width={50}
+                              height={15}
+                              alt='selects'
+                            />
+                            <p className='price ' style={{ marginLeft: '6px' }}>
+                              Стоимость доставки по Алматы бесплатная, за чертой
+                              города - по договоренности.
+                            </p>
+                          </div>
                         </div>
                       </div>
                       <div
@@ -274,75 +274,90 @@ const CheckoutOrder = ({ name, last_name }) => {
                     className='mt-6 border-[2px] rounded-md w-auto max-w-[400px]'
                   >
                     <div className='flex flex-col py-6 px-8 gap-4'>
-                      <p className='font-bold text-2xl text-left'>Пункт выдачи по адресу:</p>
-                      <p className='font-bold text-left'>📍 г. Алматы ул. Казыбаева, 270а</p>
-                      <a href="https://yandex.uz/maps/162/almaty/?from=mapframe&ll=76.914207%2C43.304945&pt=76.914207%2C43.304945&source=mapframe&utm_source=mapframe&z=18" target='_blank' className='border-indigo-200 border-b-[1px] text-[#0e2c80] text-center'>Посмотреть на карте</a>
+                      <p className='font-bold text-2xl text-left'>
+                        Пункт выдачи по адресу:
+                      </p>
+                      <p className='font-bold text-left'>
+                        📍 г. Алматы ул. Казыбаева, 270а
+                      </p>
+                      <a
+                        href='https://yandex.uz/maps/162/almaty/?from=mapframe&ll=76.914207%2C43.304945&pt=76.914207%2C43.304945&source=mapframe&utm_source=mapframe&z=18'
+                        target='_blank'
+                        className='border-indigo-200 border-b-[1px] text-[#0e2c80] text-center'
+                      >
+                        Посмотреть на карте
+                      </a>
                     </div>
                   </div>
                 )}
                 {/* другая секция */}
-                <div className='address flex flex-col font-forms'>
-                  <div className='flex flex-col mt-10'>
-                    Населённый пункт
-                    <select
-                      className='small mt-3'
-                      name='town'
-                      id=''
-                      defaultValue=''
-                    >
-                      <option value='' disabled hidden>
-                        Выберите
-                      </option>
-                      <option value='city'>Город</option>
-                      <option value='village'>Деревня</option>
-                      <option value='township'>Посёлок</option>
-                    </select>
+                {deliveryMethod === 'delivery' && (
+                  <div
+                    data-aos='fade-in'
+                    className='address flex flex-col font-forms'
+                  >
+                    <div className='flex flex-col mt-10'>
+                      Населённый пункт
+                      <select
+                        className='small mt-3'
+                        name='town'
+                        id=''
+                        defaultValue=''
+                      >
+                        <option value='' disabled hidden>
+                          Выберите
+                        </option>
+                        <option value='city'>Город</option>
+                        <option value='village'>Деревня</option>
+                        <option value='township'>Посёлок</option>
+                      </select>
+                    </div>
+                    <div className='flex flex-col mt-10'>
+                      Адрес
+                      <input
+                        className='small mt-3 p-5'
+                        type='text'
+                        name='address'
+                        defaultValue=''
+                      />
+                    </div>
+                    <div className='flex flex-col mt-10'>
+                      Ориентир
+                      <input
+                        className='small mt-3 p-5'
+                        type='text'
+                        name='orient'
+                        defaultValue=''
+                      />
+                    </div>
+                    <div className='flex flex-col mt-10'>
+                      Ваш рабочий адрес
+                      <textarea
+                        className='area mt-3 p-5'
+                        type='text'
+                        name='work_address'
+                        defaultValue=''
+                      ></textarea>
+                    </div>
+                    <div className='flex flex-col mt-10'>
+                      Комментарии к заказу
+                      <textarea
+                        className='area mt-3 p-5'
+                        type='text'
+                        name='comment'
+                        defaultValue=''
+                      ></textarea>
+                    </div>
                   </div>
-                  <div className='flex flex-col mt-10'>
-                    Адрес
-                    <input
-                      className='small mt-3 p-5'
-                      type='text'
-                      name='address'
-                      defaultValue=''
-                    />
-                  </div>
-                  <div className='flex flex-col mt-10'>
-                    Ориентир
-                    <input
-                      className='small mt-3 p-5'
-                      type='text'
-                      name='orient'
-                      defaultValue=''
-                    />
-                  </div>
-                  <div className='flex flex-col mt-10'>
-                    Ваш рабочий адрес
-                    <textarea
-                      className='area mt-3 p-5'
-                      type='text'
-                      name='work_address'
-                      defaultValue=''
-                    ></textarea>
-                  </div>
-                  <div className='flex flex-col mt-10'>
-                    Комментарии к заказу
-                    <textarea
-                      className='area mt-3 p-5'
-                      type='text'
-                      name='comment'
-                      defaultValue=''
-                    ></textarea>
-                  </div>
-                  <div className='flex flex-col mt-10'>
-                    Есть промокод
-                    <input
-                      className='small mt-3 p-5'
-                      type='text'
-                      name='coupon'
-                      defaultValue=''
-                    />
-                  </div>
+                )}
+                <div className='flex flex-col mt-10'>
+                  Есть промокод
+                  <input
+                    className='small mt-3 p-2'
+                    type='text'
+                    name='coupon'
+                    defaultValue=''
+                  />
                 </div>
                 {/* другая секция */}
                 <div className='walletcard-container flex flex-col mt-20 mb-20'>
