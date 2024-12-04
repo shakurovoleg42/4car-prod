@@ -109,7 +109,7 @@ const SetFilterDiski = (props) => {
             <div>
               <p className='text-white pb-1'>Производитель</p>
               <select
-                name='manufacturer'
+                name='disk_manufacturers'
                 value={filters.disk_manufacturers}
                 onChange={handleChange}
                 className='border border-black text-black w-full'
