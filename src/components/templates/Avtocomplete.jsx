@@ -98,63 +98,64 @@ export default function Playground({ filters }) {
     if (pathname === '/rims') {
       return (
         <>
-        <Autocomplete
-          {...defaultProps}
-          options={filterOptions.disk_manufacturers}
-          id='disable-clearable1'
-          disableClearable
-          noOptionsText='Нет доступных вариантов'
-          renderInput={(params) => (
-            <TextField {...params} label='Производитель' variant='standard' />
-          )}
-          onChange={(event, newValue) => handleFilter('brendy', newValue.value)}
-        />
-        <Autocomplete
-                  {...defaultProps}
-                  noOptionsText='Нет доступных вариантов'
-                  options={filterOptions.disk_models}
-                  id='disable-clearable2'
-                  disableClearable
-                  renderInput={(params) => (
-                    <TextField {...params} label='Модель' variant='standard' />
-                  )}
-                  onChange={(event, newValue) =>
-                    handleFilter('modeli', newValue.value)
-                  }
-                />
+          <Autocomplete
+            {...defaultProps}
+            options={filterOptions.disk_manufacturers}
+            id='disable-clearable1'
+            disableClearable
+            noOptionsText='Нет доступных вариантов'
+            renderInput={(params) => (
+              <TextField {...params} label='Производитель' variant='standard' />
+            )}
+            onChange={(event, newValue) =>
+              handleFilter('brendy', newValue.value)
+            }
+          />
+          <Autocomplete
+            {...defaultProps}
+            noOptionsText='Нет доступных вариантов'
+            options={filterOptions.disk_models}
+            id='disable-clearable2'
+            disableClearable
+            renderInput={(params) => (
+              <TextField {...params} label='Модель' variant='standard' />
+            )}
+            onChange={(event, newValue) =>
+              handleFilter('modeli', newValue.value)
+            }
+          />
         </>
-        
       );
     } else if (pathname === '/tires') {
       return (
         <>
-        <Autocomplete
-          {...defaultProps}
-          options={filterOptions.manufacturers}
-          id='disable-clearable1'
-          disableClearable
-          noOptionsText='Нет доступных вариантов'
-          renderInput={(params) => (
-            <TextField {...params} label='Производители' variant='standard' />
-          )}
-          onChange={(event, newValue) => handleFilter('brendy', newValue.value)}
-        />
-        <Autocomplete
-                  {...defaultProps}
-                  noOptionsText='Нет доступных вариантов'
-                  options={filterOptions.models}
-                  id='disable-clearable2'
-                  disableClearable
-                  renderInput={(params) => (
-                    <TextField {...params} label='Модель' variant='standard' />
-                  )}
-                  onChange={(event, newValue) =>
-                    handleFilter('modeli', newValue.value)
-                  }
-                />
+          <Autocomplete
+            {...defaultProps}
+            options={filterOptions.manufacturers}
+            id='disable-clearable1'
+            disableClearable
+            noOptionsText='Нет доступных вариантов'
+            renderInput={(params) => (
+              <TextField {...params} label='Производители' variant='standard' />
+            )}
+            onChange={(event, newValue) =>
+              handleFilter('brendy', newValue.value)
+            }
+          />
+          <Autocomplete
+            {...defaultProps}
+            noOptionsText='Нет доступных вариантов'
+            options={filterOptions.models}
+            id='disable-clearable2'
+            disableClearable
+            renderInput={(params) => (
+              <TextField {...params} label='Модель' variant='standard' />
+            )}
+            onChange={(event, newValue) =>
+              handleFilter('modeli', newValue.value)
+            }
+          />
         </>
-        
-        
       );
     }
   };
@@ -264,7 +265,6 @@ export default function Playground({ filters }) {
             <List className='flex flex-col items-center'>
               <Stack spacing={1} className='autoCompleteContent'>
                 {manufacturersType()}
-                
                 <Autocomplete
                   {...defaultProps}
                   noOptionsText='Нет доступных вариантов'
@@ -318,20 +318,6 @@ export default function Playground({ filters }) {
       <div className='hidden lg:block'>
         <Stack spacing={1} className='autoCompleteContent'>
           {manufacturersType()}
-
-          <Autocomplete
-            {...defaultProps}
-            options={filterOptions.models}
-            id='disable-clearable2'
-            disableClearable
-            noOptionsText='Нет доступных вариантов'
-            renderInput={(params) => (
-              <TextField {...params} label='Модель ' variant='standard' />
-            )}
-            onChange={(event, newValue) =>
-              handleFilter('modeli', newValue.value)
-            }
-          />
           <Autocomplete
             {...defaultProps}
             options={filterOptions.width}
