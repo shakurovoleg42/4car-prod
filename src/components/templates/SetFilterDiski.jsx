@@ -11,7 +11,7 @@ const SetFilterDiski = (props) => {
     width: '',
     height: '',
     diameter: '',
-    manufacturer: '',
+    disk_manufacturers: '',
     season: '',
     available: false
   });
@@ -110,12 +110,12 @@ const SetFilterDiski = (props) => {
               <p className='text-white pb-1'>Производитель</p>
               <select
                 name='manufacturer'
-                value={filters.manufacturer}
+                value={filters.disk_manufacturers}
                 onChange={handleChange}
                 className='border border-black text-black w-full'
               >
                 <option value=''>Выбрать</option>
-                {data.filter.manufacturers.map((el, index) => (
+                {data.filter.disk_manufacturers.map((el, index) => (
                   <option key={index} value={el}>{el}</option>
                 ))}
               </select>
@@ -147,7 +147,7 @@ const SetFilterDiski = (props) => {
                 width: '',
                 height: '',
                 diameter: '',
-                manufacturer: '',
+                disk_manufacturers: '',
                 season: '',
                 available: false
               })}
