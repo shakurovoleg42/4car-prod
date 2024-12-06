@@ -20,10 +20,7 @@ const defaultProps = {
 export default function Playground({ filters }) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedManufacturer, setSelectedManufacturer] = useState('');
-  // console.log(selectedManufacturer);
-  console.log(filters.disk_manufacturers_with_models);
 
-  // console.log(filters.manufacturers)
 
   const toggleDrawer = () => {
     setIsOpen((prevState) => !prevState);
