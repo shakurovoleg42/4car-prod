@@ -19,6 +19,12 @@ const defaultProps = {
 
 export default function Playground({ filters }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [selectedManufacturer, setSelectedManufacturer] = useState('');
+  // console.log(selectedManufacturer);
+  console.log(filters.disk_manufacturers_with_models);
+
+  // console.log(filters.manufacturers)
+
   const toggleDrawer = () => {
     setIsOpen((prevState) => !prevState);
   };
@@ -28,60 +34,104 @@ export default function Playground({ filters }) {
   const pathname = usePathname();
   const params = new URLSearchParams(searchParams);
 
+  const staticModels = filters.models.map((model) => ({
+    label: model,
+    value: model,
+  }));
+
+  const staticDisk_models = filters.disk_models.map((model) => ({
+    label: model,
+    value: model,
+  }));
+
   const filterOptions = {
-    disk_manufacturers: filters.disk_manufacturers.map((manufacturer) => ({
-      label: manufacturer,
-      value: manufacturer,
-    })),
-    manufacturers: filters.manufacturers.map((manufacturer) => ({
-      label: manufacturer,
-      value: manufacturer,
-    })),
-    models: filters.models.map((model) => ({
-      label: model,
-      value: model,
-    })),
-    disk_models: filters.disk_models.map((model) => ({
-      label: model,
-      value: model,
-    })),
+  
+    disk_manufacturers: filters.disk_manufacturers_with_models.map((manufacturerObj) => {
+      const manufacturerName = Object.keys(manufacturerObj)[0];
+      return {
+        label: manufacturerName,
+        value: manufacturerName,
+      };
+    }),
+  
+    manufacturers: filters.manufacturers.map((manufacturerObj) => {
+      const manufacturerName = Object.keys(manufacturerObj)[0];
+      return {
+        label: manufacturerName,
+        value: manufacturerName,
+      };
+    }),
+  
+    models: selectedManufacturer
+      ? filters.manufacturers
+          .find(
+            (manufacturerObj) =>
+              Object.keys(manufacturerObj)[0] === selectedManufacturer
+          )
+          ?.[selectedManufacturer].map((model) => ({
+            label: model,
+            value: model,
+          })) || []
+      : staticModels,
+  
+    disk_models: selectedManufacturer
+      ? filters.disk_manufacturers_with_models
+          .find(
+            (manufacturerObj) =>
+              Object.keys(manufacturerObj)[0] === selectedManufacturer
+          )
+          ?.[selectedManufacturer].map((model) => ({
+            label: model,
+            value: model,
+          })) || []
+      : staticDisk_models,
+  
     width: filters.width.map((w) => ({
       label: w.toString(),
       value: w.toString(),
     })),
+  
     height: filters.height.map((h) => ({
       label: h.toString(),
       value: h.toString(),
     })),
+  
     diameter: filters.diameter.map((d) => ({
       label: d,
       value: d,
     })),
+  
     season: filters.season.map((season) => ({
       label: season,
       value: season,
     })),
+  
     spikes: filters.spikes.map((spike) => ({
       label: spike,
       value: spike,
     })),
+  
     nagruzki: filters.indeks_nagruzki.map((i) => ({
       label: i,
       value: i,
     })),
+  
     skorosti: filters.indeks_skorosti.map((i) => ({
       label: i,
       value: i,
     })),
+  
     rf: filters.run_flat.map((rf) => ({
       label: rf,
       value: rf,
     })),
   };
+  
 
   const handleFilter = (name, value) => {
     params.delete('page');
     params.set(name, value);
+    setSelectedManufacturer(value);
   };
 
   const handleSubmit = () => {
@@ -121,7 +171,7 @@ export default function Playground({ filters }) {
               <TextField {...params} label='Модель' variant='standard' />
             )}
             onChange={(event, newValue) =>
-              handleFilter('modeli', newValue.value)
+              handleFilter('modeli', newValue?.value || '')
             }
           />
         </>
@@ -152,7 +202,7 @@ export default function Playground({ filters }) {
               <TextField {...params} label='Модель' variant='standard' />
             )}
             onChange={(event, newValue) =>
-              handleFilter('modeli', newValue.value)
+              handleFilter('modeli', newValue?.value || '')
             }
           />
         </>
