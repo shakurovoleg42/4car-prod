@@ -12,9 +12,11 @@ const SetFilter = (props) => {
     height: '',
     diameter: '',
     manufacturer: '',
+    just_manufacturers: '',
     season: '',
     available: false
   });
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -59,6 +61,7 @@ const SetFilter = (props) => {
     const query = new URLSearchParams(filteredFilters).toString();
     return `/tires?${query}`;
   };
+
 
   return (
     <>
@@ -119,7 +122,7 @@ const SetFilter = (props) => {
                 className='border border-black text-black w-full'
               >
                 <option value=''>Выбрать</option>
-                {data.filter.manufacturers.map((el, index) => (
+                {data.filter.just_manufacturers.map((el, index) => (
                   <option key={index} value={el}>{el}</option>
                 ))}
               </select>
