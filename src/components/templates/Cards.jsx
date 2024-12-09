@@ -52,7 +52,7 @@ function CardShini(props) {
   return (
     <>
       <div
-        className='card__item 2xl:max-w-[210px] xl:max-w-[205px] lg:max-w-[200px] md:max-w-[185px] sm:max-w-[200px] max-w-[170px] font-forms w-full text-center text-white rounded'
+        className='card__item 2xl:max-w-[210px] xl:max-w-[205px] lg:max-w-[200px] md:max-w-[185px] sm:max-w-[200px] max-w-[170px] h-[370px] font-forms w-full text-center text-white rounded'
         onMouseEnter={() => setIsVisible(true)}
         onMouseLeave={() => setIsVisible(false)}
       >
@@ -74,7 +74,7 @@ function CardShini(props) {
           <Image
             alt=''
             src={product.image}
-            className='2xl:max-w-[110px] xl:max-w-[100px] lg:max-w-[85px] max-w-[75px] 2xl:max-h-[140px] xl:max-h-[130px] lg:max-h-[120px] md:max-h-[110px] sm:max-h-[100px] max-h-[100px] mx-auto mb-3 object-contain'
+            className='2xl:w-[110px] xl:mw-[100px] lg:w-[85px] max-w-[75px] 2xl:h-[140px] xl:h-[130px] lg:h-[120px] md:h-[110px] sm:h-[100px] h-[100px] mx-auto mb-3 object-contain'
             width={200}
             height={200}
           />
@@ -87,47 +87,47 @@ function CardShini(props) {
             <h2 className='text-xs line-clamp-2'>{product.name}</h2>
           </a>
 
-            <p className='text-xs'>{product.text}</p>
-            <span className='font-bold 2xl:text-lg xl:text-lg lg:text-md md:text-sm sm:text-sm text-sm'>
-              {formattedPrice(product.price)} тг
-            </span>
-            <span>{product.quantity} в наличии</span>
-            {!props.isProfileCart && (
-              <div className='flex flex-col items-center 2xl:justify-between xl:justify-between justify-center gap-2 2xl:flex-nowrap xl:flex-nowrap'>
-                {product.status ? (
-                  <p className='text-xs'>{product.status}</p>
-                ) : product.paying ? (
-                  <Link
-                    href='/product'
-                    type='submit'
-                    className='active:bg-gray-100  text-xs px-2 outline-none bg-white text-primary rounded'
-                  >
-                    {product.paying}
-                  </Link>
-                ) : (
-                  <QuantityBox
-                    quantity={quantity}
-                    inc={increment}
-                    dec={decrement}
-                  />
-                )}
-                {product.data ? (
-                  <p className='text-sm'>{product.data}</p>
-                ) : product.order ? (
-                  <Link
-                    href='/product'
-                    type='submit'
-                    className='active:bg-blue-700 
+          <p className='text-xs'>{product.text}</p>
+          <span className='font-bold 2xl:text-lg xl:text-lg lg:text-md md:text-sm sm:text-sm text-sm'>
+            {formattedPrice(product.price)} тг
+          </span>
+          <span>{product.quantity} в наличии</span>
+          {!props.isProfileCart && (
+            <div className='flex flex-col items-center 2xl:justify-between xl:justify-between justify-center gap-2 2xl:flex-nowrap xl:flex-nowrap'>
+              {product.status ? (
+                <p className='text-xs'>{product.status}</p>
+              ) : product.paying ? (
+                <Link
+                  href='/product'
+                  type='submit'
+                  className='active:bg-gray-100  text-xs px-2 outline-none bg-white text-primary rounded'
+                >
+                  {product.paying}
+                </Link>
+              ) : (
+                <QuantityBox
+                  quantity={quantity}
+                  inc={increment}
+                  dec={decrement}
+                />
+              )}
+              {product.data ? (
+                <p className='text-sm'>{product.data}</p>
+              ) : product.order ? (
+                <Link
+                  href='/product'
+                  type='submit'
+                  className='active:bg-blue-700 
                                 rounded px-2 text-xs outline-none border border-white'
-                  >
-                    {product.order}
-                  </Link>
-                ) : (
-                  <AddItemButton item={product} quantity={quantity} />
-                )}
-              </div>
-            )}
-            <InstallmentDropdown sku={product.sku} />
+                >
+                  {product.order}
+                </Link>
+              ) : (
+                <AddItemButton item={product} quantity={quantity} />
+              )}
+            </div>
+          )}
+          <InstallmentDropdown sku={product.sku} />
         </div>
       </div>
     </>
