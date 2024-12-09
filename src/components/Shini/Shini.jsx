@@ -59,16 +59,9 @@ const Shini = ({ data }) => {
   const itemsPerPage = data.pagination.per_page;
 
   const handleChangePage = (event, newPage) => {
-    event.preventDefault(); // Предотвращаем стандартное поведение
     params.set('page', newPage);
-  
-    // Используем scroll: false, чтобы страница не прокручивалась вверх
-    router.push({
-      pathname: pathname,
-      query: Object.fromEntries(params),
-    }, undefined, { scroll: false });
+    router.replace(pathname + '?' + params.toString());
   };
-  
 
   const totalPages = Math.ceil(data.pagination.total / itemsPerPage);
 

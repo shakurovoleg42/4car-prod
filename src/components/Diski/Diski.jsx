@@ -59,16 +59,10 @@ const Diski = ({ data }) => {
   const itemsPerPage = data.pagination.per_page;
 
   const handleChangePage = (event, newPage) => {
-    event.preventDefault(); // Предотвращаем стандартное поведение
     params.set('page', newPage);
-  
-    // Используем scroll: false, чтобы страница не прокручивалась вверх
-    router.push({
-      pathname: pathname,
-      query: Object.fromEntries(params),
-    }, undefined, { scroll: false });
+    router.replace(pathname + '?' + params.toString());
   };
-  
+
   const totalPages = Math.ceil(data.pagination.total / itemsPerPage);
 
   return (
@@ -90,7 +84,10 @@ const Diski = ({ data }) => {
         <ScrollToTop />
         <main className='mt-10'>
           <div className='container flex flex-col items-center'>
-            <p className='align-center mb-8 lg:text-xl p-2' style={{color: '#f00'}}>
+            <p
+              className='align-center mb-8 lg:text-xl p-2'
+              style={{ color: '#f00' }}
+            >
               На нашем сайте большинство дисков универсальные, то-есть они
               подходят на различные марки автомобилей. Универсальные диски
               комплектуются монтажным комплектом для определенной марки и модели
