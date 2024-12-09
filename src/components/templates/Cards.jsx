@@ -74,7 +74,7 @@ function CardShini(props) {
           <Image
             alt=''
             src={product.image}
-            className='2xl:w-[110px] xl:w-[100px] lg:w-[85px] 2xl:h-[140px] xl:h-[130px] lg:h-[120px] md:h-[110px] sm:h-[100px] h-[100px] mx-autoпше mb-3 object-contain'
+            className='2xl:w-[110px] xl:w-[100px] lg:w-[85px] 2xl:h-[140px] xl:h-[130px] lg:h-[120px] md:h-[110px] sm:h-[100px] h-[100px] mx-auto mb-3 object-contain'
             width={200}
             height={200}
           />
