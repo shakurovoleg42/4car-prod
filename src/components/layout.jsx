@@ -10,7 +10,7 @@ export default function Layout({ children }) {
           <NavBar />
           <div className='mt-28 px-4' data-aos='fade-right'>
             <h1
-              className='font-body font-bold 2xl:text-6xl xl:text-6xl lg:text-5xl md:text-4xl text-3xl 
+              className='font-forms font-bold 2xl:text-6xl xl:text-6xl lg:text-5xl md:text-4xl text-3xl 
                     2xl:text-start xl:text-start lg:text-start text-center flex flex-col text-white'
             >
               Личный кабинет

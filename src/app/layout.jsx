@@ -1,4 +1,5 @@
 import './globals.css';
+import 'react-inner-image-zoom/lib/InnerImageZoom/styles.min.css';
 
 import { Toaster } from 'react-hot-toast';
 import NextTopLoader from 'nextjs-toploader';
@@ -16,7 +17,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang='en'>
+    <html lang='ru'>
       <body>
         <div id='root'>
           <NextTopLoader color='#FFFFFF' height={2} showSpinner={false} />

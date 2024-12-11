@@ -83,7 +83,7 @@ const Reviews = ({ product_id, user_cookie }) => {
   return (
     <>
       <div className='flex mt-10 items-center flex-col'>
-        <h2 className='font-body font-bold mb-5 2xl:text-2xl xl:text-2xl lg:text-xl md:text-lg sm:text-md text-sm'>
+        <h2 className='font-forms font-bold mb-5 2xl:text-2xl xl:text-2xl lg:text-xl md:text-lg sm:text-md text-sm'>
           Оставьте свой отзыв
         </h2>
         <div className='flex gap-5 flex-col ranking' data-aos=''>
@@ -124,10 +124,10 @@ const Reviews = ({ product_id, user_cookie }) => {
             </div>
           </form>
           <div className='flex gap-6 flex-col items-center border-t-2 border-gray-300 pt-4'>
-            <p className='font-body font-bold mb-5 2xl:text-2xl xl:text-2xl lg:text-xl md:text-lg sm:text-md text-sm'>
+            <p className='font-forms font-bold mb-5 2xl:text-2xl xl:text-2xl lg:text-xl md:text-lg sm:text-md text-sm'>
               Отзывы других пользователей
             </p>
-            <div className='flex gap-4 w-full max-w-[1200px] w-[900px] flex-col items-center mt-10 flex-wrap'>
+            <div className='flex gap-4 w-full max-w-[1200px] w-[900px] flex-col items-start mt-10 flex-wrap'>
               {data.reviews && data.reviews.length > 0 ? (
                 data.reviews.map((review) => (
                   <div

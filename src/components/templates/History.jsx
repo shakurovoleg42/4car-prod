@@ -11,7 +11,7 @@ const History = ({ data }) => {
   const shina = data;
 
   if (!shina || !Array.isArray(shina) || shina.length === 0) {
-    return <div>No products available</div>;
+    return <div>Нет доступных продуктов</div>;
   }
 
   return (

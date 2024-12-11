@@ -18,7 +18,7 @@ const Stocks = async () => {
             <NavBar />
             <div className='mt-28 px-4' data-aos='fade-right'>
               <h1
-                className='font-body font-bold 2xl:text-6xl xl:text-6xl lg:text-5xl md:text-4xl text-3xl 
+                className='font-forms font-bold 2xl:text-6xl xl:text-6xl lg:text-5xl md:text-4xl text-3xl 
                         2xl:text-start xl:text-start lg:text-start text-center flex flex-col text-white'
               >
                 Новости
@@ -29,7 +29,7 @@ const Stocks = async () => {
         <ScrollToTop />
         <main>
           <div className='container'>
-            <div className='flex flex-row font-body mb-5 mt-10'>
+            <div className='flex flex-row font-forms mb-5 mt-10'>
               <Link href='/' className='mr-1 underline cursor-pointer'>
                 Главная
               </Link>

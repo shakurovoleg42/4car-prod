@@ -21,7 +21,7 @@ const SearchDiski = ({ query, diska, pagination }) => {
     router.replace(pathname + '?' + params.toString());
   };
 
-  const totalPages = pagination.total;
+  const last_page = pagination.last_page;
 
   return (
     <>
@@ -37,7 +37,7 @@ const SearchDiski = ({ query, diska, pagination }) => {
             <section className='mt-10 mb-20'>
               <h1
                 data-aos='fade-right'
-                className='text-2xl font-body mb-10 px-4'
+                className='text-2xl font-forms mb-10 px-4'
               >
                 Результаты по запросу {query}
               </h1>
@@ -52,7 +52,7 @@ const SearchDiski = ({ query, diska, pagination }) => {
                 </div>
                 <Stack spacing={2} sx={{ mt: 2 }}>
                   <Pagination
-                    count={totalPages}
+                    count={last_page}
                     page={page}
                     onChange={handleChangePage}
                   />

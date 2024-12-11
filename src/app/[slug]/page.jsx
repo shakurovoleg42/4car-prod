@@ -8,8 +8,6 @@ import Product from '@/components/Product/Product';
 export default async function Brand({ params }) {
   const manufacturers = await fetchService.getManufacturersHome();
   const session =  cookies().get('session')?.value;
-  // eslint-disable-next-line no-undef
-  // const user = await axios.get(`${process.env.NEXT_PUBLIC_API}/user`);
 
   let brand;
 

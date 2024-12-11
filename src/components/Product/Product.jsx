@@ -2,35 +2,49 @@
 import './Product.css';
 
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
+import IosShareIcon from '@mui/icons-material/IosShare';
 import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
 import Link from 'next/link';
-// import Image from 'next/image';
-import fetchService from '@/services/fetchs';
+import toast from 'react-hot-toast';
+import InnerImageZoom from 'react-inner-image-zoom';
 
 import { formattedPrice } from '@/utils/price';
 import { KaspiButton, ForteButton } from '../Installments';
+import fetchService from '@/services/fetchs';
 import NavBar from '../NavBar/NavBar';
 import Tabs from '../templates/Tabs';
 import Footer from './../Footer/Footer';
 import ScrollToTop from '../ScrollToTop/ScrollToTop';
-import responsiveImage from '@/utils/responsiveImage';
 import AddItemButton from '../AddItemButton/AddItemButton';
+import MultiImage from '../MultiImage';
 
 const Product = ({ product, user_cookie }) => {
   const [data, setData] = useState({ avg_rating: 0, reviews: [] });
   const [countProduct, setCountProduct] = useState(1);
+  const [productImage, setProductImage] = useState(
+    product.images[0] || product.image
+  );
   const router = useRouter();
+  const pathname = usePathname();
 
   const model = product.model.replace(/ /g, '+');
-  const whatIs = product.category[0] === 'Шины' 
-  ? 'tires' 
-  : product.category[0] === 'Диски' 
-  ? 'rims' 
-  : null;
+  const whatIs =
+    product.category[0] === 'Шины'
+      ? 'tires'
+      : product.category[0] === 'Диски'
+      ? 'rims'
+      : null;
 
-  useEffect(() => {  
+      const whatType =
+    product.category[0] === 'Шины'
+      ? 'шины'
+      : product.category[0] === 'Диски'
+      ? 'диска'
+      : null;
+
+  useEffect(() => {
     const fetchReviews = async () => {
       try {
         const reviewsData = await fetchService.getProductReview(product.id);
@@ -69,6 +83,18 @@ const Product = ({ product, user_cookie }) => {
     router.push(newUrl);
   };
 
+  const copyLink = () => {
+    const shareLink = process.env.NEXT_PUBLIC_URL + pathname;
+
+    if (navigator.share) {
+      navigator.share({ title: '4car', url: shareLink });
+    } else {
+      navigator.clipboard.writeText(shareLink).then(() => {
+        toast('Ссылка скопирована');
+      });
+    }
+  };
+
   return (
     <>
       <div className='overflow-hidden'>
@@ -80,8 +106,8 @@ const Product = ({ product, user_cookie }) => {
         <ScrollToTop />
         <main>
           <div className='container'>
-            <section className='mt-14 font-body px-4'>
-              <div className='flex flex-row font-body mb-5'>
+            <section className='mt-14 font-forms px-4'>
+              <div className='flex flex-row font-forms mb-5'>
                 <Link href='/' className='mr-1 underline cursor-pointer'>
                   Главная
                 </Link>
@@ -91,7 +117,7 @@ const Product = ({ product, user_cookie }) => {
                 className='flex gap-5 flex-col ranking'
                 data-aos='fade-right'
               >
-                <h1 className='2xl:text-3xl xl:text-2xl lg:text-xl md:text-lg sm:text-md text-md font-body font-bold'>
+                <h1 className='2xl:text-3xl xl:text-2xl lg:text-xl md:text-lg sm:text-md text-md font-forms font-bold'>
                   {product.name}
                 </h1>
                 <div className='flex gap-6'>
@@ -113,73 +139,116 @@ const Product = ({ product, user_cookie }) => {
                   data-aos='fade-right'
                   className='flex items-center gap-4 max-w-[700px] w-full justify-between productLeft'
                 >
-                  <img src={product.image} alt={product.name} {...responsiveImage} className='max-w-[500px] max-h-[500px] w-full object-contain'/>
+                  <div>
+                    <InnerImageZoom
+                      src={productImage}
+                      zoomSrc={productImage}
+                      zoomType='hover'
+                      hideHint
+                      className='!flex items-center justify-center productLeft__img'
+                    />
+                    <MultiImage
+                      images={product.images}
+                      setImage={setProductImage}
+                    />
+                  </div>
                   <div className='flex flex-col gap-4'>
                     <p className='flex gap-3 text-xl text-gray-500'>
-                      Модель шины
+                      Модель {whatType}
                       <Link href={`/${whatIs}?modeli=${model}`}>
                         <span className='text-primary'>{product.model}</span>
                       </Link>
                     </p>
                     <p className='flex gap-3 text-xl text-gray-500'>
-                      Ширина шины
+                      Ширина {whatType}
                       <Link href={`/${whatIs}?width=${product.width}`}>
                         <span className='text-primary'>{product.width}</span>
                       </Link>
                     </p>
                     <p className='flex gap-3 text-xl text-gray-500'>
-                      Высота
+                      Высота {whatType}
                       <Link href={`/${whatIs}?height=${product.height}`}>
                         <span className='text-primary'>{product.height}</span>
                       </Link>
                     </p>
                     <p className='flex gap-3 text-xl text-gray-500'>
-                      Диаметр шины
+                      Диаметр {whatType}
                       <Link href={`/${whatIs}?diameter=${product.diameter}`}>
                         <span className='text-primary'>{product.diameter}</span>
                       </Link>
                     </p>
-                    <p className='flex gap-3 text-xl text-gray-500'>
-                      Сезонность
-                      <Link href={`/${whatIs}?season=${product.season}`}>
-                        <span className='text-primary'>{product.season}</span>
-                      </Link>
-                    </p>
-                    <p className='flex gap-3 text-xl text-gray-500'>
-                      Шипы
-                      <Link href={`/${whatIs}?spikes=${product.spikes}`}>
-                        <span className='text-primary'>{product.spikes}</span>
-                      </Link>
-                    </p>
-                    <p className='flex gap-3 text-xl text-gray-500'>
-                      Индекс нагрузки
-                      <Link href={`/${whatIs}?nagruzki=${product.indeks_nagruzki}`}>
-                        <span className='text-primary'>
-                          {product.indeks_nagruzki}
-                        </span>
-                      </Link>
-                    </p>
-                    <p className='flex gap-3 text-xl text-gray-500'>
-                      Индекс скорости
-                      <Link href={`/${whatIs}?skorosti=${product.indeks_skorosti}`}>
-                        <span className='text-primary'>
-                          {product.indeks_skorosti}
-                        </span>
-                      </Link>
-                    </p>
-                    <p className='flex gap-3 text-xl text-gray-500'>
-                      RunFlat
-                      <Link href={`/${whatIs}?runflat=${product.run_flat}`}>
-                        <span className='text-primary'>{product.run_flat}</span>
-                      </Link>
-                    </p>
+                    {whatType === 'шины' && (
+                      <>
+                        <p className='flex gap-3 text-xl text-gray-500'>
+                          Сезонность
+                          <Link href={`/${whatIs}?season=${product.season}`}>
+                            <span className='text-primary'>{product.season}</span>
+                          </Link>
+                        </p>
+                        <p className='flex gap-3 text-xl text-gray-500'>
+                          Шипы
+                          <Link href={`/${whatIs}?spikes=${product.spikes}`}>
+                            <span className='text-primary'>{product.spikes}</span>
+                          </Link>
+                        </p>
+                        <p className='flex gap-3 text-xl text-gray-500'>
+                          Индекс нагрузки
+                          <Link
+                            href={`/${whatIs}?nagruzki=${product.indeks_nagruzki}`}
+                          >
+                            <span className='text-primary'>
+                              {product.indeks_nagruzki}
+                            </span>
+                          </Link>
+                        </p>
+                        <p className='flex gap-3 text-xl text-gray-500'>
+                          Индекс скорости
+                          <Link
+                            href={`/${whatIs}?skorosti=${product.indeks_skorosti}`}
+                          >
+                            <span className='text-primary'>
+                              {product.indeks_skorosti}
+                            </span>
+                          </Link>
+                        </p>
+                        <p className='flex gap-3 text-xl text-gray-500'>
+                          RunFlat
+                          <Link href={`/${whatIs}?runflat=${product.run_flat}`}>
+                            <span className='text-primary'>{product.run_flat}</span>
+                          </Link>
+                        </p>
+                      </>
+                    )}
+                    {whatType === 'диска' && (
+                      <>
+                        <p className='flex gap-3 text-xl text-gray-500'>
+                          Отверстий
+                          <Link href={`/${whatIs}?otverstiya=${product.otverstiya}`}>
+                            <span className='text-primary'>{product.otverstiya}</span>
+                          </Link>
+                        </p>
+                        <p className='flex gap-3 text-xl text-gray-500'>
+                          Расстояние
+                          <Link href={`/${whatIs}?rasstoyaniya=${product.rasstoyaniya}`}>
+                            <span className='text-primary'>{product.rasstoyaniya}</span>
+                          </Link>
+                        </p>
+                        <p className='flex gap-3 text-xl text-gray-500'>
+                          Количество болтов
+                          <Link href={`/${whatIs}?kolichestvo_boltov=${product.kolichestvo_boltov}`}>
+                            <span className='text-primary'>{product.kolichestvo_boltov}</span>
+                          </Link>
+                        </p>
+                      </>
+                    )}
+                    
                   </div>
                 </div>
                 <div data-aos='fade-left'>
                   <div className='flex items-center gap-7 flex-wrap max-w-[620px] w-full productRight'>
                     <h2
                       className='text-darkMain 2xl:text-3xl
-                                    xl:text-2xl lg:text-2xl md:text-2xl sm:text-2xl text-xl font-body font-bold max-w-[180px] w-full'
+                                    xl:text-2xl lg:text-2xl md:text-2xl sm:text-2xl text-xl font-forms font-bold max-w-[180px] w-full'
                     >
                       {formattedPrice(ProductPrice)} тг
                     </h2>
@@ -208,8 +277,8 @@ const Product = ({ product, user_cookie }) => {
                       />
                       <button
                         type='button'
-                        className='py-2 bg-primary max-w-[300px] w-full 2xl:text-2xl
-                                        xl:text-xl lg:text-xl md:text-lg sm:text-md text-sm text-white rounded active:bg-blue-700'
+                        className='py-2 bg-transparent border border-primary max-w-[300px] w-full 2xl:text-2xl
+                                        xl:text-xl lg:text-xl md:text-lg sm:text-md text-sm text-blue-700 rounded active:bg-blue-700 hover:bg-primary hover:text-white'
                         onClick={buyOneClick}
                       >
                         Купить в один клик
@@ -218,6 +287,15 @@ const Product = ({ product, user_cookie }) => {
                     <div className='flex max-w-[620px] w-full btnKredit gap-4'>
                       <KaspiButton sku={product.sku} />
                       <ForteButton sku={product.sku} />
+                    </div>
+                    <div className='w-full flex items-center gap-3 max-sm:flex-col'>
+                      <button
+                        className='py-2 bg-primary max-w-[300px] w-full text-sm text-white rounded active:bg-blue-700 flex items-center justify-center gap-2'
+                        onClick={copyLink}
+                      >
+                        <IosShareIcon />
+                        Поделиться
+                      </button>
                     </div>
                     <div className='w-full hotLine'>
                       <p className='flex flex-col text-xl gap-4'>
@@ -239,7 +317,14 @@ const Product = ({ product, user_cookie }) => {
               </div>
             </section>
             <section className='w-full' data-aos='fade-down'>
-              <Tabs similar_products={product.similar_products} product_id={product.id} user_cookie={user_cookie}/>
+              <Tabs
+                similar_products={product.similar_products}
+                product_id={product.id}
+                user_cookie={user_cookie}
+                product_fullDescription={product.full_description}
+                product_shortDescription={product.short_description}
+
+              />
             </section>
           </div>
         </main>

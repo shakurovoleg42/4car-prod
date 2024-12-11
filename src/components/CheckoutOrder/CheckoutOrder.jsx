@@ -2,13 +2,14 @@
 
 import './CheckoutOrder.css';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import useSWR, { mutate } from 'swr';
 import Link from 'next/link';
 import Image from 'next/image';
 import toast from 'react-hot-toast';
 import axios from 'axios';
+import InputMask from 'react-input-mask';
 
 import { handlePayment } from '@/utils/payment';
 import cartService from '@/services/cart';
@@ -16,14 +17,13 @@ import NavBar from '../NavBar/NavBar';
 import Footer from '../Footer/Footer';
 import ScrollToTop from '../ScrollToTop/ScrollToTop';
 
-const CheckoutOrder = () => {
+const CheckoutOrder = ({ name, last_name }) => {
   const [deliveryMethod, setDeliveryMethod] = useState('delivery');
   const [paymentMethod, setPaymentMethod] = useState('cash');
   const router = useRouter();
   const searchParams = useSearchParams();
   const product = searchParams.get('product');
   const [productId, productQuantity] = product?.split(',') || '0,0';
-
   const { data } = useSWR('/api/cart', cartService.getCart);
   const cartTotal = data?.total_price;
 
@@ -32,6 +32,8 @@ const CheckoutOrder = () => {
 
     const formData = new FormData(event.currentTarget);
     const fields = Object.fromEntries(formData);
+
+    localStorage.setItem('checkoutForm', JSON.stringify(fields));
 
     if (product) {
       fields.product_id = productId;
@@ -66,7 +68,7 @@ const CheckoutOrder = () => {
       toast.success('Заказ успешно оформлен');
       router.replace('/customer');
     } catch (error) {
-      toast.error(error.response.data.message);
+      toast.error('Произошла ошибка при оформлении заказа');
     } finally {
       toast.dismiss(loadingToastId);
     }
@@ -87,6 +89,29 @@ const CheckoutOrder = () => {
     };
   };
 
+  useEffect(() => {
+    const savedData = localStorage.getItem('checkoutForm');
+    if (savedData) {
+      const parsedData = JSON.parse(savedData);
+      Object.keys(parsedData).forEach((key) => {
+        const input = document.querySelector(
+          `[name="${key}"]`,
+          `[name="name"]`
+        );
+        if (input) {
+          input.value = parsedData[key];
+        }
+      });
+    }
+  }, []);
+
+  useEffect(() => {
+    const input = document.querySelector('[name="name"]');
+    if (input) {
+      input.value = `${name} ${last_name}`;
+    }
+  }, [name, last_name]);
+
   return (
     <>
       <div className='overflow-hidden'>
@@ -95,7 +120,7 @@ const CheckoutOrder = () => {
             <NavBar />
             <div className='mt-28 px-4' data-aos='fade-right'>
               <h1
-                className='font-body font-bold 2xl:text-6xl xl:text-6xl lg:text-5xl md:text-4xl text-3xl 
+                className='font-forms font-bold 2xl:text-6xl xl:text-6xl lg:text-5xl md:text-4xl text-3xl 
                         2xl:text-start xl:text-start lg:text-start text-center flex flex-col text-white'
               >
                 Оформление заказа
@@ -106,7 +131,7 @@ const CheckoutOrder = () => {
         <ScrollToTop />
         <main className='mt-30'>
           <div className='container'>
-            <div className='flex flex-row font-body mb-5 mt-10 ml-20'>
+            <div className='flex flex-row font-forms mb-5 mt-10 ml-20'>
               <Link href='/' className='mr-1 underline cursor-pointer'>
                 Главная
               </Link>
@@ -114,21 +139,26 @@ const CheckoutOrder = () => {
             </div>
             <section className='checkout__order mt-14 flex justify-center gap-6 mb-30'>
               <form
-                // data-aos='fade-right'
                 data-aos-anchor-placement='center-bottom'
                 className='max-w-[1528px] w-full px-4'
                 onSubmit={handleSubmit}
               >
                 <div className='main_info'>
-                  <div className='flex flex-wrap gap-6 inputs font-body text-xs xl:text-sm lg:text-sm'>
+                  <div className='flex flex-wrap gap-6 inputs font-forms text-xs xl:text-sm lg:text-sm'>
                     <div className='main_inputs flex flex-col'>
                       <p>Телефон</p>
-                      <input
-                        className='personal-info p-5 min-w-[300px]'
-                        type='tel'
-                        name='pn'
-                        required
-                      />
+                      <InputMask mask='+7 (999) 999-99-99'>
+                        {(inputProps) => (
+                          <input
+                            {...inputProps}
+                            type='tel'
+                            name='pn'
+                            className='personal-info p-5 min-w-[300px]'
+                            placeholder='+7 (***) ***-**-**'
+                            required
+                          />
+                        )}
+                      </InputMask>
                     </div>
                     <div className='main_inputs flex flex-col'>
                       <p>Ф.И.О</p>
@@ -136,7 +166,7 @@ const CheckoutOrder = () => {
                         className='personal-info p-5 min-w-[300px]'
                         type='text'
                         name='name'
-                        required
+                        // value={`${name} ${last_name}`}
                       />
                     </div>
                   </div>
@@ -148,12 +178,20 @@ const CheckoutOrder = () => {
                         id='country_select'
                         defaultValue=''
                         name='district'
-                        required
                       >
                         <option value='' disabled hidden>
                           Выберите
                         </option>
-                        <option value='Jibek Joli'>Жыбек Жолы</option>
+                        <option value='Abayskaya'>Абайская</option>
+                        <option value='Akmolinskaya'>Акмолинская</option>
+                        <option value='Aktubinskaya'>Актюбинская</option>
+                        <option value='Almatinskaya'>Алматинская</option>
+                        <option value='Atirauskaya'>Атырауская</option>
+                        <option value='Vostochnaya-Kazahstanskaya'>
+                          Восточно-Казахстанская
+                        </option>
+                        <option value='Jambilskaya'>Жамбылская</option>
+                        <option value='Jeteuskaya'>Жетысуская</option>
                       </select>
                     </div>
                     <div className='selects flex flex-col'>
@@ -163,18 +201,30 @@ const CheckoutOrder = () => {
                         id='country_select'
                         defaultValue=''
                         name='city'
-                        required
                       >
                         <option value='' disabled hidden>
                           Выберите
                         </option>
+                        <option value='Aktau'>Актау</option>
+                        <option value='Aktobe'>Актобе</option>
                         <option value='Almaty'>Алматы</option>
+                        <option value='Astana'>Астана</option>
+                        <option value='Atyrau'>Атырау</option>
+                        <option value='Karaganda'>Караганда</option>
+                        <option value='Kostonay'>Костанай</option>
+                        <option value='Pavlodar'>Павлодар</option>
+                        <option value='Petropavlovsk'>Петропавловск</option>
+                        <option value='Shymkent'>Шымкент</option>
+                        <option value='Uralsk'>Уральск</option>
+                        <option value='Ust-Kamenogorsk'>
+                          Усть-Каменогорск
+                        </option>
                       </select>
                     </div>
                   </div>
                 </div>
                 {/* другая секция */}
-                <div className='pay_method mt-20 font-body'>
+                <div className='pay_method mt-20 font-forms'>
                   <div>
                     <p
                       style={{
@@ -193,18 +243,18 @@ const CheckoutOrder = () => {
                       >
                         <p style={{ marginTop: '16px' }}>Доставка до двери</p>
                         <div className='flex flex-row items-center mt-9'>
-                          <Image
-                            src={'/oki.png'}
-                            width={30}
-                            height={15}
-                            alt='selects'
-                          />
-                          <p className='price' style={{ marginLeft: '6px' }}>
-                            Стоимость доставки
-                          </p>
-                          <p className='price' style={{ marginLeft: '43px' }}>
-                            10 000 ₸
-                          </p>
+                          <div className='flex flex-row items-center mx-3'>
+                            <Image
+                              src={'/oki.png'}
+                              width={50}
+                              height={15}
+                              alt='selects'
+                            />
+                            <p className='price ' style={{ marginLeft: '6px' }}>
+                              Стоимость доставки по Алматы бесплатная, за чертой
+                              города - по договоренности.
+                            </p>
+                          </div>
                         </div>
                       </div>
                       <div
@@ -217,69 +267,97 @@ const CheckoutOrder = () => {
                     </div>
                   </div>
                 </div>
+                {/* секция с адресом доставки */}
+                {deliveryMethod === 'pickup' && (
+                  <div
+                    data-aos='fade-up'
+                    className='mt-6 border-[2px] rounded-md w-auto max-w-[400px]'
+                  >
+                    <div className='flex flex-col py-6 px-8 gap-4'>
+                      <p className='font-bold text-2xl text-left'>
+                        Пункт выдачи по адресу:
+                      </p>
+                      <p className='font-bold text-left'>
+                        📍 г. Алматы ул. Казыбаева, 270а
+                      </p>
+                      <a
+                        href='https://yandex.uz/maps/162/almaty/?from=mapframe&ll=76.914207%2C43.304945&pt=76.914207%2C43.304945&source=mapframe&utm_source=mapframe&z=18'
+                        target='_blank'
+                        className='border-indigo-200 border-b-[1px] text-[#0e2c80] text-center'
+                      >
+                        Посмотреть на карте
+                      </a>
+                    </div>
+                  </div>
+                )}
                 {/* другая секция */}
-                <div className='address flex flex-col font-body'>
-                  <div className='flex flex-col mt-10'>
-                    Населённый пункт
-                    <select
-                      className='small mt-3'
-                      name='town'
-                      id=''
-                      defaultValue=''
-                      required
-                    >
-                      <option value='' disabled hidden>
-                        Выберите
-                      </option>
-                      <option value='city'>Город</option>
-                      <option value='village'>Деревня</option>
-                      <option value='township'>Посёлок</option>
-                    </select>
+                {deliveryMethod === 'delivery' && (
+                  <div
+                    data-aos='fade-in'
+                    className='address flex flex-col font-forms'
+                  >
+                    <div className='flex flex-col mt-10'>
+                      Населённый пункт
+                      <select
+                        className='small mt-3'
+                        name='town'
+                        id=''
+                        defaultValue=''
+                      >
+                        <option value='' disabled hidden>
+                          Выберите
+                        </option>
+                        <option value='city'>Город</option>
+                        <option value='village'>Деревня</option>
+                        <option value='township'>Посёлок</option>
+                      </select>
+                    </div>
+                    <div className='flex flex-col mt-10'>
+                      Адрес
+                      <input
+                        className='small mt-3 p-5'
+                        type='text'
+                        name='address'
+                        defaultValue=''
+                      />
+                    </div>
+                    <div className='flex flex-col mt-10'>
+                      Ориентир
+                      <input
+                        className='small mt-3 p-5'
+                        type='text'
+                        name='orient'
+                        defaultValue=''
+                      />
+                    </div>
+                    <div className='flex flex-col mt-10'>
+                      Ваш рабочий адрес
+                      <textarea
+                        className='area mt-3 p-5'
+                        type='text'
+                        name='work_address'
+                        defaultValue=''
+                      ></textarea>
+                    </div>
+                    <div className='flex flex-col mt-10'>
+                      Комментарии к заказу
+                      <textarea
+                        className='area mt-3 p-5'
+                        type='text'
+                        name='comment'
+                        defaultValue=''
+                      ></textarea>
+                    </div>
                   </div>
-                  <div className='flex flex-col mt-10'>
-                    Адрес
-                    <input
-                      className='small mt-3 p-5'
-                      type='text'
-                      name='address'
-                      required
-                    />
-                  </div>
-                  <div className='flex flex-col mt-10'>
-                    Ориентир
-                    <input
-                      className='small mt-3 p-5'
-                      type='text'
-                      name='orient'
-                      required
-                    />
-                  </div>
-                  <div className='flex flex-col mt-10'>
-                    Ваш рабочий адрес
-                    <textarea
-                      className='area mt-3 p-5'
-                      type='text'
-                      name='work_address'
-                      required
-                    ></textarea>
-                  </div>
-                  <div className='flex flex-col mt-10'>
-                    Комментарии к заказу
-                    <textarea
-                      className='area mt-3 p-5'
-                      type='text'
-                      name='comment'
-                      required
-                    ></textarea>
-                  </div>
-                  <div className='flex flex-col mt-10'>
-                    Есть промокод
-                    <input
-                      className='small mt-3 p-5'
-                      type='text'
-                      name='coupon'
-                    />
-                  </div>
+                )}
+                <div className='flex flex-col mt-10'>
+                  Есть промокод
+                  <input
+                    className='small mt-3 p-2'
+                    type='text'
+                    name='coupon'
+                    defaultValue=''
+                  />
                 </div>
                 {/* другая секция */}
                 <div className='walletcard-container flex flex-col mt-20 mb-20'>

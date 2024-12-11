@@ -34,7 +34,7 @@ const NewsPage = ({ params }) => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const hardcodedToken = '116|09gEPnxMuOtjXLfHXJPyVGJJB3zDvlVmsSYaKOSzcc9b3313'
+  const hardcodedToken = '116|09gEPnxMuOtjXLfHXJPyVGJJB3zDvlVmsSYaKOSzcc9b3313';
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -42,19 +42,21 @@ const NewsPage = ({ params }) => {
     try {
       const config = {
         headers: {
-          'Authorization': `Bearer ${hardcodedToken}`
-        }
+          Authorization: `Bearer ${hardcodedToken}`,
+        },
       };
 
-      const res = await fetchService.postCommentNews(data.id, formData, config);
-      console.log('Comment posted:', res.data);
+      await fetchService.postCommentNews(data.id, formData, config);
 
       const updatedComments = await fetchService.getCommentsNews(data.id);
       setComments(updatedComments);
 
       setFormData({ body: '' });
     } catch (error) {
-      console.error('Error posting comment:', error.response?.data || error.message);
+      console.error(
+        'Error posting comment:',
+        error.response?.data || error.message
+      );
     }
   };
 
@@ -64,7 +66,7 @@ const NewsPage = ({ params }) => {
 
   return (
     <>
-      <div className='overflow-hidden'>
+      <div className='overflow-hidden relative'>
         <header className='bg-no-repeat bg-cover bg-center w-full pb-20 bg-diski'>
           <div className='container'>
             <NavBar />
@@ -77,7 +79,7 @@ const NewsPage = ({ params }) => {
               <FaAngleLeft /> Назад
             </Link>
             <div className='px-4' data-aos='fade-right'>
-              <h1 className='font-body font-bold xl:text-4xl lg:text-3xl md:text-2xl text-xl text-center'>
+              <h1 className='font-forms font-bold xl:text-4xl lg:text-3xl md:text-2xl text-xl text-center'>
                 {data.title}
               </h1>
             </div>
@@ -93,7 +95,7 @@ const NewsPage = ({ params }) => {
             </p>
           </section>
           <div className='flex gap-6 flex-col items-center border-t-2 border-gray-300 pt-4 mt-8'>
-            <p className='font-body font-bold mb-5 2xl:text-2xl xl:text-2xl lg:text-xl md:text-lg sm:text-md text-sm'>
+            <p className='font-forms font-bold mb-5 2xl:text-2xl xl:text-2xl lg:text-xl md:text-lg sm:text-md text-sm'>
               Комментарии
             </p>
             <div className='flex gap-6 flex-col items-center'>
@@ -132,8 +134,4 @@ const NewsPage = ({ params }) => {
   );
 };
 
-
-
 export default NewsPage;
-
-

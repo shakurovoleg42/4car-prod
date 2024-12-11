@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
 import { useState, useEffect } from 'react';
-import fetchService from "@/services/fetchs";
+import fetchService from '@/services/fetchs';
 import Spinner from './Spinner';
 import Link from 'next/link';
 
@@ -11,9 +11,10 @@ const SetFilter = (props) => {
     width: '',
     height: '',
     diameter: '',
-    manufacturer: '',
+    brendy: '',
+    just_manufacturers: '',
     season: '',
-    available: false
+    available: false,
   });
 
   useEffect(() => {
@@ -22,7 +23,7 @@ const SetFilter = (props) => {
         const response = await fetchService.getShiniSizeFilter();
         setData(response);
       } catch (error) {
-        console.error("Ошибка при загрузке данных:", error);
+        console.error('Ошибка при загрузке данных:', error);
       }
     };
 
@@ -43,7 +44,10 @@ const SetFilter = (props) => {
   };
 
   const handleAvailabilityChange = (e) => {
-    setFilters((prevFilters) => ({ ...prevFilters, available: e.target.checked }));
+    setFilters((prevFilters) => ({
+      ...prevFilters,
+      available: e.target.checked,
+    }));
   };
 
   const generateLink = () => {
@@ -63,7 +67,7 @@ const SetFilter = (props) => {
   return (
     <>
       <div className='relative -z-0 py-4 max-w-[600px] w-full'>
-        <p className='text-white text-lg font-bold font-body'>Типы размер</p>
+        <p className='text-white text-lg font-bold font-forms'>Типы размер</p>
         <div className='flex flex-col gap-5'>
           <div className='flex flex-wrap gap-2 text-white'>
             <div>
@@ -76,7 +80,9 @@ const SetFilter = (props) => {
               >
                 <option value=''>Выбрать</option>
                 {data.filter.width.map((el, index) => (
-                  <option key={index} value={el}>{el}</option>
+                  <option key={index} value={el}>
+                    {el}
+                  </option>
                 ))}
               </select>
             </div>
@@ -90,7 +96,9 @@ const SetFilter = (props) => {
               >
                 <option value=''>Выбрать</option>
                 {data.filter.height.map((el, index) => (
-                  <option key={index} value={el}>{el}</option>
+                  <option key={index} value={el}>
+                    {el}
+                  </option>
                 ))}
               </select>
             </div>
@@ -104,7 +112,9 @@ const SetFilter = (props) => {
               >
                 <option value=''>Выбрать</option>
                 {data.filter.diameter.map((el, index) => (
-                  <option key={index} value={el}>{el}</option>
+                  <option key={index} value={el}>
+                    {el}
+                  </option>
                 ))}
               </select>
             </div>
@@ -113,14 +123,16 @@ const SetFilter = (props) => {
             <div>
               <p className='text-white pb-1'>Производитель</p>
               <select
-                name='manufacturer'
+                name='brendy'
                 value={filters.manufacturer}
                 onChange={handleChange}
                 className='border border-black text-black w-full'
               >
                 <option value=''>Выбрать</option>
-                {data.filter.manufacturers.map((el, index) => (
-                  <option key={index} value={el}>{el}</option>
+                {data.filter.just_manufacturers.map((el, index) => (
+                  <option key={index} value={el}>
+                    {el}
+                  </option>
                 ))}
               </select>
             </div>
@@ -131,7 +143,9 @@ const SetFilter = (props) => {
                   type='button'
                   onClick={() => handleSeasonChange('Зимние')}
                   className={`inline-flex border border-black items-center px-4 text-sm font-medium 
-                    ${filters.season === 'Зимние' ? 'bg-blue-300' : 'bg-white'} focus:z-10`}
+                    ${
+                      filters.season === 'Зимние' ? 'bg-blue-300' : 'bg-white'
+                    } focus:z-10`}
                 >
                   Зимние
                 </button>
@@ -139,7 +153,9 @@ const SetFilter = (props) => {
                   type='button'
                   onClick={() => handleSeasonChange('Летние')}
                   className={`inline-flex border border-black items-center px-4 text-sm font-medium 
-                    ${filters.season === 'Летние' ? 'bg-yellow-300' : 'bg-white'} focus:z-10`}
+                    ${
+                      filters.season === 'Летние' ? 'bg-blue-300' : 'bg-white'
+                    } focus:z-10`}
                 >
                   Летние
                 </button>
@@ -168,14 +184,16 @@ const SetFilter = (props) => {
             </Link>
             <button
               type='reset'
-              onClick={() => setFilters({
-                width: '',
-                height: '',
-                diameter: '',
-                manufacturer: '',
-                season: '',
-                available: false
-              })}
+              onClick={() =>
+                setFilters({
+                  width: '',
+                  height: '',
+                  diameter: '',
+                  manufacturer: '',
+                  season: '',
+                  available: false,
+                })
+              }
               className='border-b-white border-b-2 text-black bg-white rounded-[15px] p-2'
             >
               Сбросить

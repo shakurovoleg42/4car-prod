@@ -36,7 +36,7 @@ const CartItem = ({ item }) => {
         <div className={styles.column}>
           <b>Количество</b>
           <div className={styles.quantity}>
-            <button onClick={() => handleUpdateQuantity(item.quantity - 1)}>
+            <button onClick={() => {if (item.quantity > 1) handleUpdateQuantity(item.quantity - 1)}}>
               -
             </button>
             <span>{item.quantity}</span>
@@ -50,8 +50,8 @@ const CartItem = ({ item }) => {
           <span>{formattedPrice(item.price * item.quantity)} тг</span>
         </div>
         <div className={styles.column}>
-          <button onClick={() => handleUpdateQuantity(0)}>
-            <FaRegTrashAlt size={20} />
+          <button className={styles.trash} onClick={() => handleUpdateQuantity(0)}>
+            <FaRegTrashAlt size={20} color='white'/>
           </button>
         </div>
       </div>

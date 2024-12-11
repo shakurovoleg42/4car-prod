@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
+import TextField from '@mui/material/TextField';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import Link from 'next/link';
@@ -16,10 +17,6 @@ import CardShini from '../templates/Cards';
 import Footer from './../Footer/Footer';
 import ScrollToTop from './../ScrollToTop/ScrollToTop';
 
-function valuetext(value) {
-  return `${value}`;
-}
-
 const Diski = ({ data }) => {
   const diska = data.products;
 
@@ -28,20 +25,38 @@ const Diski = ({ data }) => {
   const params = new URLSearchParams(searchParams);
   const pathname = usePathname();
   const router = useRouter();
+
   const page = +searchParams.get('page') || 1;
 
-  const handleChange = (event, newValue) => {
-    const priceMin = newValue[0];
-    const priceMax = newValue[1];
+  const handleSliderChange = (event, newValue) => {
+    setValue(newValue);
+    updateFilters(newValue[0], newValue[1]);
+  };
 
+  const handleInputChange = (event) => {
+    const { name, value: inputValue } = event.target;
+    const newValue = [...value];
+    newValue[name === 'min' ? 0 : 1] = Math.max(
+      0,
+      Math.min(1000000, Number(inputValue))
+    );
+    setValue(newValue);
+    updateFilters(newValue[0], newValue[1]);
+  };
+
+  const handleBlur = () => {
+    const [min, max] = value;
+    setValue([Math.max(0, min), Math.min(1000000, max)]);
+    updateFilters(min, max);
+  };
+
+  const updateFilters = (priceMin, priceMax) => {
     params.set('price_min', priceMin);
     params.set('price_max', priceMax);
-
-    setValue(newValue);
     router.replace(pathname + '?' + params.toString());
   };
 
-  const itemsPerPage = data.pagination.per_page; // Установите начальное количество товаров на странице
+  const itemsPerPage = data.pagination.per_page;
 
   const handleChangePage = (event, newPage) => {
     params.set('page', newPage);
@@ -58,7 +73,7 @@ const Diski = ({ data }) => {
             <NavBar />
             <div className='mt-28 px-4' data-aos='fade-right'>
               <h1
-                className='font-body font-bold 2xl:text-6xl xl:text-6xl lg:text-5xl md:text-4xl text-3xl 
+                className='font-forms font-bold 2xl:text-6xl xl:text-6xl lg:text-5xl md:text-4xl text-3xl 
                         2xl:text-start xl:text-start lg:text-start text-center flex flex-col text-white'
               >
                 Диски
@@ -69,8 +84,17 @@ const Diski = ({ data }) => {
         <ScrollToTop />
         <main className='mt-10'>
           <div className='container flex flex-col items-center'>
+            <p
+              className='align-center mb-8 lg:text-xl p-2'
+              style={{ color: '#f00' }}
+            >
+              На нашем сайте большинство дисков универсальные, то-есть они
+              подходят на различные марки автомобилей. Универсальные диски
+              комплектуются монтажным комплектом для определенной марки и модели
+              автомобиля.
+            </p>
             <section className='2xl:mb-28 mb-10 px-4 flex flex-col items-start w-full'>
-              <div className='flex flex-row font-body mb-5'>
+              <div className='flex flex-row font-forms mb-5'>
                 <Link href='/' className='mr-1 underline cursor-pointer'>
                   Главная
                 </Link>
@@ -85,8 +109,24 @@ const Diski = ({ data }) => {
               >
                 <Box className='autoCompleteContent'>
                   <div className='flex justify-between mb-6 text-sm'>
-                    <p onChange={valuetext}>от {value[0]}</p>
-                    <p onChange={valuetext}>до {value[1]}</p>
+                    <TextField
+                      label='Минимальная цена'
+                      variant='outlined'
+                      size='small'
+                      name='min'
+                      value={value[0]}
+                      onChange={handleInputChange}
+                      onBlur={handleBlur}
+                    />
+                    <TextField
+                      label='Максимальная цена'
+                      variant='outlined'
+                      size='small'
+                      name='max'
+                      value={value[1]}
+                      onChange={handleInputChange}
+                      onBlur={handleBlur}
+                    />
                   </div>
                   <Slider
                     getAriaLabel={() => 'Price Value'}
@@ -94,19 +134,16 @@ const Diski = ({ data }) => {
                     min={0}
                     max={1000000}
                     step={50}
-                    onChange={handleChange}
+                    onChange={handleSliderChange}
                     valueLabelDisplay='auto'
-                    // getAriaValueText={valuetext} function
                   />
                 </Box>
                 <Avtocomplete filters={data.filter} />
               </div>
-              <div
-                data-aos='fade-up-left'
-                data-aos-anchor-placement='top-bottom'
-                className='max-w-[850px] w-full flex flex-col justify-between items-center'
-              >
+              <div className='max-w-[850px] w-full flex flex-col justify-between items-center'>
                 <div
+                  data-aos='fade-up-left'
+                  data-aos-anchor-placement='top-bottom'
                   className='flex 2xl:justify-between
                             xl:justify-between lg:justify-center md:justify-center sm:justify-center justify-center
                             2xl:flex-wrap xl:flex-wrap lg:flex-wrap flex-wrap 2xl:gap-6 

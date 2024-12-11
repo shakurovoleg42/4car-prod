@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
+import TextField from '@mui/material/TextField';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import Link from 'next/link';
@@ -15,10 +16,6 @@ import Avtocomplete from '../templates/Avtocomplete';
 import CardShini from '../templates/Cards';
 import Footer from './../Footer/Footer';
 import ScrollToTop from './../ScrollToTop/ScrollToTop';
-
-function valuetext(value) {
-  return `${value}`;
-}
 
 const Shini = ({ data }) => {
   const shina = data.products;
@@ -31,14 +28,31 @@ const Shini = ({ data }) => {
 
   const page = +searchParams.get('page') || 1;
 
-  const handleChange = (event, newValue) => {
-    const priceMin = newValue[0];
-    const priceMax = newValue[1];
+  const handleSliderChange = (event, newValue) => {
+    setValue(newValue);
+    updateFilters(newValue[0], newValue[1]);
+  };
 
+  const handleInputChange = (event) => {
+    const { name, value: inputValue } = event.target;
+    const newValue = [...value];
+    newValue[name === 'min' ? 0 : 1] = Math.max(
+      0,
+      Math.min(1000000, Number(inputValue))
+    );
+    setValue(newValue);
+    updateFilters(newValue[0], newValue[1]);
+  };
+
+  const handleBlur = () => {
+    const [min, max] = value;
+    setValue([Math.max(0, min), Math.min(1000000, max)]);
+    updateFilters(min, max);
+  };
+
+  const updateFilters = (priceMin, priceMax) => {
     params.set('price_min', priceMin);
     params.set('price_max', priceMax);
-
-    setValue(newValue);
     router.replace(pathname + '?' + params.toString());
   };
 
@@ -59,7 +73,7 @@ const Shini = ({ data }) => {
             <NavBar />
             <div className='mt-28 px-4' data-aos='fade-right'>
               <h1
-                className='font-body font-bold 2xl:text-6xl xl:text-6xl lg:text-5xl md:text-4xl text-3xl 
+                className='font-forms font-bold 2xl:text-6xl xl:text-6xl lg:text-5xl md:text-4xl text-3xl 
                         2xl:text-start xl:text-start lg:text-start text-center flex flex-col text-white'
               >
                 Шины
@@ -71,7 +85,7 @@ const Shini = ({ data }) => {
         <main className='mt-10'>
           <div className='container flex flex-col items-center'>
             <section className='2xl:mb-28 mb-10  px-4 flex flex-col items-start w-full'>
-              <div className='flex flex-row font-body mb-5'>
+              <div className='flex flex-row font-forms mb-5'>
                 <Link href='/' className='mr-1 underline cursor-pointer'>
                   Главная
                 </Link>
@@ -86,8 +100,24 @@ const Shini = ({ data }) => {
               >
                 <Box className='autoCompleteContent'>
                   <div className='flex justify-between mb-6 text-sm'>
-                    <p onChange={valuetext}>от {value[0]} тг</p>
-                    <p onChange={valuetext}>до {value[1]} тг</p>
+                    <TextField
+                      label='Минимальная цена'
+                      variant='outlined'
+                      size='small'
+                      name='min'
+                      value={value[0]}
+                      onChange={handleInputChange}
+                      onBlur={handleBlur}
+                    />
+                    <TextField
+                      label='Максимальная цена'
+                      variant='outlined'
+                      size='small'
+                      name='max'
+                      value={value[1]}
+                      onChange={handleInputChange}
+                      onBlur={handleBlur}
+                    />
                   </div>
                   <Slider
                     getAriaLabel={() => 'Price Value'}
@@ -95,9 +125,8 @@ const Shini = ({ data }) => {
                     min={0}
                     max={1000000}
                     step={50}
-                    onChange={handleChange}
+                    onChange={handleSliderChange}
                     valueLabelDisplay='auto'
-                    // getAriaValueText={valuetext} function
                   />
                 </Box>
                 <Avtocomplete filters={data.filter} />

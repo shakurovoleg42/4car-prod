@@ -5,7 +5,7 @@ import './CardRegister.css';
 import { useState } from 'react';
 import { MdOutlineVisibility } from 'react-icons/md';
 import { MdOutlineVisibilityOff } from 'react-icons/md';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 // import Image from 'next/image';
 import toast from 'react-hot-toast';
 import axios from 'axios';
@@ -19,16 +19,17 @@ const CardRegister = () => {
   const [login, setLogin] = useState('');
   const [lastName, setLastName] = useState('');
   const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [error, setError] = useState('');
+  // const [confirmPassword, setConfirmPassword] = useState('');
+  // const [error, setError] = useState('');
   const [inputValue, setInputValue] = useState('');
   const [emailError, setEmailError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
+  const searchParams = useSearchParams();
 
-  const showLoginForm = () => {
-    router.replace('/login');
-  };
+  // const showLoginForm = () => {
+  //   router.replace(`/login?${searchParams.toString()}`);
+  // };
 
   const handleLoginChange = (e) => {
     setLogin(e.target.value);
@@ -41,9 +42,9 @@ const CardRegister = () => {
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   };
-  const handleConfirmPasswordChange = (e) => {
-    setConfirmPassword(e.target.value);
-  };
+  // const handleConfirmPasswordChange = (e) => {
+  //   setConfirmPassword(e.target.value);
+  // };
 
   const handleTogglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -56,7 +57,7 @@ const CardRegister = () => {
       setEmailError('');
     } else {
       setEmailError(
-        'Введите действительный адрес электронной почты или номер телефона'
+        'Введите действительный адрес электронной почты'
       );
     }
 
@@ -66,13 +67,13 @@ const CardRegister = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (password !== confirmPassword) {
-      setError('Пароли не совпадают');
-      return;
-    } else if (password.length < 6) {
-      setError('Минимальное кол-во символов 6');
-      return;
-    }
+    // if (password !== confirmPassword) {
+    //   setError('Пароли не совпадают');
+    //   return;
+    // } else if (password.length < 6) {
+    //   setError('Минимальное кол-во символов 6');
+    //   return;
+    // }
 
     const loadingToastId = toast.loading('Загрузка...');
 
@@ -87,7 +88,7 @@ const CardRegister = () => {
       toast.success(
         'Успешная регистрация, для продолжения работы в системе выполните вход'
       );
-      router.push('/login');
+      router.push(`/login?${searchParams.toString()}`);
     } catch (error) {
       toast.error(error.response.data.message);
     } finally {
@@ -99,13 +100,13 @@ const CardRegister = () => {
     <>
       <div
         className='max-w-[550px] rounded w-full 
-            overflow-hidden pb-26 mt-14 m-auto shadow-xl shadow-gray-500 pt-10 relative mb-20'
+            overflow-hidden pb-26 mt-14 m-auto shadow-xl shadow-gray-500 py-12 relative mb-20'
       >
         <img
           className='absolute -top-4 left-0 -z-10'
           src={RegisterDecor.src}
           alt=''
-          style={{width: '230px', height: '820px'}}
+          style={{ width: '230px', height: '820px' }}
           // width={230}
           // height={820}
         />
@@ -113,7 +114,7 @@ const CardRegister = () => {
           src={RegisterDecor2.src}
           alt=''
           className='absolute -z-10 right-0 -top-4'
-          style={{width: '230px', height: '820px'}}
+          style={{ width: '230px', height: '820px' }}
           // width={230}
           // height={820}
         />
@@ -121,7 +122,7 @@ const CardRegister = () => {
           src={RegisterDecor3.src}
           alt=''
           className='absolute -z-10 right-0 -top-4'
-          style={{width: '230px', height: '820px'}}
+          style={{ width: '230px', height: '820px' }}
           // width={230}
           // height={820}
         />
@@ -187,8 +188,8 @@ const CardRegister = () => {
               </button>
             </div>
           </div>
-          {error && <p style={{ color: 'red' }}>{error}</p>}
-          <div className='flex flex-col text-primary'>
+          {/* {error && <p style={{ color: 'red' }}>{error}</p>} */}
+          {/* <div className='flex flex-col text-primary'>
             <label className='mb-2' htmlFor='password'>
               Повторите Пароль:
             </label>
@@ -213,44 +214,43 @@ const CardRegister = () => {
                   <MdOutlineVisibility />
                 )}
               </button>
-            </div>
-          </div>
+            </div> */}
+          {/* </div> */}
           {emailError && <p style={{ color: 'red' }}>{emailError}</p>}
           <div className='flex flex-col'>
             <label className='mb-2 text-primary' htmlFor='emailPhoneInput'>
-              Введите адрес электронной почты или номер телефона:
+              Введите адрес электронной почты:
             </label>
             <input
               required
-              type='text'
+              type='email'
               id='emailPhoneInput'
               value={inputValue}
               onChange={handleInputChange}
               className='border rounded py-1 px-2 outline-none'
             />
           </div>
-          <div className='flex flex-col gap-4 justify-center'>
+          <div className='flex flex-col gap-4 justify-center mt-3'>
             <button
               type='submit'
-              className='text-primary outline-none underline text-lg border 
-                            active:bg-blue-100 px-3 rounded border-primary'
+              className='bg-primary text-white text-lg px-3 rounded'
             >
               Зарегистрироваться
             </button>
-            <button
+            {/* <button
               type='button'
               className=' bg-primary text-white text-lg px-3 rounded'
               onClick={showLoginForm}
             >
               Вернуться ко входу
-            </button>
+            </button> */}
           </div>
         </form>
         <img
           className='absolute bottom-0 -z-10'
           src={RegisterImg.src}
           alt=''
-          style={{width: '550px', height: '220px'}}
+          style={{ width: '550px', height: '220px' }}
           // width={550}
           // height={220}
         />

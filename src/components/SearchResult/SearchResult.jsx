@@ -3,7 +3,6 @@ import styles from './styles.module.sass';
 import { MdOutlineSwipeUp } from 'react-icons/md';
 import useSWR from 'swr';
 import Link from 'next/link';
-// import Image from 'next/image';
 
 import { getSearchData } from '@/app/actions';
 import { formattedPrice } from '@/utils/price';

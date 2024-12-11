@@ -106,11 +106,11 @@ const EditAccount = (props) => {
           </div>
           <div className='flex flex-col'>
             <label className='mb-2 text-primary' htmlFor='email'>
-              Введите адрес электронной почты или номер телефона:
+              Введите адрес электронной почты:
             </label>
             <input
               required
-              type='text'
+              type='email'
               id='emailPhoneInput'
               className='border rounded py-1 px-2 outline-none'
               defaultValue={data?.email}

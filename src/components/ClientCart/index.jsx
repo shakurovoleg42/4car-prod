@@ -37,7 +37,7 @@ const ClientCart = ({ isAuthenticated }) => {
           <NavBar />
           <div className='mt-28 px-4' data-aos='fade-right'>
             <h1
-              className='font-body font-bold 2xl:text-6xl xl:text-6xl lg:text-5xl md:text-4xl text-3xl 
+              className='font-forms font-bold 2xl:text-6xl xl:text-6xl lg:text-5xl md:text-4xl text-3xl 
                       2xl:text-start xl:text-start lg:text-start text-center flex flex-col text-white'
             >
               Корзина
@@ -48,7 +48,7 @@ const ClientCart = ({ isAuthenticated }) => {
       <ScrollToTop />
       <main className='mt-10 mb-16'>
         <div className='container'>
-          <div className='flex flex-row font-body mb-10'>
+          <div className='flex flex-row font-forms mb-10'>
             <Link href='/' className='mr-1 underline cursor-pointer'>
               Главная
             </Link>
@@ -66,17 +66,17 @@ const ClientCart = ({ isAuthenticated }) => {
                 </div>
                 <div className={styles.right}>
                   <ul>
-                    <li>
+                    {/* <li>
                       <strong>Стоимость:</strong>
                       <span>{formattedPrice(cartTotal)} тг</span>
-                    </li>
-                    <li>
+                    </li> */}
+                    {/* <li>
                       <strong>Доставка:</strong>
-                      <span>4 000 тг</span>
-                    </li>
+                      <span>10 000 тг</span>
+                    </li> */}
                     <li>
                       <strong>Итого:</strong>
-                      <span>{formattedPrice(cartTotal + 4000)} тг</span>
+                      <span>{formattedPrice(cartTotal)} тг</span>
                     </li>
                   </ul>
                   <Link href='/checkout-order'>Оформить заказ</Link>
