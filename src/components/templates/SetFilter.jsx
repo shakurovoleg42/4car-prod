@@ -11,7 +11,7 @@ const SetFilter = (props) => {
     width: '',
     height: '',
     diameter: '',
-    manufacturer: '',
+    brendy: '',
     just_manufacturers: '',
     season: '',
     available: false,
@@ -123,7 +123,7 @@ const SetFilter = (props) => {
             <div>
               <p className='text-white pb-1'>Производитель</p>
               <select
-                name='manufacturer'
+                name='brendy'
                 value={filters.manufacturer}
                 onChange={handleChange}
                 className='border border-black text-black w-full'
