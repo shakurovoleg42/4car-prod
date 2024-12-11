@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
 import { useState, useEffect } from 'react';
-import fetchService from "@/services/fetchs";
+import fetchService from '@/services/fetchs';
 import Spinner from './Spinner';
 import Link from 'next/link';
 
@@ -11,9 +11,9 @@ const SetFilterDiski = (props) => {
     width: '',
     height: '',
     diameter: '',
-    disk_manufacturers: '',
+    brendy: '',
     season: '',
-    available: false
+    available: false,
   });
 
   useEffect(() => {
@@ -22,7 +22,7 @@ const SetFilterDiski = (props) => {
         const response = await fetchService.getShiniSizeFilter();
         setData(response);
       } catch (error) {
-        console.error("Ошибка при загрузке данных:", error);
+        console.error('Ошибка при загрузке данных:', error);
       }
     };
 
@@ -39,7 +39,10 @@ const SetFilterDiski = (props) => {
   };
 
   const handleAvailabilityChange = (e) => {
-    setFilters((prevFilters) => ({ ...prevFilters, available: e.target.checked }));
+    setFilters((prevFilters) => ({
+      ...prevFilters,
+      available: e.target.checked,
+    }));
   };
 
   const generateLink = () => {
@@ -72,7 +75,9 @@ const SetFilterDiski = (props) => {
               >
                 <option value=''>Выбрать</option>
                 {data.filter.width.map((el, index) => (
-                  <option key={index} value={el}>{el}</option>
+                  <option key={index} value={el}>
+                    {el}
+                  </option>
                 ))}
               </select>
             </div>
@@ -86,7 +91,9 @@ const SetFilterDiski = (props) => {
               >
                 <option value=''>Выбрать</option>
                 {data.filter.height.map((el, index) => (
-                  <option key={index} value={el}>{el}</option>
+                  <option key={index} value={el}>
+                    {el}
+                  </option>
                 ))}
               </select>
             </div>
@@ -100,7 +107,9 @@ const SetFilterDiski = (props) => {
               >
                 <option value=''>Выбрать</option>
                 {data.filter.diameter.map((el, index) => (
-                  <option key={index} value={el}>{el}</option>
+                  <option key={index} value={el}>
+                    {el}
+                  </option>
                 ))}
               </select>
             </div>
@@ -109,14 +118,16 @@ const SetFilterDiski = (props) => {
             <div>
               <p className='text-white pb-1'>Производитель</p>
               <select
-                name='disk_manufacturers'
+                name='brendy'
                 value={filters.disk_manufacturers}
                 onChange={handleChange}
                 className='border border-black text-black w-full'
               >
                 <option value=''>Выбрать</option>
                 {data.filter.disk_manufacturers.map((el, index) => (
-                  <option key={index} value={el}>{el}</option>
+                  <option key={index} value={el}>
+                    {el}
+                  </option>
                 ))}
               </select>
             </div>
@@ -143,14 +154,16 @@ const SetFilterDiski = (props) => {
             </Link>
             <button
               type='reset'
-              onClick={() => setFilters({
-                width: '',
-                height: '',
-                diameter: '',
-                disk_manufacturers: '',
-                season: '',
-                available: false
-              })}
+              onClick={() =>
+                setFilters({
+                  width: '',
+                  height: '',
+                  diameter: '',
+                  disk_manufacturers: '',
+                  season: '',
+                  available: false,
+                })
+              }
               className='border-b-white border-b-2 text-black bg-white rounded-[15px] p-2'
             >
               Сбросить

@@ -21,7 +21,6 @@ export default function Playground({ filters }) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedManufacturer, setSelectedManufacturer] = useState('');
 
-
   const toggleDrawer = () => {
     setIsOpen((prevState) => !prevState);
   };
@@ -42,15 +41,16 @@ export default function Playground({ filters }) {
   }));
 
   const filterOptions = {
-  
-    disk_manufacturers: filters.disk_manufacturers_with_models.map((manufacturerObj) => {
-      const manufacturerName = Object.keys(manufacturerObj)[0];
-      return {
-        label: manufacturerName,
-        value: manufacturerName,
-      };
-    }),
-  
+    disk_manufacturers: filters.disk_manufacturers_with_models.map(
+      (manufacturerObj) => {
+        const manufacturerName = Object.keys(manufacturerObj)[0];
+        return {
+          label: manufacturerName,
+          value: manufacturerName,
+        };
+      }
+    ),
+
     manufacturers: filters.manufacturers.map((manufacturerObj) => {
       const manufacturerName = Object.keys(manufacturerObj)[0];
       return {
@@ -58,7 +58,7 @@ export default function Playground({ filters }) {
         value: manufacturerName,
       };
     }),
-  
+
     models: selectedManufacturer
       ? filters.manufacturers
           .find(
@@ -70,7 +70,7 @@ export default function Playground({ filters }) {
             value: model,
           })) || []
       : staticModels,
-  
+
     disk_models: selectedManufacturer
       ? filters.disk_manufacturers_with_models
           .find(
@@ -82,53 +82,91 @@ export default function Playground({ filters }) {
             value: model,
           })) || []
       : staticDisk_models,
-  
+
     width: filters.width.map((w) => ({
       label: w.toString(),
       value: w.toString(),
     })),
-  
+
     height: filters.height.map((h) => ({
       label: h.toString(),
       value: h.toString(),
     })),
-  
+
     diameter: filters.diameter.map((d) => ({
-      label: d,
-      value: d,
+      label: d.toString(),
+      value: d.toString(),
     })),
-  
+
     season: filters.season.map((season) => ({
-      label: season,
-      value: season,
+      label: season.toString(),
+      value: season.toString(),
     })),
-  
+
     spikes: filters.spikes.map((spike) => ({
-      label: spike,
-      value: spike,
+      label: spike.toString(),
+      value: spike.toString(),
     })),
-  
+
     nagruzki: filters.indeks_nagruzki.map((i) => ({
-      label: i,
-      value: i,
+      label: i.toString(),
+      value: i.toString(),
     })),
-  
+
     skorosti: filters.indeks_skorosti.map((i) => ({
-      label: i,
-      value: i,
+      label: i.toString(),
+      value: i.toString(),
     })),
-  
+
     rf: filters.run_flat.map((rf) => ({
-      label: rf,
-      value: rf,
+      label: rf.toString(),
+      value: rf.toString(),
     })),
   };
-  
+
+  const getParamsSBrendy = () => {
+    const brendyValue = params.get('brendy');
+    return (
+      filterOptions.manufacturers.find(
+        (option) => option.value === brendyValue
+      ) || null
+    );
+  };
+
+  const getParamsWidth = () => {
+    const widthValue = params.get('width');
+    return (
+      filterOptions.width.find((option) => option.value === widthValue) || null
+    );
+  };
+
+  const getParamsHeight = () => {
+    const heightValue = params.get('height');
+    return (
+      filterOptions.height.find((option) => option.value === heightValue) ||
+      null
+    );
+  };
+
+  const getParamsDiametr = () => {
+    const diameterValue = params.get('diameter');
+    return (
+      filterOptions.diameter.find((option) => option.value === diameterValue) ||
+      null
+    );
+  };
+
+  const getParamsSeason = () => {
+    const seasonValue = params.get('season');
+    return (
+      filterOptions.season.find((option) => option.value === seasonValue) ||
+      null
+    );
+  };
 
   const handleFilter = (name, value) => {
     params.delete('page');
     params.set(name, value);
-    setSelectedManufacturer(value);
   };
 
   const handleSubmit = () => {
@@ -147,6 +185,7 @@ export default function Playground({ filters }) {
         <>
           <Autocomplete
             {...defaultProps}
+            defaultValue={getParamsSBrendy()}
             options={filterOptions.disk_manufacturers}
             id='disable-clearable1'
             disableClearable
@@ -154,9 +193,13 @@ export default function Playground({ filters }) {
             renderInput={(params) => (
               <TextField {...params} label='Производитель' variant='standard' />
             )}
-            onChange={(event, newValue) =>
-              handleFilter('brendy', newValue.value)
-            }
+            onChange={(event, newValue) => {
+              if (newValue) {
+                handleFilter('brendy', newValue?.value || '');
+                setSelectedManufacturer(newValue?.value);
+                handleSubmit();
+              }
+            }}
           />
           <Autocomplete
             {...defaultProps}
@@ -167,9 +210,9 @@ export default function Playground({ filters }) {
             renderInput={(params) => (
               <TextField {...params} label='Модель' variant='standard' />
             )}
-            onChange={(event, newValue) =>
-              handleFilter('modeli', newValue?.value || '')
-            }
+            onChange={(event, newValue) => {
+              handleFilter('modeli', newValue?.value || '');
+            }}
           />
         </>
       );
@@ -179,15 +222,20 @@ export default function Playground({ filters }) {
           <Autocomplete
             {...defaultProps}
             options={filterOptions.manufacturers}
+            defaultValue={getParamsSBrendy()}
             id='disable-clearable1'
             disableClearable
             noOptionsText='Нет доступных вариантов'
             renderInput={(params) => (
               <TextField {...params} label='Производители' variant='standard' />
             )}
-            onChange={(event, newValue) =>
-              handleFilter('brendy', newValue.value)
-            }
+            onChange={(event, newValue) => {
+              if (newValue) {
+                handleFilter('brendy', newValue?.value || '');
+                setSelectedManufacturer(newValue?.value);
+                handleSubmit();
+              }
+            }}
           />
           <Autocomplete
             {...defaultProps}
@@ -198,9 +246,9 @@ export default function Playground({ filters }) {
             renderInput={(params) => (
               <TextField {...params} label='Модель' variant='standard' />
             )}
-            onChange={(event, newValue) =>
-              handleFilter('modeli', newValue?.value || '')
-            }
+            onChange={(event, newValue) => {
+              handleFilter('modeli', newValue?.value || '');
+            }}
           />
         </>
       );
@@ -226,6 +274,7 @@ export default function Playground({ filters }) {
           />
           <Autocomplete
             {...defaultProps}
+            defaultValue={getParamsSeason()}
             options={filterOptions.season}
             id='disable-clearable6'
             disableClearable
@@ -315,6 +364,7 @@ export default function Playground({ filters }) {
                 <Autocomplete
                   {...defaultProps}
                   noOptionsText='Нет доступных вариантов'
+                  defaultValue={getParamsWidth()}
                   options={filterOptions.width}
                   id='disable-clearable3'
                   disableClearable
@@ -328,6 +378,7 @@ export default function Playground({ filters }) {
                 <Autocomplete
                   {...defaultProps}
                   noOptionsText='Нет доступных вариантов'
+                  defaultValue={getParamsHeight()}
                   options={filterOptions.height}
                   id='disable-clearable4'
                   disableClearable
@@ -341,6 +392,7 @@ export default function Playground({ filters }) {
                 <Autocomplete
                   {...defaultProps}
                   noOptionsText='Нет доступных вариантов'
+                  defaultValue={getParamsDiametr()}
                   options={filterOptions.diameter}
                   id='disable-clearable5'
                   disableClearable
@@ -360,6 +412,20 @@ export default function Playground({ filters }) {
               </Stack>
             </List>
           </Box>
+          <div className='flex flex-col gap-3 mt-5'>
+            <button
+              className='media__linkButton py-2 px-8 bg-primary hover:bg-blue-600 transition-all text-lg rounded font-normal text-white mt-5'
+              onClick={handleSubmit}
+            >
+              Применить
+            </button>
+            <button
+              className='media__linkButton text-primary underline text-lg border px-3 rounded border-primary mt-3'
+              onClick={resetFilters}
+            >
+              Сбросить
+            </button>
+          </div>
         </Drawer>
       </div>
       <div className='hidden lg:block'>
@@ -367,6 +433,7 @@ export default function Playground({ filters }) {
           {manufacturersType()}
           <Autocomplete
             {...defaultProps}
+            defaultValue={getParamsWidth()}
             options={filterOptions.width}
             id='disable-clearable3'
             disableClearable
@@ -381,6 +448,7 @@ export default function Playground({ filters }) {
           <Autocomplete
             {...defaultProps}
             options={filterOptions.height}
+            defaultValue={getParamsHeight()}
             id='disable-clearable4'
             disableClearable
             noOptionsText='Нет доступных вариантов'
@@ -393,6 +461,7 @@ export default function Playground({ filters }) {
           />
           <Autocomplete
             {...defaultProps}
+            defaultValue={getParamsDiametr()}
             options={filterOptions.diameter}
             id='disable-clearable5'
             disableClearable
