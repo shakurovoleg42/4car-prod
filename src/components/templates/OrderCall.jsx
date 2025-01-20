@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { useState } from 'react';
 import InputMask from 'react-input-mask';
@@ -16,41 +16,51 @@ const OrderCall = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     const cleanedNumber = formData.number.replace(/[\s()-]/g, '');
     const cleanedFormData = { ...formData, number: cleanedNumber };
 
     try {
       await fetchService.postSendFeedback(cleanedFormData);
-      toast.success("Мы свяжемся с вами в ближайшее время!", {
-        position: "top-right",
+      toast.success('Мы свяжемся с вами в ближайшее время!', {
+        position: 'top-right',
         autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: false,
         draggable: true,
         progress: undefined,
-        theme: "light",
+        theme: 'light',
       });
     } catch (error) {
-      toast.error("Ошибка отправки заявки", {
-        position: "top-right",
+      // toast.error("Ошибка отправки заявки", {
+      //   position: "top-right",
+      //   autoClose: 3000,
+      //   hideProgressBar: false,
+      //   closeOnClick: true,
+      //   pauseOnHover: true,
+      //   draggable: true,
+      //   progress: undefined,
+      //   theme: "light",
+      // });
+      toast.success('Мы свяжемся с вами в ближайшее время!', {
+        position: 'top-right',
         autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
-        pauseOnHover: true,
+        pauseOnHover: false,
         draggable: true,
         progress: undefined,
-        theme: "light",
+        theme: 'light',
       });
-      console.log(error);
+      // console.log(error);
     }
   };
 
   return (
     <>
       <ToastContainer
-        position="top-right"
+        position='top-right'
         autoClose={3000}
         hideProgressBar={false}
         newestOnTop={false}
@@ -59,7 +69,7 @@ const OrderCall = () => {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        theme="light"
+        theme='light'
       />
       <form
         onSubmit={handleSubmit}
@@ -87,7 +97,7 @@ const OrderCall = () => {
             Номер телефона <span className='text-red'>*</span>
           </label>
           <InputMask
-            mask="+7 (999) 999-99-99"
+            mask='+7 (999) 999-99-99'
             value={formData.number}
             onChange={handleChange}
           >
