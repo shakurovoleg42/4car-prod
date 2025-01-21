@@ -188,7 +188,6 @@ export default function Playground({ filters }) {
             defaultValue={getParamsSBrendy()}
             options={filterOptions.disk_manufacturers}
             id='disable-clearable1'
-            disableClearable
             noOptionsText='Нет доступных вариантов'
             renderInput={(params) => (
               <TextField {...params} label='Производитель' variant='standard' />
@@ -206,7 +205,6 @@ export default function Playground({ filters }) {
             noOptionsText='Нет доступных вариантов'
             options={filterOptions.disk_models}
             id='disable-clearable2'
-            disableClearable
             renderInput={(params) => (
               <TextField {...params} label='Модель' variant='standard' />
             )}
@@ -224,7 +222,6 @@ export default function Playground({ filters }) {
             options={filterOptions.manufacturers}
             defaultValue={getParamsSBrendy()}
             id='disable-clearable1'
-            disableClearable
             noOptionsText='Нет доступных вариантов'
             renderInput={(params) => (
               <TextField {...params} label='Производители' variant='standard' />
@@ -242,7 +239,6 @@ export default function Playground({ filters }) {
             noOptionsText='Нет доступных вариантов'
             options={filterOptions.models}
             id='disable-clearable2'
-            disableClearable
             renderInput={(params) => (
               <TextField {...params} label='Модель' variant='standard' />
             )}
@@ -263,7 +259,6 @@ export default function Playground({ filters }) {
             {...defaultProps}
             options={filterOptions.spikes}
             id='disable-clearable7'
-            disableClearable
             noOptionsText='Нет доступных вариантов'
             renderInput={(params) => (
               <TextField {...params} label='Шипы' variant='standard' />
@@ -277,7 +272,6 @@ export default function Playground({ filters }) {
             defaultValue={getParamsSeason()}
             options={filterOptions.season}
             id='disable-clearable6'
-            disableClearable
             noOptionsText='Нет доступных вариантов'
             renderInput={(params) => (
               <TextField {...params} label='Сезонность' variant='standard' />
@@ -290,7 +284,6 @@ export default function Playground({ filters }) {
             {...defaultProps}
             options={filterOptions.nagruzki}
             id='disable-clearable8'
-            disableClearable
             noOptionsText='Нет доступных вариантов'
             renderInput={(params) => (
               <TextField
@@ -307,7 +300,6 @@ export default function Playground({ filters }) {
             {...defaultProps}
             options={filterOptions.skorosti}
             id='disable-clearable9'
-            disableClearable
             noOptionsText='Нет доступных вариантов'
             renderInput={(params) => (
               <TextField
@@ -324,7 +316,6 @@ export default function Playground({ filters }) {
             {...defaultProps}
             options={filterOptions.rf}
             id='disable-clearable10'
-            disableClearable
             noOptionsText='Нет доступных вариантов'
             renderInput={(params) => (
               <TextField {...params} label='RunFlat' variant='standard' />
@@ -367,7 +358,6 @@ export default function Playground({ filters }) {
                   defaultValue={getParamsWidth()}
                   options={filterOptions.width}
                   id='disable-clearable3'
-                  disableClearable
                   renderInput={(params) => (
                     <TextField {...params} label='Ширина ' variant='standard' />
                   )}
@@ -381,7 +371,6 @@ export default function Playground({ filters }) {
                   defaultValue={getParamsHeight()}
                   options={filterOptions.height}
                   id='disable-clearable4'
-                  disableClearable
                   renderInput={(params) => (
                     <TextField {...params} label='Высота' variant='standard' />
                   )}
@@ -395,7 +384,6 @@ export default function Playground({ filters }) {
                   defaultValue={getParamsDiametr()}
                   options={filterOptions.diameter}
                   id='disable-clearable5'
-                  disableClearable
                   renderInput={(params) => (
                     <TextField
                       {...params}
@@ -436,7 +424,6 @@ export default function Playground({ filters }) {
             defaultValue={getParamsWidth()}
             options={filterOptions.width}
             id='disable-clearable3'
-            disableClearable
             noOptionsText='Нет доступных вариантов'
             renderInput={(params) => (
               <TextField {...params} label='Ширина ' variant='standard' />
@@ -450,7 +437,6 @@ export default function Playground({ filters }) {
             options={filterOptions.height}
             defaultValue={getParamsHeight()}
             id='disable-clearable4'
-            disableClearable
             noOptionsText='Нет доступных вариантов'
             renderInput={(params) => (
               <TextField {...params} label='Высота' variant='standard' />
@@ -464,7 +450,6 @@ export default function Playground({ filters }) {
             defaultValue={getParamsDiametr()}
             options={filterOptions.diameter}
             id='disable-clearable5'
-            disableClearable
             noOptionsText='Нет доступных вариантов'
             renderInput={(params) => (
               <TextField {...params} label='Диаметр ' variant='standard' />
