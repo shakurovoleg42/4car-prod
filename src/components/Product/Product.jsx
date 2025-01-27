@@ -37,7 +37,7 @@ const Product = ({ product, user_cookie }) => {
       ? 'rims'
       : null;
 
-      const whatType =
+  const whatType =
     product.category[0] === 'Шины'
       ? 'шины'
       : product.category[0] === 'Диски'
@@ -177,18 +177,30 @@ const Product = ({ product, user_cookie }) => {
                         <span className='text-primary'>{product.diameter}</span>
                       </Link>
                     </p>
+                    <p className='flex gap-3 text-xl text-gray-500'>
+                      Отверстий {whatType}
+                      <Link href={`/${whatIs}?diameter=${product.otverstiya}`}>
+                        <span className='text-primary'>
+                          {product.otverstiya}
+                        </span>
+                      </Link>
+                    </p>
                     {whatType === 'шины' && (
                       <>
                         <p className='flex gap-3 text-xl text-gray-500'>
                           Сезонность
                           <Link href={`/${whatIs}?season=${product.season}`}>
-                            <span className='text-primary'>{product.season}</span>
+                            <span className='text-primary'>
+                              {product.season}
+                            </span>
                           </Link>
                         </p>
                         <p className='flex gap-3 text-xl text-gray-500'>
                           Шипы
                           <Link href={`/${whatIs}?spikes=${product.spikes}`}>
-                            <span className='text-primary'>{product.spikes}</span>
+                            <span className='text-primary'>
+                              {product.spikes}
+                            </span>
                           </Link>
                         </p>
                         <p className='flex gap-3 text-xl text-gray-500'>
@@ -214,7 +226,9 @@ const Product = ({ product, user_cookie }) => {
                         <p className='flex gap-3 text-xl text-gray-500'>
                           RunFlat
                           <Link href={`/${whatIs}?runflat=${product.run_flat}`}>
-                            <span className='text-primary'>{product.run_flat}</span>
+                            <span className='text-primary'>
+                              {product.run_flat}
+                            </span>
                           </Link>
                         </p>
                       </>
@@ -222,26 +236,27 @@ const Product = ({ product, user_cookie }) => {
                     {whatType === 'диска' && (
                       <>
                         <p className='flex gap-3 text-xl text-gray-500'>
-                          Отверстий
-                          <Link href={`/${whatIs}?otverstiya=${product.otverstiya}`}>
-                            <span className='text-primary'>{product.otverstiya}</span>
-                          </Link>
-                        </p>
-                        <p className='flex gap-3 text-xl text-gray-500'>
                           Расстояние
-                          <Link href={`/${whatIs}?rasstoyaniya=${product.rasstoyaniya}`}>
-                            <span className='text-primary'>{product.rasstoyaniya}</span>
+                          <Link
+                            href={`/${whatIs}?rasstoyaniya=${product.rasstoyaniya}`}
+                          >
+                            <span className='text-primary'>
+                              {product.rasstoyaniya}
+                            </span>
                           </Link>
                         </p>
                         <p className='flex gap-3 text-xl text-gray-500'>
                           Количество болтов
-                          <Link href={`/${whatIs}?kolichestvo_boltov=${product.kolichestvo_boltov}`}>
-                            <span className='text-primary'>{product.kolichestvo_boltov}</span>
+                          <Link
+                            href={`/${whatIs}?kolichestvo_boltov=${product.kolichestvo_boltov}`}
+                          >
+                            <span className='text-primary'>
+                              {product.kolichestvo_boltov}
+                            </span>
                           </Link>
                         </p>
                       </>
                     )}
-                    
                   </div>
                 </div>
                 <div data-aos='fade-left'>
@@ -323,7 +338,6 @@ const Product = ({ product, user_cookie }) => {
                 user_cookie={user_cookie}
                 product_fullDescription={product.full_description}
                 product_shortDescription={product.short_description}
-
               />
             </section>
           </div>
