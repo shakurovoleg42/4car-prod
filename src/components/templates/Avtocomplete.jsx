@@ -103,6 +103,21 @@ export default function Playground({ filters }) {
       value: season.toString(),
     })),
 
+    central_hole: filters.central_hole.map((hole) => ({
+      label: hole.toString(),
+      value: hole.toString(),
+    })),
+
+    bolt: filters.bolt.map((bolt) => ({
+      label: bolt.toString(),
+      value: bolt.toString(),
+    })),
+
+    colors: filters.colors.map((color) => ({
+      label: color.toString(),
+      value: color.toString(),
+    })),
+
     spikes: filters.spikes.map((spike) => ({
       label: spike.toString(),
       value: spike.toString(),
@@ -210,6 +225,46 @@ export default function Playground({ filters }) {
             )}
             onChange={(event, newValue) => {
               handleFilter('modeli', newValue?.value || '');
+            }}
+          />
+          <Autocomplete
+            {...defaultProps}
+            noOptionsText='Нет доступных вариантов'
+            options={filterOptions.central_hole}
+            id='disable-clearable2'
+            renderInput={(params) => (
+              <TextField {...params} label='ЦО' variant='standard' />
+            )}
+            onChange={(event, newValue) => {
+              handleFilter('central_hole', newValue?.value || '');
+            }}
+          />
+          <Autocomplete
+            {...defaultProps}
+            noOptionsText='Нет доступных вариантов'
+            options={filterOptions.bolt}
+            id='disable-clearable2'
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                label='Количество болтов'
+                variant='standard'
+              />
+            )}
+            onChange={(event, newValue) => {
+              handleFilter('bolt', newValue?.value || '');
+            }}
+          />
+          <Autocomplete
+            {...defaultProps}
+            noOptionsText='Нет доступных вариантов'
+            options={filterOptions.colors}
+            id='disable-clearable2'
+            renderInput={(params) => (
+              <TextField {...params} label='Цвета' variant='standard' />
+            )}
+            onChange={(event, newValue) => {
+              handleFilter('colors', newValue?.value || '');
             }}
           />
         </>

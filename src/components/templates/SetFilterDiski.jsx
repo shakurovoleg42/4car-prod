@@ -12,7 +12,11 @@ const SetFilterDiski = (props) => {
     height: '',
     diameter: '',
     brendy: '',
+    disk_models: '',
+    bolt: '',
     season: '',
+    colors: '',
+    central_hole: '',
     available: false,
   });
 
@@ -131,6 +135,75 @@ const SetFilterDiski = (props) => {
                 ))}
               </select>
             </div>
+            <div>
+              <p className='text-white pb-1'>Модель</p>
+              <select
+                name='disk_models'
+                value={filters.disk_models}
+                onChange={handleChange}
+                className='border border-black text-black w-full'
+              >
+                <option value=''>Выбрать</option>
+                {data.filter.disk_models.map((el, index) => (
+                  <option key={index} value={el}>
+                    {el}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+
+          <div className='flex items-center gap-4 sire'>
+            <div>
+              <p className='text-white pb-1'>Центральное отверстие</p>
+              <select
+                name='central_hole'
+                value={filters.central_hole}
+                onChange={handleChange}
+                className='border border-black text-black w-full'
+              >
+                <option value=''>Выбрать</option>
+                {data.filter.central_hole.map((el, index) => (
+                  <option key={index} value={el}>
+                    {el}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <p className='text-white pb-1'>Кол-во болтов</p>
+              <select
+                name='bolt'
+                value={filters.bolt}
+                onChange={handleChange}
+                className='border border-black text-black w-full'
+              >
+                <option value=''>Выбрать</option>
+                {data.filter.bolt.map((el, index) => (
+                  <option key={index} value={el}>
+                    {el}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+          <div className='flex items-center gap-4 sire'>
+            <div>
+              <p className='text-white pb-1'>Цвет</p>
+              <select
+                name='colors'
+                value={filters.colors}
+                onChange={handleChange}
+                className='border border-black text-black w-full'
+              >
+                <option value=''>Выбрать</option>
+                {data.filter.colors.map((el, index) => (
+                  <option key={index} value={el}>
+                    {el}
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
           <div className='flex gap-5 cursor-pointer'>
             <input
@@ -161,6 +234,9 @@ const SetFilterDiski = (props) => {
                   diameter: '',
                   disk_manufacturers: '',
                   season: '',
+                  bolt: '',
+                  central_hole: '',
+                  colors: '',
                   available: false,
                 })
               }
