@@ -136,30 +136,30 @@ const SetFilter = (props) => {
                 ))}
               </select>
             </div>
-            <div>
-              <p className='text-white pb-1'>Сезонность</p>
-              <div className='flex shadow-sm text-black' role='group'>
-                <button
-                  type='button'
-                  onClick={() => handleSeasonChange('Зимние')}
-                  className={`inline-flex border border-black items-center px-4 text-sm font-medium 
+          </div>
+          <div>
+            <p className='text-white pb-1'>Сезонность</p>
+            <div className='flex shadow-sm text-black' role='group'>
+              <button
+                type='button'
+                onClick={() => handleSeasonChange('Зимние')}
+                className={`inline-flex border border-black items-center px-4 text-sm font-medium 
                     ${
                       filters.season === 'Зимние' ? 'bg-blue-300' : 'bg-white'
                     } focus:z-10`}
-                >
-                  Зимние
-                </button>
-                <button
-                  type='button'
-                  onClick={() => handleSeasonChange('Летние')}
-                  className={`inline-flex border border-black items-center px-4 text-sm font-medium 
+              >
+                Зимние
+              </button>
+              <button
+                type='button'
+                onClick={() => handleSeasonChange('Летние')}
+                className={`inline-flex border border-black items-center px-4 text-sm font-medium 
                     ${
                       filters.season === 'Летние' ? 'bg-blue-300' : 'bg-white'
                     } focus:z-10`}
-                >
-                  Летние
-                </button>
-              </div>
+              >
+                Летние
+              </button>
             </div>
           </div>
           <div className='flex gap-5 cursor-pointer'>
