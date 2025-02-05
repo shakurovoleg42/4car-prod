@@ -50,17 +50,22 @@ const BrandPage = ({ partners, brand }) => {
                 </p>
                 <div className='flex flex-col gap-3 px-4 pb-5'>
                   <ul className={styles.list}>
-                    {partners.map((e) => (
-                      <li key={e.id}>
-                        <Link
-                          href={`/${e.slug}`}
-                          onClick={scrollToTop}
-                          className='hover:text-primary transition-all'
-                        >
-                          {e.name}
-                        </Link>
-                      </li>
-                    ))}
+                    {partners.map((e) => {
+                      const name = e.name
+                        .replace(/[-_\s]+/g, ' ')
+                        .toLowerCase();
+                      return (
+                        <li key={e.id}>
+                          <Link
+                            href={`/${name}`}
+                            onClick={scrollToTop}
+                            className='hover:text-primary transition-all'
+                          >
+                            {e.name}
+                          </Link>
+                        </li>
+                      );
+                    })}
                   </ul>
                   <Link
                     href='/manufacturers'

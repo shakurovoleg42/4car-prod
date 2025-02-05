@@ -10,8 +10,7 @@ import Footer from './../Footer/Footer';
 import ScrollToTop from './../ScrollToTop/ScrollToTop';
 import Slider from 'react-slick';
 
-
-const About = ({partners}) => {
+const About = ({ partners }) => {
   return (
     <>
       <div className='overflow-hidden'>
@@ -109,22 +108,29 @@ const About = ({partners}) => {
                 },
               ]}
             >
-              {partners.map((el) => (
-                <div
-                  key={el.id}
-                  className='flex w-full text-center items-center justify-center px-2 gap-5'
-                >
-                  <Link
-                    href={`/${el.slug}`}
-                    data-aos='fade-up'
-                    data-aos-anchor-placement='top-bottom'
-                    className='max-w-44 w-full h-full bg-white text-center flex flex-col items-center '
+              {partners.map((el) => {
+                const name = el.name.replace(/[-_\s]+/g, ' ').toLowerCase();
+                return (
+                  <div
+                    key={el.id}
+                    className='flex w-full text-center items-center justify-center px-2 gap-5'
                   >
-                    <img src={el.image} alt='product' className='h-44 object-contain'/>
-                    <span>{el.name}</span>
-                  </Link>
-                </div>
-              ))}
+                    <Link
+                      href={`/${name}`}
+                      data-aos='fade-up'
+                      data-aos-anchor-placement='top-bottom'
+                      className='max-w-44 w-full h-full bg-white text-center flex flex-col items-center '
+                    >
+                      <img
+                        src={el.image}
+                        alt='product'
+                        className='h-44 object-contain'
+                      />
+                      <span>{el.name}</span>
+                    </Link>
+                  </div>
+                );
+              })}
             </Slider>
           </div>
         </main>
